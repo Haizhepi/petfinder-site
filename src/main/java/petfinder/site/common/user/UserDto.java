@@ -19,7 +19,6 @@ public class UserDto implements Momento<String> {
 	private List<String> roles;
 	private UserType type;
 	private Map<String, Object> attributes;
-	private String myNewField;
 
 	private UserDto() {
 
@@ -47,13 +46,6 @@ public class UserDto implements Momento<String> {
 		return type;
 	}
 
-	public String getMyNewField() {
-		return myNewField;
-	}
-
-	public void setMyNewField(String myNewField) {
-		this.myNewField = myNewField;
-	}
 
 	@JsonIgnore
 	@Override
