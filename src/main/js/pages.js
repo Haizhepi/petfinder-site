@@ -18,6 +18,7 @@ export class Home extends React.Component {
 					<li><Link to="/page-1">Page 1</Link></li>
 					<li><Link to="/page-2">Page 2</Link></li>
 					<li><Link to="/page-3">Page 3</Link></li>
+					<li><Link to="/homepage">Homepage</Link></li>
 				</ul>
 			</div>
 		);
@@ -98,6 +99,16 @@ export class Page3 extends React.Component {
 		return (
 			<div className="container padded">
 				This is page 3.
+			</div>
+		);
+	}
+}
+
+export class Homepage extends React.Component {
+	render() {
+		return (
+			<div className="container padded">
+				This is homepage.
 			</div>
 		);
 	}
