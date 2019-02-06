@@ -10,7 +10,7 @@ export class Home extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is the home page.
+				This is the home page of GitRekt.
 
 				<ul>
 					<li><Link to="/register">Register</Link></li>
