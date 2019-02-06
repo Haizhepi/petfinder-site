@@ -108,7 +108,7 @@ export class Homepage extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is homepage.
+				This is Patrick.
 			</div>
 		);
 	}
