@@ -158,7 +158,7 @@ node {
 		download = false
 	} else {
 		version = '11.1.0'
-		npmVersion = '6.4.1'
+		npmVersion = '6.5.0'
 		download = true
 	}
 }
