@@ -112,8 +112,5 @@ Reducers.user = (user = null, action) => {
 	}
 };
 
-
-
-
 export { Reducers };
 
