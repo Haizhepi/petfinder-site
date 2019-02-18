@@ -192,5 +192,5 @@ processResources {
 		into 'statics'
 	}
 }
-
 tasks.processResources.dependsOn webpack
+
