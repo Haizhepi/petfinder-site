@@ -7,7 +7,10 @@ import * as Bessemer from 'js/alloy/bessemer/components';
 
 import * as Users from 'js/users';
 
+//Class that represents the log in form
 class LoginForm extends React.Component {
+
+	//Defines the on submit behavior
 	onSubmit = ({principal, password}) => {
 		return this.props.authenticate(principal, password);
 	};
@@ -33,7 +36,7 @@ LoginForm = ReduxForm.reduxForm({form: 'login'})(LoginForm);
 
 LoginForm = connect(
 	state => ({
-		initialValues: { principal: 'This is a Default Name', password: 'This is a Password' }
+		initialValues: { principal: 'Email Address', password: 'Password' }
 	}),
 	dispatch => ({
 		authenticate: (principal, password) => dispatch(Users.Actions.authenticate(principal, password))
@@ -42,6 +45,7 @@ LoginForm = connect(
 
 export { LoginForm };
 
+//Class that represents a registration form
 class RegistrationForm extends React.Component {
 	onSubmit = user => {
 		return this.props.register(user);

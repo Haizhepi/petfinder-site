@@ -22,7 +22,6 @@ import alloy.elasticsearch.ElasticSearchClientProvider;
 @Service
 public class PetfinderElasticSearchClientProvider implements ElasticSearchClientProvider {
 	private RestHighLevelClient client;
-
 	@Value("${elastic-search.host}")
 	private String elasticSearchHost;
 

@@ -31,8 +31,8 @@ web:
     css-bundle-location: /statics/petfinder-site.css
 
 elastic-search:
-  host: localhost
-  port: 9200
-  scheme: http
-  user-name: yunzhe
-  password: liu
+  host: cedar-38061436.us-east-1.bonsaisearch.net
+  port: 443
+  scheme: https
+  user-name: p7desgnbks
+  password: pk648443t8

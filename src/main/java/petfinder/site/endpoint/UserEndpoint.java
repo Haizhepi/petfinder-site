@@ -81,9 +81,9 @@ public class UserEndpoint {
 	 */
 	@PostMapping(value = "/register")
 	public UserDto register(@RequestBody RegistrationRequest request) {
+
 		return userService.register(request);
 	}
-
 	/**
 	 * This endpoint gets a list of pets associated with the current user. In this example we associate users and pets via a seperate index represented by the UserPetDto class.
 	 * While this is one way to model this association, it is not the only way - pets could be included directly on the user object, for example. However, we have chosen to use a

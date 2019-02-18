@@ -1,6 +1,8 @@
 import axios from 'axios';
+import React, {Component} from 'react';
 
 export function register(user) {
+	user.myNewField = 'Hello World!';
 	return axios.post('/api/user/register', user);
 }
 
@@ -25,6 +27,8 @@ export function authenticate(username, password) {
 export function getUserDetails() {
 	return axios.get('/api/user');
 }
+
+
 
 let State = {};
 
@@ -108,4 +112,8 @@ Reducers.user = (user = null, action) => {
 	}
 };
 
+
+
+
 export { Reducers };
+

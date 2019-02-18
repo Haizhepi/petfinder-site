@@ -10,7 +10,7 @@ export class Home extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is the home page.
+				<h1>This is the home page.</h1>
 
 				<ul>
 					<li><Link to="/register">Register</Link></li>
@@ -29,6 +29,7 @@ export class RegisterPage extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
+				<h1>This is the register page</h1>
 				<div className="row">
 					<div className="col-6 offset-md-3">
 						<h2>Register</h2>
@@ -45,6 +46,7 @@ export class LoginPage extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
+				<h1>This is the login page</h1>
 				<div className="row">
 					<div className="col-6 offset-md-3">
 						<h2>Login</h2>
@@ -61,7 +63,8 @@ class Page1 extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is page 1.
+				<h1>This is page 1</h1>
+
 
 				{ _.isDefined(this.props.authentication) &&
 				<div>{this.props.authentication['access_token']}</div>
@@ -88,7 +91,7 @@ export class Page2 extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is page 2.
+				<h1>This is page 2</h1>
 			</div>
 		);
 	}
@@ -98,17 +101,19 @@ export class Page3 extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is page 3.
+				<h1>This is page 3</h1>
 			</div>
 		);
 	}
 }
 
+
+
 export class Homepage extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is homepage.
+				<h1>This is homepage</h1>
 			</div>
 		);
 	}

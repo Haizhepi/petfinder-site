@@ -3,6 +3,7 @@ import { HashRouter, Route } from 'react-router-dom';
 
 import * as Pages from 'js/pages';
 
+
 export default class Index extends React.Component {
 	render() {
 		return (
