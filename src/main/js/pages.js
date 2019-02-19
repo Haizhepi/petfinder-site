@@ -12,7 +12,7 @@ export class Home extends React.Component {
 			<div className="container padded">
 				<h1>This is the home page.</h1>
 				<ul>
-					<li><Link to="/register">Register</Link></li>
+					<li><Link to="/register">Register as Owner</Link></li>
 					<li><Link to="/login">Login</Link></li>
 					<li><Link to="/page-1">Page 1</Link></li>
 					<li><Link to="/page-2">Page 2</Link></li>
@@ -31,7 +31,7 @@ export class RegisterPage extends React.Component {
 				<h1>This is the register page</h1>
 				<div className="row">
 					<div className="col-6 offset-md-3">
-						<h2>Register</h2>
+						<h2>Register as Owner</h2>
 						<hr />
 						<Login.RegistrationForm />
 					</div>

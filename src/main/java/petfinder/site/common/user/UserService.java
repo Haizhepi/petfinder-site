@@ -38,6 +38,43 @@ public class UserService {
 	public static class RegistrationRequest {
 		private String principal;
 		private String password;
+		private String firstName;
+		private String lastName;
+
+		public String getFirstName() {
+			return firstName;
+		}
+
+		public void setFirstName(String firstName) {
+			this.firstName = firstName;
+		}
+
+		public String getLastName() {
+			return lastName;
+		}
+
+		public void setLastName(String lastName) {
+			this.lastName = lastName;
+		}
+
+		public String getGender() {
+			return gender;
+		}
+
+		public void setGender(String gender) {
+			this.gender = gender;
+		}
+
+		public String getZipcode() {
+			return zipcode;
+		}
+
+		public void setZipcode(String zipcode) {
+			this.zipcode = zipcode;
+		}
+
+		private String gender;
+		private String zipcode;
 		private Map<String, Object> attributes;
 
 		public String getPrincipal() {
@@ -67,8 +104,12 @@ public class UserService {
 
 	public UserDto register(RegistrationRequest request) {
 		UserAuthenticationDto userAuthentication = new UserAuthenticationDto(
-				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"), UserType.OWNER, request.getAttributes()), passwordEncoder.encode(request.getPassword()));
-
+				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"),
+						request.getFirstName(), request.getLastName(),
+						request.getGender(), request.getZipcode(),
+						UserType.OWNER, request.getAttributes()),
+				passwordEncoder.encode(request.getPassword()));
+		System.out.println(request.getGender());
 		userDao.save(userAuthentication);
 		return userAuthentication.getUser();
 	}
