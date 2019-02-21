@@ -91,13 +91,13 @@ export class Page2 extends React.Component {
 		return (
 			<div className="container padded">
 				<h1>Owner Homepage</h1>
-			</div>
-			        { _.isDefined(this.props.authentication) &&
-                    				<div>{this.props.authentication['access_token']}</div>
-                    }
-					/*{ _.isDefined(this.props.user) &&
-            		<div>Welcome, {this.props.user.password}!</div>
-            	    }*/
+                { _.isDefined(this.props.authentication) &&
+                <div>{this.props.authentication['access_token']}</div>
+                }
+
+                { _.isDefined(this.props.user) &&
+                <div>Welcome, {this.props.user.principal}!</div>
+                }
             </div>
         );
     }
