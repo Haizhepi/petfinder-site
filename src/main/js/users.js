@@ -108,10 +108,9 @@ Actions.savePet = pet => {
     return (dispatch) => {
         return savePet(pet).then(() => {
             return getPets().then(pet => {
-            					dispatch(Actions.addPet(pet));
-            				});
-        )};
-
+            		dispatch(Actions.addPet(pet));
+            });
+        });
     };
 };
 
