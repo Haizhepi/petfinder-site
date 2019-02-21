@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {Component} from 'react';
 import * as ReduxForm from 'redux-form';
 import { connect } from 'react-redux';
+import * as Users from 'js/users';
 
 class PetForm extends React.Component {
 	onSubmit = pet => {
@@ -41,7 +42,7 @@ PetForm = connect(
 	state => ({
 	}),
 	dispatch => ({
-		addPet: pet => dispatch(Actions.addPet(pet))
+		addPet: pet => dispatch(Users.Actions.addPet(pet))
 	})
 )(PetForm);
 

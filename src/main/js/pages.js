@@ -28,7 +28,6 @@ export class RegisterPage extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				<h1>This is the register page</h1>
 				<div className="row">
 					<div className="col-6 offset-md-3">
 						<h2>Register as Owner</h2>
@@ -90,14 +89,9 @@ class Page2 extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				<h1>Owner Homepage</h1>
-                { _.isDefined(this.props.authentication) &&
-                <div>{this.props.authentication['access_token']}</div>
-                }
-
-                { _.isDefined(this.props.user) &&
-                <div>Welcome, {this.props.user.principal}!</div>
-                }
+				<h1>Owner Profile</h1>
+				<hr />
+                <Users.PetForm />
             </div>
         );
     }
