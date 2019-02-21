@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, {Component} from 'react';
+import * as ReduxForm from 'redux-form';
+import { connect } from 'react-redux';
 
 class PetForm extends React.Component {
-	/*onSubmit = user => {
+	onSubmit = pet => {
 		return this.props.addPet(pet);
 	};
-*/
+
 	render() {
 		let { handleSubmit, submitting } = this.props;
 
@@ -33,13 +35,13 @@ class PetForm extends React.Component {
 	}
 }
 
-PetForm = ReduxForm.reduxForm({form: 'savePet'})(PetForm);
+PetForm = ReduxForm.reduxForm({form: 'addPet'})(PetForm);
 
 PetForm = connect(
 	state => ({
 	}),
 	dispatch => ({
-		savePet: pet => dispatch(Users.Actions.savePet(pet))
+		addPet: pet => dispatch(Actions.addPet(pet))
 	})
 )(PetForm);
 
@@ -106,7 +108,7 @@ Actions.Types = {
 //save pet
 Actions.savePet = pet => {
     return (dispatch) => {
-        return savePet(pet).then(() => {
+        return addPet(pet).then(() => {
             return getPets().then(pet => {
             		dispatch(Actions.addPet(pet));
             });
@@ -175,7 +177,7 @@ Reducers.user = (user = null, action) => {
 		case Actions.Types.SET_USER: {
 			return action.user;
 		}
-		default: {
+        default: {
 			return user;
 		}
 	}
