@@ -86,7 +86,7 @@ Page1 = connect(
 
 export { Page1 };
 
-export class Page2 extends React.Component {
+class Page2 extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
