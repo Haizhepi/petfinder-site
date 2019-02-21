@@ -81,7 +81,9 @@ public class UserEndpoint {
 	 */
 	@PostMapping(value = "/register")
 	public UserDto register(@RequestBody RegistrationRequest request) {
-
+		System.out.println(request.getGender());
+		System.out.println(request.getFirstName());
+		System.out.println(request.getLastName());
 		return userService.register(request);
 	}
 	/**
