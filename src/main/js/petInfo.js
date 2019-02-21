@@ -17,17 +17,17 @@ class PetForm extends React.Component {
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 				<Bessemer.Field name="petName" friendlyName="Pet Name"
 					field={<input className="form-control" type="petName"/>}/>
-				/*<Bessemer.Field name="type" friendlyName="Pet Type"
+				<Bessemer.Field name="type" friendlyName="Pet Type"
                     field={<Bessemer.Select options={[{value: 'dog', label: 'Dog'},
                         {value: 'cat', label: 'Cat'}, {value: 'guinea pig', label: 'Guinea pig'},
-                        {value: 'hamster', label: 'Hamster'},{value: 'Mouse', label: 'mouse'},
+                        {value: 'hamster', label: 'Hamster'},{value: 'mouse', label: 'Mouse'},
                         {value: 'rat', label: 'Rat'},{value: 'gerbil', label: 'Gerbil'},
                         {value: 'turtle', label: 'Turtle'},
                         {value: 'frog', label: 'Frog'},{value: 'lizard', label: 'Lizard'},
                         {value: 'snake', label: 'Snake'},{value: 'bird', label: 'Bird'},
                         {value: 'ferret', label: 'Ferret'},{value: 'rabbit', label: 'Rabbit'},
                         {value: 'hedgehog', label: 'Hedgehog'},{value: 'fish', label: 'Fish'},
-                        {value: 'other', label: 'Other'},]}/>}/>*/
+                        {value: 'other', label: 'Other'},]}/>}/>
 
 
 				<Bessemer.Button loading={submitting}>Add Pet</Bessemer.Button>
@@ -44,7 +44,7 @@ PetForm = connect(
 	state => ({
 	}),
 	dispatch => ({
-		addPet: pet => dispatch(Users.Actions.addPet(pet))
+		savePet: pet => dispatch(Users.Actions.savePet(pet))
 	})
 )(PetForm);
 
