@@ -15,7 +15,7 @@ export class Home extends React.Component {
 					<li><Link to="/register">Register as Owner</Link></li>
 					<li><Link to="/login">Login</Link></li>
 					<li><Link to="/page-1">Page 1</Link></li>
-					<li><Link to="/page-2">Page 2</Link></li>
+					<li><Link to="/pet">Page 2</Link></li>
 					<li><Link to="/page-3">Page 3</Link></li>
 					<li><Link to="/homepage">Homepage</Link></li>
 				</ul>
@@ -28,7 +28,6 @@ export class RegisterPage extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				<h1>This is the register page</h1>
 				<div className="row">
 					<div className="col-6 offset-md-3">
 						<h2>Register as Owner</h2>
@@ -86,15 +85,27 @@ Page1 = connect(
 
 export { Page1 };
 
-export class Page2 extends React.Component {
+class Page2 extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				<h1>This is page 2</h1>
-			</div>
-		);
-	}
+			    <h1>Owner Profile Page</h1>
+			    <div className="container padded">
+                    <Users.PetForm />
+                </div>
+            </div>
+        );
+    }
 }
+Page2 = connect(
+    state => ({
+    authentication: Users.State.getAuthentication(state),
+    user: Users.State.getUser(state),
+    pet: Users.State.getPet(state)
+    })
+)(Page2);
+
+export { Page2 };
 
 export class Page3 extends React.Component {
 	render() {

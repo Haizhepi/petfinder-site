@@ -13,7 +13,7 @@ export default class Index extends React.Component {
 					<Route exact path="/register" component={Pages.RegisterPage} />
 					<Route exact path="/login" component={Pages.LoginPage} />
 					<Route exact path="/page-1" component={Pages.Page1} />
-					<Route exact path="/page-2" component={Pages.Page2} />
+					<Route exact path="/pet" component={Pages.Page2} />
 					<Route exact path="/page-3" component={Pages.Page3} />
 					<Route exact path="/homepage" component={Pages.Homepage} />
 				</div>
