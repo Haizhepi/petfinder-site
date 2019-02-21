@@ -15,7 +15,7 @@ export class Home extends React.Component {
 					<li><Link to="/register">Register as Owner</Link></li>
 					<li><Link to="/login">Login</Link></li>
 					<li><Link to="/page-1">Page 1</Link></li>
-					<li><Link to="/page-2">Page 2</Link></li>
+					<li><Link to="/pet">Page 2</Link></li>
 					<li><Link to="/page-3">Page 3</Link></li>
 					<li><Link to="/homepage">Homepage</Link></li>
 				</ul>
@@ -92,9 +92,22 @@ export class Page2 extends React.Component {
 			<div className="container padded">
 				<h1>This is page 2</h1>
 			</div>
-		);
-	}
+					{ _.isDefined(this.props.user) &&
+            		<div>Welcome, {this.props.user.password}!</div>
+            	    }
+            </div>
+        );
+    }
 }
+Page2 = connect(
+    state => ({
+    authentication: Users.State.getAuthentication(state),
+    user: Users.State.getUser(state)
+    })
+)(Page2);
+
+export { Page2 };
+
 
 export class Page3 extends React.Component {
 	render() {

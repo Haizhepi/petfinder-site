@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.pet.PetService;
 import petfinder.site.common.user.UserDto;
+import petfinder.site.common.user.UserPetDto;
 
 /**
  * If this is your first time looking through this project, see the more in-depth overview of controllers in UserEndpoint.
@@ -25,6 +26,7 @@ public class PetEndpoint {
 	// PetService contains our business logic for dealing with pets as well as saving/reading them
 	@Autowired
 	private PetService petService;
+	private UserPetDto userPetDto;
 
 	// Take an id, and look up the corresponding pet
 	@GetMapping(value = "/{id}", produces = "application/json")
