@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
+import * as Pets from 'js/petInfo';
 
 export class Home extends React.Component {
 	render() {
@@ -90,9 +91,8 @@ class Page2 extends React.Component {
 		return (
 			<div className="container padded">
 			    <h1>Owner Profile Page</h1>
-			    <div className="container padded">
-                    <Users.PetForm />
-                </div>
+
+                <Pets.PetForm />
             </div>
         );
     }
