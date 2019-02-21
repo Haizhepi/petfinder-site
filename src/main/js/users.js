@@ -2,10 +2,10 @@ import axios from 'axios';
 import React, {Component} from 'react';
 
 class PetForm extends React.Component {
-	onSubmit = user => {
+	/*onSubmit = user => {
 		return this.props.addPet(pet);
 	};
-
+*/
 	render() {
 		let { handleSubmit, submitting } = this.props;
 
