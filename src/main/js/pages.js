@@ -89,9 +89,10 @@ class Page2 extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				<h1>Owner Profile Page</h1>
-				<hr />
-                <Users.PetForm />
+			    <h1>Owner Profile Page</h1>
+			    <div className="container padded">
+                    <Users.PetForm />
+                </div>
             </div>
         );
     }
@@ -99,7 +100,8 @@ class Page2 extends React.Component {
 Page2 = connect(
     state => ({
     authentication: Users.State.getAuthentication(state),
-    user: Users.State.getUser(state)
+    user: Users.State.getUser(state),
+    pet: Users.State.getPet(state)
     })
 )(Page2);
 

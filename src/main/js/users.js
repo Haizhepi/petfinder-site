@@ -36,7 +36,7 @@ class PetForm extends React.Component {
 	}
 }
 
-PetForm = ReduxForm.reduxForm({form: 'addPet'})(PetForm);
+PetForm = ReduxForm.reduxForm({form: 'petForm'})(PetForm);
 
 PetForm = connect(
 	state => ({
@@ -46,7 +46,7 @@ PetForm = connect(
 	})
 )(PetForm);
 
-export { PetForm };
+export default PetForm;
 
 export function register(user) {
 	user.myNewField = 'Hello World!';
@@ -94,6 +94,10 @@ State.getAuthentication = state => {
 
 State.getUser = state => {
 	return state.user;
+};
+
+State.getPet = state => {
+    return state.pet;
 };
 
 export { State };
