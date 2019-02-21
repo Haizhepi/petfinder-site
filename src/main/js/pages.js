@@ -92,6 +92,9 @@ export class Page2 extends React.Component {
 			<div className="container padded">
 				<h1>This is page 2</h1>
 			</div>
+			        { _.isDefined(this.props.authentication) &&
+                    				<div>{this.props.authentication['access_token']}</div>
+                    }
 					{ _.isDefined(this.props.user) &&
             		<div>Welcome, {this.props.user.password}!</div>
             	    }
