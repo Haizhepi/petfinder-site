@@ -38,7 +38,7 @@ class PetForm extends React.Component {
 }
 
 
-PetForm = ReduxForm.reduxForm({form: 'addPet'})(PetForm);
+PetForm = ReduxForm.reduxForm({form: 'savePet'})(PetForm);
 
 PetForm = connect(
 	state => ({

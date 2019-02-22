@@ -68,11 +68,7 @@ Actions.Types = {
 //save pet
 Actions.savePet = pet => {
     return (dispatch) => {
-        return savePet(pet).then(() => {
-            return getPets().then(pet => {
-            		dispatch(Actions.savePet(pet));
-            });
-        });
+        return savePet(pet);
     };
 };
 
