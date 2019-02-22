@@ -20,8 +20,7 @@ public class PetService {
 		return petDao.findPet(id);
 	}
 
-	public PetDto save(AddPetRequest petReq) {
-		PetDto pet = new PetDto(petReq.getPetName(), petReq.getType());
+	public PetDto save(PetDto pet) {
 		petDao.save(pet);
 		return pet;
 	}
