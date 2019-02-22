@@ -36,8 +36,7 @@ public class PetEndpoint {
 
 	// Take a JSON representation of a Pet and save it to Elasticsearch
 	@PostMapping(produces = "application/json")
-	public PetDto savePet(@RequestBody PetDto pet) {
-		petService.save(pet);
-		return pet;
+	public PetDto savePet(@RequestBody PetService.AddPetRequest petReq) {
+		return petService.save(petReq);
 	}
 }

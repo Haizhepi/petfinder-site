@@ -18,6 +18,13 @@ public class PetDto implements Momento<String> {
 		this.id = UUID.randomUUID().toString();
 	}
 
+	public PetDto(String name, String type) {
+		// Randomly generate an id when constructing a pet object.
+		this.id = UUID.randomUUID().toString();
+		this.name = name;
+		this.type = type;
+	}
+
 	public String getId() {
 		return id;
 	}

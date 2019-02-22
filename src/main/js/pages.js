@@ -91,7 +91,6 @@ class Page2 extends React.Component {
 		return (
 			<div className="container padded">
 			    <h1>Owner Profile Page</h1>
-
                 <Pets.PetForm />
             </div>
         );
