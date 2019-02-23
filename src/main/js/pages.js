@@ -16,7 +16,7 @@ export class Home extends React.Component {
 					<li><Link to="/register">Register as Owner</Link></li>
 					<li><Link to="/login">Login</Link></li>
 					<li><Link to="/page-1">Page 1</Link></li>
-					<li><Link to="/pet">Page 2</Link></li>
+					<li><Link to="/pet">add a pet</Link></li>
 					<li><Link to="/page-3">Page 3</Link></li>
 					<li><Link to="/homepage">Homepage</Link></li>
 				</ul>

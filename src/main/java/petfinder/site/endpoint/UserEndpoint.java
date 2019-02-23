@@ -105,6 +105,7 @@ public class UserEndpoint {
 	 */
 	@PostMapping(value = "/pet")
 	public UserPetDto addPet(@RequestBody UserPetDto userPetDto) {
+		System.out.println();
 		return userService.save(userPetDto);
 	}
 }
