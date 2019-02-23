@@ -1,5 +1,6 @@
 package petfinder.site.common.pet;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,31 @@ public class PetService {
 		return petDao.findPet(id);
 	}
 
-	public void save(PetDto pet) {
+	public PetDto save(PetDto pet) {
 		petDao.save(pet);
+		return pet;
 	}
+
+	public static class AddPetRequest {
+		private String petName;
+		private String type;
+
+		public String getPetName() {
+			return petName;
+		}
+
+		public void setPetName(String petName) {
+			this.petName = petName;
+		}
+
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
+		}
+
+	}
+
 }

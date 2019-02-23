@@ -27,13 +27,13 @@ export function authenticate(username, password) {
 }
 
 //post pet to user (UserEndpoint)
-export function addPet(pet) {
+export function savePet(pet) {
     return axios.post('/api/pets', pet);
 }
 
 //get pets assigned to user (UserEndpoint)
 export function getPets() {
-    return axios.get('/api/user/pet');
+    return axios.get('/api/pets');
 }
 
 export function getUserDetails() {
@@ -68,11 +68,7 @@ Actions.Types = {
 //save pet
 Actions.addPet = pet => {
     return (dispatch) => {
-        return addPet(pet).then(() => {
-            return getPets().then(pet => {
-            		dispatch(Actions.addPet(pet));
-            });
-        });
+        return savePet(pet);
     };
 };
 

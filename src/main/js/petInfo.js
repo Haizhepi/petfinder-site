@@ -15,12 +15,13 @@ class PetForm extends React.Component {
 
 		return (
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-				<Bessemer.Field name="petName" friendlyName="Pet Name"
-					field={<input className="form-control" type="petName"/>}/>
+
+				<Bessemer.Field name="name" friendlyName="Pet Name"
+					field={<input className="form-control" type="name"/>}/>
 				<Bessemer.Field name="type" friendlyName="Pet Type"
                     field={<Bessemer.Select options={[{value: 'dog', label: 'Dog'},
                         {value: 'cat', label: 'Cat'}, {value: 'guinea pig', label: 'Guinea pig'},
-                        {value: 'hamster', label: 'Hamster'},{value: 'Mouse', label: 'mouse'},
+                        {value: 'hamster', label: 'Hamster'},{value: 'mouse', label: 'Mouse'},
                         {value: 'rat', label: 'Rat'},{value: 'gerbil', label: 'Gerbil'},
                         {value: 'turtle', label: 'Turtle'},
                         {value: 'frog', label: 'Frog'},{value: 'lizard', label: 'Lizard'},
@@ -38,13 +39,13 @@ class PetForm extends React.Component {
 }
 
 
-PetForm = ReduxForm.reduxForm({form: 'addPet'})(PetForm);
+PetForm = ReduxForm.reduxForm({form: 'savePet'})(PetForm);
 
 PetForm = connect(
 	state => ({
 	}),
 	dispatch => ({
-		addPet: pet => dispatch(Users.Actions.addPet(pet))
+		savePet: pet => dispatch(Users.Actions.savePet(pet))
 	})
 )(PetForm);
 
