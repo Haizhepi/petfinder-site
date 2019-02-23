@@ -45,7 +45,7 @@ PetForm = connect(
 	state => ({
 	}),
 	dispatch => ({
-		savePet: pet => dispatch(Users.Actions.savePet(pet))
+		addPet: pet => dispatch(Users.Actions.addPet(pet))
 	})
 )(PetForm);
 
