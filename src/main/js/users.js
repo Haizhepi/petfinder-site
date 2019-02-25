@@ -26,14 +26,19 @@ export function authenticate(username, password) {
 	);
 }
 
-//post pet to user (UserEndpoint)
+//post pet to PetEndpoint
 export function savePet(pet) {
     return axios.post('/api/pets', pet);
 }
 
+//post pet &user to UserEndpoint
+export function addPet(pet) {
+    return axios.post('/api/user/pets', pet);
+}
+
 //get pets assigned to user (UserEndpoint)
 export function getPets() {
-    return axios.get('/api/pets');
+    return axios.get('/api/user/pet');
 }
 
 export function getUserDetails() {
@@ -69,6 +74,13 @@ Actions.Types = {
 Actions.addPet = pet => {
     return (dispatch) => {
         return savePet(pet);
+    };
+};
+
+//get list of pets belonging to current user
+Actions.getPetsFromUser = pets => {
+    return (dispatch) => {
+        return getPets;
     };
 };
 
