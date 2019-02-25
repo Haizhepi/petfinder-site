@@ -14,31 +14,35 @@ class PetForm extends React.Component {
 		let { handleSubmit, submitting } = this.props;
 
 		return (
-		    <pre>
-		    <script>
-            document.writeln(Users.Actions.getPetsForUser())
-		    </script>
-		    </pre>
-			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+            <div id="parent">
+                <div id="div1">
+                    <script>
+                        { document.writeln(Users.Actions.getPetsForUser()) }
+                    </script>
+                </div>
+                <div id="div1">
+                    <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 
-				<Bessemer.Field name="name" friendlyName="Pet Name"
-					field={<input className="form-control" type="name"/>}/>
-				<Bessemer.Field name="type" friendlyName="Pet Type"
-                    field={<Bessemer.Select options={[{value: 'dog', label: 'Dog'},
-                        {value: 'cat', label: 'Cat'}, {value: 'guinea pig', label: 'Guinea pig'},
-                        {value: 'hamster', label: 'Hamster'},{value: 'mouse', label: 'Mouse'},
-                        {value: 'rat', label: 'Rat'},{value: 'gerbil', label: 'Gerbil'},
-                        {value: 'turtle', label: 'Turtle'},
-                        {value: 'frog', label: 'Frog'},{value: 'lizard', label: 'Lizard'},
-                        {value: 'snake', label: 'Snake'},{value: 'bird', label: 'Bird'},
-                        {value: 'ferret', label: 'Ferret'},{value: 'rabbit', label: 'Rabbit'},
-                        {value: 'hedgehog', label: 'Hedgehog'},{value: 'fish', label: 'Fish'},
-                        {value: 'other', label: 'Other'},]}/>}/>
+                        <Bessemer.Field name="name" friendlyName="Pet Name"
+                            field={<input className="form-control" type="name"/>}/>
+                        <Bessemer.Field name="type" friendlyName="Pet Type"
+                            field={<Bessemer.Select options={[{value: 'dog', label: 'Dog'},
+                                {value: 'cat', label: 'Cat'}, {value: 'guinea pig', label: 'Guinea pig'},
+                                {value: 'hamster', label: 'Hamster'},{value: 'mouse', label: 'Mouse'},
+                                {value: 'rat', label: 'Rat'},{value: 'gerbil', label: 'Gerbil'},
+                                {value: 'turtle', label: 'Turtle'},
+                                {value: 'frog', label: 'Frog'},{value: 'lizard', label: 'Lizard'},
+                                {value: 'snake', label: 'Snake'},{value: 'bird', label: 'Bird'},
+                                {value: 'ferret', label: 'Ferret'},{value: 'rabbit', label: 'Rabbit'},
+                                {value: 'hedgehog', label: 'Hedgehog'},{value: 'fish', label: 'Fish'},
+                                {value: 'other', label: 'Other'},]}/>}/>
 
 
-				<Bessemer.Button loading={submitting}>Add Pet</Bessemer.Button>
+                        <Bessemer.Button loading={submitting}>Add Pet</Bessemer.Button>
 
-			</form>
+                    </form>
+                </div>
+            </div>
 		);
 	}
 }
