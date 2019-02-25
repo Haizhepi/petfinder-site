@@ -17,8 +17,8 @@ class PetForm extends React.Component {
 		    <pre>
 		    <script>
             document.writeln(Users.Actions.getPetsForUser())
+		    </script>
 		    </pre>
-		    <script>
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 
 				<Bessemer.Field name="name" friendlyName="Pet Name"
