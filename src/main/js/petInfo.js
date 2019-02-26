@@ -8,7 +8,7 @@ import * as Users from 'js/users';
 class PetForm extends React.Component {
 
 	onSubmit = pet => {
-	    Users.Actions.savePet(pet);
+	    //this.props.addPetUser(pet,this.state.user);
         //console.log('settings');
         //alert(this.props.user.principal);
 		return Users.Actions.addPetUser(pet,this.props.user);
@@ -55,8 +55,8 @@ PetForm = connect(
         user: Users.State.getUser(state)
 	}),
 	dispatch => ({
-        savePet: pet => dispatch(Users.Actions.savePet(pet, this.props.user)),
-        //addPetUser: pet => dispatch(Users.Actions.addPetUser(pet, this.props.user))
+        //savePet: pet => dispatch(Users.Actions.savePet(pet)),
+        addPetUser: pet => dispatch(Users.Actions.addPetUser(pet, this.props.user))
 	})
 )(PetForm);
 

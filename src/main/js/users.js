@@ -73,21 +73,22 @@ Actions.Types = {
 
 //save pet
 Actions.savePet = pet => {
-	alert('save pet');
+	alert(pet.name);
     return (dispatch) => {
+        alert(pet.type);
         return savePet(pet);
     };
 };
 
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
-    alert('addingpetUser');
-	let petUser = {
-		userPrincipal : user.principal,
-		petId : pet.petId
-	};
 	return (dispatch) => {
-		alert('in here');
+	    Actions.savePet(pet).then(() =>);
+		let petUser = {
+            userPrincipal : user.principal,
+            petId : pet.petId
+        };
+        alert('addpetUser');
 		return addPetUser(petUser);
 	};
 };
@@ -179,4 +180,3 @@ Reducers.pet = (pet = null, action) => {
 };
 
 export { Reducers };
-
