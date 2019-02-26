@@ -87,8 +87,8 @@ Actions.addPetUser = (pet, user) => {
 		    let petUser = {
 		        userPrincipal: user.principal,
 		        petId: pet.petId
-		    }
-		    alert(petUser.petId);
+		    };
+		    alert(petUser.userPrincipal);
 		    return addPetUser(petUser);
 		});
 	};
