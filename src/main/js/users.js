@@ -32,8 +32,9 @@ export function savePet(pet) {
 }
 
 //post pet &user to UserEndpoint
-export function addPet(pet) {
-    return axios.post('/api/user/pets', pet);
+export function addPetUser(petUser) {
+	alert('posting to backend');
+    return axios.post('/api/user/pet', petUser);
 }
 
 //get pets assigned to user (UserEndpoint)
@@ -71,10 +72,26 @@ Actions.Types = {
 };
 
 //save pet
-Actions.addPet = pet => {
+Actions.savePet = pet => {
+	alert('save pet');
     return (dispatch) => {
         return savePet(pet);
     };
+};
+
+// save the relation of pet and user
+Actions.addPetUser = (pet, user) => {
+	let petUser = {
+		id : pet.id,
+		userPrincipal : user.principal,
+		petId : pet.petId
+	};
+	return (dispatch) => {
+		alert('in here');
+		return addPetUser(petUser).then(() => {
+			return dispatch(Actions.savePet(pet));
+		});
+	};
 };
 
 //get list of pets belonging to current user
