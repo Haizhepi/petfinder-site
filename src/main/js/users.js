@@ -103,10 +103,11 @@ Actions.addPetUser = (pet, user) => {
 	// };
 };
 
+
 //get list of pets belonging to current user
 Actions.getPetsFromUser = pets => {
     return (dispatch) => {
-        return getPets;
+        return getPets();
     };
 };
 
@@ -189,4 +190,3 @@ Reducers.pet = (pet = null, action) => {
 };
 
 export { Reducers };
-
