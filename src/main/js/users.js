@@ -81,6 +81,7 @@ Actions.savePet = pet => {
 
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
+    alert(pet.name);
 	return (dispatch) => {
 		alert(pet.type);
 		return Actions.savePet(pet).then(() => {
