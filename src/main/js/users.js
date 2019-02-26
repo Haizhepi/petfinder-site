@@ -72,7 +72,7 @@ Actions.Types = {
 };
 
 //save pet
-Actions.savePet = (pet, user) => {
+Actions.savePet = pet => {
 	alert('save pet');
     return (dispatch) => {
         return savePet(pet);
