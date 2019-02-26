@@ -6,6 +6,7 @@ import * as Bessemer from 'js/alloy/bessemer/components';
 import * as Users from 'js/users';
 
 class PetForm extends React.Component {
+
 	onSubmit = pet => {
 		return this.props.addPet(pet);
 	};
