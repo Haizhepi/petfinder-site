@@ -91,7 +91,7 @@ class Page2 extends React.Component {
 		return (
 			<div className="container padded">
 			    <h1>Owner Profile Page</h1>
-                <Pets.PetForm />
+					<Pets.PetForm />
             </div>
         );
     }
@@ -106,16 +106,28 @@ Page2 = connect(
 
 export { Page2 };
 
-export class Page3 extends React.Component {
+class Page3 extends React.Component {
+
+
 	render() {
 		return (
 			<div className="container padded">
+
 				<h1>Pets</h1>
 		        <PetList.PetTable />
 			</div>
 		);
 	}
 }
+Page3 = connect(
+	state => ({
+		authentication: Users.State.getAuthentication(state),
+		user: Users.State.getUser(state),
+		pet: Users.State.getPet(state)
+	})
+)(Page3);
+export { Page3 };
+
 
 export class Homepage extends React.Component {
 	render() {

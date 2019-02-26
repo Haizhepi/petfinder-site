@@ -104,7 +104,8 @@ public class UserEndpoint {
 	 * This endpoint associates a new pet with the current user. The pet itself must be created prior to calling this endpoint via PetEndpoint.savePet(...)
 	 */
 	@PostMapping(value = "/pet")
-	public UserPetDto addPet(@RequestBody UserPetDto userPetDto) {
+	public UserPetDto addPetUser(@RequestBody UserPetDto userPetDto) {
+		System.out.println("adding relation");
 		return userService.save(userPetDto);
 	}
 }

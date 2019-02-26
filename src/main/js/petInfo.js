@@ -8,7 +8,11 @@ import * as Users from 'js/users';
 class PetForm extends React.Component {
 
 	onSubmit = pet => {
-		return this.props.addPet(pet);
+	    //this.props.addPetUser(pet,this.state.user);
+        //console.log('settings');
+        //alert(this.props.user.principal);
+
+        return Users.Actions.addPetUser(pet,this.props.user);
 	};
 
 	render() {
@@ -48,9 +52,12 @@ PetForm = ReduxForm.reduxForm({form: 'savePet'})(PetForm);
 
 PetForm = connect(
 	state => ({
+        authentication: Users.State.getAuthentication(state),
+        user: Users.State.getUser(state)
 	}),
 	dispatch => ({
-		addPet: pet => dispatch(Users.Actions.addPet(pet))
+        //savePet: pet => dispatch(Users.Actions.savePet(pet)),
+        addPetUser: pet => dispatch(Users.Actions.addPetUser(pet, this.props.user))
 	})
 )(PetForm);
 

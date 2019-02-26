@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import * as Validation from 'js/alloy/utils/validation';
 import * as Bessemer from 'js/alloy/bessemer/components';
-
+import {Redirect} from 'react-router-dom';
 import * as Users from 'js/users';
 
 import {Redirect} from 'react-router-dom';
@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
             return <Redirect to={'/'}/>;
         }
 
-        return (
+		return (
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 				<Bessemer.Field name="principal" friendlyName="Email Address"
 				                validators={[Validation.requiredValidator, Validation.emailValidator]} />
@@ -59,36 +59,39 @@ class RegistrationForm extends React.Component {
 	};
 
 	render() {
-        let {handleSubmit, submitting} = this.props;
 
-        if(submitting){
-            this.forceUpdate();
-            return <Redirect to={'/login'}/>;
-        }
+		let { handleSubmit, submitting } = this.props;
 
-        return (
-            <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                <Bessemer.Field name="principal" friendlyName="Email Address"
-                                validators={[Validation.requiredValidator, Validation.emailValidator]}/>
+		if (submitting) {
+			this.forceUpdate();
+			return <Redirect to={'/'}/>;
+		}
 
-                <Bessemer.Field name="password" friendlyName="Password"
-                                validators={[Validation.requiredValidator, Validation.passwordValidator]}
-                                field={<input className="form-control" type="password"/>}/>
-                <Bessemer.Field name="firstName" friendlyName="First Name"
-                                field={<input className="form-control" type="firstName"/>}/>
+		return (
+			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+				<Bessemer.Field name="principal" friendlyName="Email Address"
+				                validators={[Validation.requiredValidator, Validation.emailValidator]} />
 
-                <Bessemer.Field name="lastName" friendlyName="Last Name"
-                                field={<input className="form-control" type="lastName"/>}/>
-                <Bessemer.Field name="gender" friendlyName="Gender"
-                                field={<Bessemer.Select options={[{value: 'female', label: 'female'},
-                                    {value: 'male', label: 'male'}]}/>}/>
-                <Bessemer.Field name="zipcode" friendlyName="Zip Code"
-                                field={<input className="form-control" type="zipcode"/>}/>
+				<Bessemer.Field name="password" friendlyName="Password"
+				                validators={[Validation.requiredValidator, Validation.passwordValidator]}
+				                field={<input className="form-control" type="password" />} />
+				<Bessemer.Field name="firstName" friendlyName="First Name"
+								field={<input className="form-control" type="firstName"/>}/>
 
-                <Bessemer.Button loading={submitting}>Register</Bessemer.Button>
-            </form>
-        );
-    }
+				<Bessemer.Field name="lastName" friendlyName="Last Name"
+								field={<input className="form-control" type="lastName"/>}/>
+				<Bessemer.Field name="gender" friendlyName="Gender"
+								field={<Bessemer.Select options={[{value: 'female', label: 'female'},
+											{value: 'male', label: 'male'}]}/>}/>
+				<Bessemer.Field name="zipcode" friendlyName="Zip Code"
+								field={<input className="form-control" type="zipcode"/>}/>
+
+
+				<Bessemer.Button loading={submitting}>Register</Bessemer.Button>
+
+			</form>
+		);
+	}
 }
 
 RegistrationForm = ReduxForm.reduxForm({form: 'register'})(RegistrationForm);

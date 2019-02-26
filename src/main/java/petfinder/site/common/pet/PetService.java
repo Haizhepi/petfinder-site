@@ -25,7 +25,7 @@ public class PetService {
 		return pet;
 	}
 
-	public static class AddPetRequest {
+	/*public static class AddPetRequest {
 		private String petName;
 		private String type;
 
@@ -45,6 +45,6 @@ public class PetService {
 			this.type = type;
 		}
 
-	}
+	}*/
 
 }
