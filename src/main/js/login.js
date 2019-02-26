@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import * as Validation from 'js/alloy/utils/validation';
 import * as Bessemer from 'js/alloy/bessemer/components';
-
+import {Redirect} from "react-router-dom";
 import * as Users from 'js/users';
 
 //Class that represents the log in form
@@ -17,6 +17,12 @@ class LoginForm extends React.Component {
 
 	render() {
 		let { handleSubmit, submitting } = this.props;
+
+		if (submitting) {
+			this.forceUpdate();
+			return <Redirect to={'/'}/>;
+		}
+
 
 		return (
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
@@ -53,6 +59,11 @@ class RegistrationForm extends React.Component {
 
 	render() {
 		let { handleSubmit, submitting } = this.props;
+
+		if (submitting) {
+			this.forceUpdate();
+			return <Redirect to={'/'}/>;
+		}
 
 		return (
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
