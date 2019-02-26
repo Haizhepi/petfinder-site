@@ -15,10 +15,17 @@ class LoginForm extends React.Component {
 		return this.props.authenticate(principal, password);
 	};
 
+
 	render() {
 		let { handleSubmit, submitting } = this.props;
 
-		return (
+        if(submitting){
+            this.forceUpdate();
+            return <Redirect to={'/'}/>;
+        }
+
+
+        return (
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 				<Bessemer.Field name="principal" friendlyName="Email Address"
 				                validators={[Validation.requiredValidator, Validation.emailValidator]} />
@@ -53,6 +60,11 @@ class RegistrationForm extends React.Component {
 
 	render() {
 		let { handleSubmit, submitting } = this.props;
+
+		if(submitting){
+			this.forceUpdate();
+			return <Redirect to={'/login'}/>;
+		}
 
 		return (
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
