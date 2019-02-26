@@ -9,7 +9,6 @@ import * as Users from 'js/users';
 
 import {Redirect} from 'react-router-dom';
 
-
 //Class that represents the log in form
 class LoginForm extends React.Component {
 
@@ -17,7 +16,6 @@ class LoginForm extends React.Component {
 	onSubmit = ({principal, password}) => {
 		return this.props.authenticate(principal, password);
 	};
-
 
 	render() {
 		let { handleSubmit, submitting } = this.props;
