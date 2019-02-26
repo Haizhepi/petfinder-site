@@ -72,31 +72,30 @@ Actions.Types = {
 };
 
 //save pet
-Actions.savePet = (pet, user) => {
+Actions.savePet = pet => {
 	alert('save pet');
     return (dispatch) => {
-        return savePet(pet).then(() => {
-            return dispatch(Actions.addPetUser(pet, user));
-        });
+        return savePet(pet);
     };
 };
 
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
-	let petUser = {
-		userPrincipal : user.principal,
-		petId : pet.petId
-	};
-	return (dispatch) => {
-		alert('in here');
-		return addPetUser(petUser);
-	};
+    return (dispatch) => {
+        dispatch(Actions.setPet(pet));
+        let petUser = {
+            userPrincipal : user.principal,
+            petId : pet.petId
+        };
+        return addPetUser(petUser);
+    };
 };
+
 
 //get list of pets belonging to current user
 Actions.getPetsFromUser = pets => {
     return (dispatch) => {
-        return getPets;
+        return getPets();
     };
 };
 
