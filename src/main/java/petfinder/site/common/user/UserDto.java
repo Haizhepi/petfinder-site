@@ -20,12 +20,37 @@ public class UserDto implements Momento<String> {
 	private UserType type;
 	private Map<String, Object> attributes;
 	private String myNewField;
+	private String firstName;
+	private String lastName;
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	private String gender;
+	private String zipcode;
 
 	private UserDto() {
 
 	}
 
-	public UserDto(String principal, List<String> roles, UserType type, Map<String, Object> attributes) {
+	public UserDto(String principal, List<String> roles, String firstName, String lastName, String gender, String zipcode, UserType type, Map<String, Object> attributes) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.zipcode = zipcode;
 		this.principal = principal;
 		this.roles = roles;
 		this.attributes = attributes;

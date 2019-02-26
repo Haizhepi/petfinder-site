@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, {Component} from 'react';
+import * as ReduxForm from 'redux-form';
+import { connect } from 'react-redux';
 
 export function register(user) {
 	user.myNewField = 'Hello World!';
@@ -24,10 +26,24 @@ export function authenticate(username, password) {
 	);
 }
 
+//post pet to PetEndpoint
+export function savePet(pet) {
+    return axios.post('/api/pets', pet);
+}
+
+//post pet &user to UserEndpoint
+export function addPet(pet) {
+    return axios.post('/api/user/pets', pet);
+}
+
+//get pets assigned to user (UserEndpoint)
+export function getPets() {
+    return axios.get('/api/user/pet');
+}
+
 export function getUserDetails() {
 	return axios.get('/api/user');
 }
-
 
 
 let State = {};
@@ -40,13 +56,32 @@ State.getUser = state => {
 	return state.user;
 };
 
+State.getPet = state => {
+    return state.pet;
+};
+
 export { State };
 
 let Actions = {};
 
 Actions.Types = {
 	SET_AUTHENTICATION: 'SET_AUTHENTICATION',
-	SET_USER: 'SET_USER'
+	SET_USER: 'SET_USER',
+	SET_PET: 'SET_PET',
+};
+
+//save pet
+Actions.addPet = pet => {
+    return (dispatch) => {
+        return savePet(pet);
+    };
+};
+
+//get list of pets belonging to current user
+Actions.getPetsFromUser = pets => {
+    return (dispatch) => {
+        return getPets;
+    };
 };
 
 Actions.register = user => {
@@ -78,6 +113,10 @@ Actions.logout = () => {
 	};
 };
 
+Actions.setPet = pet => {
+	return {type: Actions.Types.SET_PET, pet};
+};
+
 Actions.setAuthentication = authentication => {
 	return {type: Actions.Types.SET_AUTHENTICATION, authentication};
 };
@@ -106,8 +145,19 @@ Reducers.user = (user = null, action) => {
 		case Actions.Types.SET_USER: {
 			return action.user;
 		}
-		default: {
+        default: {
 			return user;
+		}
+	}
+};
+
+Reducers.pet = (pet = null, action) => {
+	switch (action.type) {
+		case Actions.Types.SET_PET: {
+			return action.pet;
+		}
+		default: {
+			return pet;
 		}
 	}
 };

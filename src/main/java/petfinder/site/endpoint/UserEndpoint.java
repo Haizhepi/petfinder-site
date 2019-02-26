@@ -81,7 +81,9 @@ public class UserEndpoint {
 	 */
 	@PostMapping(value = "/register")
 	public UserDto register(@RequestBody RegistrationRequest request) {
-
+		System.out.println(request.getGender());
+		System.out.println(request.getFirstName());
+		System.out.println(request.getLastName());
 		return userService.register(request);
 	}
 	/**
@@ -99,7 +101,7 @@ public class UserEndpoint {
 	}
 
 	/**
-	 * This endpoint associates a new pet with the current user. The itself must be created prior to calling this endpoint via PetEndpoint.savePet(...)
+	 * This endpoint associates a new pet with the current user. The pet itself must be created prior to calling this endpoint via PetEndpoint.savePet(...)
 	 */
 	@PostMapping(value = "/pet")
 	public UserPetDto addPet(@RequestBody UserPetDto userPetDto) {

@@ -5,9 +5,19 @@ import java.util.UUID;
 import alloy.util.Identifiable;
 
 public class UserPetDto implements Identifiable {
-	private Long id = UUID.randomUUID().getMostSignificantBits();
+	private Long id;
 	private String userPrincipal;
 	private String petId;
+
+	public UserPetDto() {
+		id = UUID.randomUUID().getMostSignificantBits();
+	}
+
+	public UserPetDto(String userPrincipal, String petId) {
+		id = UUID.randomUUID().getMostSignificantBits();
+		this.userPrincipal = userPrincipal;
+		this.petId = petId;
+	}
 
 	public Long getId() {
 		return id;

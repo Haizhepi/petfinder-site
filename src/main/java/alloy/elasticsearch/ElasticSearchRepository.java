@@ -14,7 +14,6 @@ import alloy.util.Momento.Momentizer;
 import alloy.util.Repository;
 import alloy.util.Serializer;
 import alloy.util.TypeConverters;
-import petfinder.site.common.user.UserAuthenticationDto;
 
 /**
  * Created by jlutteringer on 1/16/18.
