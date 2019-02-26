@@ -11,7 +11,8 @@ class PetForm extends React.Component {
 	    //this.props.addPetUser(pet,this.state.user);
         //console.log('settings');
         //alert(this.props.user.principal);
-		return Users.Actions.addPetUser(pet,this.props.user);
+
+        return Users.Actions.addPetUser(pet,this.props.user);
 	};
 
 	render() {
