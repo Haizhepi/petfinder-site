@@ -84,7 +84,11 @@ Actions.addPetUser = (pet, user) => {
 	return (dispatch) => {
 		alert(pet.type);
 		return Actions.savePet(pet).then(() => {
-		    alert(pet.name);
+		    let petUser = {
+		        userPrincipal: user.principal,
+		        petId: pet.petId
+		    }
+		    alert(petUser.petId);
 		    return addPetUser(petUser);
 		});
 	};
