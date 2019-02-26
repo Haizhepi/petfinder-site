@@ -91,9 +91,9 @@ Actions.addPetUser = (pet, user) => {
 	});
 
 
-	return (dispatch) => {
+	/*return (dispatch) => {
 
-	};
+	};*/
 
 	// return (dispatch) => {
 	// 	alert('in here');
@@ -105,10 +105,8 @@ Actions.addPetUser = (pet, user) => {
 
 
 //get list of pets belonging to current user
-Actions.getPetsFromUser = pets => {
-    return (dispatch) => {
-        return getPets();
-    };
+Actions.getPets = pets => {
+    return getPets();
 };
 
 Actions.register = user => {
