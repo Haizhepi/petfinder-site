@@ -11,7 +11,7 @@ class PetForm extends React.Component {
 	    Users.Actions.savePet(pet);
         //console.log('settings');
         //alert(this.props.user.principal);
-		return Users.Actions.addPetUser(pet,this.state.user);
+		return Users.Actions.savePet(pet,this.props.user);
 	};
 
 	render() {
@@ -55,8 +55,8 @@ PetForm = connect(
         user: Users.State.getUser(state)
 	}),
 	dispatch => ({
-        savePet: pet => dispatch(Users.Actions.savePet(pet)),
-        addPetUser: pet => dispatch(Users.Actions.addPetUser(pet, this.props.user))
+        savePet: pet => dispatch(Users.Actions.savePet(pet, this.props.user)),
+        //addPetUser: pet => dispatch(Users.Actions.addPetUser(pet, this.props.user))
 	})
 )(PetForm);
 
