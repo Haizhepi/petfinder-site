@@ -11,7 +11,7 @@ class PetList extends React.Component {
     }
 
     //set state as array of user's pets
-    componentDidMount() {
+    componentWillMount() {
             Users.Actions.getPets().then(response => {
                 console.log(response);
                 this.setState({pets: response});
