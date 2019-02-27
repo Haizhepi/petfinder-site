@@ -20,6 +20,8 @@ class PetList extends React.Component {
 
     render() {
         return (
+        <div>
+            <p> this is a test </p>
           <div>{this.state.pets.map(function(pet) {
                return (
                   <div key = {pet.name} className="pet">
@@ -28,6 +30,7 @@ class PetList extends React.Component {
                 );
              })}
           </div>
+        </div>
         );
       }
 }
