@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import * as ReduxForm from 'redux-form';
-import { connect } from 'react-redux';
-
 import * as Users from 'js/users';
 
 class PetList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {pets: [] };
+        this.state = {
+            pets: [{
+                name: 'no name'
+            }]
+        };
     }
 
     //set state as array of user's pets
@@ -22,14 +23,11 @@ class PetList extends React.Component {
         return (
         <div>
             <p> this is a test </p>
-          <div>{this.state.pets.map(function(pet) {
-               return (
-                  <div key = {pet.name} className="pet">
-                      <p>{pet.name}</p>
-                  </div>
-                );
-             })}
-          </div>
+            {this.state.pets.map(pet => (
+              <div key = {pet.name} className="pet">
+                  <p>{pet.name}</p>
+              </div>
+            ))}
         </div>
         );
       }
