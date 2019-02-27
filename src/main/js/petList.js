@@ -20,17 +20,14 @@ class PetList extends React.Component {
 
     render() {
         return (
-          <table>
-          <tbody>{this.state.pets.map(function(pet, key) {
-
-                   return (
-                      <tr key = {key}>
-                          <td>{pet.name}</td>
-                          <td>{pet.type}</td>
-                      </tr>
-                    );
-                 })}</tbody>
-           </table>
+          <div>{this.state.pets.map(function(pet) {
+               return (
+                  <div key = {pet.name} className="pet">
+                      <p>{pet.name}</p>
+                  </div>
+                );
+             })}
+          </div>
         );
       }
 }
