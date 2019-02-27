@@ -7,12 +7,12 @@ import * as Users from 'js/users';
 class PetList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { pets: [] };
+        this.state = {pets: [] };
     }
 
     //set state as array of user's pets
     componentDidMount() {
-            Users.Actions.getPets.then(response => {
+            Users.Actions.getPets().then(response => {
                 console.log(response);
                 this.setState({pets: response});
             });
@@ -34,14 +34,5 @@ class PetList extends React.Component {
         );
       }
 }
-PetList = ReduxForm.reduxForm({form: 'getPets'})(PetList);
-
-PetList = connect(
-	state => ({
-	}),
-	dispatch => ({
-		getPets: pets => dispatch(Users.Actions.getPets)
-	})
-)(PetList);
 
 export { PetList };
