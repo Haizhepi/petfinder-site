@@ -23,7 +23,7 @@ class PetList extends React.Component {
         return (
         <div>
             <h1> Pet Profile </h1>
-            <table style="width:80%">
+            <table>
                 <thead>
                     <tr>
                         <th>Pet Name</th>
