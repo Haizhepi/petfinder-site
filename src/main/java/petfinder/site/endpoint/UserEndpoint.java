@@ -105,7 +105,8 @@ public class UserEndpoint {
 	 */
 	@PostMapping(value = "/pet")
 	public UserPetDto addPetUser(@RequestBody UserPetDto userPetDto) {
-		System.out.println("adding relation");
+		System.out.println(userPetDto.getPetId());
+		System.out.println(userPetDto.getUserPrincipal());
 		return userService.save(userPetDto);
 	}
 }

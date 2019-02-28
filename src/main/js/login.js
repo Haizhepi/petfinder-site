@@ -18,6 +18,7 @@ class LoginForm extends React.Component {
 	render() {
 		let { handleSubmit, submitting } = this.props;
 
+		//console.log(submitting);
 		if (submitting) {
 			this.forceUpdate();
 			return <Redirect to={'/'}/>;
