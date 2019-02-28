@@ -97,6 +97,7 @@ public class UserEndpoint {
 	public List<PetDto> getPets() {
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDto user = userService.findUserByPrincipal(principal).get();
+		System.out.println(user.getPrincipal());
 		return userService.findPets(user);
 	}
 

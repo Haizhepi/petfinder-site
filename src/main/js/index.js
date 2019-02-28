@@ -5,6 +5,8 @@ import * as Pages from 'js/pages';
 import * as Users from 'js/users';
 import {connect} from 'react-redux';
 import _ from 'lodash';
+import {PetList} from 'js/petList';
+
 
 export default class Index extends React.Component {
 	constructor(props) {

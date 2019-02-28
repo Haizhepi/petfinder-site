@@ -55,7 +55,9 @@ export { LoginForm };
 //Class that represents a registration form
 class RegistrationForm extends React.Component {
 	onSubmit = user => {
-		return this.props.register(user);
+		return this.props.register(user).then(() => {
+		    //and then .catch and redirect in .then
+		});
 	};
 
 	render() {
