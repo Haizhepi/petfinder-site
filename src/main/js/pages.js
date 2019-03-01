@@ -13,9 +13,7 @@ export class Home extends React.Component {
 		return (
 
 			<div className="container padded">
-				{ _.isDefined(this.props.authentication) &&
-				<div>{this.props.authentication['access_token']}</div>
-				}
+
 
 				{ _.isDefined(this.props.user) && <div>
 				<h1>U r logged in</h1>
@@ -49,6 +47,17 @@ export class Home extends React.Component {
 		);
 	}
 }
+
+Home = connect(
+	state => ({
+		authentication: Users.State.getAuthentication(state),
+		user: Users.State.getUser(state)
+	}),
+	dispatch => ({
+		register: user => dispatch(Users.Actions.register(user))
+	})
+)(Home);
+
 
 export class RegisterPage extends React.Component {
 	render() {
