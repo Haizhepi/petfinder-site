@@ -7,6 +7,7 @@ import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
+import {Actions} from 'js/users';
 
 export class Home extends React.Component {
 	render() {
@@ -17,6 +18,7 @@ export class Home extends React.Component {
 
 				{ _.isDefined(this.props.user) && <div>
 				<h1>U r logged in</h1>
+					<h1> Welcome! {this.props.user.firstName}</h1>
 					<ul>
 						<li><Link to="/register">Register as Owner</Link></li>
 						<li><Link to="/login">Login</Link></li>
@@ -24,6 +26,7 @@ export class Home extends React.Component {
 						<li><Link to="/pet">Add Pet</Link></li>
 						<li><Link to="/page-3">Pet List</Link></li>
 						<li><Link to="/homepage">UserProfile</Link></li>
+						<li><Link to="/logout">Logout</Link></li>
 					</ul>
 				</div>
 				}
@@ -34,8 +37,6 @@ export class Home extends React.Component {
 						<li><Link to="/register">Register as Owner</Link></li>
 						<li><Link to="/login">Login</Link></li>
 						<li><Link to="/page-1">Page 1</Link></li>
-						<li><Link to="/pet">Add Pet</Link></li>
-						<li><Link to="/page-3">Pet List</Link></li>
 					</ul>
 				</div>
 				}
@@ -172,12 +173,12 @@ export class Homepage extends React.Component {
 				<h1>Home Page</h1>
 				{ _.isDefined(this.props.authentication) &&
 				<div><h1>This is Ur User Profile</h1>
-				<ul>
-					<li>{this.props.user.firstName}</li>
-					<li>{this.props.user.lastName}</li>
-					<li>{this.props.user.gender}</li>
-					<li>{this.props.user.zipcode}</li>
-				</ul>
+					<ul>
+						<li>{this.props.user.firstName}</li>
+						<li>{this.props.user.lastName}</li>
+						<li>{this.props.user.gender}</li>
+						<li>{this.props.user.zipcode}</li>
+					</ul>
 				</div>
 				}
 
@@ -192,3 +193,32 @@ Homepage = connect(
 		pet: Users.State.getPet(state)
 	})
 )(Homepage);
+
+export class Logout extends React.Component {
+	constructor(props) {
+		super(props);
+		// Don't call this.setState() here!
+		alert('logging out');
+		if (this.props.user != null) {
+			Actions.logout();
+		}
+	}
+	render() {
+		return (
+			<div className="container padded">
+				<h1>Home Page</h1>
+				<div>
+					<h1>Logged out</h1>
+					<h1><Link to="/">go back to home</Link></h1>
+				</div>
+			</div>
+		);
+	}
+}
+Logout = connect(
+	state => ({
+		authentication: Users.State.getAuthentication(state),
+		user: Users.State.getUser(state),
+		pet: Users.State.getPet(state)
+	})
+)(Logout);
