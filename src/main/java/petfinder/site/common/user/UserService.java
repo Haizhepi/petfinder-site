@@ -118,6 +118,26 @@ public class UserService {
 		return userDao.save(userPetDto);
 	}
 
+	public UserDto update(UpdateRequest request){
+		UserDto u = null;
+		UserAuthenticationDto userAuthentication = null;
+
+		// Find the user corresponding to the given principal
+		if(userDao.findUserByPrincipal(request.getPrincipal()).isPresent()){
+			userAuthentication = userDao.findUserByPrincipal(request.getPrincipal()).get();
+
+			// Make the changes to user's information
+			u = userAuthentication.getUser();
+			u.setFirstName(request.getFirstName());
+			u.setLastName(request.getLastName());
+			u.setGender(request.getGender());
+			u.setZipcode(request.getZipcode());
+			userDao.save(userAuthentication);
+		}
+		return u;
+	}
+
+
 	public List<PetDto> findPets(UserDto user) {
 		return userDao.findPets(user);
 	}

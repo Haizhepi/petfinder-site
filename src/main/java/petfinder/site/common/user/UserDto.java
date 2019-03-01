@@ -23,6 +23,38 @@ public class UserDto implements Momento<String> {
 	private String firstName;
 	private String lastName;
 
+	public void setPrincipal(String principal) {
+		this.principal = principal;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	public void setType(UserType type) {
+		this.type = type;
+	}
+
+	public void setAttributes(Map<String, Object> attributes) {
+		this.attributes = attributes;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
