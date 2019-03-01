@@ -23,7 +23,9 @@ export function authenticate(username, password) {
 				password: 'petfinder-app-secret'
 			}
 		}
-	);
+	).catch((error) => {
+		alert('Yes!');
+	});
 }
 
 //post pet to PetEndpoint
@@ -80,13 +82,11 @@ Actions.savePet = pet => {
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
 	Actions.savePet(pet).then(response =>{
-		console.log(response);
 		let petUser = {
 			//id : pet.id,
 			userPrincipal : user.principal,
 			petId : response.id
 		};
-		console.log(petUser);
 		addPetUser(petUser);
 	});
 

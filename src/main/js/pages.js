@@ -11,17 +11,41 @@ import * as PetList from 'js/petList';
 export class Home extends React.Component {
 	render() {
 		return (
+
 			<div className="container padded">
-				<h1>This is the home page.</h1>
-				<ul>
-					<li><Link to="/register">Register as Owner</Link></li>
-					<li><Link to="/login">Login</Link></li>
-					<li><Link to="/page-1">Page 1</Link></li>
-					<li><Link to="/pet">Add Pet</Link></li>
-					<li><Link to="/page-3">Pet List</Link></li>
-					<li><Link to="/homepage">Homepage</Link></li>
-				</ul>
+				{ _.isDefined(this.props.authentication) &&
+				<div>{this.props.authentication['access_token']}</div>
+				}
+
+				{ _.isDefined(this.props.user) && <div>
+				<h1>U r logged in</h1>
+					<ul>
+						<li><Link to="/register">Register as Owner</Link></li>
+						<li><Link to="/login">Login</Link></li>
+						<li><Link to="/page-1">Page 1</Link></li>
+						<li><Link to="/pet">Add Pet</Link></li>
+						<li><Link to="/page-3">Pet List</Link></li>
+						<li><Link to="/homepage">Homepage</Link></li>
+					</ul>
+				</div>
+				}
+				{ this.props.user == null &&
+				<div>
+					<h1>This is the home page.</h1>
+					<ul>
+						<li><Link to="/register">Register as Owner</Link></li>
+						<li><Link to="/login">Login</Link></li>
+						<li><Link to="/page-1">Page 1</Link></li>
+						<li><Link to="/pet">Add Pet</Link></li>
+						<li><Link to="/page-3">Pet List</Link></li>
+					</ul>
+				</div>
+				}
 			</div>
+
+
+
+
 		);
 	}
 }
@@ -63,7 +87,7 @@ class Page1 extends React.Component {
 		return (
 			<div className="container padded">
 				<h1>This is page 1</h1>
-
+				<h2><Link to="/">home</Link></h2>
 
 				{ _.isDefined(this.props.authentication) &&
 				<div>{this.props.authentication['access_token']}</div>
@@ -114,7 +138,7 @@ class Page3 extends React.Component {
 			<div className="container padded">
 
 				<h1>Pets</h1>
-		        <PetList.PetTable />
+		        <PetList.PetList />
 			</div>
 		);
 	}

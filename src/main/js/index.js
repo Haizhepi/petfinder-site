@@ -41,11 +41,6 @@ export default class Index extends React.Component {
 	}
 }
 
-Index = connect(
-	state => ({
-		authentication: Users.State.getAuthentication(state),
-		user: Users.State.getUser(state)
-	})
-)(Index);
+
 
 

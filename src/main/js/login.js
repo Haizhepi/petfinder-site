@@ -1,29 +1,35 @@
 import React from 'react';
 import * as ReduxForm from 'redux-form';
 import { connect } from 'react-redux';
+import _ from 'lodash';
+
 
 import * as Validation from 'js/alloy/utils/validation';
 import * as Bessemer from 'js/alloy/bessemer/components';
 import {Redirect} from 'react-router-dom';
 import * as Users from 'js/users';
+import * as Apps from 'js/app.js';
 
 //Class that represents the log in form
 class LoginForm extends React.Component {
+
 
 	//Defines the on submit behavior
 	onSubmit = ({principal, password}) => {
 		return this.props.authenticate(principal, password);
 	};
+	// handleSubmit(form => this.onSubmit(form))
 
 	render() {
 		let { handleSubmit, submitting } = this.props;
 
-		//console.log(submitting);
 		if (submitting) {
-			this.forceUpdate();
-			return <Redirect to={'/'}/>;
-		}
+			if (this.props.authentication != null) {
+				this.forceUpdate();
+				return <Redirect to={'/'}/>;
+			}
 
+		}
 
 		return (
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
@@ -43,7 +49,8 @@ LoginForm = ReduxForm.reduxForm({form: 'login'})(LoginForm);
 
 LoginForm = connect(
 	state => ({
-		initialValues: { principal: 'Email Address', password: 'Password' }
+		initialValues: { principal: 'Email Address', password: 'Password' },
+		authentication: state.authentication
 	}),
 	dispatch => ({
 		authenticate: (principal, password) => dispatch(Users.Actions.authenticate(principal, password))
@@ -99,6 +106,7 @@ RegistrationForm = ReduxForm.reduxForm({form: 'register'})(RegistrationForm);
 
 RegistrationForm = connect(
 	state => ({
+
 	}),
 	dispatch => ({
 		register: user => dispatch(Users.Actions.register(user))
