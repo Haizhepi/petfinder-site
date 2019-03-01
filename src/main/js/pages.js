@@ -23,7 +23,7 @@ export class Home extends React.Component {
 						<li><Link to="/page-1">Page 1</Link></li>
 						<li><Link to="/pet">Add Pet</Link></li>
 						<li><Link to="/page-3">Pet List</Link></li>
-						<li><Link to="/homepage">Homepage</Link></li>
+						<li><Link to="/homepage">UserProfile</Link></li>
 					</ul>
 				</div>
 				}
@@ -164,10 +164,31 @@ export { Page3 };
 
 export class Homepage extends React.Component {
 	render() {
+
+
 		return (
+
 			<div className="container padded">
-				<h1>This is homepage</h1>
+				<h1>Home Page</h1>
+				{ _.isDefined(this.props.authentication) &&
+				<div><h1>This is Ur User Profile</h1>
+				<ul>
+					<li>{this.props.user.firstName}</li>
+					<li>{this.props.user.lastName}</li>
+					<li>{this.props.user.gender}</li>
+					<li>{this.props.user.zipcode}</li>
+				</ul>
+				</div>
+				}
+
 			</div>
 		);
 	}
 }
+Homepage = connect(
+	state => ({
+		authentication: Users.State.getAuthentication(state),
+		user: Users.State.getUser(state),
+		pet: Users.State.getPet(state)
+	})
+)(Homepage);
