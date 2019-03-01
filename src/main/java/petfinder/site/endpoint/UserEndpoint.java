@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import petfinder.site.common.pet.PetDto;
-import petfinder.site.common.user.UserDao;
-import petfinder.site.common.user.UserDto;
-import petfinder.site.common.user.UserPetDto;
-import petfinder.site.common.user.UserService;
+import petfinder.site.common.user.*;
 import petfinder.site.common.user.UserService.RegistrationRequest;
 
 /**
@@ -85,6 +82,12 @@ public class UserEndpoint {
 		System.out.println(request.getFirstName());
 		System.out.println(request.getLastName());
 		return userService.register(request);
+	}
+
+	@PostMapping(value = "/edit_user")
+	public UserDto edit(@RequestBody UpdateRequest request) {
+		System.out.println(request.getFirstName());
+		return userService.update(request);
 	}
 	/**
 	 * This endpoint gets a list of pets associated with the current user. In this example we associate users and pets via a seperate index represented by the UserPetDto class.

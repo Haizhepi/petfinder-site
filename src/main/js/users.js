@@ -133,6 +133,7 @@ Actions.authenticate = (username, password) => {
 
 Actions.logout = () => {
 	return (dispatch) => {
+		alert('logout');
 		dispatch(Actions.setAuthentication(null));
 		dispatch(Actions.setUser(null));
 	};

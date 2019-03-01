@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
@@ -14,7 +14,6 @@ export class Home extends React.Component {
 		return (
 
 			<div className="container padded">
-
 
 				{ _.isDefined(this.props.user) && <div>
 				<h1>U r logged in</h1>
@@ -41,9 +40,6 @@ export class Home extends React.Component {
 				</div>
 				}
 			</div>
-
-
-
 
 		);
 	}
@@ -198,18 +194,20 @@ export class Logout extends React.Component {
 	constructor(props) {
 		super(props);
 		// Don't call this.setState() here!
-		alert('logging out');
 		if (this.props.user != null) {
-			Actions.logout();
+			this.props.logout();
 		}
 	}
+
 	render() {
 		return (
 			<div className="container padded">
 				<h1>Home Page</h1>
 				<div>
 					<h1>Logged out</h1>
-					<h1><Link to="/">go back to home</Link></h1>
+					<Link to="/">
+						<button type="button">return home</button>
+					</Link>
 				</div>
 			</div>
 		);
@@ -220,5 +218,8 @@ Logout = connect(
 		authentication: Users.State.getAuthentication(state),
 		user: Users.State.getUser(state),
 		pet: Users.State.getPet(state)
+	}),
+	dispatch => ({
+		logout: () => dispatch(Users.Actions.logout())
 	})
 )(Logout);
