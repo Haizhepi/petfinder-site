@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import petfinder.site.common.pet.PetDto;
-import petfinder.site.common.user.UserDao;
-import petfinder.site.common.user.UserDto;
-import petfinder.site.common.user.UserPetDto;
-import petfinder.site.common.user.UserService;
+import petfinder.site.common.user.*;
 import petfinder.site.common.user.UserService.RegistrationRequest;
 
 /**
@@ -86,10 +83,16 @@ public class UserEndpoint {
 		System.out.println(request.getLastName());
 		return userService.register(request);
 	}
+
+	@PostMapping(value = "/editProfile")
+	public UserDto editProfile(@RequestBody UpdateRequest request) {
+		System.out.println(request.getFirstName());
+		return userService.update(request);
+	}
 	/**
 	 * This endpoint gets a list of pets associated with the current user. In this example we associate users and pets via a seperate index represented by the UserPetDto class.
 	 * While this is one way to model this association, it is not the only way - pets could be included directly on the user object, for example. However, we have chosen to use a
-	 * "mapping index" as an example of how to associate two indexes and relate them togther. UserPetDto is a document which simply references the corresponding user id and pet id and associates them together.
+	 * "mapping index" as an example of how to associate two indexes and relate them together. UserPetDto is a document which simply references the corresponding user id and pet id and associates them together.
 	 *
 	 * You can find the meat of this method in UserDao.findPets(...) - its here we call out to Elasticsearch and manually join the various indexes together.
 	 */
@@ -97,6 +100,7 @@ public class UserEndpoint {
 	public List<PetDto> getPets() {
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDto user = userService.findUserByPrincipal(principal).get();
+		System.out.println(user.getPrincipal());
 		return userService.findPets(user);
 	}
 
@@ -105,7 +109,8 @@ public class UserEndpoint {
 	 */
 	@PostMapping(value = "/pet")
 	public UserPetDto addPetUser(@RequestBody UserPetDto userPetDto) {
-		System.out.println("adding relation");
+		System.out.println(userPetDto.getPetId());
+		System.out.println(userPetDto.getUserPrincipal());
 		return userService.save(userPetDto);
 	}
 }

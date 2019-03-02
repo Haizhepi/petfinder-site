@@ -23,7 +23,9 @@ export function authenticate(username, password) {
 				password: 'petfinder-app-secret'
 			}
 		}
-	);
+	).catch((error) => {
+		alert('Yes!');
+	});
 }
 
 //post pet to PetEndpoint
@@ -44,6 +46,12 @@ export function getPets() {
 
 export function getUserDetails() {
 	return axios.get('/api/user');
+}
+
+export function editProfile(user) {
+	console.log('here');
+	console.log(user);
+	return axios.post('/api/user/editProfile', user);
 }
 
 
@@ -80,27 +88,13 @@ Actions.savePet = pet => {
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
 	Actions.savePet(pet).then(response =>{
-		console.log(response);
 		let petUser = {
 			//id : pet.id,
 			userPrincipal : user.principal,
 			petId : response.id
 		};
-		console.log(petUser);
 		addPetUser(petUser);
 	});
-
-
-	/*return (dispatch) => {
-
-	};*/
-
-	// return (dispatch) => {
-	// 	alert('in here');
-	// 	return addPetUser(petUser).then(() => {
-	// 		return dispatch(Actions.savePet(pet));
-	// 	});
-	// };
 };
 
 
@@ -114,6 +108,13 @@ Actions.register = user => {
 		return register(user).then(() => {
 			return dispatch(Actions.authenticate(user.principal, user.password));
 		});
+	};
+};
+
+Actions.editProfile = user => {
+	Actions.setUser(user);
+	return (dispatch) => {
+		return editProfile(user);
 	};
 };
 

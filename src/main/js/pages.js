@@ -1,30 +1,61 @@
 import _ from 'lodash';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
+import {Actions} from 'js/users';
 
 export class Home extends React.Component {
 	render() {
 		return (
+
 			<div className="container padded">
-				<h1>This is the home page.</h1>
-				<ul>
-					<li><Link to="/register">Register as Owner</Link></li>
-					<li><Link to="/login">Login</Link></li>
-					<li><Link to="/page-1">Page 1</Link></li>
-					<li><Link to="/pet">Add Pet</Link></li>
-					<li><Link to="/page-3">Pet List</Link></li>
-					<li><Link to="/homepage">Homepage</Link></li>
-				</ul>
+
+				{ _.isDefined(this.props.user) && <div>
+				<h1>U r logged in</h1>
+					<h1> Welcome! {this.props.user.firstName}</h1>
+					<ul>
+						<li><Link to="/register">Register as Owner</Link></li>
+						<li><Link to="/login">Login</Link></li>
+						<li><Link to="/page-1">Page 1</Link></li>
+						<li><Link to="/pet">Add Pet</Link></li>
+						<li><Link to="/page-3">Pet List</Link></li>
+						<li><Link to="/homepage">UserProfile</Link></li>
+						<li><Link to="/edit_profile">edit ur Profile</Link></li>
+						<li><Link to="/logout">Logout</Link></li>
+					</ul>
+				</div>
+				}
+				{ this.props.user == null &&
+				<div>
+					<h1>This is the home page.</h1>
+					<ul>
+						<li><Link to="/register">Register as Owner</Link></li>
+						<li><Link to="/login">Login</Link></li>
+						<li><Link to="/page-1">Page 1</Link></li>
+					</ul>
+				</div>
+				}
 			</div>
+
 		);
 	}
 }
+
+Home = connect(
+	state => ({
+		authentication: Users.State.getAuthentication(state),
+		user: Users.State.getUser(state)
+	}),
+	dispatch => ({
+		register: user => dispatch(Users.Actions.register(user))
+	})
+)(Home);
+
 
 export class RegisterPage extends React.Component {
 	render() {
@@ -58,12 +89,30 @@ export class LoginPage extends React.Component {
 	}
 }
 
+export class EditProfilePage extends React.Component {
+	render() {
+		return (
+			<div className="container padded">
+				<div className="row">
+					<div className="col-6 offset-md-3">
+						<h2>Edit the profile</h2>
+						<hr />
+						<Login.EditProfileForm/>
+					</div>
+				</div>
+			</div>
+		);
+	}
+}
+
+
+
 class Page1 extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
 				<h1>This is page 1</h1>
-
+				<h2><Link to="/">home</Link></h2>
 
 				{ _.isDefined(this.props.authentication) &&
 				<div>{this.props.authentication['access_token']}</div>
@@ -114,7 +163,7 @@ class Page3 extends React.Component {
 			<div className="container padded">
 
 				<h1>Pets</h1>
-		        <PetList.PetTable />
+		        <PetList.PetList />
 			</div>
 		);
 	}
@@ -131,10 +180,65 @@ export { Page3 };
 
 export class Homepage extends React.Component {
 	render() {
+
+
 		return (
+
 			<div className="container padded">
-				<h1>This is homepage</h1>
+				<h1>Home Page</h1>
+				{ _.isDefined(this.props.authentication) &&
+				<div><h1>This is Ur User Profile</h1>
+					<ul>
+						<li>{this.props.user.firstName}</li>
+						<li>{this.props.user.lastName}</li>
+						<li>{this.props.user.gender}</li>
+						<li>{this.props.user.zipcode}</li>
+					</ul>
+				</div>
+				}
+
 			</div>
 		);
 	}
 }
+Homepage = connect(
+	state => ({
+		authentication: Users.State.getAuthentication(state),
+		user: Users.State.getUser(state),
+		pet: Users.State.getPet(state)
+	})
+)(Homepage);
+
+export class Logout extends React.Component {
+	constructor(props) {
+		super(props);
+		// Don't call this.setState() here!
+		if (this.props.user != null) {
+			this.props.logout();
+		}
+	}
+
+	render() {
+		return (
+			<div className="container padded">
+				<h1>Home Page</h1>
+				<div>
+					<h1>Logged out</h1>
+					<Link to="/">
+						<button type="button">return home</button>
+					</Link>
+				</div>
+			</div>
+		);
+	}
+}
+Logout = connect(
+	state => ({
+		authentication: Users.State.getAuthentication(state),
+		user: Users.State.getUser(state),
+		pet: Users.State.getPet(state)
+	}),
+	dispatch => ({
+		logout: () => dispatch(Users.Actions.logout())
+	})
+)(Logout);

@@ -1,47 +1,47 @@
 import React, {Component} from 'react';
-import * as ReduxForm from 'redux-form';
-import { connect } from 'react-redux';
-
 import * as Users from 'js/users';
 
 class PetList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { pets: [] };
+        this.state = {
+            pets: [{
+                name: 'no name'
+            }]
+        };
     }
 
     //set state as array of user's pets
-    componentDidMount() {
-            Users.Actions.getPets.then(response => {
-                console.log(response);
+    componentWillMount() {
+            Users.Actions.getPets().then(response => {
                 this.setState({pets: response});
             });
     }
 
     render() {
         return (
-          <table>
-          <tbody>{this.state.pets.map(function(pet, key) {
+        <div>
+            <h1> Pet Profile </h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pet Name</th>
+                        <th>Pet Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {this.state.pets.map(pet => (
+                  <tr key = {pet.name} className="pet">
+                      <td>{pet.name}</td>
+                      <td>{pet.type}</td>
+                  </tr>
+                ))}
+                </tbody>
+            </table>
 
-                   return (
-                      <tr key = {key}>
-                          <td>{pet.name}</td>
-                          <td>{pet.type}</td>
-                      </tr>
-                    );
-                 })}</tbody>
-           </table>
+        </div>
         );
       }
 }
-PetList = ReduxForm.reduxForm({form: 'getPets'})(PetList);
-
-PetList = connect(
-	state => ({
-	}),
-	dispatch => ({
-		getPets: pets => dispatch(Users.Actions.getPets)
-	})
-)(PetList);
 
 export { PetList };
