@@ -84,15 +84,15 @@ public class UserEndpoint {
 		return userService.register(request);
 	}
 
-	@PostMapping(value = "/edit_user")
-	public UserDto edit(@RequestBody UpdateRequest request) {
+	@PostMapping(value = "/editProfile")
+	public UserDto editProfile(@RequestBody UpdateRequest request) {
 		System.out.println(request.getFirstName());
 		return userService.update(request);
 	}
 	/**
 	 * This endpoint gets a list of pets associated with the current user. In this example we associate users and pets via a seperate index represented by the UserPetDto class.
 	 * While this is one way to model this association, it is not the only way - pets could be included directly on the user object, for example. However, we have chosen to use a
-	 * "mapping index" as an example of how to associate two indexes and relate them togther. UserPetDto is a document which simply references the corresponding user id and pet id and associates them together.
+	 * "mapping index" as an example of how to associate two indexes and relate them together. UserPetDto is a document which simply references the corresponding user id and pet id and associates them together.
 	 *
 	 * You can find the meat of this method in UserDao.findPets(...) - its here we call out to Elasticsearch and manually join the various indexes together.
 	 */

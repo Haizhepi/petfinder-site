@@ -48,6 +48,12 @@ export function getUserDetails() {
 	return axios.get('/api/user');
 }
 
+export function editProfile(user) {
+	console.log('here');
+	console.log(user);
+	return axios.post('/api/user/editProfile', user);
+}
+
 
 let State = {};
 
@@ -89,18 +95,6 @@ Actions.addPetUser = (pet, user) => {
 		};
 		addPetUser(petUser);
 	});
-
-
-	/*return (dispatch) => {
-
-	};*/
-
-	// return (dispatch) => {
-	// 	alert('in here');
-	// 	return addPetUser(petUser).then(() => {
-	// 		return dispatch(Actions.savePet(pet));
-	// 	});
-	// };
 };
 
 
@@ -114,6 +108,13 @@ Actions.register = user => {
 		return register(user).then(() => {
 			return dispatch(Actions.authenticate(user.principal, user.password));
 		});
+	};
+};
+
+Actions.editProfile = user => {
+	Actions.setUser(user);
+	return (dispatch) => {
+		return editProfile(user);
 	};
 };
 
@@ -133,7 +134,6 @@ Actions.authenticate = (username, password) => {
 
 Actions.logout = () => {
 	return (dispatch) => {
-		alert('logout');
 		dispatch(Actions.setAuthentication(null));
 		dispatch(Actions.setUser(null));
 	};

@@ -24,6 +24,7 @@ export default class Index extends React.Component {
 		let page3 = <Route exact path="/page-3" component={Pages.Page3}/>;
 		let homepath = <Route exact path="/homepage" component={Pages.Homepage}/>;
 		let logout = <Route exact path="/logout" component={Pages.Logout}/>;
+		let editProfile = <Route exact path="/edit_profile" component={Pages.EditProfilePage}/>;
 		//alert(this.props.authentication);
 		return (
 			<HashRouter>
@@ -36,6 +37,7 @@ export default class Index extends React.Component {
 					{page3}
 					{homepath}
 					{logout}
+					{editProfile}
 				</div>
 			</HashRouter>
 		);

@@ -114,3 +114,49 @@ RegistrationForm = connect(
 )(RegistrationForm);
 
 export { RegistrationForm };
+
+class EditProfileForm extends React.Component {
+
+	onSubmit = user => {
+		let newUser = this.props.user;
+		newUser.firstName = user.firstName;
+		newUser.lastName = user.lastName;
+		newUser.gender = user.gender;
+		newUser.zipcode = user.zipcode;
+
+		this.props.editProfile(newUser);
+	};
+	render() {
+		let { handleSubmit, submitting } = this.props;
+
+		return (
+			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+				<Bessemer.Field name="firstName" friendlyName="first name"/>
+
+				<Bessemer.Field name="lastName" friendlyName="last name"/>
+
+				<Bessemer.Field name="gender" friendlyName="Gender"/>
+				<Bessemer.Field name="zipcode" friendlyName="zip code"/>
+				<Bessemer.Button loading={submitting}>Confirm</Bessemer.Button>
+			</form>
+		);
+	}
+}
+
+EditProfileForm = ReduxForm.reduxForm({form: 'EditProfileForm'})(EditProfileForm);
+
+EditProfileForm = connect(
+	state => ({
+		initialValues: { firstName: Users.State.getUser(state).firstName,
+						lastName: Users.State.getUser(state).lastName,
+						gender: Users.State.getUser(state).gender,
+						zipcode: Users.State.getUser(state).zipcode},
+		authentication: Users.State.getAuthentication(state),
+		user: Users.State.getUser(state),
+	}),
+	dispatch => ({
+		editProfile: user => dispatch(Users.Actions.editProfile(user))
+	})
+)(EditProfileForm);
+
+export { EditProfileForm };

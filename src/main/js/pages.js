@@ -25,6 +25,7 @@ export class Home extends React.Component {
 						<li><Link to="/pet">Add Pet</Link></li>
 						<li><Link to="/page-3">Pet List</Link></li>
 						<li><Link to="/homepage">UserProfile</Link></li>
+						<li><Link to="/edit_profile">edit ur Profile</Link></li>
 						<li><Link to="/logout">Logout</Link></li>
 					</ul>
 				</div>
@@ -87,6 +88,24 @@ export class LoginPage extends React.Component {
 		);
 	}
 }
+
+export class EditProfilePage extends React.Component {
+	render() {
+		return (
+			<div className="container padded">
+				<div className="row">
+					<div className="col-6 offset-md-3">
+						<h2>Edit the profile</h2>
+						<hr />
+						<Login.EditProfileForm/>
+					</div>
+				</div>
+			</div>
+		);
+	}
+}
+
+
 
 class Page1 extends React.Component {
 	render() {
