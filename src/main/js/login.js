@@ -13,12 +13,10 @@ import * as Apps from 'js/app.js';
 //Class that represents the log in form
 class LoginForm extends React.Component {
 
-
 	//Defines the on submit behavior
 	onSubmit = ({principal, password}) => {
 		return this.props.authenticate(principal, password);
 	};
-	// handleSubmit(form => this.onSubmit(form))
 
 	render() {
 		let { handleSubmit, submitting } = this.props;
@@ -116,6 +114,10 @@ RegistrationForm = connect(
 export { RegistrationForm };
 
 class EditProfileForm extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {hasSubmitSucceeded: false};
+	}
 
 	onSubmit = user => {
 		let newUser = this.props.user;
@@ -123,27 +125,30 @@ class EditProfileForm extends React.Component {
 		newUser.lastName = user.lastName;
 		newUser.gender = user.gender;
 		newUser.zipcode = user.zipcode;
+		this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
 
-		this.props.editProfile(newUser);
+
 	};
 	render() {
 		let { handleSubmit, submitting } = this.props;
+		if(this.state.hasSubmitSucceeded) {
+			alert('success');
+			return <Redirect to={'/'}/>;
+		}
 
 		return (
 			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 				<Bessemer.Field name="firstName" friendlyName="first name"/>
-
 				<Bessemer.Field name="lastName" friendlyName="last name"/>
-
 				<Bessemer.Field name="gender" friendlyName="Gender"/>
 				<Bessemer.Field name="zipcode" friendlyName="zip code"/>
-				<Bessemer.Button loading={submitting}>Confirm</Bessemer.Button>
+				<Bessemer.Button loading={submitting}>Sign In</Bessemer.Button>
 			</form>
 		);
 	}
 }
 
-EditProfileForm = ReduxForm.reduxForm({form: 'EditProfileForm'})(EditProfileForm);
+EditProfileForm = ReduxForm.reduxForm({form: 'edit_profile'})(EditProfileForm);
 
 EditProfileForm = connect(
 	state => ({
@@ -152,7 +157,7 @@ EditProfileForm = connect(
 						gender: Users.State.getUser(state).gender,
 						zipcode: Users.State.getUser(state).zipcode},
 		authentication: Users.State.getAuthentication(state),
-		user: Users.State.getUser(state),
+		user: Users.State.getUser(state)
 	}),
 	dispatch => ({
 		editProfile: user => dispatch(Users.Actions.editProfile(user))
