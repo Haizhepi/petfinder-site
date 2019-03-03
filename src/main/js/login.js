@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReduxForm from 'redux-form';
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import * as Validation from 'js/alloy/utils/validation';
 import * as Bessemer from 'js/alloy/bessemer/components';
@@ -24,12 +24,12 @@ class LoginForm extends React.Component {
     render() {
         let {handleSubmit, submitting} = this.props;
 
-		if (submitting) {
-			if (this.props.authentication != null) {
-				this.forceUpdate();
-				return <Redirect to={'/'}/>;
-			}
-		}
+        if (submitting) {
+            if (this.props.authentication != null) {
+                this.forceUpdate();
+                return <Redirect to={'/'}/>;
+            }
+        }
 
         return (
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
@@ -38,8 +38,9 @@ class LoginForm extends React.Component {
 
                 <Bessemer.Field name="password" friendlyName="Password"
                                 validators={[Validation.requiredValidator, Validation.passwordValidator]}/>
-
-                <Bessemer.Button loading={submitting}>Sign In</Bessemer.Button>
+                <div className="wrapper">
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Sign In</Bessemer.Button>
+                </div>
             </form>
         );
     }
@@ -50,13 +51,12 @@ LoginForm = ReduxForm.reduxForm({form: 'login'})(LoginForm);
 LoginForm = connect(
     state => ({
         initialValues: {principal: '', password: ''},
-		authentication: Users.State.getAuthentication(state)
+        authentication: Users.State.getAuthentication(state)
 
-	}),
+    }),
     dispatch => ({
         authenticate: (principal, password) => dispatch(Users.Actions.authenticate(principal, password))
     })
-
 )(LoginForm);
 
 export {LoginForm};
@@ -189,65 +189,63 @@ class RegistrationForm extends React.Component {
 
     }
     */
-	onSubmit = user => {
-		return this.props.register(user).then(() => {
-		    //and then .catch and redirect in .then
-		});
-	};
+    onSubmit = user => {
+        return this.props.register(user).then(() => {
+            //and then .catch and redirect in .then
+        });
+    };
 
-	render() {
-		let { handleSubmit, submitting } = this.props;
+    render() {
+        let {handleSubmit, submitting} = this.props;
 
-		if (submitting) {
-			this.forceUpdate();
-			return <Redirect to={'/'}/>;
-		}
+        if (submitting) {
+            this.forceUpdate();
+            return <Redirect to={'/'}/>;
+        }
 
-		return (
-			<form className="regf" name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-				<Bessemer.Field name="principal" friendlyName="Email Address"
-				                validators={[Validation.requiredValidator, Validation.emailValidator]}
-								placeholder=""
+        return (
+            <form className="regf" name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+                <Bessemer.Field name="principal" friendlyName="Email Address"
+                                validators={[Validation.requiredValidator, Validation.emailValidator]}
                 />
 
-				<Bessemer.Field name="password" friendlyName="Password"
-				                validators={[Validation.requiredValidator, Validation.passwordValidator]}
-				                field={<input className="form-control" type="password"
-                                              placeholder="Enter Your Password"/>} />
+                <Bessemer.Field name="password" friendlyName="Password"
+                                validators={[Validation.requiredValidator, Validation.passwordValidator]}
+                                field={<input className="form-control" type="password"
+                                />}/>
 
                 <Bessemer.Field name="confirmPassword" friendlyName="Confirm Password"
                                 validators={[Validation.requiredValidator, Validation.passwordValidator]}
                                 field={<input className="form-control" type="password"
-                                              placeholder="Re-enter Your Password"
                                 />}/>
-				<Bessemer.Field name="firstName" friendlyName="First Name"
-								field={<input className="form-control" type="firstName"
-                                              placeholder="Your First Name"
+                <Bessemer.Field name="firstName" friendlyName="First Name"
+                                field={<input className="form-control" type="firstName"
                                 />}/>
 
-				<Bessemer.Field name="lastName" friendlyName="Last Name"
-								field={<input className="form-control" type="lastName"
-                                              placeholder="Your Last Name"
+                <Bessemer.Field name="lastName" friendlyName="Last Name"
+                                field={<input className="form-control" type="lastName"
                                 />}/>
-				<Bessemer.Field name="gender" friendlyName="Gender"
-								field={<Bessemer.Select options={[{value: 'Female', label: 'Female'},
-											{value: 'Male', label: 'Male'},
-                                    {value: 'Other', label: 'Other'}]}
+                <Bessemer.Field name="gender" friendlyName="Gender"
+                                field={<Bessemer.Select options={[{value: 'female', label: 'Female'},
+                                    {value: 'male', label: 'Male'},
+                                    {value: 'other', label: 'Other'}]}
                                                         placeholder="Choose Your Gender"
-
                                 />}/>
-				<Bessemer.Field name="zipcode" friendlyName="Zip Code"
-								field={<input className="form-control" type="zipcode"/>}/>
-				<Bessemer.Field name="userType" friendlyName="User Type"
-								field={<Bessemer.Select options={[{value: 'sitter', label: 'sitter'},
-									{value: 'owner', label: 'owner'}]}/>}/>
+                <Bessemer.Field name="zipcode" friendlyName="Zip Code"
+                                field={<input className="form-control" type="zipcode"/>}/>
+                <Bessemer.Field name="userType" friendlyName="User Type"
+                                field={<Bessemer.Select options={[{value: 'sitter', label: 'Sitter'},
+                                    {value: 'owner', label: 'Owner'}]}
+                                                        placeholder="Owner or Sitter?"
+                                />}/>
 
+                <div className="wrapper">
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Register</Bessemer.Button>
+                </div>
 
-				<Bessemer.Button loading={submitting}>Register</Bessemer.Button>
-
-			</form>
-		);
-	}
+            </form>
+        );
+    }
 }
 
 RegistrationForm = ReduxForm.reduxForm({form: 'register'})(RegistrationForm);
@@ -266,52 +264,58 @@ RegistrationForm = connect(
 export {RegistrationForm};
 
 class EditProfileForm extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {hasSubmitSucceeded: false};
-	}
+    constructor(props) {
+        super(props);
+        this.state = {hasSubmitSucceeded: false};
+    }
 
-	onSubmit = user => {
-		let newUser = this.props.user;
-		newUser.firstName = user.firstName;
-		newUser.lastName = user.lastName;
-		newUser.gender = user.gender;
-		newUser.zipcode = user.zipcode;
-		this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
-	};
-	render() {
-		let { handleSubmit, submitting } = this.props;
-		if(this.state.hasSubmitSucceeded) {
-			alert('success');
-			return <Redirect to={'/'}/>;
-		}
+    onSubmit = user => {
+        let newUser = this.props.user;
+        newUser.firstName = user.firstName;
+        newUser.lastName = user.lastName;
+        newUser.gender = user.gender;
+        newUser.zipcode = user.zipcode;
+        this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
+    };
 
-		return (
-			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-				<Bessemer.Field name="firstName" friendlyName="first name"/>
-				<Bessemer.Field name="lastName" friendlyName="last name"/>
-				<Bessemer.Field name="gender" friendlyName="Gender"/>
-				<Bessemer.Field name="zipcode" friendlyName="zip code"/>
-				<Bessemer.Button loading={submitting}>Sign In</Bessemer.Button>
-			</form>
-		);
-	}
+    render() {
+        let {handleSubmit, submitting} = this.props;
+        if (this.state.hasSubmitSucceeded) {
+            alert('success');
+            return <Redirect to={'/'}/>;
+        }
+
+        return (
+            <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+                <Bessemer.Field name="firstName" friendlyName="first name"/>
+                <Bessemer.Field name="lastName" friendlyName="last name"/>
+                <Bessemer.Field name="gender" friendlyName="Gender"/>
+                <Bessemer.Field name="zipcode" friendlyName="zip code"/>
+                <div className="wrapper">
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Sign In</Bessemer.Button>
+                </div>
+
+            </form>
+        );
+    }
 }
 
 EditProfileForm = ReduxForm.reduxForm({form: 'edit_profile'})(EditProfileForm);
 
 EditProfileForm = connect(
-	state => ({
-		initialValues: { firstName: Users.State.getUser(state).firstName,
-						lastName: Users.State.getUser(state).lastName,
-						gender: Users.State.getUser(state).gender,
-						zipcode: Users.State.getUser(state).zipcode},
-		authentication: Users.State.getAuthentication(state),
-		user: Users.State.getUser(state)
-	}),
-	dispatch => ({
-		editProfile: user => dispatch(Users.Actions.editProfile(user))
-	})
+    state => ({
+        initialValues: {
+            firstName: Users.State.getUser(state).firstName,
+            lastName: Users.State.getUser(state).lastName,
+            gender: Users.State.getUser(state).gender,
+            zipcode: Users.State.getUser(state).zipcode
+        },
+        authentication: Users.State.getAuthentication(state),
+        user: Users.State.getUser(state)
+    }),
+    dispatch => ({
+        editProfile: user => dispatch(Users.Actions.editProfile(user))
+    })
 )(EditProfileForm);
 
-export { EditProfileForm };
+export {EditProfileForm};

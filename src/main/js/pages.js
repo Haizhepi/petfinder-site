@@ -11,6 +11,17 @@ import {Actions} from 'js/users';
 
 import 'styles/main.scss';
 
+import Background from 'styles/bg3.png';
+
+let sectionStyle = {
+    width: '100%',
+    height: '100%',
+    backgroundImage: `url(${Background})`,
+    backgroundSize: '1500px',
+    backgroundPosition: 'center',
+};
+
+
 export class Home extends React.Component {
     render() {
         return (
@@ -36,7 +47,7 @@ export class Home extends React.Component {
                 <div>
                     <h1>This is the home page.</h1>
                     <ul>
-                        <li><Link to="/register">Register as Owner</Link></li>
+                        <li><Link to="/register">Sign up</Link></li>
                         <li><Link to="/login">Login</Link></li>
                         <li><Link to="/page-1">Page 1</Link></li>
                     </ul>
@@ -67,28 +78,16 @@ let styles = {
 };
 
 
-import Background from 'styles/bg3.png';
-
-let sectionStyle = {
-    width: '100%',
-    height: '100%',
-    backgroundImage: `url(${Background})`,
-    backgroundSize: '1500px',
-    backgroundPosition: 'center',
-};
-
-
 export class RegisterPage extends React.Component {
 
     render() {
         return (
             <section style={sectionStyle}>
-
                 <div className="container padded">
 
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Register as Owner</div>
+                            <div className="title">Sign up</div>
                             <hr/>
                             <Login.RegistrationForm/>
                         </div>
@@ -102,15 +101,17 @@ export class RegisterPage extends React.Component {
 export class LoginPage extends React.Component {
     render() {
         return (
-            <div className="container padded">
-                <div className="row">
-                    <div className="col-6 offset-md-3">
-                        <div className="title">Login</div>
-                        <hr/>
-                        <Login.LoginForm/>
+            <section style={sectionStyle}>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Login</div>
+                            <hr/>
+                            <Login.LoginForm/>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         );
     }
 }
@@ -118,15 +119,18 @@ export class LoginPage extends React.Component {
 export class EditProfilePage extends React.Component {
     render() {
         return (
-            <div className="container padded">
-                <div className="row">
-                    <div className="col-6 offset-md-3">
-                        <h2>Edit the profile</h2>
-                        <hr/>
-                        <Login.EditProfileForm/>
+            <section style={sectionStyle}>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <h2>Edit the profile</h2>
+                            <hr/>
+                            <Login.EditProfileForm/>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
         );
     }
 }

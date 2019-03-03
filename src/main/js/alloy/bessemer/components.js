@@ -61,7 +61,7 @@ export class Field extends React.Component {
 	getReifiedProps = () => {
 		let reifiedProps = _.clone(this.props);
 		if(_.isNil(reifiedProps.field)) {
-			reifiedProps.field = <input className="form-control" placeholder="Value" />;
+			reifiedProps.field = <input className="form-control" placeholder="" />;
 		}
 
 		if(_.isNil(reifiedProps.label)) {
@@ -175,7 +175,7 @@ Field.defaultProps = {
 
 export class Button extends React.Component {
 	static defaultProps = {
-		className: 'btn btn-primary',
+		className: 'btn btn-primary'
 	};
 
 	render() {

@@ -1,26 +1,46 @@
 @import "~bootstrap/scss/bootstrap.scss";
 @import "~react-select/scss/default.scss";
+
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
-@keyframes example {
-  0%   {box-shadow: 5px 5px 7.5px #313131;}
-  25%  {box-shadow: 0px 0px 7.5px #313131;}
-  50%  {box-shadow: -5px 5px 7.5px #313131;}
-  75%  {box-shadow: 0px 0px 7.5px #313131;}
-  100% {box-shadow: 5px 5px 7.5px #313131;}
+@keyframes animation1 {
+  0% {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+  25% {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.50);
+  }
+  50% {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 1);
+  }
+  75% {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.50);
+  }
+  100% {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
 }
 
 .form-control {
   text-align: left;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 70px 0 rgba(0, 0, 0, 0.19);
+  -moz-transition: background-color 0.25s;
+  -o-transition: background-color 0.25s;
+  -webkit-transition: background-color 0.25s;
+  transition: background-color 0.25s;
+}
+
+.form-control:hover {
+  background-color: #ededed;
 }
 
 .title {
   text-align: center;
   font-size: xx-large;
   color: black;
-
 }
+
 #label {
   text-align: left;
 }
@@ -30,7 +50,7 @@ $fa-font-path: "~font-awesome/fonts";
   top: 50px;
   border-radius: 20px;
   box-shadow: 10px 10px 5px grey;
-  animation-name: example;
+  animation-name: animation1;
   animation-duration: 5s;
   animation-iteration-count: infinite;
   font-family: Century Gothic, sans-serif;
@@ -40,18 +60,33 @@ $fa-font-path: "~font-awesome/fonts";
   transition: background-color 0.75s;
 }
 
-
 #p:hover {
-  background-color: #fbfff6;
+  background-color: #ededed;
 }
 
-#button {
+.buttonType1 {
   background-color: #4CAF50;
+  text-align: center;
   border: none;
   color: white;
-  padding: 15px 32px;
-  text-align: center;
+  height: 40px;
+  width: 1000px;
+  max-width: 100%;
+  max-height: 100%;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
+  border-radius: 10px;
+  -moz-transition: box-shadow 0.25s;
+  -o-transition: box-shadow 0.25s;
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+}
+
+.buttonType1:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.wrapper {
+  text-align: center;
 }
