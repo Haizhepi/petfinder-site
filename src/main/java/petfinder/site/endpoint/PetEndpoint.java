@@ -38,6 +38,7 @@ public class PetEndpoint {
 	@PostMapping(value = "")
 	public PetDto savePet(@RequestBody PetDto pet) {
 		System.out.println(pet.getName());
+		System.out.println(pet.getPreference());
 		petService.save(pet);
 		return pet;
 	}

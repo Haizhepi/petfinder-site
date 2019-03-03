@@ -49,6 +49,8 @@ class PetForm extends React.Component {
                                 {value: 'other', label: 'Other'},]}/>}/>
 
 
+                        <Bessemer.Field name="preference" friendlyName="Preference"
+                                        field={<input className="form-control" type="name"/>}/>
                         <Bessemer.Button loading={submitting}>Add Pet</Bessemer.Button>
 
                     </form>
