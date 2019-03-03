@@ -58,29 +58,43 @@ Home = connect(
     })
 )(Home);
 
-let imgUrl  = 'styles/bg1.jpg';
+let imgUrl = 'styles/bg1.jpg';
 
 let styles = {
-        backgroundImage: 'url(' + imgUrl + ')',
-        backgroundSize: 'cover',
-        overflow: 'hidden'
-    };
+    backgroundImage: 'url(' + imgUrl + ')',
+    backgroundSize: 'cover',
+    overflow: 'hidden'
+};
+
+
+import Background from 'styles/bg3.png';
+
+let sectionStyle = {
+    width: '100%',
+    height: '100%',
+    backgroundImage: `url(${Background})`,
+    backgroundSize: '1500px',
+    backgroundPosition: 'center',
+};
+
 
 export class RegisterPage extends React.Component {
 
     render() {
         return (
-            <div className="container padded">
-                <style>{'body { background-color: #ceffea; }'}</style>
+            <section style={sectionStyle}>
 
-                <div className="row">
-                    <div className="col-6 offset-md-3" id="p">
-                        <div className="title">Register as Owner</div>
-                        <hr/>
-                        <Login.RegistrationForm/>
+                <div className="container padded">
+
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Register as Owner</div>
+                            <hr/>
+                            <Login.RegistrationForm/>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         );
     }
 }
