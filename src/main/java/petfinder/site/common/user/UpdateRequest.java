@@ -11,9 +11,6 @@ import alloy.util.Identifiable;
 import alloy.util.Momento;
 import petfinder.site.common.pet.PetDto;
 
-/**
- * Created by jlutteringer on 8/23/17.
- */
 public class UpdateRequest {
     private String principal;
     private List<String> roles;
@@ -37,6 +34,7 @@ public class UpdateRequest {
         this.principal = principal;
         this.roles = roles;
         this.attributes = attributes;
+        this.type = type;
     }
 
     public String getPrincipal() {

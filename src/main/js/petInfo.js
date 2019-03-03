@@ -4,18 +4,30 @@ import { connect } from 'react-redux';
 import * as Bessemer from 'js/alloy/bessemer/components';
 
 import * as Users from 'js/users';
+import {Redirect} from 'react-router-dom';
 
 class PetForm extends React.Component {
 
-	onSubmit = pet => {
+    constructor(props) {
+        super(props);
+        this.state = {hasSubmitSucceeded: false};
+    }
+
+
+    onSubmit = pet => {
 	    //this.props.addPetUser(pet,this.state.user);
         //alert(this.props.user.principal);
-
+        this.setState({hasSubmitSucceeded: true});
         return Users.Actions.addPetUser(pet,this.props.user);
-	};
+
+    };
 
 	render() {
 		let { handleSubmit, submitting } = this.props;
+        if(this.state.hasSubmitSucceeded) {
+            alert('success');
+            return <Redirect to={'/'}/>;
+        }
 
 		return (
             <div id="parent">
@@ -57,7 +69,7 @@ PetForm = connect(
 	dispatch => ({
         //savePet: pet => dispatch(Users.Actions.savePet(pet)),
         addPetUser: pet => dispatch(Users.Actions.addPetUser(pet, this.props.user))
-	})
+    })
 )(PetForm);
 
 export { PetForm };

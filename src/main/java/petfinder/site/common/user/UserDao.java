@@ -41,6 +41,7 @@ public class UserDao {
 		System.out.println(userAuthentication.getUser().getGender());
 		System.out.println(userAuthentication.getUser().getLastName());
 		System.out.println(userAuthentication.getUser().getFirstName());
+		System.out.println(userAuthentication.getUser().getRoles().get(0));
 		userRepository.save(userAuthentication);
 	}
 

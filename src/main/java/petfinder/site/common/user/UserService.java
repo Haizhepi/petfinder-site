@@ -40,6 +40,16 @@ public class UserService {
 		private String password;
 		private String firstName;
 		private String lastName;
+		private String userType;
+
+		public UserType getUserType() {
+			if (userType.equals("owner")) {
+				return UserType.OWNER;
+			}
+			else {
+				return UserType.SITTER;
+			}
+		}
 
 		public String getFirstName() {
 			return firstName;
@@ -107,7 +117,7 @@ public class UserService {
 				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"),
 						request.getFirstName(), request.getLastName(),
 						request.getGender(), request.getZipcode(),
-						UserType.OWNER, request.getAttributes()),
+						request.getUserType(), request.getAttributes()),
 				passwordEncoder.encode(request.getPassword()));
 		System.out.println(request.getGender());
 		userDao.save(userAuthentication);
