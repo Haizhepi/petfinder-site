@@ -3,3 +3,55 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 
+@keyframes example {
+  0%   {box-shadow: 5px 5px 5px #494949;}
+  25%  {box-shadow: 7.5px 7.5px 7.5px #3c3c3c;}
+  50%  {box-shadow: 15px 15px 12.5px grey;}
+  75%  {box-shadow: 7.5px 7.5px 7.5px #3c3c3c;}
+  100% {box-shadow: 5px 5px 5px #494949;}
+}
+
+.form-control {
+  text-align: left;
+}
+
+.title {
+  text-align: center;
+  font-size: xx-large;
+  color: black;
+
+}
+#label {
+  text-align: left;
+}
+
+#p {
+  background-color: white;
+  top: 50px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px grey;
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  font-family: Century Gothic, sans-serif;
+  -moz-transition: background-color 0.75s;
+  -o-transition: background-color 0.75s;
+  -webkit-transition: background-color 0.75s;
+  transition: background-color 0.75s;
+}
+
+
+#p:hover {
+  background-color: #ffffe0;
+}
+
+#button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

@@ -175,7 +175,7 @@ Field.defaultProps = {
 
 export class Button extends React.Component {
 	static defaultProps = {
-		className: 'btn btn-primary'
+		className: 'btn btn-primary',
 	};
 
 	render() {
