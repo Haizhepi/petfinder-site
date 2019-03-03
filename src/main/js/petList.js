@@ -1,5 +1,31 @@
 import React, {Component} from 'react';
 import * as Users from 'js/users';
+import {connect} from 'react-redux';
+import {EditProfileForm} from 'js/login';
+
+class PetEdit extends React.Component {
+
+    render() {
+        if (!this.props.pet) {
+            return (<h1>select a pet</h1>);
+        }
+        return (
+            <div>
+                <h2>NAME: {this.props.pet.name}</h2>
+            </div>
+        );
+    }
+
+}
+
+PetEdit = connect(
+    state => ({
+        pet: Users.State.getActivePet(state)
+    }),
+    dispatch => ({})
+)(PetEdit);
+
+export { PetEdit };
 
 class PetList extends React.Component {
     constructor(props) {
@@ -32,18 +58,34 @@ class PetList extends React.Component {
                 </thead>
                 <tbody>
                 {this.state.pets.map(pet => (
-                  <tr key = {pet.name} className="pet">
+                  <tr key = {pet.id} className="pet" onClick={() => this.props.selectPet(pet)}>
                       <td>{pet.name}</td>
                       <td>{pet.type}</td>
                       <td>{pet.preference}</td>
                   </tr>
+
                 ))}
                 </tbody>
             </table>
-
+            <hr></hr>
+            <h1> Pet detail </h1>
+            <PetEdit/>
         </div>
         );
       }
 }
 
+PetList = connect(
+    state => ({
+
+    }),
+    dispatch => ({
+        selectPet: pet => dispatch(Users.Actions.selectPet(pet))
+    })
+
+)(PetList);
+
 export { PetList };
+
+
+

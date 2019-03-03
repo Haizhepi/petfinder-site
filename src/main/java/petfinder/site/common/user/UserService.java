@@ -43,7 +43,7 @@ public class UserService {
 		private String userType;
 
 		public UserType getUserType() {
-			if (userType.equals("owner")) {
+			if (userType.equalsIgnoreCase("owner")) {
 				return UserType.OWNER;
 			}
 			else {
