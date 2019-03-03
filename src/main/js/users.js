@@ -73,6 +73,10 @@ State.getPet = state => {
     return state.pet;
 };
 
+State.getActivePet = state => {
+	return state.pet;
+};
+
 export { State };
 
 let Actions = {};
@@ -81,6 +85,7 @@ Actions.Types = {
 	SET_AUTHENTICATION: 'SET_AUTHENTICATION',
 	SET_USER: 'SET_USER',
 	SET_PET: 'SET_PET',
+	SELECT_PET: 'PET_SELECTED'
 };
 
 //save pet
@@ -159,6 +164,11 @@ Actions.setUser = user => {
 	return {type: Actions.Types.SET_USER, user};
 };
 
+Actions.selectPet = pet => {
+	console.log('the pet is clicked!', pet.name);
+	return {type: Actions.Types.SELECT_PET, pet};
+};
+
 export { Actions };
 
 let Reducers = {};
@@ -188,6 +198,20 @@ Reducers.user = (user = null, action) => {
 Reducers.pet = (pet = null, action) => {
 	switch (action.type) {
 		case Actions.Types.SET_PET: {
+			return action.pet;
+		}
+		default: {
+			return pet;
+		}
+	}
+};
+
+Reducers.activePet = (pet = null, action) => {
+	console.log('returning'+ action.type);
+
+	switch (action.type) {
+
+		case Actions.Types.SELECT_PET: {
 			return action.pet;
 		}
 		default: {

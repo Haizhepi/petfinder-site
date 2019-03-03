@@ -292,7 +292,7 @@ class EditProfileForm extends React.Component {
 				<Bessemer.Field name="lastName" friendlyName="last name"/>
 				<Bessemer.Field name="gender" friendlyName="Gender"/>
 				<Bessemer.Field name="zipcode" friendlyName="zip code"/>
-				<Bessemer.Button loading={submitting}>Sign In</Bessemer.Button>
+				<Bessemer.Button className = "btn btn-secondary" loading={submitting}>Sign In</Bessemer.Button>
 			</form>
 		);
 	}
