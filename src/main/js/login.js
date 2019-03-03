@@ -49,8 +49,10 @@ LoginForm = ReduxForm.reduxForm({form: 'login'})(LoginForm);
 
 LoginForm = connect(
     state => ({
-        initialValues: {principal: '', password: ''}
-    }),
+        initialValues: {principal: '', password: ''},
+		authentication: Users.State.getAuthentication(state)
+
+	}),
     dispatch => ({
         authenticate: (principal, password) => dispatch(Users.Actions.authenticate(principal, password))
     })
