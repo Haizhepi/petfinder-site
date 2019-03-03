@@ -11,6 +11,8 @@ import classNames from 'classnames';
 
 import * as Apps from 'js/app.js';
 
+import 'styles/main.scss';
+
 //Class that represents the log in form
 class LoginForm extends React.Component {
 
@@ -200,21 +202,38 @@ class RegistrationForm extends React.Component {
 		}
 
 		return (
-			<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+			<form className="regf" name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 				<Bessemer.Field name="principal" friendlyName="Email Address"
-				                validators={[Validation.requiredValidator, Validation.emailValidator]} />
+				                validators={[Validation.requiredValidator, Validation.emailValidator]}
+								placeholder=""
+                />
 
 				<Bessemer.Field name="password" friendlyName="Password"
 				                validators={[Validation.requiredValidator, Validation.passwordValidator]}
-				                field={<input className="form-control" type="password" />} />
+				                field={<input className="form-control" type="password"
+                                              placeholder="Enter Your Password"/>} />
+
+                <Bessemer.Field name="confirmPassword" friendlyName="Confirm Password"
+                                validators={[Validation.requiredValidator, Validation.passwordValidator]}
+                                field={<input className="form-control" type="password"
+                                              placeholder="Re-enter Your Password"
+                                />}/>
 				<Bessemer.Field name="firstName" friendlyName="First Name"
-								field={<input className="form-control" type="firstName"/>}/>
+								field={<input className="form-control" type="firstName"
+                                              placeholder="Your First Name"
+                                />}/>
 
 				<Bessemer.Field name="lastName" friendlyName="Last Name"
-								field={<input className="form-control" type="lastName"/>}/>
+								field={<input className="form-control" type="lastName"
+                                              placeholder="Your Last Name"
+                                />}/>
 				<Bessemer.Field name="gender" friendlyName="Gender"
-								field={<Bessemer.Select options={[{value: 'female', label: 'female'},
-											{value: 'male', label: 'male'}]}/>}/>
+								field={<Bessemer.Select options={[{value: 'Female', label: 'Female'},
+											{value: 'Male', label: 'Male'},
+                                    {value: 'Other', label: 'Other'}]}
+                                                        placeholder="Choose Your Gender"
+
+                                />}/>
 				<Bessemer.Field name="zipcode" friendlyName="Zip Code"
 								field={<input className="form-control" type="zipcode"/>}/>
 
