@@ -11,6 +11,7 @@ import {Actions} from 'js/users';
 
 import 'styles/main.scss';
 
+/*
 import Background from 'styles/bg3.png';
 
 let sectionStyle = {
@@ -20,14 +21,12 @@ let sectionStyle = {
     backgroundSize: '1500px',
     backgroundPosition: 'center',
 };
-
+*/
 
 export class Home extends React.Component {
     render() {
         return (
-
             <div className="container padded">
-
                 {_.isDefined(this.props.user) && <div>
                     <h1>U r logged in</h1>
                     <h1> Welcome! {this.props.user.firstName}</h1>
@@ -82,9 +81,8 @@ export class RegisterPage extends React.Component {
 
     render() {
         return (
-            <section style={sectionStyle}>
+            <section className="webWrapper">
                 <div className="container padded">
-
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
                             <div className="title">Sign up</div>
@@ -101,7 +99,7 @@ export class RegisterPage extends React.Component {
 export class LoginPage extends React.Component {
     render() {
         return (
-            <section style={sectionStyle}>
+            <section className="webWrapper">
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
@@ -119,7 +117,7 @@ export class LoginPage extends React.Component {
 export class EditProfilePage extends React.Component {
     render() {
         return (
-            <section style={sectionStyle}>
+            <section className="webWrapper">
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
