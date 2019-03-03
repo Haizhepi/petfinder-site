@@ -42,4 +42,10 @@ public class PetEndpoint {
 		petService.save(pet);
 		return pet;
 	}
+
+//	@PostMapping(value = "/edit_pet")
+//	public UserDto editProfile(@RequestBody PetDto request) {
+//		System.out.println(request.getName());
+//		return petService.update(request);
+//	}
 }

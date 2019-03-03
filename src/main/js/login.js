@@ -129,8 +129,6 @@ class EditProfileForm extends React.Component {
 		newUser.gender = user.gender;
 		newUser.zipcode = user.zipcode;
 		this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
-
-
 	};
 	render() {
 		let { handleSubmit, submitting } = this.props;
