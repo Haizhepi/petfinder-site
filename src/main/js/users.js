@@ -74,7 +74,7 @@ State.getPet = state => {
 };
 
 State.getActivePet = state => {
-	return state.pet;
+	return state.activePet;
 };
 
 export { State };
@@ -206,7 +206,7 @@ Reducers.pet = (pet = null, action) => {
 	}
 };
 
-Reducers.activePet = (pet = null, action) => {
+Reducers.activePet = (activePet = null, action) => {
 	console.log('returning'+ action.type);
 
 	switch (action.type) {
@@ -215,7 +215,7 @@ Reducers.activePet = (pet = null, action) => {
 			return action.pet;
 		}
 		default: {
-			return pet;
+			return activePet;
 		}
 	}
 };
