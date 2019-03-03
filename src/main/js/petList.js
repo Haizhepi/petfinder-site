@@ -27,6 +27,7 @@ class PetList extends React.Component {
                     <tr>
                         <th>Pet Name</th>
                         <th>Pet Type</th>
+                        <th>Pet Preference</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@ class PetList extends React.Component {
                   <tr key = {pet.name} className="pet">
                       <td>{pet.name}</td>
                       <td>{pet.type}</td>
+                      <td>{pet.preference}</td>
                   </tr>
                 ))}
                 </tbody>

@@ -236,6 +236,9 @@ class RegistrationForm extends React.Component {
                                 />}/>
 				<Bessemer.Field name="zipcode" friendlyName="Zip Code"
 								field={<input className="form-control" type="zipcode"/>}/>
+				<Bessemer.Field name="userType" friendlyName="User Type"
+								field={<Bessemer.Select options={[{value: 'sitter', label: 'sitter'},
+									{value: 'owner', label: 'owner'}]}/>}/>
 
 
 				<Bessemer.Button loading={submitting}>Register</Bessemer.Button>

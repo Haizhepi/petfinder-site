@@ -86,6 +86,7 @@ public class UserDto implements Momento<String> {
 		this.principal = principal;
 		this.roles = roles;
 		this.attributes = attributes;
+		this.type = type;
 	}
 
 	public String getPrincipal() {

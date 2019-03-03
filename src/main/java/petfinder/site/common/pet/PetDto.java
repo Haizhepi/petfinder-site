@@ -12,17 +12,27 @@ public class PetDto implements Momento<String> {
 	private String id;
 	private String name;
 	private String type;
+	private String preference;
+
+	public String getPreference() {
+		return preference;
+	}
+
+	public void setPreference(String preference) {
+		this.preference = preference;
+	}
 
 	public PetDto() {
 		// Randomly generate an id when constructing a pet object.
 		this.id = UUID.randomUUID().toString();
 	}
 
-	public PetDto(String name, String type) {
+	public PetDto(String name, String type, String preference) {
 		// Randomly generate an id when constructing a pet object.
 		this.id = UUID.randomUUID().toString();
 		this.name = name;
 		this.type = type;
+		this.preference = preference;
 	}
 
 	public String getId() {

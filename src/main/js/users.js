@@ -30,13 +30,19 @@ export function authenticate(username, password) {
 
 //post pet to PetEndpoint
 export function savePet(pet) {
-    return axios.post('/api/pets', pet);
+	console.log('here');
+	console.log(pet);
+    return axios.post('/api/pets', pet).catch((error) => {
+		console.log('here???');
+		console.log(error);});
 }
 
 //post pet &user to UserEndpoint
 export function addPetUser(petUser) {
 	alert('posting to backend');
-    return axios.post('/api/user/pet', petUser);
+    return axios.post('/api/user/pet', petUser).catch((error) => {
+		console.log('here???');
+		console.log(error);});
 }
 
 //get pets assigned to user (UserEndpoint)
@@ -49,8 +55,6 @@ export function getUserDetails() {
 }
 
 export function editProfile(user) {
-	console.log('here');
-	console.log(user);
 	return axios.post('/api/user/editProfile', user);
 }
 
@@ -87,6 +91,10 @@ Actions.savePet = pet => {
 
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
+	console.log('here1');
+	console.log(pet);
+	console.log(user);
+
 	Actions.savePet(pet).then(response =>{
 		let petUser = {
 			//id : pet.id,

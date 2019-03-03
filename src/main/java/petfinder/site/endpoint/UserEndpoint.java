@@ -80,7 +80,7 @@ public class UserEndpoint {
 	public UserDto register(@RequestBody RegistrationRequest request) {
 		System.out.println(request.getGender());
 		System.out.println(request.getFirstName());
-		System.out.println(request.getLastName());
+		System.out.println(request.getUserType());
 		return userService.register(request);
 	}
 
