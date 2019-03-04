@@ -37,6 +37,11 @@ export function savePet(pet) {
 		console.log(error);});
 }
 
+export function editPet(pet) {
+	alert(pet.id);
+	return axios.post('/api/pets/edit_pet', pet);
+}
+
 //post pet &user to UserEndpoint
 export function addPetUser(petUser) {
 	alert('posting to backend');
@@ -94,6 +99,13 @@ Actions.savePet = pet => {
 	return savePet(pet);
 };
 
+Actions.editPet = pet => {
+	alert('update pet');
+	return (dispatch) => {
+		return editPet(pet);
+	};
+};
+
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
 	console.log('here1');
@@ -109,7 +121,6 @@ Actions.addPetUser = (pet, user) => {
 		addPetUser(petUser);
 	});
 };
-
 
 //get list of pets belonging to current user
 Actions.getPets = pets => {
@@ -206,7 +217,7 @@ Reducers.pet = (pet = null, action) => {
 	}
 };
 
-Reducers.activePet = (activePet = null, action) => {
+Reducers.activePet = (activePet = {}, action) => {
 	console.log('returning'+ action.type);
 
 	switch (action.type) {

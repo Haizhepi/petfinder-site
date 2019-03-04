@@ -27,6 +27,7 @@ export class Home extends React.Component {
     render() {
         return (
             <div className="container padded">
+
                 {_.isDefined(this.props.user) && <div>
                     <h1>U r logged in</h1>
                     <h1> Welcome! {this.props.user.firstName}</h1>

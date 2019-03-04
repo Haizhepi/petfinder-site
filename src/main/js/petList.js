@@ -2,27 +2,56 @@ import React, {Component} from 'react';
 import * as Users from 'js/users';
 import {connect} from 'react-redux';
 import {EditProfileForm} from 'js/login';
+import * as Bessemer from 'js/alloy/bessemer/components';
+
+import * as Validation from 'js/alloy/utils/validation';
+import * as ReduxForm from 'redux-form';
 
 class PetEdit extends React.Component {
 
+    onSubmit = pet => {
+        let newPet = this.props.pet;
+        newPet.name = pet.name;
+        newPet.type = pet.type;
+        newPet.preference = pet.preference;
+        this.props.editPet(newPet);
+    };
+
     render() {
+        let {handleSubmit, submitting} = this.props;
         if (!this.props.pet) {
             return (<h1>select a pet</h1>);
         }
+        console.log(this.props.initialValues);
         return (
             <div>
-                <h2>NAME: {this.props.pet.name}</h2>
+                <h2>Pet: {this.props.pet.name}</h2>
+                <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+                <Bessemer.Field name="name" friendlyName="pet name" value="????"/>
+
+                <Bessemer.Field name="type" friendlyName="pet type"/>
+                <div className="wrapper">
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
+                </div>
+            </form>
             </div>
         );
     }
 
 }
 
+PetEdit = ReduxForm.reduxForm({form: 'petEdit'})(PetEdit);
+
+
 PetEdit = connect(
     state => ({
+        initialValues: {name: Users.State.getActivePet(state).name,
+            type: Users.State.getActivePet(state).type},
         pet: Users.State.getActivePet(state)
     }),
-    dispatch => ({})
+    dispatch => ({
+        editPet: pet => dispatch(Users.Actions.editPet(pet))
+    })
 )(PetEdit);
 
 export { PetEdit };
