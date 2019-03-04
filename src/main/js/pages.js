@@ -7,7 +7,7 @@ import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
 import {Actions} from 'js/users';
-
+import { Button } from 'reactstrap';
 import 'styles/main.scss';
 
 /*
