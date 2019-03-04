@@ -1,5 +1,4 @@
 import _ from 'lodash';
-
 import React from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -21,6 +20,7 @@ let sectionStyle = {
     backgroundSize: '1500px',
     backgroundPosition: 'center',
 };
+
 */
 
 export class Home extends React.Component {
@@ -40,6 +40,7 @@ export class Home extends React.Component {
                         <li><Link to="/homepage">UserProfile</Link></li>
                         <li><Link to="/edit_profile">edit ur Profile</Link></li>
                         <li><Link to="/logout">Logout</Link></li>
+
                     </ul>
                 </div>
                 }
@@ -54,7 +55,6 @@ export class Home extends React.Component {
                 </div>
                 }
             </div>
-
         );
     }
 }
