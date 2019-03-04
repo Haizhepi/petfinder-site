@@ -7,7 +7,18 @@ import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
 import {Actions} from 'js/users';
-import { Button } from 'reactstrap';
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem } from 'reactstrap';
 import 'styles/main.scss';
 
 /*
@@ -24,34 +35,100 @@ let sectionStyle = {
 */
 
 export class Home extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isOpen: false
+        };
+    }
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
     render() {
         return (
             <div className="container padded">
 
                 {_.isDefined(this.props.user) && <div>
-                    <h1>U r logged in</h1>
-                    <h1> Welcome! {this.props.user.firstName}</h1>
-                    <ul>
-                        <li><Link to="/register">Register as Owner</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/page-1">Page 1</Link></li>
-                        <li><Link to="/pet">Add Pet</Link></li>
-                        <li><Link to="/page-3">Pet List</Link></li>
-                        <li><Link to="/homepage">UserProfile</Link></li>
-                        <li><Link to="/edit_profile">edit ur Profile</Link></li>
-                        <li><Link to="/logout">Logout</Link></li>
-
-                    </ul>
+                    <Navbar color="light" light expand="md">
+                        <NavbarBrand href="/">Welcome {this.props.user.firstName}</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink href="#/page-1">Page1</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/homepage">Profile</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/page-3">Pet List</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/pet">Add a pet</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/logout">Logout</NavLink>
+                                </NavItem>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Options
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            Option 1
+                                        </DropdownItem>
+                                        <DropdownItem>
+                                            Option 2
+                                        </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem>
+                                            Reset
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
                 </div>
                 }
                 {this.props.user == null &&
                 <div>
-                    <h1>This is the home page.</h1>
-                    <ul>
-                        <li><Link to="/register">Sign up</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/page-1">Page 1</Link></li>
-                    </ul>
+                    <Navbar color="light" light expand="md">
+                        <NavbarBrand href="/">Home Page</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink href="#/login">Login</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/register">Register</NavLink>
+                                </NavItem>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Options
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            Option 1
+                                        </DropdownItem>
+                                        <DropdownItem>
+                                            Option 2
+                                        </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem>
+                                            Reset
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
+
                 </div>
                 }
             </div>
