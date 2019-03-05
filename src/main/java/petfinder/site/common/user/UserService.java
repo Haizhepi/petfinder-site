@@ -46,8 +46,11 @@ public class UserService {
 			if (userType.equalsIgnoreCase("owner")) {
 				return UserType.OWNER;
 			}
-			else {
+			else if(userType.equalsIgnoreCase("sitter")){
 				return UserType.SITTER;
+			}
+			else  {
+				return UserType.BOTH;
 			}
 		}
 

@@ -38,6 +38,7 @@ class LoginForm extends React.Component {
 
                 <Bessemer.Field name="password" friendlyName="Password"
                                 validators={[Validation.requiredValidator, Validation.passwordValidator]}/>
+
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Sign In</Bessemer.Button>
                 </div>
@@ -275,6 +276,9 @@ class EditProfileForm extends React.Component {
         newUser.lastName = user.lastName;
         newUser.gender = user.gender;
         newUser.zipcode = user.zipcode;
+        if (user.userType !== newUser.type) {
+            newUser.type = 'BOTH';
+        }
         this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
     };
 
@@ -291,6 +295,11 @@ class EditProfileForm extends React.Component {
                 <Bessemer.Field name="lastName" friendlyName="last name"/>
                 <Bessemer.Field name="gender" friendlyName="Gender"/>
                 <Bessemer.Field name="zipcode" friendlyName="zip code"/>
+                <Bessemer.Field name="userType" friendlyName="User Type"
+                                field={<Bessemer.Select options={[{value: 'sitter', label: 'Sitter'},
+                                    {value: 'owner', label: 'Owner'}]}
+                                                        placeholder="Owner or Sitter?"
+                                />}/>
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Sign In</Bessemer.Button>
                 </div>
@@ -308,7 +317,8 @@ EditProfileForm = connect(
             firstName: Users.State.getUser(state).firstName,
             lastName: Users.State.getUser(state).lastName,
             gender: Users.State.getUser(state).gender,
-            zipcode: Users.State.getUser(state).zipcode
+            zipcode: Users.State.getUser(state).zipcode,
+            userType: Users.State.getUser(state).type
         },
         authentication: Users.State.getAuthentication(state),
         user: Users.State.getUser(state)

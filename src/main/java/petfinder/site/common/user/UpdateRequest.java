@@ -110,6 +110,6 @@ public class UpdateRequest {
     }
 
     public enum UserType {
-        OWNER, SITTER
+        OWNER, SITTER, BOTH
     }
 }

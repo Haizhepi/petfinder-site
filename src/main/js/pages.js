@@ -42,6 +42,7 @@ export class Home extends React.Component {
         super(props);
 
         this.toggle = this.toggle.bind(this);
+
         this.state = {
             isOpen: false
         };
@@ -51,98 +52,202 @@ export class Home extends React.Component {
             isOpen: !this.state.isOpen
         });
     }
+
+    componentWillMount() {
+        if (this.props.user) {
+            if (this.props.user.type === 'SITTER') {
+                this.setState({sitter: 'SITTER'});
+            }
+        }
+    }
     render() {
-        return (
-            <div className="container padded">
 
-                {_.isDefined(this.props.user) && <div>
-                    <Navbar color="light" light expand="md">
-                        <NavbarBrand href="/">Welcome {this.props.user.firstName}</NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <NavLink href="#/page-1">Page1</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/homepage">Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/page-3">Pet List</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/pet">Add a pet</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/schedule">schedule</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/viewSitter">view sitter info</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/logout">Logout</NavLink>
-                                </NavItem>
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        Options
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem>
-                                            Reset
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Nav>
-                        </Collapse>
-                    </Navbar>
+        if (!(this.props.user)){
+            return (
+                <div className="container padded">
+                    <div>
+                        <Navbar color="light" light expand="md">
+                            <NavbarBrand href="#/">Home Page</NavbarBrand>
+                            <NavbarToggler onClick={this.toggle}/>
+                            <Collapse isOpen={this.state.isOpen} navbar>
+                                <Nav className="ml-auto" navbar>
+                                    <NavItem>
+                                        <NavLink href="#/login">Login</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/register">Register</NavLink>
+                                    </NavItem>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                            Options
+                                        </DropdownToggle>
+                                        <DropdownMenu right>
+                                            <DropdownItem>
+                                                Option 1
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Option 2
+                                            </DropdownItem>
+                                            <DropdownItem divider/>
+                                            <DropdownItem>
+                                                Reset
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </Nav>
+                            </Collapse>
+                        </Navbar>
 
+                    </div>
                 </div>
-                }
-                {this.props.user == null &&
-                <div>
-                    <Navbar color="light" light expand="md">
-                        <NavbarBrand href="/">Home Page</NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <NavLink href="#/login">Login</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/register">Register</NavLink>
-                                </NavItem>
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        Options
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem>
-                                            Reset
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Nav>
-                        </Collapse>
-                    </Navbar>
+            );
+        }
+        else {
+            if (this.props.user.type === 'SITTER') {
+                return (
+                   <div>
+                            <Navbar color="light" light expand="md">
+                                <NavbarBrand href="#/">Welcome {this.props.user.firstName}</NavbarBrand>
+                                <NavbarToggler onClick={this.toggle}/>
+                                <Collapse isOpen={this.state.isOpen} navbar>
+                                    <Nav className="ml-auto" navbar>
+                                        <NavItem>
+                                            <NavLink href="#/page-1">Page1</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/homepage">Profile</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/schedule">schedule</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/viewSitter">view sitter info</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/logout">Logout</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/edit_profile">ChangeMyProfile</NavLink>
+                                        </NavItem>
+                                        <UncontrolledDropdown nav inNavbar>
+                                            <DropdownToggle nav caret>
+                                                Options
+                                            </DropdownToggle>
+                                            <DropdownMenu right>
+                                                <DropdownItem>
+                                                    Option 1
+                                                </DropdownItem>
+                                                <DropdownItem>
+                                                    Option 2
+                                                </DropdownItem>
+                                                <DropdownItem divider/>
+                                                <DropdownItem>
+                                                    Reset
+                                                </DropdownItem>
+                                            </DropdownMenu>
+                                        </UncontrolledDropdown>
+                                    </Nav>
+                                </Collapse>
+                            </Navbar>
 
-                </div>
-                }
-            </div>
-        );
+                        </div>
+                );
+            }
+            else if (this.props.user.type === 'OWNER') {
+                return (
+                    <div>
+                        <Navbar color="light" light expand="md">
+                            <NavbarBrand href="#/">Welcome {this.props.user.firstName}</NavbarBrand>
+                            <NavbarToggler onClick={this.toggle}/>
+                            <Collapse isOpen={this.state.isOpen} navbar>
+                                <Nav className="ml-auto" navbar>
+                                    <NavItem>
+                                        <NavLink href="#/page-1">Page1</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/homepage">Profile</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/page-3">Pet List</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/pet">Add a pet</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/logout">Logout</NavLink>
+                                    </NavItem>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                            Options
+                                        </DropdownToggle>
+                                        <DropdownMenu right>
+                                            <DropdownItem>
+                                                Option 1
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Option 2
+                                            </DropdownItem>
+                                            <DropdownItem divider/>
+                                            <DropdownItem>
+                                                Reset
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </Nav>
+                            </Collapse>
+                        </Navbar>
+
+                    </div>
+                );
+            }
+            else {
+                return (
+                    <div>
+                        <Navbar color="light" light expand="md">
+                            <NavbarBrand href="#/">Welcome BOTH{this.props.user.firstName}</NavbarBrand>
+                            <NavbarToggler onClick={this.toggle}/>
+                            <Collapse isOpen={this.state.isOpen} navbar>
+                                <Nav className="ml-auto" navbar>
+                                    <NavItem>
+                                        <NavLink href="#/page-1">Page1</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/homepage">Profile</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/page-3">Pet List</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/pet">Add a pet</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/logout">Logout</NavLink>
+                                    </NavItem>
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                            Options
+                                        </DropdownToggle>
+                                        <DropdownMenu right>
+                                            <DropdownItem>
+                                                Option 1
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Option 2
+                                            </DropdownItem>
+                                            <DropdownItem divider/>
+                                            <DropdownItem>
+                                                Reset
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </Nav>
+                            </Collapse>
+                        </Navbar>
+
+                    </div>
+                );
+            }
+        }
     }
 }
 

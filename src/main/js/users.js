@@ -23,8 +23,13 @@ export function authenticate(username, password) {
 				password: 'petfinder-app-secret'
 			}
 		}
-	).catch((error) => {
-		alert('Yes!');
+	).then(response => {
+		console.log('here??');
+		console.log(response);
+		return response;
+	}).catch((error) => {
+		alert('problem signing in');
+		console.log(error);
 	});
 }
 
@@ -170,7 +175,6 @@ Actions.authenticate = (username, password) => {
 		return authenticate(username, password).then(
 			authentication => {
 				dispatch(Actions.setAuthentication(authentication));
-
 				return getUserDetails().then(user => {
 					dispatch(Actions.setUser(user));
 				});
