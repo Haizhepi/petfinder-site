@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 
@@ -25,6 +26,9 @@ export default class Index extends React.Component {
 		let homepath = <Route exact path="/homepage" component={Pages.Homepage}/>;
 		let logout = <Route exact path="/logout" component={Pages.Logout}/>;
 		let editProfile = <Route exact path="/edit_profile" component={Pages.EditProfilePage}/>;
+		let schedule = <Route exact path="/schedule" component={Pages.Availability}/>;
+		let viewSitter = <Route exact path="/viewSitter" component={Pages.ViewSitter}/>;
+
 		//alert(this.props.authentication);
 		return (
 			<HashRouter>
@@ -38,6 +42,8 @@ export default class Index extends React.Component {
 					{homepath}
 					{logout}
 					{editProfile}
+					{schedule}
+					{viewSitter}
 				</div>
 			</HashRouter>
 		);

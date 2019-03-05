@@ -1,5 +1,4 @@
 import _ from 'lodash';
-
 import React from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -7,8 +6,22 @@ import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
+import * as Avail from 'js/schedule';
 import {Actions} from 'js/users';
-
+import {
+    Alert,
+    Button,
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem } from 'reactstrap';
 import 'styles/main.scss';
 
 /*
@@ -21,39 +34,113 @@ let sectionStyle = {
     backgroundSize: '1500px',
     backgroundPosition: 'center',
 };
+
 */
 
 export class Home extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isOpen: false
+        };
+    }
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
     render() {
         return (
             <div className="container padded">
+
                 {_.isDefined(this.props.user) && <div>
-                    <h1>U r logged in</h1>
-                    <h1> Welcome! {this.props.user.firstName}</h1>
-                    <ul>
-                        <li><Link to="/register">Register as Owner</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/page-1">Page 1</Link></li>
-                        <li><Link to="/pet">Add Pet</Link></li>
-                        <li><Link to="/page-3">Pet List</Link></li>
-                        <li><Link to="/homepage">UserProfile</Link></li>
-                        <li><Link to="/edit_profile">edit ur Profile</Link></li>
-                        <li><Link to="/logout">Logout</Link></li>
-                    </ul>
+                    <Navbar color="light" light expand="md">
+                        <NavbarBrand href="/">Welcome {this.props.user.firstName}</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink href="#/page-1">Page1</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/homepage">Profile</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/page-3">Pet List</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/pet">Add a pet</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/schedule">schedule</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/viewSitter">view sitter info</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/logout">Logout</NavLink>
+                                </NavItem>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Options
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            Option 1
+                                        </DropdownItem>
+                                        <DropdownItem>
+                                            Option 2
+                                        </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem>
+                                            Reset
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
                 </div>
                 }
                 {this.props.user == null &&
                 <div>
-                    <h1>This is the home page.</h1>
-                    <ul>
-                        <li><Link to="/register">Sign up</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/page-1">Page 1</Link></li>
-                    </ul>
+                    <Navbar color="light" light expand="md">
+                        <NavbarBrand href="/">Home Page</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink href="#/login">Login</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/register">Register</NavLink>
+                                </NavItem>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Options
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            Option 1
+                                        </DropdownItem>
+                                        <DropdownItem>
+                                            Option 2
+                                        </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem>
+                                            Reset
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
+
                 </div>
                 }
             </div>
-
         );
     }
 }
@@ -251,11 +338,10 @@ export class Logout extends React.Component {
     render() {
         return (
             <div className="container padded">
-                <h1>Home Page</h1>
                 <div>
-                    <h1>Logged out</h1>
+                    <Alert color="dark">You have been logged out.</Alert>
                     <Link to="/">
-                        <button type="button">return home</button>
+                        <Button color="danger">Return Home!</Button>
                     </Link>
                 </div>
             </div>
@@ -273,3 +359,61 @@ Logout = connect(
         logout: () => dispatch(Users.Actions.logout())
     })
 )(Logout);
+
+export class Availability extends React.Component {
+    render() {
+        return (
+            <div className="container padded">
+
+                <h1>Set your availability</h1>
+                <Avail.AvailabilityForm/>
+            </div>
+        );
+    }
+}
+
+Availability = connect(
+    state => ({
+        authentication: Users.State.getAuthentication(state),
+        user: Users.State.getUser(state)
+    })
+)(Availability);
+
+export class ViewSitter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            sitter: [{
+                availability: 'no name'
+            }]
+        };
+    }
+
+    componentWillMount() {
+        Users.Actions.getSitter(this.props.user.principal).then(response => {
+            console.log('?????');
+            console.log(response);
+            this.setState({sitter: response});
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>The Availability: </h1>
+                <h1>{this.state.sitter.availability}</h1>
+            </div>
+        );
+    }
+}
+
+ViewSitter = connect(
+    state => ({
+        authentication: Users.State.getAuthentication(state),
+        user: Users.State.getUser(state)
+    }),
+    dispatch => ({
+        //getSitter: (user) => dispatch(Users.Actions.getSitter(user))
+    })
+
+)(ViewSitter);

@@ -25,6 +25,28 @@ public class PetService {
 		return pet;
 	}
 
+	public PetDto update(PetDto pet) {
+		PetDto temp = null;
+		System.out.println(pet.getId());
+
+		Optional<PetDto> u = petDao.findPet(pet.getId());
+		if(!u.isPresent()) {
+			System.out.println("cant find it");
+
+		}
+		if (u.isPresent()) {
+			temp = u.get();
+			temp.setName(pet.getName());
+			temp.setType(pet.getType());
+			temp.setPreference(pet.getPreference());
+			System.out.println(temp.getName());
+
+			petDao.save(temp);
+		}
+
+		return temp;
+	}
+
 	/*public static class AddPetRequest {
 		private String petName;
 		private String type;

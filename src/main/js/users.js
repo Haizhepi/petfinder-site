@@ -37,6 +37,15 @@ export function savePet(pet) {
 		console.log(error);});
 }
 
+export function editPet(pet) {
+	alert(pet.id);
+	return axios.post('/api/pets/edit_pet', pet);
+}
+
+export function addAvailiablity(avail) {
+	return axios.post('/api/sitters', avail);
+}
+
 //post pet &user to UserEndpoint
 export function addPetUser(petUser) {
 	alert('posting to backend');
@@ -48,6 +57,15 @@ export function addPetUser(petUser) {
 //get pets assigned to user (UserEndpoint)
 export function getPets() {
     return axios.get('/api/user/pet');
+}
+
+export function getSitter(userid) {
+	console.log(userid);
+
+	let res = encodeURI('/api/sitters/'+userid);
+	console.log(res);
+
+	return axios.get(res);
 }
 
 export function getUserDetails() {
@@ -94,6 +112,13 @@ Actions.savePet = pet => {
 	return savePet(pet);
 };
 
+Actions.editPet = pet => {
+	alert('update pet');
+	return (dispatch) => {
+		return editPet(pet);
+	};
+};
+
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
 	console.log('here1');
@@ -110,10 +135,19 @@ Actions.addPetUser = (pet, user) => {
 	});
 };
 
+Actions.addAvail = avail => {
+	return (dispatch) => {
+		return addAvailiablity(avail);
+	};
+};
 
 //get list of pets belonging to current user
 Actions.getPets = pets => {
     return getPets();
+};
+
+Actions.getSitter = (userid) => {
+	return getSitter(userid);
 };
 
 Actions.register = user => {
@@ -206,7 +240,7 @@ Reducers.pet = (pet = null, action) => {
 	}
 };
 
-Reducers.activePet = (activePet = null, action) => {
+Reducers.activePet = (activePet = {}, action) => {
 	console.log('returning'+ action.type);
 
 	switch (action.type) {
