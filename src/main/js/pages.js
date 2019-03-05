@@ -102,6 +102,7 @@ export class Home extends React.Component {
                             </Nav>
                         </Collapse>
                     </Navbar>
+
                 </div>
                 }
                 {this.props.user == null &&
