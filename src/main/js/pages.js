@@ -125,6 +125,7 @@ export class Home extends React.Component {
                                 </Collapse>
                             </Navbar>
                         </div>
+
                     </section>
                 );
             } else if (this.props.user.type === 'OWNER') {
