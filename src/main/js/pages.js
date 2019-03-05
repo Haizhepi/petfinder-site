@@ -76,6 +76,9 @@ export class Home extends React.Component {
                                     <NavLink href="#/schedule">schedule</NavLink>
                                 </NavItem>
                                 <NavItem>
+                                    <NavLink href="#/viewSitter">view sitter info</NavLink>
+                                </NavItem>
+                                <NavItem>
                                     <NavLink href="#/logout">Logout</NavLink>
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar>
@@ -375,3 +378,42 @@ Availability = connect(
         user: Users.State.getUser(state)
     })
 )(Availability);
+
+export class ViewSitter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            sitter: [{
+                availability: 'no name'
+            }]
+        };
+    }
+
+    componentWillMount() {
+        Users.Actions.getSitter(this.props.user.principal).then(response => {
+            console.log('?????');
+            console.log(response);
+            this.setState({sitter: response});
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>The Availability: </h1>
+                <h1>{this.state.sitter.availability}</h1>
+            </div>
+        );
+    }
+}
+
+ViewSitter = connect(
+    state => ({
+        authentication: Users.State.getAuthentication(state),
+        user: Users.State.getUser(state)
+    }),
+    dispatch => ({
+        //getSitter: (user) => dispatch(Users.Actions.getSitter(user))
+    })
+
+)(ViewSitter);

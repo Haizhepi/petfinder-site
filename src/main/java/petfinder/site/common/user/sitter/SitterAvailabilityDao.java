@@ -16,7 +16,12 @@ public class SitterAvailabilityDao {
     private ElasticSearchClientProvider elasticSearchClientProvider;
 
     public Optional<SitterAvailabilityDto> findAvailability(String id) {
-        return sitterAvailabilityRepository.find(id);
+
+        Optional<SitterAvailabilityDto> temp = sitterAvailabilityRepository.find(id);
+        if (temp.isPresent()) {
+            System.out.println(temp.get().getAvailability());
+        }
+        return temp;
     }
 
     public void save(SitterAvailabilityDto sitterAvailabilityDto) {

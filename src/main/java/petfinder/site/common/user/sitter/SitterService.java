@@ -12,6 +12,7 @@ public class SitterService {
     private SitterAvailabilityDao sitterAvailabilityDao;
 
     public Optional<SitterAvailabilityDto> findAvailability(String id) {
+        System.out.println("here"+id);
         return sitterAvailabilityDao.findAvailability(id);
     }
 
@@ -27,6 +28,9 @@ public class SitterService {
             temp = u.get();
             temp.setAvailability(sitterAvailabilityDto.getAvailability());
             sitterAvailabilityDao.save(temp);
+        }
+        else {
+            sitterAvailabilityDao.save(sitterAvailabilityDto);
         }
         return temp;
 

@@ -59,6 +59,15 @@ export function getPets() {
     return axios.get('/api/user/pet');
 }
 
+export function getSitter(userid) {
+	console.log(userid);
+
+	let res = encodeURI('/api/sitters/'+userid);
+	console.log(res);
+
+	return axios.get(res);
+}
+
 export function getUserDetails() {
 	return axios.get('/api/user');
 }
@@ -135,6 +144,10 @@ Actions.addAvail = avail => {
 //get list of pets belonging to current user
 Actions.getPets = pets => {
     return getPets();
+};
+
+Actions.getSitter = (userid) => {
+	return getSitter(userid);
 };
 
 Actions.register = user => {
