@@ -11,5 +11,6 @@ deploy:
     - master
 test:
   stage: test
+  image: openjdk:10
   script:
     - ./gradlew test
