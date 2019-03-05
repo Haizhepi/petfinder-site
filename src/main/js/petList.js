@@ -27,17 +27,16 @@ class PetEdit extends React.Component {
             <div>
                 <h2>Pet: {this.props.pet.name}</h2>
                 <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                <Bessemer.Field name="name" friendlyName="pet name" value="????"/>
+                    <Bessemer.Field name="name" friendlyName="Pet Name" value="????" className="form-control"/>
 
-                <Bessemer.Field name="type" friendlyName="pet type"/>
-                <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
-                </div>
-            </form>
+                    <Bessemer.Field name="type" friendlyName="Pet Type" className="form-control"/>
+                    <div className="wrapper">
+                        <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
+                    </div>
+                </form>
             </div>
         );
     }
-
 }
 
 PetEdit = ReduxForm.reduxForm({form: 'petEdit'})(PetEdit);
@@ -45,8 +44,10 @@ PetEdit = ReduxForm.reduxForm({form: 'petEdit'})(PetEdit);
 
 PetEdit = connect(
     state => ({
-        initialValues: {name: Users.State.getActivePet(state).name,
-            type: Users.State.getActivePet(state).type},
+        initialValues: {
+            name: Users.State.getActivePet(state).name,
+            type: Users.State.getActivePet(state).type
+        },
         pet: Users.State.getActivePet(state)
     }),
     dispatch => ({
@@ -54,7 +55,7 @@ PetEdit = connect(
     })
 )(PetEdit);
 
-export { PetEdit };
+export {PetEdit};
 
 class PetList extends React.Component {
     constructor(props) {
@@ -68,53 +69,50 @@ class PetList extends React.Component {
 
     //set state as array of user's pets
     componentWillMount() {
-            Users.Actions.getPets().then(response => {
-                this.setState({pets: response});
-            });
+        Users.Actions.getPets().then(response => {
+            this.setState({pets: response});
+        });
     }
 
     render() {
         return (
-        <div>
-            <h1> Pet Profile </h1>
-            <table>
-                <thead>
+            <div id="p" className="col-6 offset-md-3">
+                <h1> Pet Profile </h1>
+                <table>
+                    <thead>
                     <tr>
                         <th>Pet Name</th>
                         <th>Pet Type</th>
                         <th>Pet Preference</th>
                     </tr>
-                </thead>
-                <tbody>
-                {this.state.pets.map(pet => (
-                  <tr key = {pet.id} className="pet" onClick={() => this.props.selectPet(pet)}>
-                      <td>{pet.name}</td>
-                      <td>{pet.type}</td>
-                      <td>{pet.preference}</td>
-                  </tr>
+                    </thead>
+                    <tbody>
+                    {this.state.pets.map(pet => (
+                        <tr key={pet.id} className="pet" onClick={() => this.props.selectPet(pet)}>
+                            <td>{pet.name}</td>
+                            <td>{pet.type}</td>
+                            <td>{pet.preference}</td>
+                        </tr>
 
-                ))}
-                </tbody>
-            </table>
-            <hr></hr>
-            <h1> Pet detail </h1>
-            <PetEdit/>
-        </div>
+                    ))}
+                    </tbody>
+                </table>
+                <hr></hr>
+                <h1> Pet detail </h1>
+                <PetEdit/>
+            </div>
         );
-      }
+    }
 }
 
 PetList = connect(
-    state => ({
-
-    }),
+    state => ({}),
     dispatch => ({
         selectPet: pet => dispatch(Users.Actions.selectPet(pet))
     })
-
 )(PetList);
 
-export { PetList };
+export {PetList};
 
 
 

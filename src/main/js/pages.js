@@ -21,7 +21,9 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem } from 'reactstrap';
+    DropdownItem
+} from 'reactstrap';
+
 import 'styles/main.scss';
 
 /*
@@ -46,101 +48,104 @@ export class Home extends React.Component {
             isOpen: false
         };
     }
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
+
     render() {
         return (
-            <div className="container padded">
+            <section className="webWrapper">
+                <div className="container padded">
+                    {_.isDefined(this.props.user) && <div>
+                        <Navbar light expand="md" className="navBar">
+                            <NavbarBrand href="/">Welcome, {this.props.user.firstName}</NavbarBrand>
+                            <NavbarToggler onClick={this.toggle}/>
+                            <Collapse isOpen={this.state.isOpen} navbar>
+                                <Nav className="ml-auto" navbar>
+                                    <NavItem>
+                                        <NavLink href="#/page-1" className="navText">Page1</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/homepage" className="navText">Profile</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/page-3" className="navText">Pet List</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/pet" className="navText">Add a Pet</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/schedule" className="navText">Schedule</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/viewSitter" className="navText">View Sitter Info</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/logout" className="navText">Logout</NavLink>
+                                    </NavItem>
+                                    <UncontrolledDropdown nav inNavbar  className="navText">
+                                        <DropdownToggle nav caret>
+                                            Options
+                                        </DropdownToggle>
+                                        <DropdownMenu right>
+                                            <DropdownItem>
+                                                Option 1
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Option 2
+                                            </DropdownItem>
+                                            <DropdownItem divider/>
+                                            <DropdownItem>
+                                                Reset
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </Nav>
+                            </Collapse>
+                        </Navbar>
+                    </div>
+                    }
+                    {this.props.user == null &&
+                    <div>
+                        <Navbar light expand="md" className="navBar">
+                            <NavbarBrand href="/">Home Page</NavbarBrand>
+                            <NavbarToggler onClick={this.toggle}/>
+                            <Collapse isOpen={this.state.isOpen} navbar>
+                                <Nav className="ml-auto" navbar>
+                                    <NavItem>
+                                        <NavLink href="#/login" className="navText">Login</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#/register" className="navText">Register</NavLink>
+                                    </NavItem>
+                                    <UncontrolledDropdown nav inNavbar  className="navText">
+                                        <DropdownToggle nav caret>
+                                            Options
+                                        </DropdownToggle>
+                                        <DropdownMenu right>
+                                            <DropdownItem>
+                                                Option 1
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Option 2
+                                            </DropdownItem>
+                                            <DropdownItem divider/>
+                                            <DropdownItem>
+                                                Reset
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </Nav>
+                            </Collapse>
+                        </Navbar>
 
-                {_.isDefined(this.props.user) && <div>
-                    <Navbar color="light" light expand="md">
-                        <NavbarBrand href="/">Welcome {this.props.user.firstName}</NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <NavLink href="#/page-1">Page1</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/homepage">Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/page-3">Pet List</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/pet">Add a pet</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/schedule">schedule</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/viewSitter">view sitter info</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/logout">Logout</NavLink>
-                                </NavItem>
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        Options
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem>
-                                            Reset
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Nav>
-                        </Collapse>
-                    </Navbar>
+                    </div>
+                    }
                 </div>
-                }
-                {this.props.user == null &&
-                <div>
-                    <Navbar color="light" light expand="md">
-                        <NavbarBrand href="/">Home Page</NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <NavLink href="#/login">Login</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/register">Register</NavLink>
-                                </NavItem>
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        Options
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem>
-                                            Reset
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Nav>
-                        </Collapse>
-                    </Navbar>
-
-                </div>
-                }
-            </div>
+            </section>
         );
     }
 }
@@ -215,7 +220,6 @@ export class EditProfilePage extends React.Component {
                     </div>
                 </div>
             </section>
-
         );
     }
 }
@@ -224,18 +228,20 @@ export class EditProfilePage extends React.Component {
 class Page1 extends React.Component {
     render() {
         return (
-            <div className="container padded">
-                <h1>This is page 1</h1>
-                <h2><Link to="/">home</Link></h2>
+            <section className="webWrapper">
+                <div className="container padded">
+                    <h1>This is page 1</h1>
+                    <h2><Link to="/">home</Link></h2>
 
-                {_.isDefined(this.props.authentication) &&
-                <div>{this.props.authentication['access_token']}</div>
-                }
+                    {_.isDefined(this.props.authentication) &&
+                    <div>{this.props.authentication['access_token']}</div>
+                    }
 
-                {_.isDefined(this.props.user) &&
-                <div>Welcome, {this.props.user.principal}!</div>
-                }
-            </div>
+                    {_.isDefined(this.props.user) &&
+                    <div>Welcome,{this.props.user.principal}!</div>
+                    }
+                </div>
+            </section>
         );
     }
 }
@@ -252,10 +258,12 @@ export {Page1};
 class Page2 extends React.Component {
     render() {
         return (
-            <div className="container padded">
-                <h1>Owner Profile Page</h1>
-                <Pets.PetForm/>
-            </div>
+            <section className="webWrapper">
+                <div className="container padded">
+                    <h1>Owner Profile Page</h1>
+                    <Pets.PetForm/>
+                </div>
+            </section>
         );
     }
 }
@@ -275,11 +283,13 @@ class Page3 extends React.Component {
 
     render() {
         return (
-            <div className="container padded">
+            <section className="webWrapper">
+                <div className="container padded">
 
-                <h1>Pets</h1>
-                <PetList.PetList/>
-            </div>
+                    <h1>Pets</h1>
+                    <PetList.PetList/>
+                </div>
+            </section>
         );
     }
 }
@@ -299,21 +309,21 @@ export class Homepage extends React.Component {
 
 
         return (
-
-            <div className="container padded">
-                <h1>Home Page</h1>
-                {_.isDefined(this.props.authentication) &&
-                <div><h1>This is Ur User Profile</h1>
-                    <ul>
-                        <li>{this.props.user.firstName}</li>
-                        <li>{this.props.user.lastName}</li>
-                        <li>{this.props.user.gender}</li>
-                        <li>{this.props.user.zipcode}</li>
-                    </ul>
+            <section className="webWrapper">
+                <div className="container padded">
+                    <h1>Home Page</h1>
+                    {_.isDefined(this.props.authentication) &&
+                    <div><h1>This is Ur User Profile</h1>
+                        <ul>
+                            <li>{this.props.user.firstName}</li>
+                            <li>{this.props.user.lastName}</li>
+                            <li>{this.props.user.gender}</li>
+                            <li>{this.props.user.zipcode}</li>
+                        </ul>
+                    </div>
+                    }
                 </div>
-                }
-
-            </div>
+            </section>
         );
     }
 }
@@ -337,14 +347,16 @@ export class Logout extends React.Component {
 
     render() {
         return (
-            <div className="container padded">
-                <div>
-                    <Alert color="dark">You have been logged out.</Alert>
-                    <Link to="/">
-                        <Button color="danger">Return Home!</Button>
-                    </Link>
+            <section className="webWrapper">
+                <div className="container padded">
+                    <div>
+                        <Alert color="dark">You have been logged out.</Alert>
+                        <Link to="/">
+                            <Button color="danger">Return Home!</Button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            </section>
         );
     }
 }
@@ -363,11 +375,13 @@ Logout = connect(
 export class Availability extends React.Component {
     render() {
         return (
-            <div className="container padded">
+            <section className="webWrapper">
+                <div className="container padded">
 
-                <h1>Set your availability</h1>
-                <Avail.AvailabilityForm/>
-            </div>
+                    <h1>Set your availability</h1>
+                    <Avail.AvailabilityForm/>
+                </div>
+            </section>
         );
     }
 }
@@ -399,10 +413,12 @@ export class ViewSitter extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>The Availability: </h1>
-                <h1>{this.state.sitter.availability}</h1>
-            </div>
+            <section className="webWrapper">
+                <div>
+                    <h1>The Availability: </h1>
+                    <h1>{this.state.sitter.availability}</h1>
+                </div>
+            </section>
         );
     }
 }
@@ -415,5 +431,4 @@ ViewSitter = connect(
     dispatch => ({
         //getSitter: (user) => dispatch(Users.Actions.getSitter(user))
     })
-
 )(ViewSitter);
