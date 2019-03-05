@@ -9,6 +9,7 @@ import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import {Actions} from 'js/users';
 import {
+    Alert,
     Button,
     Collapse,
     Navbar,
@@ -337,9 +338,8 @@ export class Logout extends React.Component {
     render() {
         return (
             <div className="container padded">
-                <h1>Home Page</h1>
                 <div>
-                    <h1>Logged out</h1>
+                    <Alert color="dark">You have been logged out.</Alert>
                     <Link to="/">
                         <Button color="danger">Return Home!</Button>
                     </Link>
