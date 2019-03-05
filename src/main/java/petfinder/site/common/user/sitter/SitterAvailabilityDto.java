@@ -7,13 +7,14 @@ import java.util.List;
 
 public class SitterAvailabilityDto implements Momento<String> {
     private String principal;
-    private List<Boolean> availability;
-
-    public SitterAvailabilityDto(String principal, List<Boolean> availability) {
+    //private List<Boolean> availability;
+    private String availability;
+    public SitterAvailabilityDto(String principal, String availability) {
         this.principal = principal;
         this.availability = availability;
     }
 
+    private SitterAvailabilityDto() {}
     public String getPrincipal() {
         return principal;
     }
@@ -22,11 +23,11 @@ public class SitterAvailabilityDto implements Momento<String> {
         this.principal = principal;
     }
 
-    public List<Boolean> getAvailability() {
+    public String getAvailability() {
         return availability;
     }
 
-    public void setAvailability(List<Boolean> availability) {
+    public void setAvailability(String availability) {
         this.availability = availability;
     }
 

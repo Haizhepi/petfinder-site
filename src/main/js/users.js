@@ -42,6 +42,10 @@ export function editPet(pet) {
 	return axios.post('/api/pets/edit_pet', pet);
 }
 
+export function addAvailiablity(avail) {
+	return axios.post('/api/sitters', avail);
+}
+
 //post pet &user to UserEndpoint
 export function addPetUser(petUser) {
 	alert('posting to backend');
@@ -120,6 +124,12 @@ Actions.addPetUser = (pet, user) => {
 		};
 		addPetUser(petUser);
 	});
+};
+
+Actions.addAvail = avail => {
+	return (dispatch) => {
+		return addAvailiablity(avail);
+	};
 };
 
 //get list of pets belonging to current user

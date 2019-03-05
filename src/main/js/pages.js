@@ -6,8 +6,10 @@ import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
+import * as Avail from 'js/schedule';
 import {Actions} from 'js/users';
 import {
+    Button,
     Collapse,
     Navbar,
     NavbarToggler,
@@ -69,6 +71,9 @@ export class Home extends React.Component {
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/pet">Add a pet</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="#/schedule">schedule</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/logout">Logout</NavLink>
@@ -333,7 +338,7 @@ export class Logout extends React.Component {
                 <div>
                     <h1>Logged out</h1>
                     <Link to="/">
-                        <button type="button">return home</button>
+                        <Button color="danger">Return Home!</Button>
                     </Link>
                 </div>
             </div>
@@ -351,3 +356,22 @@ Logout = connect(
         logout: () => dispatch(Users.Actions.logout())
     })
 )(Logout);
+
+export class Availability extends React.Component {
+    render() {
+        return (
+            <div className="container padded">
+
+                <h1>Set your availability</h1>
+                <Avail.AvailabilityForm/>
+            </div>
+        );
+    }
+}
+
+Availability = connect(
+    state => ({
+        authentication: Users.State.getAuthentication(state),
+        user: Users.State.getUser(state)
+    })
+)(Availability);
