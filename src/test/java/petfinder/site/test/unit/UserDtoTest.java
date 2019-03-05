@@ -1,24 +1,12 @@
 package petfinder.site.test.unit;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-/*import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;*/
 
-import petfinder.site.common.pet.PetDao;
+
+import org.junit.jupiter.api.Test;
 import petfinder.site.common.pet.PetDto;
 
-import java.util.Optional;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-//@ContextConfiguration(locations = "classpath:application-context-test.xml")
-//@RunWith(SpringJUnit4ClassRunner.class)
-
-public class TestPet {
+public class UserDtoTest {
 
     @Test
     public void testPetDTO() {
