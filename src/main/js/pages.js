@@ -448,7 +448,7 @@ export class Homepage extends React.Component {
                     <div>
                         <h1>This is Ur User Profile</h1>
                         <ListGroup>
-                            <ListGroupItem>First Name: {this.props.user.firstName}</ListGroupItem>
+                            <ListGroupItem>FirstName: {this.props.user.firstName}</ListGroupItem>
                             <ListGroupItem>Last Name:  {this.props.user.lastName}</ListGroupItem>
                             <ListGroupItem>Gender:     {this.props.user.gender}</ListGroupItem>
                             <ListGroupItem>Zip Code:   {this.props.user.zipcode}</ListGroupItem>
