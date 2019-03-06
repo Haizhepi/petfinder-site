@@ -1,52 +1,27 @@
 package petfinder.site.test.unit;
 
-
+import alloy.util._Lists;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import petfinder.site.common.pet.PetDto;
+import petfinder.site.common.user.UserDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class UserDtoTest {
+    private UserDto user = null;
 
-    @Test
-    public void testPetDTO() {
-
-        PetDto pet = new PetDto("Rufus", "Hamster", "hungry");
-
-        String newPref = "stuffed";
-
-        pet.setPreference(newPref);
-
-        assertEquals(newPref, pet.getPreference());
+    @BeforeEach
+    void init() {
+        user = new UserDto("1@test.com", _Lists.list("ROLE_USER"),
+                "Yunzhe", "Liu", "Male", "78787", UserDto.UserType.OWNER, null);
     }
 
-	/*@Autowired
-	private PetDao petDAO;
-
-	@Test
-	@Transactional
-	@Rollback(true)
-	public void testAddPet() {
-
-		PetDto pet = new PetDto("Rufus", "Hamster", "hungry");
-
-		petDAO.save(pet);
-
-		Optional<PetDto> optPet = petDAO.findPet(pet.getId());
-
-		// pet was not saved properly
-		if(!optPet.isPresent()) {
-			fail();
-		}
-
-        // unwrap pet
-		PetDto returnedPet = optPet.get();
-
-
-		assertEquals(pet.getName(), returnedPet.getName());
-		assertEquals(pet.getType(), returnedPet.getType());
-		assertEquals(pet.getPreference(), returnedPet.getPreference());
-		assertEquals(pet.getId(), returnedPet.getId());
-	}
-	*/
+    @Test
+    void testType() {
+        assertEquals(this.user.getType(), UserDto.UserType.OWNER);
+    }
 }
