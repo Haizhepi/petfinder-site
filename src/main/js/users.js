@@ -53,7 +53,7 @@ export function addAvailiablity(avail) {
 
 //post pet &user to UserEndpoint
 export function addPetUser(petUser) {
-	alert('posting to backend');
+	//alert('posting to backend');
     return axios.post('/api/user/pet', petUser).catch((error) => {
 		console.log('here???');
 		console.log(error);});
@@ -113,12 +113,12 @@ Actions.Types = {
 
 //save pet
 Actions.savePet = pet => {
-	alert('save pet');
+	//alert('save pet');
 	return savePet(pet);
 };
 
 Actions.editPet = pet => {
-	alert('update pet');
+	//alert('update pet');
 	return (dispatch) => {
 		return editPet(pet);
 	};

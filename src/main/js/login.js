@@ -285,7 +285,7 @@ class EditProfileForm extends React.Component {
     render() {
         let {handleSubmit, submitting} = this.props;
         if (this.state.hasSubmitSucceeded) {
-            alert('success');
+            //alert('success');
             return <Redirect to={'/'}/>;
         }
 
@@ -301,7 +301,7 @@ class EditProfileForm extends React.Component {
                                                         placeholder="Owner or Sitter?"
                                 />}/>
                 <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Sign In</Bessemer.Button>
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                 </div>
 
             </form>
