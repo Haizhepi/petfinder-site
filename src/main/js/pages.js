@@ -9,6 +9,8 @@ import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import {Actions} from 'js/users';
 import {
+    ListGroup,
+    ListGroupItem,
     Alert,
     Button,
     Collapse,
@@ -443,13 +445,14 @@ export class Homepage extends React.Component {
                 <div className="container padded">
                     <h1>Home Page</h1>
                     {_.isDefined(this.props.authentication) &&
-                    <div><h1>This is Ur User Profile</h1>
-                        <ul>
-                            <li>{this.props.user.firstName}</li>
-                            <li>{this.props.user.lastName}</li>
-                            <li>{this.props.user.gender}</li>
-                            <li>{this.props.user.zipcode}</li>
-                        </ul>
+                    <div>
+                        <h1>This is Ur User Profile</h1>
+                        <ListGroup>
+                            <ListGroupItem>First Name: {this.props.user.firstName}</ListGroupItem>
+                            <ListGroupItem>Last Name:  {this.props.user.lastName}</ListGroupItem>
+                            <ListGroupItem>Gender:     {this.props.user.gender}</ListGroupItem>
+                            <ListGroupItem>Zip Code:   {this.props.user.zipcode}</ListGroupItem>
+                        </ListGroup>
                     </div>
                     }
                 </div>
