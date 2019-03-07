@@ -8,6 +8,7 @@ import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import {Actions} from 'js/users';
+
 import {
     Alert,
     Button,
@@ -110,7 +111,7 @@ export class Home extends React.Component {
                     }
                     {this.props.user == null &&
                     <div>
-                        <Navbar light expand="md" className="navBar">
+                        <Navbar light expand="md" className="navBar" >
                             <NavbarBrand href="/">Home Page</NavbarBrand>
                             <NavbarToggler onClick={this.toggle}/>
                             <Collapse isOpen={this.state.isOpen} navbar>
@@ -213,7 +214,7 @@ export class EditProfilePage extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <h2>Edit the profile</h2>
+                            <div className="title">Edit the profile</div>
                             <hr/>
                             <Login.EditProfileForm/>
                         </div>
@@ -377,7 +378,6 @@ export class Availability extends React.Component {
         return (
             <section className="webWrapper">
                 <div className="container padded">
-
                     <h1>Set your availability</h1>
                     <Avail.AvailabilityForm/>
                 </div>

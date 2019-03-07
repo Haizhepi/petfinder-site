@@ -11,7 +11,10 @@ import classNames from 'classnames';
 
 import * as Apps from 'js/app.js';
 
+
 import 'styles/main.scss';
+
+import {Animated} from 'react-animated-css';
 
 //Class that represents the log in form
 class LoginForm extends React.Component {
