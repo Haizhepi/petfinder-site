@@ -59,18 +59,6 @@ export class Home extends React.Component {
         });
     }
 
-// <<<<<<< HEAD
-//
-//     render() {
-//
-//         if (!(this.props.user)){
-//             return (
-//                 <div className="container padded">
-//                     <div>
-//                         <Navbar color="light" light expand="md">
-//                             <NavbarBrand href="#/">Home Page</NavbarBrand>
-// =======
-
     componentWillMount() {
         if (this.props.user) {
             if (this.props.user.type === 'SITTER') {
@@ -128,7 +116,6 @@ export class Home extends React.Component {
                                 </Collapse>
                             </Navbar>
                         </div>
-
                     </section>
                 );
             } else if (this.props.user.type === 'OWNER') {
@@ -242,7 +229,7 @@ export class Home extends React.Component {
         }else {
             return (
                 <section className="webWrapper">
-                    <div>
+                    <div className="container padded">
                         <Navbar light expand="md" className="navBar" >
                             <NavbarBrand href="/">Home Page</NavbarBrand>
                             <NavbarToggler onClick={this.toggle}/>
