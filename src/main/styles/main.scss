@@ -35,6 +35,19 @@ $fa-font-path: "~font-awesome/fonts";
   to  {border-radius: 0}
 }
 
+@keyframes animation4 {
+  0%   {left:0px; top:0px;}
+  25%  {left:200px; top:0px;}
+  50%  {left:200px; top:200px;}
+  75%  {left:0px; top:200px;}
+  100% {left:0px; top:0px;}
+}
+
+@keyframes animation5 {
+  from  {alignment: top;}
+  to {alignment: center;}
+}
+
 .form-control {
   border-radius: 20px;
   border: none;
@@ -159,3 +172,4 @@ $fa-font-path: "~font-awesome/fonts";
   font-size: 20px;
   background-color: #dadada;
 }
+
