@@ -16,7 +16,6 @@ class AvailabilityForm extends React.Component {
             principal: this.props.user.principal,
             availability: form.availability
         };
-        alert('here');
         console.log('here');
         console.log(avail);
         return this.props.addAvail(avail);
@@ -36,7 +35,7 @@ class AvailabilityForm extends React.Component {
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
                 <Bessemer.Field name="availability" friendlyName="Enter availability"/>
                 <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Sign In</Bessemer.Button>
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                 </div>
             </form>
         );

@@ -18,6 +18,7 @@ public class UserDto implements Momento<String> {
 	private String principal;
 	private List<String> roles;
 	private UserType type;
+
 	private Map<String, Object> attributes;
 	private String myNewField;
 	private String firstName;
@@ -120,6 +121,6 @@ public class UserDto implements Momento<String> {
 	}
 
 	public enum UserType {
-		OWNER, SITTER
+		OWNER, SITTER, BOTH
 	}
 }

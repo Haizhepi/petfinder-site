@@ -23,8 +23,13 @@ export function authenticate(username, password) {
 				password: 'petfinder-app-secret'
 			}
 		}
-	).catch((error) => {
-		alert('Yes!');
+	).then(response => {
+		console.log('here??');
+		console.log(response);
+		return response;
+	}).catch((error) => {
+		alert('problem signing in');
+		console.log(error);
 	});
 }
 
@@ -48,7 +53,7 @@ export function addAvailiablity(avail) {
 
 //post pet &user to UserEndpoint
 export function addPetUser(petUser) {
-	alert('posting to backend');
+	//alert('posting to backend');
     return axios.post('/api/user/pet', petUser).catch((error) => {
 		console.log('here???');
 		console.log(error);});
@@ -108,12 +113,12 @@ Actions.Types = {
 
 //save pet
 Actions.savePet = pet => {
-	alert('save pet');
+	//alert('save pet');
 	return savePet(pet);
 };
 
 Actions.editPet = pet => {
-	alert('update pet');
+	//alert('update pet');
 	return (dispatch) => {
 		return editPet(pet);
 	};
@@ -170,7 +175,6 @@ Actions.authenticate = (username, password) => {
 		return authenticate(username, password).then(
 			authentication => {
 				dispatch(Actions.setAuthentication(authentication));
-
 				return getUserDetails().then(user => {
 					dispatch(Actions.setUser(user));
 				});

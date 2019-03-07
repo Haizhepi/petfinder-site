@@ -25,7 +25,7 @@ class PetForm extends React.Component {
     render() {
         let {handleSubmit, submitting} = this.props;
         if (this.state.hasSubmitSucceeded) {
-            alert('success');
+            //alert('success');
             return <Redirect to={'/'}/>;
         }
 
