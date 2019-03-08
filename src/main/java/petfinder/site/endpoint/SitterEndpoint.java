@@ -31,7 +31,7 @@ public class SitterEndpoint {
 
     // Take a JSON representation of a Pet and save it to Elasticsearch
     @PostMapping(value = "")
-    public SitterAvailabilityDto savePet(@RequestBody SitterAvailabilityDto sitterAvailabilityDto) {
+    public SitterAvailabilityDto saveAvailability(@RequestBody SitterAvailabilityDto sitterAvailabilityDto) {
         System.out.println(sitterAvailabilityDto.getPrincipal());
         System.out.println(sitterAvailabilityDto.getAvailability());
         sitterService.update(sitterAvailabilityDto);
