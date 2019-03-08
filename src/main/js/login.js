@@ -11,7 +11,10 @@ import classNames from 'classnames';
 
 import * as Apps from 'js/app.js';
 
+
 import 'styles/main.scss';
+
+import {Animated} from 'react-animated-css';
 
 //Class that represents the log in form
 class LoginForm extends React.Component {
@@ -32,7 +35,7 @@ class LoginForm extends React.Component {
         }
 
         return (
-            <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+            <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))} >
                 <Bessemer.Field name="principal" friendlyName="Email Address"
                                 validators={[Validation.requiredValidator, Validation.emailValidator]}/>
 

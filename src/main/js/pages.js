@@ -9,6 +9,12 @@ import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import {NavBar} from 'js/navBar';
 import {Actions} from 'js/users';
+
+import 'styles/w3_replica.scss';
+
+import 'styles/animate.scss';
+import 'styles/animate.min.scss';
+
 import {
     ListGroup,
     ListGroupItem,
@@ -39,7 +45,6 @@ let sectionStyle = {
     backgroundSize: '1500px',
     backgroundPosition: 'center',
 };
-
 */
 
 export class Home extends React.Component {
@@ -59,7 +64,6 @@ export class Home extends React.Component {
         });
     }
 
-
     componentWillMount() {
         if (this.props.user) {
             if (this.props.user.type === 'SITTER') {
@@ -67,208 +71,37 @@ export class Home extends React.Component {
             }
         }
     }
+
     render() {
         if (this.props.user) {
             if (this.props.user.type === 'SITTER') {
                 return (
                     <section className="webWrapper">
-                        <div className="container padded">
-                            <Navbar light expand="md" className="navBar">
-                                <NavbarBrand href="/">Welcome, {this.props.user.firstName}</NavbarBrand>
-                                <NavbarToggler onClick={this.toggle}/>
-                                <Collapse isOpen={this.state.isOpen} navbar>
-                                    <Nav className="ml-auto" navbar>
-                                        <NavItem>
-                                            <NavLink href="#/page-1" className="navText">Page1</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/homepage" className="navText">Profile</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/edit_profile" className="navText">Edit Profile</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/schedule" className="navText">Schedule</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/viewSitter" className="navText">View Sitter Info</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/logout" className="navText">Logout</NavLink>
-                                        </NavItem>
-                                        <UncontrolledDropdown nav inNavbar className="navText">
-                                            <DropdownToggle nav caret>
-                                                Options
-                                            </DropdownToggle>
-                                            <DropdownMenu right>
-                                                <DropdownItem>
-                                                    Option 1
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    Option 2
-                                                </DropdownItem>
-                                                <DropdownItem divider/>
-                                                <DropdownItem>
-                                                    Reset
-                                                </DropdownItem>
-                                            </DropdownMenu>
-                                        </UncontrolledDropdown>
-                                    </Nav>
-                                </Collapse>
-                            </Navbar>
-                        </div>
-
+                        <NavBar/>
                     </section>
                 );
             } else if (this.props.user.type === 'OWNER') {
                 return (
                     <section className="webWrapper">
-                        <div className="container padded">
-                            <Navbar light expand="md" className="navBar">
-                                <NavbarBrand href="/">Welcome, {this.props.user.firstName}</NavbarBrand>
-                                <NavbarToggler onClick={this.toggle}/>
-                                <Collapse isOpen={this.state.isOpen} navbar>
-                                    <Nav className="ml-auto" navbar>
-                                        <NavItem>
-                                            <NavLink href="#/page-1" className="navText">Page1</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/homepage" className="navText">Profile</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/page-3" className="navText">Pet List</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/pet" className="navText">Add a Pet</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/edit_profile" className="navText">Edit Profile</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/logout" className="navText">Logout</NavLink>
-                                        </NavItem>
-                                        <UncontrolledDropdown nav inNavbar className="navText">
-                                            <DropdownToggle nav caret>
-                                                Options
-                                            </DropdownToggle>
-                                            <DropdownMenu right>
-                                                <DropdownItem>
-                                                    Option 1
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    Option 2
-                                                </DropdownItem>
-                                                <DropdownItem divider/>
-                                                <DropdownItem>
-                                                    Reset
-                                                </DropdownItem>
-                                            </DropdownMenu>
-                                        </UncontrolledDropdown>
-                                    </Nav>
-                                </Collapse>
-                            </Navbar>
-                        </div>
-
+                        <NavBar/>
                     </section>
                 );
             } else {
                 return (
                     <section className="webWrapper">
-                        <div className="container padded">
-                            <Navbar light expand="md" className="navBar">
-                                <NavbarBrand href="/">Welcome, {this.props.user.firstName}</NavbarBrand>
-                                <NavbarToggler onClick={this.toggle}/>
-                                <Collapse isOpen={this.state.isOpen} navbar>
-                                    <Nav className="ml-auto" navbar>
-                                        <NavItem>
-                                            <NavLink href="#/page-1" className="navText">Page1</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/homepage" className="navText">Profile</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/page-3" className="navText">Pet List</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/pet" className="navText">Add a Pet</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/schedule" className="navText">Schedule</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/edit_profile" className="navText">Edit Profile</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/viewSitter" className="navText">View Sitter Info</NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink href="#/logout" className="navText">Logout</NavLink>
-                                        </NavItem>
-                                        <UncontrolledDropdown nav inNavbar className="navText">
-                                            <DropdownToggle nav caret>
-                                                Options
-                                            </DropdownToggle>
-                                            <DropdownMenu right>
-                                                <DropdownItem>
-                                                    Option 1
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    Option 2
-                                                </DropdownItem>
-                                                <DropdownItem divider/>
-                                                <DropdownItem>
-                                                    Reset
-                                                </DropdownItem>
-                                            </DropdownMenu>
-                                        </UncontrolledDropdown>
-                                    </Nav>
-                                </Collapse>
-                            </Navbar>
-                        </div>
+                        <NavBar/>
                     </section>
                 );
             }
-        }else {
+        } else {
             return (
-                <section className="webWrapper">
-                    <div className="container padded">
-                        <Navbar light expand="md" className="navBar">
-                            <NavbarBrand href="/">Home Page</NavbarBrand>
-                            <NavbarToggler onClick={this.toggle}/>
-                            <Collapse isOpen={this.state.isOpen} navbar>
-                                <Nav className="ml-auto" navbar>
-                                    <NavItem>
-                                        <NavLink href="#/login" className="navText">Login</NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink href="#/register" className="navText">Register</NavLink>
-                                    </NavItem>
-                                    <UncontrolledDropdown nav inNavbar  className="navText">
-                                        <DropdownToggle nav caret>
-                                            Options
-                                        </DropdownToggle>
-                                        <DropdownMenu right>
-                                            <DropdownItem>
-                                                Option 1
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                Option 2
-                                            </DropdownItem>
-                                            <DropdownItem divider/>
-                                            <DropdownItem>
-                                                Reset
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
-                                </Nav>
-                            </Collapse>
-                        </Navbar>
 
-                    </div>
+                <section className="webWrapper">
+                    <NavBar/>
+                    <h1 className="animated infinite bounce delay-2s">Example</h1>
                 </section>
             );
         }
-
     }
 }
 
@@ -298,6 +131,7 @@ export class RegisterPage extends React.Component {
             <section className="webWrapper">
                 <div className="container padded">
                     <div className="row">
+                        <NavBar/>
                         <div className="col-6 offset-md-3" id="p">
                             <div className="title">Sign up</div>
                             <hr/>
@@ -335,8 +169,9 @@ export class EditProfilePage extends React.Component {
             <section className="webWrapper">
                 <div className="container padded">
                     <div className="row">
+                        <NavBar/>
                         <div className="col-6 offset-md-3" id="p">
-                            <h2>Edit the profile</h2>
+                            <div className="title">Edit the profile</div>
                             <hr/>
                             <Login.EditProfileForm/>
                         </div>
@@ -352,6 +187,7 @@ class Page1 extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
                     <h1>This is page 1</h1>
                     <h2><Link to="/">home</Link></h2>
@@ -382,6 +218,7 @@ class Page2 extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
                     <h1>Owner Profile Page</h1>
                     <Pets.PetForm/>
@@ -403,12 +240,11 @@ export {Page2};
 
 class Page3 extends React.Component {
 
-
     render() {
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
-
                     <h1>Pets</h1>
                     <PetList.PetList/>
                 </div>
@@ -433,6 +269,7 @@ export class Homepage extends React.Component {
 
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
                     <h1>Home Page</h1>
                     {_.isDefined(this.props.authentication) &&
@@ -440,9 +277,9 @@ export class Homepage extends React.Component {
                         <h1>This is Ur User Profile</h1>
                         <ListGroup>
                             <ListGroupItem>FirstName: {this.props.user.firstName}</ListGroupItem>
-                            <ListGroupItem>Last Name:  {this.props.user.lastName}</ListGroupItem>
-                            <ListGroupItem>Gender:     {this.props.user.gender}</ListGroupItem>
-                            <ListGroupItem>Zip Code:   {this.props.user.zipcode}</ListGroupItem>
+                            <ListGroupItem>Last Name: {this.props.user.lastName}</ListGroupItem>
+                            <ListGroupItem>Gender: {this.props.user.gender}</ListGroupItem>
+                            <ListGroupItem>Zip Code: {this.props.user.zipcode}</ListGroupItem>
                         </ListGroup>
                     </div>
                     }
@@ -472,6 +309,7 @@ export class Logout extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
                     <div>
                         <Alert color="dark">You have been logged out.</Alert>
@@ -500,8 +338,8 @@ export class Availability extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
-
                     <h1>Set your availability</h1>
                     <Avail.AvailabilityForm/>
                 </div>
@@ -538,7 +376,8 @@ export class ViewSitter extends React.Component {
     render() {
         return (
             <section className="webWrapper">
-                <div>
+                <NavBar/>
+                <div className="container padded">
                     <h1>The Availability: </h1>
                     <h1>{this.state.sitter.availability}</h1>
                 </div>
