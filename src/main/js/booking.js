@@ -15,6 +15,7 @@ import * as Apps from 'js/app.js';
 import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
+import {PetList} from 'js/petList';
 
 class BookingForm extends React.Component {
 
@@ -32,9 +33,12 @@ class BookingForm extends React.Component {
             return <Redirect to={'/'}/>;
         }
         return (
+            <div>
+                <PetList/>
             <form className="regf" name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
             </form>
-            )
+            </div>
+            );
     }
 }
 
@@ -44,3 +48,5 @@ BookingForm = connect(
     state => ({}),
     dispatch => ({})
 )(BookingForm);
+
+export {BookingForm};

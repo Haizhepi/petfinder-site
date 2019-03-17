@@ -7,6 +7,7 @@ import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
+import * as Booking from 'js/booking';
 import {NavBar} from 'js/navBar';
 import {Actions} from 'js/users';
 
@@ -261,6 +262,29 @@ Page3 = connect(
     })
 )(Page3);
 export {Page3};
+
+class AddBooking extends React.Component {
+
+    render() {
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <Booking.BookingForm/>
+                </div>
+            </section>
+        );
+    }
+}
+
+AddBooking = connect(
+    state => ({
+        authentication: Users.State.getAuthentication(state),
+        user: Users.State.getUser(state),
+        pet: Users.State.getPet(state)
+    })
+)(AddBooking);
+export {AddBooking};
 
 
 export class Homepage extends React.Component {
