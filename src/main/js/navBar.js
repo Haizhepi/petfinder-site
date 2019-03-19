@@ -88,8 +88,6 @@ export class NavBar extends React.Component {
                             </Nav>
                         </Collapse>
                     </Navbar>
-
-
                 );
             } else if (this.props.user.type === 'OWNER') {
                 return (
@@ -138,7 +136,6 @@ export class NavBar extends React.Component {
                             </Nav>
                         </Collapse>
                     </Navbar>
-
                 );
             } else {
                 return (

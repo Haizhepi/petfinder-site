@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import petfinder.site.common.Notification.NotificationDao;
+import petfinder.site.common.Notification.NotificationDto;
 import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.*;
@@ -122,5 +124,13 @@ public class UserEndpoint {
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDto user = userService.findUserByPrincipal(principal).get();
 		return userService.findBookings(user);
+	}
+
+	@GetMapping(value = "/userNotifications")
+	public List<NotificationDto> getUserNotifications() {
+		System.out.println("Calling end point user notis");
+		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserDto user = userService.findUserByPrincipal(principal).get();
+		return userService.findNotifications(user);
 	}
 }

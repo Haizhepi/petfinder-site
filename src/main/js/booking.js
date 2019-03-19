@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import * as Validation from 'js/alloy/utils/validation';
 import * as Bessemer from 'js/alloy/bessemer/components';
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import * as Users from 'js/users';
 import classNames from 'classnames';
 
@@ -16,7 +16,7 @@ import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {PetEdit, PetList} from 'js/petList';
-import {ListGroup, ListGroupItem} from 'reactstrap';
+import {Button, ListGroup, ListGroupItem} from 'reactstrap';
 
 class BookingForm extends React.Component {
     constructor(props) {
@@ -37,7 +37,9 @@ class BookingForm extends React.Component {
 
     onSubmit = booking => {
         booking.owner = this.props.user.principal;
-        booking.petId = this.props.pet.petId;
+        booking.petId = this.props.pet.id;
+        console.log('???');
+        console.log(booking);
         return this.props.makeBooking(booking).then(() => {
             //and then .catch and redirect in .then
         });
@@ -127,7 +129,7 @@ class MyBookings extends React.Component {
                     <h1>This is Ur User Profile</h1>
                     {this.state.booking.map(booking =>(
                         <ListGroup>
-                            <ListGroupItem>Owner: {booking.time}</ListGroupItem>
+                            <ListGroupItem>Owner: {booking.owner}</ListGroupItem>
                             <ListGroupItem>Pet: {booking.petId}</ListGroupItem>
                             <ListGroupItem>Time: {booking.time}</ListGroupItem>
                             <ListGroupItem>Des: {booking.description}</ListGroupItem>
@@ -145,8 +147,7 @@ class MyBookings extends React.Component {
 
 MyBookings = connect(
     state =>({
-        user: Users.State.getUser(state),
-
+        user: Users.State.getUser(state)
     }),
     dispatch =>({
 
@@ -154,3 +155,120 @@ MyBookings = connect(
 )(MyBookings);
 
 export {MyBookings};
+
+class AvailableBooking extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            booking: [{
+                name: 'no name'
+            }]
+        };
+    }
+
+    //set state as array of user's pets
+    componentWillMount() {
+        Users.Actions.getAvailableBookings().then(response => {
+            this.setState({booking: response});
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <div id="p" className="col-6 offset-md-3">
+                    <h1>Available booking</h1>
+                    {this.state.booking.map(booking =>(
+                        <ListGroup>
+                            <ListGroupItem>
+                                <div onClick={()=> this.props.selectBooking(booking)} >
+                                    <Link to="/bookingDetail">
+                                    Owner: {booking.owner}
+                                    </Link>
+                                    </div></ListGroupItem>
+
+                            <ListGroupItem>Pet: {booking.petId}</ListGroupItem>
+                            <ListGroupItem>Time: {booking.time}</ListGroupItem>
+                            <ListGroupItem>Des: {booking.description}</ListGroupItem>
+                        </ListGroup>
+                    ))}
+
+
+                </div>
+            </div>
+        );
+    }
+
+}
+
+AvailableBooking = connect(
+    state =>({
+
+    }),
+    dispatch => ({
+        selectBooking: booking => dispatch(Users.Actions.selectBooking(booking))
+    })
+)(AvailableBooking);
+
+export {AvailableBooking};
+
+class BookingDetail extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            pet: [{
+                name: 'no name'
+            }],
+            booking: [{
+                name: 'no name'
+            }]
+        };
+    }
+
+    //set state as array of user's pets
+    componentWillMount() {
+        console.log('?');
+        console.log(this.props.booking);
+        Users.Actions.getPetById(this.props.booking.petId).then(response => {
+            console.log('?');
+            console.log(response);
+            this.setState({pet: response});
+        });
+
+    }
+
+    render() {
+        if (!this.props.booking) {
+            return (<h1>hmmmmmm</h1>);
+        }
+
+        return (
+            <div>
+                <h2>Pet: {this.state.pet.name}</h2>
+                <ListGroup>
+                    <ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>
+                    <ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>
+                    <ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>
+                    <ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>
+                </ListGroup>
+                <Link to="/">
+                    <Button color="danger" onClick={()=> this.props.signUp(this.props.booking)}>Sign Up for this</Button>
+                </Link>
+            </div>
+        );
+    }
+}
+
+BookingDetail = connect(
+    state =>({
+        booking: Users.State.getActiveBooking(state)
+
+    }),
+    dispatch => ({
+        signUp: booking => dispatch(Users.Actions.signUpBooking(booking))
+
+    })
+)(BookingDetail);
+
+export {BookingDetail};

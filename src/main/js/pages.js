@@ -8,6 +8,7 @@ import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import * as Booking from 'js/booking';
+import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
 import {Actions} from 'js/users';
 
@@ -338,6 +339,47 @@ export class MyBooking extends React.Component {
 MyBooking = connect(
     state => ({})
 )(MyBooking);
+
+export class AvailableBooking extends React.Component {
+    render() {
+
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <Booking.AvailableBooking/>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class BookingDetail extends React.Component {
+    render() {
+
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <Booking.BookingDetail/>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class Notifications extends React.Component {
+    render() {
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <Notification.NotificationCenter/>
+                </div>
+            </section>
+        );
+    }
+}
 
 export class Logout extends React.Component {
     constructor(props) {

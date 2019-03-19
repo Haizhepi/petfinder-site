@@ -31,6 +31,8 @@ public class PetEndpoint {
 	// Take an id, and look up the corresponding pet
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public Optional<PetDto> getPet(@PathVariable("id") String id) {
+		System.out.println("calling");
+		System.out.println(id);
 		return petService.findPet(id);
 	}
 
