@@ -1,6 +1,7 @@
 package petfinder.site.endpoint;
 
 
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +23,24 @@ public class BookingEndpoint {
         return bookingService.findBooking(id);
     }
 
+    @GetMapping(value = "/openingBooking")
+    public List<BookingDto> getOpenBooking() {
+        return bookingService.findOpenBooking();
+    }
+
     @PostMapping(value = "")
     public BookingDto saveBooking(@RequestBody BookingDto booking) {
         System.out.println(booking.getDescription());
         System.out.println(booking.getOwner());
+        System.out.println(booking.getPetId());
         bookingService.save(booking);
+        return booking;
+    }
+
+    @PostMapping(value = "/signUp")
+    public BookingDto signUp(@RequestBody BookingDto booking) {
+        System.out.println("calling+" + booking.getId());
+        bookingService.signUp(booking.getId());
         return booking;
     }
 

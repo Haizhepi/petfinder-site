@@ -51,6 +51,10 @@ export function addAvailiablity(avail) {
 	return axios.post('/api/sitters', avail);
 }
 
+export function signUpBooking(booking) {
+	return axios.post('/api/bookings/signUp', booking);
+}
+
 export function makeBooking(booking) {
 	return axios.post('/api/bookings', booking);
 }
@@ -68,6 +72,10 @@ export function getPets() {
     return axios.get('/api/user/pet');
 }
 
+export function getPetById(id) {
+	return axios.get('/api/pets/' + id);
+}
+
 export function getSitter(userid) {
 	console.log(userid);
 
@@ -83,6 +91,10 @@ export function getUserDetails() {
 
 export function getBookings(user) {
 	return axios.get('/api/user/userBooking', user);
+}
+
+export function getAvailableBookings() {
+	return axios.get('/api/bookings/openingBooking');
 }
 
 export function editProfile(user) {
@@ -108,6 +120,10 @@ State.getActivePet = state => {
 	return state.activePet;
 };
 
+State.getActiveBooking = state => {
+	return state.activeBooking;
+};
+
 export { State };
 
 let Actions = {};
@@ -116,7 +132,8 @@ Actions.Types = {
 	SET_AUTHENTICATION: 'SET_AUTHENTICATION',
 	SET_USER: 'SET_USER',
 	SET_PET: 'SET_PET',
-	SELECT_PET: 'PET_SELECTED'
+	SELECT_PET: 'PET_SELECTED',
+	SELECT_BOOKING: 'BOOKING_SELECTED'
 };
 
 //save pet
@@ -160,14 +177,29 @@ Actions.makeBooking = booking => {
 	};
 };
 
+Actions.signUpBooking = booking => {
+	return (dispatch) => {
+		return signUpBooking(booking);
+	};
+};
+
 //get list of pets belonging to current user
 Actions.getPets = pets => {
     return getPets();
 };
 
+Actions.getPetById = id => {
+	return getPetById(id);
+};
+
 Actions.getBookings = user => {
 	return getBookings(user);
 };
+
+Actions.getAvailableBookings = user => {
+	return getAvailableBookings();
+};
+
 
 Actions.getSitter = (userid) => {
 	return getSitter(userid);
@@ -225,6 +257,11 @@ Actions.selectPet = pet => {
 	return {type: Actions.Types.SELECT_PET, pet};
 };
 
+Actions.selectBooking = booking => {
+	console.log('the booking is clicked!', booking.id);
+	return {type: Actions.Types.SELECT_BOOKING, booking};
+};
+
 export { Actions };
 
 let Reducers = {};
@@ -272,6 +309,19 @@ Reducers.activePet = (activePet = {}, action) => {
 		}
 		default: {
 			return activePet;
+		}
+	}
+};
+
+Reducers.activeBooking = (activeBooking = null, action) => {
+	console.log('returning'+ action.type);
+	switch (action.type) {
+
+		case Actions.Types.SELECT_BOOKING: {
+			return action.booking;
+		}
+		default: {
+			return activeBooking;
 		}
 	}
 };

@@ -73,7 +73,7 @@ export class NavBar extends React.Component {
                                         </DropdownToggle>
                                         <DropdownMenu right>
                                             <DropdownItem>
-                                                Option 1
+                                                <NavLink href="#/availableBooking" className="navText">View booking</NavLink>
                                             </DropdownItem>
                                             <DropdownItem>
                                                 Option 2
@@ -123,10 +123,10 @@ export class NavBar extends React.Component {
                                         </DropdownToggle>
                                         <DropdownMenu right>
                                             <DropdownItem>
-                                                Option 1
+                                                <NavLink href="#/addBooking" className="navText">add booking</NavLink>
                                             </DropdownItem>
                                             <DropdownItem>
-                                                Option 2
+                                                <NavLink href="#/myBooking" className="navText">my booking</NavLink>
                                             </DropdownItem>
                                             <DropdownItem divider/>
                                             <DropdownItem>
@@ -179,10 +179,13 @@ export class NavBar extends React.Component {
                                         </DropdownToggle>
                                         <DropdownMenu right>
                                             <DropdownItem>
-                                                Option 1
+                                                <NavLink href="#/addBooking" className="navText">add booking</NavLink>
                                             </DropdownItem>
                                             <DropdownItem>
-                                                Option 2
+                                                <NavLink href="#/myBooking" className="navText">my booking</NavLink>
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                <NavLink href="#/availableBooking" className="navText">View booking</NavLink>
                                             </DropdownItem>
                                             <DropdownItem divider/>
                                             <DropdownItem>

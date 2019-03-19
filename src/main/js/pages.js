@@ -343,6 +343,34 @@ MyBooking = connect(
     })
 )(MyBooking);
 
+export class AvailableBooking extends React.Component {
+    render() {
+
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <Booking.AvailableBooking/>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class BookingDetail extends React.Component {
+    render() {
+
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <Booking.BookingDetail/>
+                </div>
+            </section>
+        );
+    }
+}
+
 export class Logout extends React.Component {
     constructor(props) {
         super(props);

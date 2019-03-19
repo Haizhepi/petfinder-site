@@ -13,6 +13,10 @@ public class BookingDto implements Momento<String> {
     private String time;
     private BookingStatus status;
 
+    public void signUp() {
+        status = BookingStatus.SIGNED;
+    }
+
     public BookingStatus getStatus() {
         return status;
     }
