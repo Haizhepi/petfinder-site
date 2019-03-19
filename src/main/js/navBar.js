@@ -76,7 +76,7 @@ export class NavBar extends React.Component {
                                                 <NavLink href="#/availableBooking" className="navText">View booking</NavLink>
                                             </DropdownItem>
                                             <DropdownItem>
-                                                Option 2
+                                                <NavLink href="#/notification" className="navText">Notification</NavLink>
                                             </DropdownItem>
                                             <DropdownItem divider/>
                                             <DropdownItem>
@@ -130,7 +130,7 @@ export class NavBar extends React.Component {
                                             </DropdownItem>
                                             <DropdownItem divider/>
                                             <DropdownItem>
-                                                Reset
+                                                <NavLink href="#/notification" className="navText">Notification</NavLink>
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
@@ -189,7 +189,7 @@ export class NavBar extends React.Component {
                                             </DropdownItem>
                                             <DropdownItem divider/>
                                             <DropdownItem>
-                                                Reset
+                                                <NavLink href="#/notification" className="navText">Notification</NavLink>
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>

@@ -89,6 +89,10 @@ export function getUserDetails() {
 	return axios.get('/api/user');
 }
 
+export function getNotifications() {
+	return axios.get('/api/user/userNotifications');
+}
+
 export function getBookings(user) {
 	return axios.get('/api/user/userBooking', user);
 }
@@ -194,6 +198,10 @@ Actions.getPetById = id => {
 
 Actions.getBookings = user => {
 	return getBookings(user);
+};
+
+Actions.getNotifications = user => {
+	return getNotifications();
 };
 
 Actions.getAvailableBookings = user => {

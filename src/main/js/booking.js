@@ -228,6 +228,8 @@ class BookingDetail extends React.Component {
 
     //set state as array of user's pets
     componentWillMount() {
+        console.log('?');
+        console.log(this.props.booking);
         Users.Actions.getPetById(this.props.booking.petId).then(response => {
             console.log('?');
             console.log(response);
