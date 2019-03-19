@@ -82,9 +82,9 @@ $fa-font-path: "~font-awesome/fonts";
   top: 50px;
   border-radius: 20px;
   box-shadow: 10px 10px 5px grey;
-  animation-name: animation1;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
+  animation-name: animation1, zoomIn;
+  animation-duration: 5s, 1s;
+  animation-iteration-count: infinite, 1;
   font-family: Century Gothic, sans-serif;
   -moz-transition: background-color 0.75s;
   -o-transition: background-color 0.75s;
@@ -147,12 +147,12 @@ $fa-font-path: "~font-awesome/fonts";
 
 
 .navBar {
-  top: 10px;
+  top: 0px;
   background-color: whitesmoke;
-  border-radius: 20px;
   font-family: Century Gothic, sans-serif;
   font-size: 15px;
   height: 50px;
+  width: 100%;
   margin: 0;
   animation-name: animation1;
   animation-duration: 5s;

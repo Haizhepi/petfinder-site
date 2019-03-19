@@ -97,10 +97,10 @@ export class Home extends React.Component {
             }
         } else {
             return (
-
                 <section className="webWrapper">
-                    <NavBar/>
-                    <h1 className="animated infinite bounce delay-2s">Example</h1>
+                    <h1 className="animated 1 fadeIn">
+                        <NavBar/>
+                    </h1>
                 </section>
             );
         }
@@ -131,9 +131,9 @@ export class RegisterPage extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
                     <div className="row">
-                        <NavBar/>
                         <div className="col-6 offset-md-3" id="p">
                             <div className="title">Sign up</div>
                             <hr/>
@@ -150,9 +150,9 @@ export class LoginPage extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
                     <div className="row">
-                        <NavBar/>
                         <div className="col-6 offset-md-3" id="p">
                             <div className="title">Login</div>
                             <hr/>
@@ -169,9 +169,9 @@ export class EditProfilePage extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <NavBar/>
                 <div className="container padded">
                     <div className="row">
-                        <NavBar/>
                         <div className="col-6 offset-md-3" id="p">
                             <div className="title">Edit the profile</div>
                             <hr/>
@@ -290,8 +290,6 @@ export {AddBooking};
 
 export class Homepage extends React.Component {
     render() {
-
-
         return (
             <section className="webWrapper">
                 <NavBar/>
@@ -338,9 +336,7 @@ export class MyBooking extends React.Component {
 }
 
 MyBooking = connect(
-    state => ({
-
-    })
+    state => ({})
 )(MyBooking);
 
 export class Logout extends React.Component {
