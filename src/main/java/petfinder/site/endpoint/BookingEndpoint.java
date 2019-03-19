@@ -2,10 +2,13 @@ package petfinder.site.endpoint;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.booking.BookingService;
+import petfinder.site.common.user.UserDto;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,4 +29,6 @@ public class BookingEndpoint {
         bookingService.save(booking);
         return booking;
     }
+
+
 }

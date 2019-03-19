@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import petfinder.site.common.pet.PetDto;
+import petfinder.site.elasticsearch.BookingElasticsearchRepository;
 import petfinder.site.elasticsearch.PetElasticsearchRepository;
 import petfinder.site.elasticsearch.UserElasticSearchRepository;
 import petfinder.site.elasticsearch.UserPetElasticsearchRepository;
@@ -27,6 +28,9 @@ public class UserDao {
 
 	@Autowired
 	private PetElasticsearchRepository petRepository;
+
+	@Autowired
+	private BookingElasticsearchRepository bookingRepository;
 
 	public Optional<UserAuthenticationDto> findUserByPrincipal(String principal) {
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -56,6 +60,19 @@ public class UserDao {
 				.map(userPet -> petRepository.find(userPet.getPetId()).get())
 				.collect(Collectors.toList());
 	}
+
+//	public List<PetDto> findBookings(UserDto user) {
+//		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+//
+//		String queryString = String.format("userPrincipal=\"%s\"", user.getPrincipal().replace("\"", ""));
+//		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+//
+//		List<UserPetDto> userPets = userPetRepository.search(searchSourceBuilder);
+//		return userPets.stream()
+//				.map(userPet -> petRepository.find(userPet.getPetId()).get())
+//				.collect(Collectors.toList());
+//	}
+
 
 
 	public UserPetDto save(UserPetDto userPetDto) {

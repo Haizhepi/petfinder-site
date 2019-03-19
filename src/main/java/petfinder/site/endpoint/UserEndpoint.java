@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.*;
 import petfinder.site.common.user.UserService.RegistrationRequest;
@@ -98,6 +99,7 @@ public class UserEndpoint {
 	 */
 	@GetMapping(value = "/pet")
 	public List<PetDto> getPets() {
+		//TODO: not checked
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDto user = userService.findUserByPrincipal(principal).get();
 		System.out.println(user.getPrincipal());
@@ -112,5 +114,12 @@ public class UserEndpoint {
 		System.out.println(userPetDto.getPetId());
 		System.out.println(userPetDto.getUserPrincipal());
 		return userService.save(userPetDto);
+	}
+
+	@GetMapping(value = "/userBooking")
+	public List<BookingDto> getUserBookings() {
+		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserDto user = userService.findUserByPrincipal(principal).get();
+		return userService.findBookings(user);
 	}
 }

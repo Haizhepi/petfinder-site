@@ -13,6 +13,7 @@ import alloy.util.AlloyAuthentication;
 import alloy.util.Wait;
 import alloy.util._Lists;
 import alloy.util._Maps;
+import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.UserDto.UserType;
 
@@ -153,5 +154,10 @@ public class UserService {
 
 	public List<PetDto> findPets(UserDto user) {
 		return userDao.findPets(user);
+	}
+
+	public List<BookingDto> findBookings(UserDto user) {
+		//return userDao.findBookings(user);
+		return null;
 	}
 }

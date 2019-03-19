@@ -27,6 +27,7 @@ public class BookingDto implements Momento<String> {
     public BookingDto() {
         // Randomly generate an id when constructing a pet object.
         this.id = UUID.randomUUID().toString();
+        this.status = BookingStatus.UNSIGNED;
     }
 
     public String getId() {
