@@ -21,6 +21,8 @@ public class BookingEndpoint {
 
     @PostMapping(value = "")
     public BookingDto saveBooking(@RequestBody BookingDto booking) {
+        System.out.println(booking.getDescription());
+        System.out.println(booking.getOwner());
         bookingService.save(booking);
         return booking;
     }

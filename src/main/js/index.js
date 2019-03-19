@@ -28,7 +28,7 @@ export default class Index extends React.Component {
 		let editProfile = <Route exact path="/edit_profile" component={Pages.EditProfilePage}/>;
 		let schedule = <Route exact path="/schedule" component={Pages.Availability}/>;
 		let viewSitter = <Route exact path="/viewSitter" component={Pages.ViewSitter}/>;
-
+		let addBooking = <Route exact path="/addBooking" component={Pages.AddBooking}/>;
 		//alert(this.props.authentication);
 		return (
 			<HashRouter>
@@ -44,6 +44,7 @@ export default class Index extends React.Component {
 					{editProfile}
 					{schedule}
 					{viewSitter}
+					{addBooking}
 				</div>
 			</HashRouter>
 		);

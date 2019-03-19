@@ -51,6 +51,10 @@ export function addAvailiablity(avail) {
 	return axios.post('/api/sitters', avail);
 }
 
+export function makeBooking(booking) {
+	return axios.post('/api/bookings', booking);
+}
+
 //post pet &user to UserEndpoint
 export function addPetUser(petUser) {
 	//alert('posting to backend');
@@ -143,6 +147,12 @@ Actions.addPetUser = (pet, user) => {
 Actions.addAvail = avail => {
 	return (dispatch) => {
 		return addAvailiablity(avail);
+	};
+};
+
+Actions.makeBooking = booking => {
+	return (dispatch) => {
+		return makeBooking(booking);
 	};
 };
 

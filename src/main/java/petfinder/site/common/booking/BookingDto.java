@@ -11,6 +11,19 @@ public class BookingDto implements Momento<String> {
     private String sitter;
     private String petId;
     private String time;
+    private BookingStatus status;
+
+    public BookingStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BookingStatus status) {
+        this.status = status;
+    }
+
+    public enum BookingStatus {
+        UNSIGNED, SIGNED, STARTED, FINISHED
+    }
     public BookingDto() {
         // Randomly generate an id when constructing a pet object.
         this.id = UUID.randomUUID().toString();
@@ -26,6 +39,7 @@ public class BookingDto implements Momento<String> {
         this.petId = petId;
         this.time = time;
         this.description = description;
+        this.status = BookingStatus.UNSIGNED;
     }
 
     public void setId(String id) {
