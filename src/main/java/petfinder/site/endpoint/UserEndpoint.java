@@ -118,6 +118,7 @@ public class UserEndpoint {
 
 	@GetMapping(value = "/userBooking")
 	public List<BookingDto> getUserBookings() {
+		System.out.println("Calling end point user booking");
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDto user = userService.findUserByPrincipal(principal).get();
 		return userService.findBookings(user);

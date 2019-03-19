@@ -35,6 +35,7 @@ import {
 } from 'reactstrap';
 
 import 'styles/main.scss';
+import {MyBookings} from 'js/booking';
 
 /*
 import Background from 'styles/bg3.png';
@@ -321,6 +322,27 @@ Homepage = connect(
     })
 )(Homepage);
 
+
+export class MyBooking extends React.Component {
+    render() {
+
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <MyBookings/>
+                </div>
+            </section>
+        );
+    }
+}
+
+MyBooking = connect(
+    state => ({
+
+    })
+)(MyBooking);
+
 export class Logout extends React.Component {
     constructor(props) {
         super(props);
@@ -419,3 +441,4 @@ ViewSitter = connect(
         //getSitter: (user) => dispatch(Users.Actions.getSitter(user))
     })
 )(ViewSitter);
+

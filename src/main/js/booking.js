@@ -16,6 +16,7 @@ import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {PetEdit, PetList} from 'js/petList';
+import {ListGroup, ListGroupItem} from 'reactstrap';
 
 class BookingForm extends React.Component {
     constructor(props) {
@@ -101,3 +102,55 @@ BookingForm = connect(
 )(BookingForm);
 
 export {BookingForm};
+
+class MyBookings extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            booking: [{
+                name: 'no name'
+            }]
+        };
+    }
+
+    //set state as array of user's pets
+    componentWillMount() {
+        Users.Actions.getBookings(this.props.user).then(response => {
+            this.setState({booking: response});
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <div id="p" className="col-6 offset-md-3">
+                    <h1>This is Ur User Profile</h1>
+                    {this.state.booking.map(booking =>(
+                        <ListGroup>
+                            <ListGroupItem>Owner: {booking.time}</ListGroupItem>
+                            <ListGroupItem>Pet: {booking.petId}</ListGroupItem>
+                            <ListGroupItem>Time: {booking.time}</ListGroupItem>
+                            <ListGroupItem>Des: {booking.description}</ListGroupItem>
+                        </ListGroup>
+                    ))}
+
+
+                </div>
+            </div>
+        );
+    }
+
+
+}
+
+MyBookings = connect(
+    state =>({
+        user: Users.State.getUser(state),
+
+    }),
+    dispatch =>({
+
+    })
+)(MyBookings);
+
+export {MyBookings};

@@ -9,11 +9,9 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.pet.PetDto;
-import petfinder.site.elasticsearch.BookingElasticsearchRepository;
-import petfinder.site.elasticsearch.PetElasticsearchRepository;
-import petfinder.site.elasticsearch.UserElasticSearchRepository;
-import petfinder.site.elasticsearch.UserPetElasticsearchRepository;
+import petfinder.site.elasticsearch.*;
 
 /**
  * Created by jlutteringer on 8/23/17.
@@ -61,21 +59,21 @@ public class UserDao {
 				.collect(Collectors.toList());
 	}
 
-//	public List<PetDto> findBookings(UserDto user) {
-//		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-//
-//		String queryString = String.format("userPrincipal=\"%s\"", user.getPrincipal().replace("\"", ""));
-//		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
-//
-//		List<UserPetDto> userPets = userPetRepository.search(searchSourceBuilder);
-//		return userPets.stream()
-//				.map(userPet -> petRepository.find(userPet.getPetId()).get())
-//				.collect(Collectors.toList());
-//	}
+	public List<BookingDto> findBookings(UserDto user) {
+		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+		String queryString = String.format("owner=\"%s\"", user.getPrincipal().replace("\"", ""));
+		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+
+		List<BookingDto> bookinsgs = bookingRepository.search(searchSourceBuilder);
+		return bookinsgs;
+	}
 
 
 
 	public UserPetDto save(UserPetDto userPetDto) {
 		return userPetRepository.save(userPetDto);
 	}
+
+
 }
