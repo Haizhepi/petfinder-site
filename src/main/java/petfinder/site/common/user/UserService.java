@@ -157,7 +157,7 @@ public class UserService {
 	}
 
 	public List<BookingDto> findBookings(UserDto user) {
-		//return userDao.findBookings(user);
+		///return userDao.findBookings(user);
 		return null;
 	}
 }
