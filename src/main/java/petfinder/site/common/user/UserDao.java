@@ -9,6 +9,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import petfinder.site.common.Notification.NotificationDto;
 import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.pet.PetDto;
 import petfinder.site.elasticsearch.*;
@@ -29,6 +30,9 @@ public class UserDao {
 
 	@Autowired
 	private BookingElasticsearchRepository bookingRepository;
+
+	@Autowired
+	private NotificationElasticsearchRepository notificationRepository;
 
 	public Optional<UserAuthenticationDto> findUserByPrincipal(String principal) {
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -67,6 +71,16 @@ public class UserDao {
 
 		List<BookingDto> bookinsgs = bookingRepository.search(searchSourceBuilder);
 		return bookinsgs;
+	}
+
+	public List<NotificationDto> findNotification(UserDto user) {
+		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+		String queryString = String.format("userPrinciple=\"%s\"", user.getPrincipal().replace("\"", ""));
+		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+
+		List<NotificationDto> notis = notificationRepository.search(searchSourceBuilder);
+		return notis;
 	}
 
 
