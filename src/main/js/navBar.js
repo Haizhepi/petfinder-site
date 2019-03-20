@@ -73,12 +73,12 @@ export class NavBar extends React.Component {
                                         Options
                                     </DropdownToggle>
                                     <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
+                                        <NavItem>
+                                            <NavLink href="#/availableBooking" className="navText">View Booking</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/notification" className="navText">Notification</NavLink>
+                                        </NavItem>
                                         <DropdownItem divider/>
                                         <DropdownItem>
                                             Reset
@@ -121,12 +121,15 @@ export class NavBar extends React.Component {
                                         Options
                                     </DropdownToggle>
                                     <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
+                                        <NavItem>
+                                            <NavLink href="#/addBooking" className="navText">Add Booking</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/myBooking" className="navText">My Booking</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/notification" className="navText">Notification</NavLink>
+                                        </NavItem>
                                         <DropdownItem divider/>
                                         <DropdownItem>
                                             Reset
@@ -175,12 +178,18 @@ export class NavBar extends React.Component {
                                         Options
                                     </DropdownToggle>
                                     <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
+                                        <NavItem>
+                                            <NavLink href="#/addBooking" className="navText">Add Booking</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/myBooking" className="navText">My Booking</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/availableBooking" className="navText">View Booking</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/notification" className="navText">Notification</NavLink>
+                                        </NavItem>
                                         <DropdownItem divider/>
                                         <DropdownItem>
                                             Reset
