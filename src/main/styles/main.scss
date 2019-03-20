@@ -231,6 +231,8 @@ body {
 }
 
 .btn {
+
+  margin: 20px;
   padding: 12px 100px;
   position: relative !important;
   display: block !important;
@@ -238,7 +240,6 @@ body {
   font-size: 20px !important;
   text-decoration: none !important;
   border: 2px solid #ff7675 !important;
-  text-transform: uppercase !important;
   overflow: hidden !important;
   transition: 1s all ease !important;
 }
@@ -261,7 +262,7 @@ body {
 }
 
 .btn1:hover::before {
-  height: 500% !important;
+  height: 800% !important;
 }
 
 .middle {

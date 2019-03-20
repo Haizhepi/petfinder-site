@@ -32,23 +32,14 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
+    Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 
 import 'styles/main.scss';
 import {MyBookings} from 'js/booking';
+import {MyModal} from 'js/modal';
 
-/*
-import Background from 'styles/bg3.png';
-
-let sectionStyle = {
-    width: '100%',
-    height: '100%',
-    backgroundImage: `url(${Background})`,
-    backgroundSize: '1500px',
-    backgroundPosition: 'center',
-};
-*/
 
 export class Home extends React.Component {
     constructor(props) {
@@ -73,6 +64,10 @@ export class Home extends React.Component {
                 this.setState({sitter: 'SITTER'});
             }
         }
+    }
+
+    showModal() {
+        return (<MyModal/>);
     }
 
     render() {
@@ -101,7 +96,8 @@ export class Home extends React.Component {
                 <section className="webWrapper">
                     <NavBar/>
                     <div className="middle">
-                        <a href="" className="btn btn1"> Hover </a>
+                        <MyModal/>
+
                     </div>
                 </section>
             );
