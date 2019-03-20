@@ -99,9 +99,7 @@ export class Home extends React.Component {
         } else {
             return (
                 <section className="webWrapper">
-                    <h1 className="animated 1 fadeIn">
-                        <NavBar/>
-                    </h1>
+                    <NavBar/>
                 </section>
             );
         }

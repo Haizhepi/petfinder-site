@@ -195,7 +195,7 @@ export class NavBar extends React.Component {
         } else {
             return (
                 <Navbar light expand="md" className="navBar">
-                    <h1 className="animated 1 fadeInLeft delay-1s">
+                    <h1 className="animated 1 fadeInLeft">
                         <NavbarBrand href="/">Welcome to PetFinder</NavbarBrand>
                     </h1>
                     <NavbarToggler onClick={this.toggle}/>
