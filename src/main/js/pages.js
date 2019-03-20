@@ -100,6 +100,9 @@ export class Home extends React.Component {
             return (
                 <section className="webWrapper">
                     <NavBar/>
+                    <div className="middle">
+                        <a href="" className="btn btn1"> Hover </a>
+                    </div>
                 </section>
             );
         }

@@ -6,52 +6,67 @@ $fa-font-path: "~font-awesome/fonts";
 
 @keyframes animation1 {
   0% {
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.1);
   }
   25% {
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.4);
-  }
-  50% {
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.6);
-  }
-  75% {
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.4);
-  }
-  100% {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.2);
   }
-}
-
-@keyframes animation2 {
-  0%   {background-color: #c4ede2;}
-  25%  {background-color: #c5d6ed;}
-  50%  {background-color: #b4edc6;}
-  75% {background-color: #afedd5}
-  100% {background-color: #c4ede2;}
+  50% {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
+  }
+  75% {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.1);
+  }
 }
 
 @keyframes animation3 {
-  from   {border-radius: 20px;}
-  to  {border-radius: 0}
+  from {
+    border-radius: 20px;
+  }
+  to {
+    border-radius: 0
+  }
 }
 
 @keyframes animation4 {
-  0%   {left:0px; top:0px;}
-  25%  {left:200px; top:0px;}
-  50%  {left:200px; top:200px;}
-  75%  {left:0px; top:200px;}
-  100% {left:0px; top:0px;}
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 200px;
+    top: 0px;
+  }
+  50% {
+    left: 200px;
+    top: 200px;
+  }
+  75% {
+    left: 0px;
+    top: 200px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
 }
 
 @keyframes animation5 {
-  from  {alignment: top;}
-  to {alignment: center;}
+  from {
+    alignment: top;
+  }
+  to {
+    alignment: center;
+  }
 }
 
 .form-control {
   border-radius: 20px;
   border: none;
-  border-bottom: 3px solid #4CAF50;
+  border-bottom: 3px solid #49b6bf;
   text-align: left;
   -moz-transition: background-color 0.25s, border-bottom-color 0.25s;
   -o-transition: background-color 0.25s, border-bottom-color 0.25s;
@@ -96,71 +111,24 @@ $fa-font-path: "~font-awesome/fonts";
   background-color: #ededed;
 }
 
-.buttonType1 {
-  border: none;
-  background-color: #4CAF50;
-  text-align: center;
-  color: white;
-  height: 1000px;
-  width: 1000px;
-  max-width: 100%;
-  max-height: 5%;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  border-radius: 10px;
-  -moz-transition: box-shadow 0.25s, max-width 0.25s, font-size 0.25s, background-color 0.25s;
-  -o-transition: box-shadow 0.25s, max-width 0.25s, font-size 0.25s, background-color 0.25s;
-  -webkit-transition: box-shadow 0.25s, max-width 0.25s, font-size 0.25s, background-color 0.25s;
-  transition: box-shadow 0.25s, max-width 0.25s, font-size 0.25s, background-color 0.25s;
-}
-
-.buttonType1:hover {
-  font-size: 19px;
-  background-color: #45ce6d;
-  max-width: 95%;
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.25);
-}
-
-.wrapper {
-  text-align: center;
-}
-
 .webWrapper {
-
-  /*
-  background-image: url("bg3.png");
-  background-size: 1500px;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-  */
-
-  background-color: #c4ede2;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-  animation-name: animation2;
+  animation-name: Gradient;
   animation-duration: 10s;
   animation-iteration-count: infinite;
 }
 
-
 .navBar {
   top: 0px;
-  background-color: #4CAF50;
+  background-color: white;
   font-family: Century Gothic, sans-serif;
   font-size: 15px;
   height: 50px;
   width: 100%;
   margin: 0;
-  animation-name: animation1;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 .navText {
-  background-color: #4CAF50;
   color: white;
   font-family: Century Gothic, sans-serif;
   border-radius: 10px;
@@ -178,3 +146,125 @@ $fa-font-path: "~font-awesome/fonts";
   font-size: 20px;
   background-color: #dadada;
 }
+
+body {
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+.wrapper {
+  text-align: center;
+  transform: translate(0%, 0%);
+}
+
+.buttonType1 {
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  color: white;
+  height: 1000px;
+  width: 1000px;
+  max-width: 100%;
+  max-height: 5%;
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+  -moz-transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
+  -o-transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
+  -webkit-transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
+  transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
+
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+}
+
+.buttonType1:hover {
+
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+.btn {
+  padding: 12px 100px;
+  position: relative !important;
+  display: block !important;
+  color: white !important;
+  font-size: 20px !important;
+  text-decoration: none !important;
+  border: 2px solid #ff7675 !important;
+  text-transform: uppercase !important;
+  overflow: hidden !important;
+  transition: 1s all ease !important;
+}
+
+.btn::before {
+  background: #ff7675 !important;
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: -1 !important;
+  transition: all 0.6s ease !important;
+}
+
+.btn1::before {
+  width: 100% !important;
+  height: 0 !important;
+  transform: translate(-50%, -50%) rotate(-45deg) !important;
+}
+
+.btn1:hover::before {
+  height: 500% !important;
+}
+
+.middle {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
