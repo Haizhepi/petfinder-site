@@ -43,8 +43,8 @@ export class MyModal extends React.Component {
 
                             <ModalBody className="mbody">
 
-                                <a href={"#/notification"} onClick={this.toggle} className="btnModal">Notifications</a>
-                                <a href={"#/availableBooking"} onClick={this.toggle} className="btnModal">View Booking</a>
+                                <a href={'#/notification'} onClick={this.toggle} className="btnModal">Notifications</a>
+                                <a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">View Booking</a>
 
                             </ModalBody>
                         </Modal>
@@ -63,9 +63,9 @@ export class MyModal extends React.Component {
                             </div>
 
                             <ModalBody className="mbody">
-                                <a href={"#/addBooking"} onClick={this.toggle} className="btnModal">Add Booking</a>
-                                <a href={"#/myBooking"} onClick={this.toggle} className="btnModal">My Booking</a>
-                                <a href={"#/notification"} onClick={this.toggle} className="btnModal">Notifications</a>
+                                <a href={'#/addBooking'} onClick={this.toggle} className="btnModal">Add Booking</a>
+                                <a href={'#/myBooking'} onClick={this.toggle} className="btnModal">My Booking</a>
+                                <a href={'#/notification'} onClick={this.toggle} className="btnModal">Notifications</a>
                             </ModalBody>
                         </Modal>
                     </section>
@@ -83,10 +83,10 @@ export class MyModal extends React.Component {
 
                             <ModalBody className="mbody">
 
-                                <a href={"#/addBooking"} onClick={this.toggle} className="btnModal">Add Booking</a>
-                                <a href={"#/myBooking"} onClick={this.toggle} className="btnModal">My Booking</a>
-                                <a href={"#/notification"} onClick={this.toggle} className="btnModal">Notifications</a>
-                                <a href={"#/availableBooking"} onClick={this.toggle} className="btnModal">View Booking</a>
+                                <a href={'#/addBooking'} onClick={this.toggle} className="btnModal">Add Booking</a>
+                                <a href={'#/myBooking'} onClick={this.toggle} className="btnModal">My Booking</a>
+                                <a href={'#/notification'} onClick={this.toggle} className="btnModal">Notifications</a>
+                                <a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">View Booking</a>
 
                             </ModalBody>
                         </Modal>
