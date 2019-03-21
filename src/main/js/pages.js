@@ -39,6 +39,7 @@ import {
 import 'styles/main.scss';
 import {MyBookings} from 'js/booking';
 import {MyModal} from 'js/modal';
+import {MyCard} from 'js/card';
 
 
 export class Home extends React.Component {
@@ -66,28 +67,33 @@ export class Home extends React.Component {
         }
     }
 
-    showModal() {
-        return (<MyModal/>);
-    }
-
     render() {
         if (this.props.user) {
             if (this.props.user.type === 'SITTER') {
                 return (
                     <section className="webWrapper">
                         <NavBar/>
+                        <div className="middle">
+                            <MyModal/>
+                        </div>
                     </section>
                 );
             } else if (this.props.user.type === 'OWNER') {
                 return (
                     <section className="webWrapper">
                         <NavBar/>
+                        <div className="middle">
+                            <MyModal/>
+                        </div>
                     </section>
                 );
             } else {
                 return (
                     <section className="webWrapper">
                         <NavBar/>
+                        <div className="middle">
+                            <MyModal/>
+                        </div>
                     </section>
                 );
             }
@@ -97,7 +103,6 @@ export class Home extends React.Component {
                     <NavBar/>
                     <div className="middle">
                         <MyModal/>
-
                     </div>
                 </section>
             );

@@ -30,7 +30,6 @@ export class NavBar extends React.Component {
         });
     }
 
-
     componentWillMount() {
         if (this.props.user) {
             if (this.props.user.type === 'SITTER') {
