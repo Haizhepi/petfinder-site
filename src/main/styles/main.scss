@@ -96,10 +96,10 @@ $fa-font-path: "~font-awesome/fonts";
   background-color: white;
   top: 50px;
   border-radius: 8px;
-  box-shadow: 10px 10px 5px grey;
-  animation-name: animation1, zoomIn;
-  animation-duration: 5s, 1s;
-  animation-iteration-count: infinite, 1;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.1);
+  animation-name: zoomIn;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
   font-family: Century Gothic, sans-serif;
   -moz-transition: background-color 0.75s;
   -o-transition: background-color 0.75s;
@@ -202,7 +202,6 @@ body {
 
 .buttonType1 {
   border-radius: 5px;
-  border: none;
   text-align: center;
   color: white;
   height: 40px;
@@ -218,17 +217,12 @@ body {
   transition: 0.25s all ease;
 
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-  background-size: 400% 400%;
-  -o-animation: Gradient 15s ease infinite;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+  background-size: 300% 300%;
+
 }
 
 .buttonType1:hover {
-  animation-name: pulse;
-  animation-duration: 1s;
-  animation-iteration-count: 1;
+  border: solid 2px #8180d7;
 }
 
 .btn {
