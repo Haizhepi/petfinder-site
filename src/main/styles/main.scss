@@ -226,7 +226,6 @@ body {
 }
 
 .buttonType1:hover {
-
   animation-name: pulse;
   animation-duration: 1s;
   animation-iteration-count: 1;
@@ -242,6 +241,9 @@ body {
   text-decoration: none !important;
   border: 2px solid #ff7675 !important;
   overflow: hidden !important;
+  -moz-transition: 1s all ease !important;
+  -o-transition: 1s all ease !important;
+  -webkit-transition: 1s all ease !important;
   transition: 1s all ease !important;
   animation-name: zoomIn;
   animation-iteration-count: 1;
@@ -256,6 +258,9 @@ body {
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
   z-index: -1 !important;
+  -moz-transition: 0.6s ease !important;
+  -o-transition: 0.6s ease !important;
+  -webkit-transition: 0.6s ease !important;
   transition: all 0.6s ease !important;
 }
 
@@ -322,6 +327,4 @@ body {
   animation-duration: 1s;
   animation-iteration-count: 1;
 }
-
-
 
