@@ -40,6 +40,10 @@ import 'styles/main.scss';
 import {MyBookings} from 'js/booking';
 import {MyModal} from 'js/modal';
 import {MyCard} from 'js/card';
+import 'react-datepicker';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/src/stylesheets/datepicker.scss';
 
 
 export class Home extends React.Component {
@@ -93,6 +97,7 @@ export class Home extends React.Component {
                         <NavBar/>
                         <div className="middle">
                             <MyModal/>
+
                         </div>
                     </section>
                 );
