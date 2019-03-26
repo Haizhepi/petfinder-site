@@ -20,7 +20,15 @@ import {Animated} from 'react-animated-css';
 class LoginForm extends React.Component {
 
     //Defines the on submit behavior
-    onSubmit = ({principal, password}) => {
+    onSubmit = ({form}) => {
+        if(this.onSubmit2(form)){
+            return localStorage.setItem(this.props.user.id, this.props.user.principal);
+        }
+        return false;
+    }
+
+
+    onSubmit2 = ({principal, password}) => {
         return this.props.authenticate(principal, password);
     };
 
