@@ -1,10 +1,14 @@
 package petfinder.site.common.user.sitter;
 
 import alloy.elasticsearch.ElasticSearchClientProvider;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import petfinder.site.common.user.UserDto;
 import petfinder.site.elasticsearch.SitterAvailabilityRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -22,6 +26,13 @@ public class SitterAvailabilityDao {
             System.out.println(temp.get().getAvailability());
         }
         return temp;
+    }
+    public Optional<SitterAvailabilityDto> findAvailabilityByUserID(UserDto user) {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+        String queryString = String.format("userPrincipal=\"%s\"", user.getPrincipal().replace("\"", ""));
+        searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+        return sitterAvailabilityRepository.search(searchSourceBuilder).stream().findFirst();
     }
 
     public void save(SitterAvailabilityDto sitterAvailabilityDto) {

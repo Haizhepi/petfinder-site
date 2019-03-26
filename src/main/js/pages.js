@@ -470,6 +470,10 @@ export class ViewSitter extends React.Component {
                 <NavBar/>
                 <div className="container padded">
                     <h1>The Availability: </h1>
+                    <h1>{this.state.sitter.startDate}</h1>
+                    <h1>{this.state.sitter.endDate}</h1>
+                    <h1>{this.state.sitter.startTime}</h1>
+                    <h1>{this.state.sitter.endTime}</h1>
                     <h1>{this.state.sitter.availability}</h1>
                 </div>
             </section>

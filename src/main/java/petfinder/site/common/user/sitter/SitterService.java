@@ -27,13 +27,16 @@ public class SitterService {
         if (u.isPresent()) {
             temp = u.get();
             temp.setAvailability(sitterAvailabilityDto.getAvailability());
+            temp.setStartDate(sitterAvailabilityDto.getStartDate());
+            temp.setEndDate(sitterAvailabilityDto.getEndDate());
+            temp.setStartTime(sitterAvailabilityDto.getStartTime());
+            temp.setEndTime(sitterAvailabilityDto.getEndTime());
             sitterAvailabilityDao.save(temp);
         }
         else {
             sitterAvailabilityDao.save(sitterAvailabilityDto);
         }
         return temp;
-
     }
 
 }

@@ -18,7 +18,8 @@ public class BookingDao {
         return bookingElasticsearchRepository.find(id);
     }
 
-    public List<BookingDto> findOpenBooking() { SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+    public List<BookingDto> findOpenBooking() {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
         String queryString = String.format("status=UNSIGNED");
         searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));

@@ -10,6 +10,7 @@ import petfinder.site.common.booking.BookingService;
 import petfinder.site.common.user.UserDto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -22,6 +23,12 @@ public class BookingEndpoint {
     public Optional<BookingDto> getBooking(@PathVariable("id") String id) {
         return bookingService.findBooking(id);
     }
+
+    @GetMapping(value = "/recommend{id}", produces = "application/json")
+    public Map<UserDto, Integer> getRecommend(@PathVariable("id") String id) {
+        return bookingService.findRecommend(id);
+    }
+
 
     @GetMapping(value = "/openingBooking")
     public List<BookingDto> getOpenBooking() {
