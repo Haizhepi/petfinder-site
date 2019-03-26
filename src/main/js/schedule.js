@@ -7,7 +7,7 @@ import * as ReduxForm from 'redux-form';
 import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import 'styles/main.scss';
-import 'react-datepicker/src/stylesheets/datepicker.scss';
+import 'styles/stylesheets/datepicker.scss';
 
 
 class AvailabilityForm extends React.Component {
@@ -55,7 +55,11 @@ class AvailabilityForm extends React.Component {
     onSubmit = (form) => {
         let avail = {
             principal: this.props.user.principal,
-            availability: form.availability
+            availability: form.availability,
+            startTime: this.state.startTime,
+            endTime: this.state.endTime,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate
         };
         console.log('here');
         console.log(avail);

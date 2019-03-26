@@ -83,6 +83,16 @@ public class UserDao {
 		return notis;
 	}
 
+	public List<UserAuthenticationDto> findSitters() {
+		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+		String queryString = String.format("user.type=\"SITTER\"");
+		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+
+		List<UserAuthenticationDto> notis = userRepository.search(searchSourceBuilder);
+		return notis;
+	}
+
 
 
 	public UserPetDto save(UserPetDto userPetDto) {

@@ -2,14 +2,20 @@ package petfinder.site.common.booking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import petfinder.site.common.Notification.NotificationDao;
 import petfinder.site.common.Notification.NotificationDto;
 import petfinder.site.common.Notification.NotificationService;
 import petfinder.site.common.pet.PetDao;
 import petfinder.site.common.pet.PetDto;
+import petfinder.site.common.user.UserAuthenticationDto;
+import petfinder.site.common.user.UserDao;
+import petfinder.site.common.user.UserDto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -18,10 +24,32 @@ public class BookingService {
     private BookingDao bookingDao;
 
     @Autowired
+    private UserDao userDao;
+
+    @Autowired
     private NotificationDao notificationDao;
 
     public Optional<BookingDto> findBooking(String id) {
         return bookingDao.findBooking(id);
+    }
+
+    public Map<UserDto, Integer> findRecommend(String id) {
+        BookingDto booking = null;
+        Map<UserDto, Integer> map = new HashMap<>();
+        List<UserAuthenticationDto> sitters = userDao.findSitters();
+        Optional<BookingDto> bookingDto =  bookingDao.findBooking(id);
+        if (bookingDto.isPresent()) {
+            booking = bookingDto.get();
+        }
+        else {
+            booking = new BookingDto();
+        }
+        String bookingStartDate = booking.getStartDate();
+        String bookingEndDate = booking.getEndDate();
+        String bookingStartTime = booking.getStartTime();
+        String bookingEndTime = booking.getEndTime();
+
+        return map;
     }
 
     public BookingDto save(BookingDto booking) {

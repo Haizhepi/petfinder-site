@@ -17,6 +17,9 @@ import 'styles/main.scss';
 import {Animated} from 'react-animated-css';
 import {PetEdit, PetList} from 'js/petList';
 import {Button, ListGroup, ListGroupItem} from 'reactstrap';
+import 'styles/stylesheets/datepicker.scss';
+import DatePicker from 'react-datepicker';
+
 
 class BookingForm extends React.Component {
     constructor(props) {
@@ -24,10 +27,41 @@ class BookingForm extends React.Component {
         this.state = {
             pets: [{
                 name: 'no name'
-            }]
+            }],
+            startDate: new Date(),
+            endDate: new Date(),
+            startTime: new Date(),
+            endTime: new Date()
         };
-    }
 
+        this.handleChange1 = this.handleChange1.bind(this);
+        this.handleChange2 = this.handleChange2.bind(this);
+        this.handleChange3 = this.handleChange3.bind(this);
+        this.handleChange4 = this.handleChange4.bind(this);
+
+    }
+    handleChange1(date) {
+        console.log('+');
+        console.log(date);
+        this.setState({
+            startTime: date,
+        });
+    }
+    handleChange2(date) {
+        this.setState({
+            endTime: date,
+        });
+    }
+    handleChange3(date) {
+        this.setState({
+            startDate: date,
+        });
+    }
+    handleChange4(date) {
+        this.setState({
+            endDate: date,
+        });
+    }
     //set state as array of user's pets
     componentWillMount() {
         Users.Actions.getPets().then(response => {
@@ -38,6 +72,10 @@ class BookingForm extends React.Component {
     onSubmit = booking => {
         booking.owner = this.props.user.principal;
         booking.petId = this.props.pet.id;
+        booking.startTime = this.state.startTime;
+        booking.endTime = this.state.endTime;
+        booking.startDate = this.state.startDate;
+        booking.endDate = this.state.endDate;
         console.log('???');
         console.log(booking);
         return this.props.makeBooking(booking).then(() => {
@@ -79,6 +117,38 @@ class BookingForm extends React.Component {
                     <h1> Select the Pet to be take care of: </h1>
                     <h2>Pet: {this.props.pet.name}</h2>
                     <form className="regf" name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+                        <DatePicker
+                            selected={this.state.startTime}
+                            onChange={this.handleChange1}
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={15}
+                            dateFormat="h:mm aa"
+                            timeCaption="Time"
+                        />
+                        <DatePicker
+                            selected={this.state.endTime}
+                            onChange={this.handleChange2}
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={15}
+                            dateFormat="h:mm aa"
+                            timeCaption="Time"
+                        />
+                        <DatePicker
+                            selected={this.state.startDate}
+                            selectsStart
+                            startDate={this.state.startDate}
+                            endDate={this.state.endDate}
+                            onChange={this.handleChange3}
+                        />
+                        <DatePicker
+                            selected={this.state.endDate}
+                            selectsEnd
+                            startDate={this.state.startDate}
+                            endDate={this.state.endDate}
+                            onChange={this.handleChange4}
+                        />
                         <Bessemer.Field name="time" friendlyName="time"/>
                         <Bessemer.Field name="description" friendlyName="description"/>
                         <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
@@ -133,6 +203,10 @@ class MyBookings extends React.Component {
                             <ListGroupItem>Pet: {booking.petId}</ListGroupItem>
                             <ListGroupItem>Time: {booking.time}</ListGroupItem>
                             <ListGroupItem>Des: {booking.description}</ListGroupItem>
+                            <ListGroupItem>Start Time: {booking.startTime}</ListGroupItem>
+                            <ListGroupItem>End Time: {booking.endTime}</ListGroupItem>
+                            <ListGroupItem>Start Date: {booking.startDate}</ListGroupItem>
+                            <ListGroupItem>End Date: {booking.endDate}</ListGroupItem>
                         </ListGroup>
                     ))}
 
@@ -190,6 +264,10 @@ class AvailableBooking extends React.Component {
                             <ListGroupItem>Pet: {booking.petId}</ListGroupItem>
                             <ListGroupItem>Time: {booking.time}</ListGroupItem>
                             <ListGroupItem>Des: {booking.description}</ListGroupItem>
+                            <ListGroupItem>Start Time: {booking.startTime}</ListGroupItem>
+                            <ListGroupItem>End Time: {booking.endTime}</ListGroupItem>
+                            <ListGroupItem>Start Date: {booking.startDate}</ListGroupItem>
+                            <ListGroupItem>End Date: {booking.endDate}</ListGroupItem>
                         </ListGroup>
                     ))}
 
@@ -251,6 +329,10 @@ class BookingDetail extends React.Component {
                     <ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>
                     <ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>
                     <ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>
+                    <ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>
+                    <ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>
+                    <ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>
+                    <ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>
                 </ListGroup>
                 <Link to="/">
                     <Button color="danger" onClick={()=> this.props.signUp(this.props.booking)}>Sign Up for this</Button>
