@@ -12,11 +12,11 @@ import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.UserAuthenticationDto;
 import petfinder.site.common.user.UserDao;
 import petfinder.site.common.user.UserDto;
+import petfinder.site.common.user.sitter.SitterAvailabilityDao;
+import petfinder.site.common.user.sitter.SitterAvailabilityDto;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class BookingService {
@@ -25,6 +25,9 @@ public class BookingService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private SitterAvailabilityDao sitterAvailabilityDao;
 
     @Autowired
     private NotificationDao notificationDao;
@@ -48,8 +51,26 @@ public class BookingService {
         String bookingEndDate = booking.getEndDate();
         String bookingStartTime = booking.getStartTime();
         String bookingEndTime = booking.getEndTime();
+        List<SitterAvailabilityDto> sitterList = new ArrayList<>();
+        for (UserAuthenticationDto user : sitters) {
+            sitterList.add(sitterAvailabilityDao.findAvailabilityByUserID(user.getUser()).get());
+        }
+
+        for (SitterAvailabilityDto sch : sitterList) {
+            String startDate = sch.getStartDate();
+            String endDate = sch.getEndDate();
+            String startTime = sch.getStartTime();
+            String endTime = sch.getEndTime();
+
+        }
 
         return map;
+    }
+
+    public int evaluate(String bsd, String bed, String ssd, String sed, String bst,
+                        String bet, String sst, String set) throws Exception{
+        Date b_s_d = new SimpleDateFormat("yyyy-MM-dd").parse(bsd.substring(0, 10));
+        return 0;
     }
 
     public BookingDto save(BookingDto booking) {
