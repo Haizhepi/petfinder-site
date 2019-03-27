@@ -15,6 +15,7 @@ import petfinder.site.common.user.UserDto;
 import petfinder.site.common.user.sitter.SitterAvailabilityDao;
 import petfinder.site.common.user.sitter.SitterAvailabilityDto;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -52,8 +53,20 @@ public class BookingService {
         String bookingStartTime = booking.getStartTime();
         String bookingEndTime = booking.getEndTime();
         List<SitterAvailabilityDto> sitterList = new ArrayList<>();
+        Map<SitterAvailabilityDto, UserDto> map2 = new HashMap<>();
+
         for (UserAuthenticationDto user : sitters) {
-            sitterList.add(sitterAvailabilityDao.findAvailabilityByUserID(user.getUser()).get());
+            Optional<SitterAvailabilityDto> temp = sitterAvailabilityDao.findAvailabilityByUserID(user.getUser());
+            if (temp.isPresent()) {
+                System.out.println("problem here");
+                SitterAvailabilityDto sitter = temp.get();
+                System.out.println("Checking user: " + user.getUser().getPrincipal());
+                System.out.println("Checking sitter: " + sitter.getPrincipal());
+
+                sitterList.add(sitter);
+                map2.put(sitter, user.getUser());
+            }
+
         }
 
         for (SitterAvailabilityDto sch : sitterList) {
@@ -61,16 +74,61 @@ public class BookingService {
             String endDate = sch.getEndDate();
             String startTime = sch.getStartTime();
             String endTime = sch.getEndTime();
+            Integer result = 0;
+            try {
+                result = evaluate(bookingStartDate, bookingEndDate, startDate, endDate,
+                        bookingStartTime, bookingEndTime, startTime, endTime);
+            }catch (Exception e) {
+                System.out.println("problem parsing" + e.toString());
+            }
+            if (result == 1) {
+                map.put(map2.get(sch), result);
+            }
 
         }
-
         return map;
     }
 
     public int evaluate(String bsd, String bed, String ssd, String sed, String bst,
                         String bet, String sst, String set) throws Exception{
-        Date b_s_d = new SimpleDateFormat("yyyy-MM-dd").parse(bsd.substring(0, 10));
-        return 0;
+        Date bookingStartDate = null;
+        Date bookingEndDate = null;
+        Date sitterStartDate = null;
+        Date sitterEndDate = null;
+        Date bookingStartTime = null;
+        Date bookingEndtime = null;
+        Date sitterStartTime = null;
+        Date sitterEndTime = null;
+
+
+        try {
+             bookingStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(bsd.substring(0, 10));
+             bookingEndDate = new SimpleDateFormat("yyyy-MM-dd").parse(bed.substring(0, 10));
+             sitterStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(ssd.substring(0, 10));
+             sitterEndDate = new SimpleDateFormat("yyyy-MM-dd").parse(sed.substring(0, 10));
+             bookingStartTime = new SimpleDateFormat("hh:mm:ss").parse(bst.substring(11, 19));
+             bookingEndtime = new SimpleDateFormat("hh:mm:ss").parse(bet.substring(11, 19));
+             sitterStartTime = new SimpleDateFormat("hh:mm:ss").parse(sst.substring(11, 19));
+             sitterEndTime = new SimpleDateFormat("hh:mm:ss").parse(set.substring(11, 19));
+        }catch (ParseException p) {
+            System.out.println("parse problem");
+        }
+
+        if (bookingStartDate.compareTo(sitterEndDate) < 0) {
+            return 0;
+        }
+        if (bookingEndDate.compareTo(sitterEndDate) > 0) {
+            return 0;
+        }
+        if (bookingStartTime.compareTo(sitterEndTime) < 0) {
+            return 0;
+        }
+        if (bookingEndtime.compareTo(sitterEndTime) > 0) {
+            return 0;
+        }
+
+
+        return 1;
     }
 
     public BookingDto save(BookingDto booking) {

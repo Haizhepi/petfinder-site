@@ -29,8 +29,8 @@ public class SitterAvailabilityDao {
     }
     public Optional<SitterAvailabilityDto> findAvailabilityByUserID(UserDto user) {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-
-        String queryString = String.format("userPrincipal=\"%s\"", user.getPrincipal().replace("\"", ""));
+        System.out.println("searching: " + user.getPrincipal());
+        String queryString = String.format("principal=\"%s\"", user.getPrincipal().replace("\"", ""));
         searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
         return sitterAvailabilityRepository.search(searchSourceBuilder).stream().findFirst();
     }
