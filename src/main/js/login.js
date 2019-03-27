@@ -19,16 +19,8 @@ import {Animated} from 'react-animated-css';
 //Class that represents the log in form
 class LoginForm extends React.Component {
 
-    //Defines the on submit behavior
-    onSubmit = ({form}) => {
-        if(this.onSubmit2(form)){
-            return localStorage.setItem(this.props.user.id, this.props.user.principal);
-        }
-        return false;
-    }
 
-
-    onSubmit2 = ({principal, password}) => {
+    onSubmit = ({principal, password}) => {
         return this.props.authenticate(principal, password);
     };
 

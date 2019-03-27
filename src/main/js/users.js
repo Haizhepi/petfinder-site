@@ -278,6 +278,8 @@ let Reducers = {};
 Reducers.authentication = (authentication = null, action) => {
 	switch (action.type) {
 		case Actions.Types.SET_AUTHENTICATION: {
+		    //in reducer set case Actions.type./ SET_AUTH
+            localStorage.setItem('auth', JSON.stringify(authentication));
 			return action.authentication;
 		}
 		default: {
