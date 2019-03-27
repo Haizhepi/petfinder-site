@@ -76,6 +76,10 @@ export function getPetById(id) {
 	return axios.get('/api/pets/' + id);
 }
 
+export function getRecommend(id) {
+	return axios.get('/api/bookings/recommend'+id);
+}
+
 export function getSitter(userid) {
 	console.log(userid);
 
@@ -190,6 +194,10 @@ Actions.signUpBooking = booking => {
 //get list of pets belonging to current user
 Actions.getPets = pets => {
     return getPets();
+};
+
+Actions.getRecommend = bookingId => {
+	return getRecommend(bookingId);
 };
 
 Actions.getPetById = id => {
