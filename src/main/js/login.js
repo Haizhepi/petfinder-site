@@ -294,15 +294,27 @@ class EditProfileForm extends React.Component {
 
         return (
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                <Bessemer.Field name="firstName" friendlyName="first name"/>
-                <Bessemer.Field name="lastName" friendlyName="last name"/>
-                <Bessemer.Field name="gender" friendlyName="Gender"/>
-                <Bessemer.Field name="zipcode" friendlyName="zip code"/>
+
+                <Bessemer.Field name="firstName" friendlyName="First Name"
+                    field={<input className="form-control" type="firstName"
+                />}/>
+
+                <Bessemer.Field name="lastName" friendlyName="Last Name"
+                    field={<input className="form-control" type="lastName"
+                />}/>
+                <Bessemer.Field name="gender" friendlyName="Gender"
+                    field={<Bessemer.Select options={[{value: 'female', label: 'Female'},
+                        {value: 'male', label: 'Male'},
+                        {value: 'other', label: 'Other'}]}
+                        placeholder="Choose Your Gender"
+                />}/>
+                <Bessemer.Field name="zipcode" friendlyName="Zip Code"
+                    field={<input className="form-control" type="zipcode"/>}/>
                 <Bessemer.Field name="userType" friendlyName="User Type"
-                                field={<Bessemer.Select options={[{value: 'sitter', label: 'Sitter'},
-                                    {value: 'owner', label: 'Owner'}]}
-                                                        placeholder="Owner or Sitter?"
-                                />}/>
+                    field={<Bessemer.Select options={[{value: 'sitter', label: 'Sitter'},
+                        {value: 'owner', label: 'Owner'}]}
+                        placeholder="Owner or Sitter?"
+                />}/>
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                 </div>
