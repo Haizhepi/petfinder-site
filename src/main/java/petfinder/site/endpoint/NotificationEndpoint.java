@@ -10,6 +10,7 @@ import petfinder.site.common.Notification.NotificationDto;
 import petfinder.site.common.Notification.NotificationService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/notification")
@@ -17,9 +18,9 @@ public class NotificationEndpoint {
     @Autowired
     private NotificationService notificationService;
     @GetMapping(value = "/{id}", produces = "application/json")
-    public List<NotificationDto> getOpenBooking(@PathVariable("id") String id) {
+    public Optional<NotificationDto> getOpenBooking(@PathVariable("id") String id) {
 
-        return null;
+        return notificationService.findNotification(id);
     }
 
 }
