@@ -2,6 +2,7 @@ package petfinder.site.common.booking;
 
 import alloy.util.Momento;
 
+import java.util.List;
 import java.util.UUID;
 
 public class BookingDto implements Momento<String> {
@@ -15,6 +16,20 @@ public class BookingDto implements Momento<String> {
     private String endDate;
     private String startTime;
     private String endTime;
+
+    public List<String> getWaitingSitter() {
+        return waitingSitter;
+    }
+
+    public void setWaitingSitter(List<String> waitingSitter) {
+        this.waitingSitter = waitingSitter;
+    }
+
+    public void addSitter(String principle) {
+        waitingSitter.add(principle);
+    }
+
+    private List<String> waitingSitter;
 
     public String getStartDate() {
         return startDate;

@@ -14,9 +14,11 @@ import java.util.Optional;
 public class NotificationDao {
     @Autowired
     private NotificationElasticsearchRepository notificationRepository;
+
     public Optional<NotificationDto> findNotification(String id) {
         return notificationRepository.find(id);
     }
+
     public void save(NotificationDto notification) {
         notificationRepository.save(notification);
     }

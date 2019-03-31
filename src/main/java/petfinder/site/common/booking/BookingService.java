@@ -8,6 +8,8 @@ import petfinder.site.common.Notification.NotificationDao;
 import petfinder.site.common.Notification.NotificationDto;
 import petfinder.site.common.Notification.NotificationService;
 import petfinder.site.common.pet.PetDao;
+import alloy.util._Lists;
+
 import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.UserAuthenticationDto;
 import petfinder.site.common.user.UserDao;
@@ -75,14 +77,16 @@ public class BookingService {
             String startTime = sch.getStartTime();
             String endTime = sch.getEndTime();
             Integer result = 0;
-            try {
-                result = evaluate(bookingStartDate, bookingEndDate, startDate, endDate,
-                        bookingStartTime, bookingEndTime, startTime, endTime);
-            }catch (Exception e) {
-                System.out.println("problem parsing" + e.toString());
-            }
-            if (result == 1) {
-                map.put(map2.get(sch), result);
+            if (startDate != null && endDate != null && startTime != null && endTime != null) {
+                try {
+                    result = evaluate(bookingStartDate, bookingEndDate, startDate, endDate,
+                            bookingStartTime, bookingEndTime, startTime, endTime);
+                } catch (Exception e) {
+                    System.out.println("problem parsing" + e.toString());
+                }
+                if (result == 1) {
+                    map.put(map2.get(sch), result);
+                }
             }
 
         }
@@ -111,7 +115,7 @@ public class BookingService {
              sitterStartTime = new SimpleDateFormat("hh:mm:ss").parse(sst.substring(11, 19));
              sitterEndTime = new SimpleDateFormat("hh:mm:ss").parse(set.substring(11, 19));
         }catch (ParseException p) {
-            System.out.println("parse problem");
+            System.out.println("parse problem" +p.toString());
         }
 
         if (bookingStartDate.compareTo(sitterEndDate) < 0) {
@@ -163,9 +167,39 @@ public class BookingService {
         }
         else {
             temp = res.get();
-            temp.setSitter(principal);
+            if (temp.getWaitingSitter() == null) {
+                temp.setWaitingSitter(_Lists.list(principal));
+            }
+            else {
+                temp.addSitter(principal);
+            }
+
+        }
+
+        NotificationDto ownerNoti = new NotificationDto();
+        ownerNoti.setUserPrinciple(temp.getOwner());
+        ownerNoti.setInfo("Hi, your pet: " + temp.getPetId() + " is applied up by sitter: " + temp.getSitter());
+        NotificationDto sitterNoti = new NotificationDto();
+        sitterNoti.setUserPrinciple(temp.getOwner());
+        sitterNoti.setInfo("Hi, your have apply up: " + temp.getPetId() + " owned by: " + temp.getOwner());
+        notificationDao.save(ownerNoti);
+        notificationDao.save(sitterNoti);
+        bookingDao.save(temp);
+        return temp;
+    }
+
+    public BookingDto approve(String bookingId, String principle) {
+        BookingDto temp = null;
+        Optional<BookingDto> res = bookingDao.findBooking(bookingId);
+        if (!res.isPresent()) {
+            System.out.println("cant find it");
+        }
+        else {
+            temp = res.get();
+            temp.setSitter(principle);
             temp.signUp();
         }
+
         NotificationDto ownerNoti = new NotificationDto();
         ownerNoti.setUserPrinciple(temp.getOwner());
         ownerNoti.setInfo("Hi, your pet: " + temp.getPetId() + " is signed up by sitter: " + temp.getSitter());
@@ -174,9 +208,12 @@ public class BookingService {
         sitterNoti.setInfo("Hi, your have signed up: " + temp.getPetId() + " owned by: " + temp.getOwner());
         notificationDao.save(ownerNoti);
         notificationDao.save(sitterNoti);
+        temp.signUp();
         bookingDao.save(temp);
+
         return temp;
     }
+
 
     public List<BookingDto> findOpenBooking() { return bookingDao.findOpenBooking();}
 
