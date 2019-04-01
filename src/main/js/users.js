@@ -76,6 +76,10 @@ export function getPetById(id) {
 	return axios.get('/api/pets/' + id);
 }
 
+export function approveBooking(sitter) {
+	return axios.post();
+}
+
 export function getRecommend(id) {
 	return axios.get('/api/bookings/recommend'+id);
 }
@@ -109,6 +113,10 @@ export function editProfile(user) {
 	return axios.post('/api/user/editProfile', user);
 }
 
+export function getSitterInfo(userid) {
+	let res = encodeURI('/api/sitters/info'+userid);
+	return axios.get(res);
+}
 
 let State = {};
 
@@ -141,7 +149,8 @@ Actions.Types = {
 	SET_USER: 'SET_USER',
 	SET_PET: 'SET_PET',
 	SELECT_PET: 'PET_SELECTED',
-	SELECT_BOOKING: 'BOOKING_SELECTED'
+	SELECT_BOOKING: 'BOOKING_SELECTED',
+	SELECT_SITTER: 'SITTER_SELECTED'
 };
 
 //save pet
@@ -191,6 +200,12 @@ Actions.signUpBooking = booking => {
 	};
 };
 
+Actions.approveBooking = sitter => {
+	return (dispatch) => {
+		return approveBooking(sitter);
+	}
+}
+
 //get list of pets belonging to current user
 Actions.getPets = pets => {
     return getPets();
@@ -219,6 +234,10 @@ Actions.getAvailableBookings = user => {
 
 Actions.getSitter = (userid) => {
 	return getSitter(userid);
+};
+
+Actions.getSitterInfo = (userid) => {
+	return getSitterInfo(userid);
 };
 
 Actions.register = user => {
@@ -277,6 +296,11 @@ Actions.selectPet = pet => {
 Actions.selectBooking = booking => {
 	console.log('the booking is clicked!', booking.id);
 	return {type: Actions.Types.SELECT_BOOKING, booking};
+};
+
+Actions.selectSitter = sitter => {
+	console.log('the booking is clicked!', sitter);
+	return {type: Actions.Types.SELECT_SITTER, sitter};
 };
 
 export { Actions };
@@ -341,6 +365,19 @@ Reducers.activeBooking = (activeBooking = null, action) => {
 		}
 		default: {
 			return activeBooking;
+		}
+	}
+};
+
+Reducers.activeSitter = (activeSitter = null, action) => {
+	console.log('returning'+ action.type);
+	switch (action.type) {
+
+		case Actions.Types.SELECT_SITTER: {
+			return action.sitter;
+		}
+		default: {
+			return activeSitter;
 		}
 	}
 };

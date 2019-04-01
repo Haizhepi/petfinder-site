@@ -1,49 +1,29 @@
 import _ from 'lodash';
 import React from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
-import * as Booking from 'js/booking';
+import * as Booking from 'js/bookings/booking';
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
-import {Actions} from 'js/users';
 
 import 'styles/w3_replica.scss';
 
 import 'styles/animate.scss';
 import 'styles/animate.min.scss';
 
-import {
-    ListGroup,
-    ListGroupItem,
-    Alert,
-    Button,
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    Modal, ModalHeader, ModalBody, ModalFooter
-} from 'reactstrap';
+import {Alert, Button, ListGroup, ListGroupItem} from 'reactstrap';
 
 import 'styles/main.scss';
-import {MyBookings} from 'js/booking';
+import {MyBookings} from 'js/bookings/MyBookings';
 import {MyModal} from 'js/modal';
-import {MyCard} from 'js/card';
 import 'react-datepicker';
-
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/src/stylesheets/datepicker.scss';
+import {BookingDetail} from 'js/bookings/BookingDetails';
 
 
 export class Home extends React.Component {
@@ -361,14 +341,14 @@ export class AvailableBooking extends React.Component {
     }
 }
 
-export class BookingDetail extends React.Component {
+export class BookingDetailPage extends React.Component {
     render() {
 
         return (
             <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
-                    <Booking.BookingDetail/>
+                    <BookingDetail/>
                 </div>
             </section>
         );

@@ -31,7 +31,7 @@ export default class Index extends React.Component {
 		let addBooking = <Route exact path="/addBooking" component={Pages.AddBooking}/>;
 		let myBooking = <Route exact path="/myBooking" component={Pages.MyBooking}/>;
 		let availableBooking = <Route exact path="/availableBooking" component={Pages.AvailableBooking}/>;
-		let bookingDetail = <Route exact path="/bookingDetail" component={Pages.BookingDetail}/>;
+		let bookingDetail = <Route exact path="/bookingDetail" component={Pages.BookingDetailPage}/>;
 		let notification = <Route exact path="/notification" component={Pages.Notifications}/>;
 
 		//alert(this.props.authentication);
