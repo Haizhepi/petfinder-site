@@ -151,7 +151,10 @@ class OwnerDetails extends React.Component {
                                 <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                             </ModalFooter>
                         </Modal>
-                        <Button>Approve</Button>
+                        <Button onClick={sitter =>{
+                            alert('approve sitter');
+                            this.props.approve(sitter,this.props.booking);
+                        }}>Approve</Button>
                         </ButtonGroup>
                         </div>
                     ))
@@ -167,7 +170,8 @@ OwnerDetails = connect(
     }),
     dispatch => ({
         signUp: booking => dispatch(Users.Actions.signUpBooking(booking)),
-        cancel: booking => dispatch(Users.Actions.cancelBooking(booking))
+        cancel: booking => dispatch(Users.Actions.cancelBooking(booking)),
+        approve: (sitter, booking) => dispatch(Users.Actions.approveBooking(sitter, booking))
 
 
     })

@@ -76,8 +76,12 @@ export function getPetById(id) {
 	return axios.get('/api/pets/' + id);
 }
 
-export function approveBooking(sitter) {
-	return axios.post();
+export function approveBooking(sitter, booking) {
+	let request = {
+		bookingId: booking.id,
+		principal: sitter.principal
+	};
+	return axios.post('api/bookings/approve', request);
 }
 
 export function getRecommend(id) {
@@ -204,9 +208,9 @@ Actions.signUpBooking = booking => {
 	};
 };
 
-Actions.approveBooking = sitter => {
+Actions.approveBooking = (sitter, booking) => {
 	return (dispatch) => {
-		return approveBooking(sitter);
+		return approveBooking(sitter, booking);
 	};
 };
 
