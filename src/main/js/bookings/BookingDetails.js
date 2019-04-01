@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Users from 'js/users';
 import {Button, ListGroup, ListGroupItem, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
@@ -125,6 +125,12 @@ class OwnerDetails extends React.Component {
                     <ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>
                     <ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>
                 </ListGroup>
+                <Link to={'/myBooking'}>
+                <Button onClick={() => this.props.cancel(this.props.booking).then(response => {
+                   alert('deleting');
+                })}>Cancel</Button>
+                </Link>
+
                 <hr></hr>
 
                 {
@@ -160,7 +166,8 @@ OwnerDetails = connect(
         user: Users.State.getUser(state)
     }),
     dispatch => ({
-        signUp: booking => dispatch(Users.Actions.signUpBooking(booking))
+        signUp: booking => dispatch(Users.Actions.signUpBooking(booking)),
+        cancel: booking => dispatch(Users.Actions.cancelBooking(booking))
 
 
     })

@@ -35,6 +35,7 @@ class MyBookings extends React.Component {
                                     </Link>
                                 </div>
                             </ListGroupItem>
+                            <ListGroupItem>Status: {booking.status}</ListGroupItem>
                             <ListGroupItem>Pet: {booking.petId}</ListGroupItem>
                             <ListGroupItem>Time: {booking.time}</ListGroupItem>
                             <ListGroupItem>Des: {booking.description}</ListGroupItem>

@@ -18,6 +18,10 @@ public class BookingDao {
         return bookingElasticsearchRepository.find(id);
     }
 
+    public void deleteBooking(String id) {
+        bookingElasticsearchRepository.delete(id);
+    }
+
     public List<BookingDto> findOpenBooking() {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 

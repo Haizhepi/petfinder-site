@@ -97,6 +97,10 @@ export function getUserDetails() {
 	return axios.get('/api/user');
 }
 
+export function cancelBooking(booking) {
+	return axios.post('/api/bookings/delete', booking);
+}
+
 export function getNotifications() {
 	return axios.get('/api/user/userNotifications');
 }
@@ -203,9 +207,14 @@ Actions.signUpBooking = booking => {
 Actions.approveBooking = sitter => {
 	return (dispatch) => {
 		return approveBooking(sitter);
-	}
-}
+	};
+};
 
+Actions.cancelBooking = booking => {
+	return (dispatch) => {
+		return cancelBooking(booking);
+	};
+};
 //get list of pets belonging to current user
 Actions.getPets = pets => {
     return getPets();

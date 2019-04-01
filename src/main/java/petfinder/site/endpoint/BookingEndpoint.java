@@ -51,5 +51,14 @@ public class BookingEndpoint {
         return booking;
     }
 
+    @PostMapping(value = "/delete")
+    public BookingDto cancelBooking(@RequestBody BookingDto booking) {
+        System.out.println("calling+" + booking.getId());
+        bookingService.deleteBooking(booking);
+        return booking;
+    }
+
+
+
 
 }
