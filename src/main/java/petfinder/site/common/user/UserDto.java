@@ -90,6 +90,10 @@ public class UserDto implements Momento<String> {
 		this.type = type;
 	}
 
+	public UserDto(String principal) {
+		this.principal = principal;
+	}
+
 	public String getPrincipal() {
 		return principal;
 	}

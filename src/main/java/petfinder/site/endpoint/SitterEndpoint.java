@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import petfinder.site.common.user.UserDto;
 import petfinder.site.common.user.sitter.SitterAvailabilityDto;
 import petfinder.site.common.user.sitter.SitterService;
 
@@ -27,6 +28,12 @@ public class SitterEndpoint {
     public Optional<SitterAvailabilityDto> getAvailability(@PathVariable("id") String id) {
         System.out.println(id);
         return sitterService.findAvailability(id);
+    }
+
+    @GetMapping(value = "/info{id:.+}", produces = "application/json")
+    public UserDto getInfo(@PathVariable("id") String id) {
+        System.out.println(id);
+        return sitterService.findUserInfo(id);
     }
 
     // Take a JSON representation of a Pet and save it to Elasticsearch

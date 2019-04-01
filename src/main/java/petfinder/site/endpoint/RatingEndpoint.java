@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import petfinder.site.common.rating.RatingDto;
 import petfinder.site.common.rating.RatingService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,5 +24,10 @@ public class RatingEndpoint {
     public RatingDto saveRating(@RequestBody RatingDto rating) {
         ratingService.save(rating);
         return rating;
+    }
+
+    @GetMapping(value = "/info{id:.+}", produces = "application/json")
+    public List<RatingDto> getRagingByUserId(@PathVariable("id") String id) {
+        return ratingService.findRatingByUserID(id);
     }
 }

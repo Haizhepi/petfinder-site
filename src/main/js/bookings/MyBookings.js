@@ -27,7 +27,7 @@ class MyBookings extends React.Component {
                 <div id="p" className="col-6 offset-md-3">
                     <h1>This is Ur Booking</h1>
                     {this.state.booking.map(booking => (
-                        <ListGroup>
+                        <ListGroup key={booking.id}>
                             <ListGroupItem>
                                 <div onClick={() => this.props.selectBooking(booking)}>
                                     <Link to="/bookingDetail">
