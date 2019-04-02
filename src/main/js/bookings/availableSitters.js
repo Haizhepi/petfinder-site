@@ -16,7 +16,7 @@ import 'styles/main.scss';
 import {Animated} from 'react-animated-css';
 import {AvailableBooking} from "js/bookings/booking";
 
-class AvailableSitterPage extends React.Component {
+class AvailableSitter extends React.Component {
 
     constructor(props) {
         super(props);
@@ -61,14 +61,14 @@ class AvailableSitterPage extends React.Component {
     }
 }
 
-AvailableSitterPage = connect(
+AvailableSitter = connect(
     state =>({
 
     }),
     dispatch => ({
         getAvailableSitters: bookingID => dispatch(Users.Actions.getAvailableSitters(bookingID))
     })
-)(AvailableSitterPage);
+)(AvailableSitter);
 
-export {AvailableSitterPage};
+export {AvailableSitter};
 
