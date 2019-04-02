@@ -26,6 +26,7 @@ import 'react-datepicker';
 import 'react-datepicker/src/stylesheets/datepicker.scss';
 import {BookingDetail} from 'js/bookings/BookingDetails';
 import {GoogleMapAPI} from 'js/googleMapAPI';
+import {LocationSearchInput} from 'js/autoComplete';
 
 
 export class Home extends React.Component {

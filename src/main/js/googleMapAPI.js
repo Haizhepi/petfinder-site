@@ -7,6 +7,7 @@ import { } from 'react-places-autocomplete';
 
 
 import Geocode from 'react-geocode';
+import {LocationSearchInput} from 'js/autoComplete';
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
@@ -21,6 +22,7 @@ export class GoogleMapAPI extends React.Component {
 
     render() {
         return (
+
             // Important! Always set the container height explicitly
             <div style={{height: '100%', width: '100%'}}>
                 <GoogleMapReact
