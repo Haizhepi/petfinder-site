@@ -199,6 +199,7 @@ export class GoogleMap extends React.Component {
         return (
             <section className="webWrapper">
                 <NavBar/>
+                <LocationSearchInput/>
                 <GoogleMapAPI/>
             </section>
         );
