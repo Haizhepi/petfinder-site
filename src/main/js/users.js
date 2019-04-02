@@ -132,8 +132,8 @@ export function getBookings(user) {
 	return axios.get('/api/user/userBooking', user);
 }
 
-export function getSitterBookings(user) {
-	return axios.get('/api/sitters/sitterBookings', user);
+export function getSitterBookings() {
+	return axios.get('/api/sitters/sitterBookings');
 }
 
 export function getAvailableBookings() {
@@ -268,9 +268,9 @@ Actions.signUpBooking = booking => {
 	};
 };
 
-Actions.getSitterBookings = user => {
+Actions.getSitterBookings = () => {
 	return (dispatch) => {
-		return getSitterBookings(user);
+		return getSitterBookings();
 	};
 };
 

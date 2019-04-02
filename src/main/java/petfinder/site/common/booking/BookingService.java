@@ -348,4 +348,8 @@ public class BookingService {
         return bookingDto;
     }
 
+    public List<BookingDto> sitterBookings(String principal) {
+        return bookingDao.sitterBookings(principal);
+    }
+
 }

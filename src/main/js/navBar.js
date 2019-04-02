@@ -98,6 +98,9 @@ export class NavBar extends React.Component {
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <NavItem>
+                                            <NavLink href="#/signedBooking" className="navText">Signed Booking</NavLink>
+                                        </NavItem>
+                                        <NavItem>
                                             <NavLink href="#/availableBooking" className="navText">View Booking</NavLink>
                                         </NavItem>
                                         <NavItem>

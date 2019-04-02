@@ -8,16 +8,15 @@ class SignedBooking extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            booking: [{
+            signedBooking: [{
                 name: 'no name'
             }]
         };
     }
 
-    //set state as array of user's pets
     componentWillMount() {
-        Users.Actions.getSitterBookings(this.props.user).then(response => {
-            this.setState({booking: response});
+        this.props.getSitterBookings().then(response => {
+            this.setState({signedBooking: response});
         });
     }
 
@@ -26,7 +25,7 @@ class SignedBooking extends React.Component {
             <div>
                 <div id="p" className="col-6 offset-md-3">
                     <h1>This is Ur Booking</h1>
-                    {this.state.booking.map(booking => (
+                    {this.state.signedBooking.map(booking => (
                         <ListGroup key={booking.id}>
                             <ListGroupItem>
                                 <div onClick={() => this.props.selectBooking(booking)}>
@@ -59,7 +58,8 @@ SignedBooking = connect(
         user: Users.State.getUser(state)
     }),
     dispatch =>({
-        selectBooking: booking => dispatch(Users.Actions.selectBooking(booking))
+        selectBooking: booking => dispatch(Users.Actions.selectBooking(booking)),
+        getSitterBookings: () => dispatch(Users.Actions.getSitterBookings())
     })
 )(SignedBooking);
 
