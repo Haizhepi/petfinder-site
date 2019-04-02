@@ -81,6 +81,8 @@ export function approveBooking(sitter, booking) {
 		bookingId: booking.id,
 		principal: sitter.principal
 	};
+	console.log('sitter id: ');
+	console.log(sitter);
 	return axios.post('api/bookings/approve', request);
 }
 
@@ -105,8 +107,9 @@ export function cancelBooking(booking) {
 	return axios.post('/api/bookings/delete', booking);
 }
 
-export function getNotifications() {
-	return axios.get('/api/user/userNotifications');
+export function getNotifications(principal) {
+	let res = encodeURI('/api/user/userNotifications'+principal);
+	return axios.get(res);
 }
 
 export function getBookings(user) {
@@ -237,7 +240,7 @@ Actions.getBookings = user => {
 };
 
 Actions.getNotifications = user => {
-	return getNotifications();
+	return getNotifications(user.principal);
 };
 
 Actions.getAvailableBookings = user => {

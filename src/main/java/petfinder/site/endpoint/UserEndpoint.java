@@ -6,11 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import petfinder.site.common.Notification.NotificationDao;
 import petfinder.site.common.Notification.NotificationDto;
@@ -126,11 +122,14 @@ public class UserEndpoint {
 		return userService.findBookings(user);
 	}
 
-	@GetMapping(value = "/userNotifications")
-	public List<NotificationDto> getUserNotifications() {
+	@GetMapping(value = "/userNotifications{id:.+}", produces = "application/json")
+	public List<NotificationDto> getUserNotifications(@PathVariable("id") String id) {
 		System.out.println("Calling end point user notis");
-		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
-		UserDto user = userService.findUserByPrincipal(principal).get();
-		return userService.findNotifications(user);
+		Optional<UserDto> user = userService.findUserByPrincipal(id);
+		UserDto user1 = new UserDto("dummy");
+		if (user.isPresent()) {
+			user1 = user.get();
+		}
+		return userService.findNotifications(user1);
 	}
 }

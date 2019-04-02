@@ -32,6 +32,16 @@ public class BookingDao {
         return bookinsgs;
     }
 
+    public List<BookingDto> findNotStartedBooking() {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+        String queryString = String.format("status=SIGNED");
+        searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+
+        List<BookingDto> bookinsgs = bookingElasticsearchRepository.search(searchSourceBuilder);
+        return bookinsgs;
+    }
+
     public void save(BookingDto booking) {
         bookingElasticsearchRepository.save(booking);
     }

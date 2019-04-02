@@ -36,6 +36,13 @@ public class BookingEndpoint {
         return bookingService.findOpenBooking();
     }
 
+
+    @GetMapping(value = "/getStartingBooking")
+    public boolean getStartingBooking() {
+        bookingService.checkBookingSentNoti();
+        return true;
+    }
+
     @PostMapping(value = "")
     public BookingDto saveBooking(@RequestBody BookingDto booking) {
         System.out.println(booking.getDescription());
@@ -68,6 +75,7 @@ public class BookingEndpoint {
         }
         return temp.get();
     }
+
 
 
 

@@ -151,7 +151,7 @@ class OwnerDetails extends React.Component {
                                 <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                             </ModalFooter>
                         </Modal>
-                        <Button onClick={sitter =>{
+                        <Button onClick={() =>{
                             alert('approve sitter');
                             this.props.approve(sitter,this.props.booking);
                         }}>Approve</Button>

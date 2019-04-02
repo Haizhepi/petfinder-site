@@ -180,7 +180,7 @@ public class BookingService {
         ownerNoti.setUserPrinciple(temp.getOwner());
         ownerNoti.setInfo("Hi, your pet: " + temp.getPetId() + " is applied up by sitter: " + temp.getSitter());
         NotificationDto sitterNoti = new NotificationDto();
-        sitterNoti.setUserPrinciple(temp.getOwner());
+        sitterNoti.setUserPrinciple(principal);
         sitterNoti.setInfo("Hi, your have apply up: " + temp.getPetId() + " owned by: " + temp.getOwner());
         notificationDao.save(ownerNoti);
         notificationDao.save(sitterNoti);
@@ -204,8 +204,8 @@ public class BookingService {
         ownerNoti.setUserPrinciple(temp.getOwner());
         ownerNoti.setInfo("Hi, your pet: " + temp.getPetId() + " is signed up by sitter: " + temp.getSitter());
         NotificationDto sitterNoti = new NotificationDto();
-        sitterNoti.setUserPrinciple(temp.getOwner());
-        sitterNoti.setInfo("Hi, your have signed up: " + temp.getPetId() + " owned by: " + temp.getOwner());
+        sitterNoti.setUserPrinciple(temp.getSitter());
+        sitterNoti.setInfo("Hi, your have been approved up: " + temp.getPetId() + " owned by: " + temp.getOwner());
         notificationDao.save(ownerNoti);
         notificationDao.save(sitterNoti);
         temp.signUp();
@@ -219,6 +219,49 @@ public class BookingService {
 
     public void deleteBooking(BookingDto bookingDto) {
         bookingDao.deleteBooking(bookingDto.getId());
+    }
+
+    public void checkBookingSentNoti() {
+        List<BookingDto> bookings = bookingDao.findNotStartedBooking();
+        Date today = new Date();
+        Date startDate = new Date();
+
+
+        for (BookingDto bookingDto : bookings) {
+            String startDateString = bookingDto.getStartDate();
+            if (startDateString != null) {
+                try {
+                    startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString.substring(0, 10));
+                }catch (ParseException p) {
+                    System.out.println("error parsing");
+                }
+                if (isWithInOneDay(today, startDate)) {
+                    NotificationDto ownerNoti = new NotificationDto();
+                    ownerNoti.setUserPrinciple(bookingDto.getOwner());
+                    ownerNoti.setInfo("your booking starting from" + bookingDto.getStartDate() + " with: " + bookingDto.getSitter() + "will start soon. ");
+                    NotificationDto sitterNoti = new NotificationDto();
+                    sitterNoti.setUserPrinciple(bookingDto.getSitter());
+                    sitterNoti.setInfo("your booking with" + bookingDto.getOwner() + " will start soon" );
+                    notificationDao.save(ownerNoti);
+                    notificationDao.save(sitterNoti);
+                }
+            }
+
+
+        }
+    }
+
+    public boolean isWithInOneDay(Date today, Date startDate) {
+        Calendar todayCal = Calendar.getInstance();
+        Calendar startCal = Calendar.getInstance();
+        todayCal.setTime(today);
+        startCal.setTime(startDate);
+        if (todayCal.get(Calendar.YEAR) == startCal.get(Calendar.YEAR)
+                && todayCal.get(Calendar.MONTH) == startCal.get(Calendar.MONTH)
+                && Math.abs(todayCal.get(Calendar.DAY_OF_MONTH) - startCal.get(Calendar.DAY_OF_MONTH)) < 1) {
+            return true;
+        }
+        return false;
     }
 
 }
