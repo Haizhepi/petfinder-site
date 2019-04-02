@@ -20,12 +20,22 @@ class AvailableSitter extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {hasSubmitSucceeded: false};
+        this.state = {sitters: [{
+                name: 'no name'
+            }]};
+    }
+
+    componentWillMount() {
+        this.props.getAvailableSitters(this.props.booking.id).then(response => {
+            this.setState({sitters: response});
+        });
+
     }
 
 
     render() {
-
+        console.log('xxxx');
+        console.log(this.state.sitters);
         return (
             <h2>demo</h2>
         );
@@ -34,7 +44,7 @@ class AvailableSitter extends React.Component {
 
 AvailableSitter = connect(
     state =>({
-
+        booking: Users.State.getActiveBooking(state)
     }),
     dispatch => ({
         getAvailableSitters: bookingID => dispatch(Users.Actions.getAvailableSitters(bookingID))

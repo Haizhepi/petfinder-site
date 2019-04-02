@@ -23,6 +23,25 @@ public class UserDto implements Momento<String> {
 	private String myNewField;
 	private String firstName;
 	private String lastName;
+	private int score;
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public void promot() {
+		if (this.score < 100) {
+			score++;
+		}
+	}
+
+	public void panelty() {
+		score--;
+	}
 
 	public void setPrincipal(String principal) {
 		this.principal = principal;
@@ -88,6 +107,7 @@ public class UserDto implements Momento<String> {
 		this.roles = roles;
 		this.attributes = attributes;
 		this.type = type;
+		this.score = 2;
 	}
 
 	public UserDto(String principal) {
