@@ -36,21 +36,25 @@ class AvailabilityForm extends React.Component {
             startTime: date,
         });
     }
+
     handleChange2(date) {
         this.setState({
             endTime: date,
         });
     }
+
     handleChange3(date) {
         this.setState({
             startDate: date,
         });
     }
+
     handleChange4(date) {
         this.setState({
             endDate: date,
         });
     }
+
     //Defines the on submit behavior
     onSubmit = (form) => {
         let avail = {
@@ -77,52 +81,54 @@ class AvailabilityForm extends React.Component {
         }
 
         return (
-            <div>
-
-            <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                <Bessemer.Field name="availability" friendlyName="Enter availability"/>
-                <div className="wrapper">
-                    <DatePicker
-                        selected={this.state.startTime}
-                        onChange={this.handleChange1}
-                        selectsStart
-                        showTimeSelect
-                        showTimeSelectOnly
-                        startDate={this.state.startTime}
-                        endDate={this.state.endTime}
-                        timeIntervals={15}
-                        dateFormat="h:mm aa"
-                        timeCaption="Time"
-                    />
-                    <DatePicker
-                        selected={this.state.endTime}
-                        selectsEnd
-                        onChange={this.handleChange2}
-                        showTimeSelect
-                        showTimeSelectOnly
-                        startDate={this.state.startTime}
-                        endDate={this.state.endTime}
-                        timeIntervals={15}
-                        dateFormat="h:mm aa"
-                        timeCaption="Time"
-                    />
-                    <DatePicker
-                        selected={this.state.startDate}
-                        selectsStart
-                        startDate={this.state.startDate}
-                        endDate={this.state.endDate}
-                        onChange={this.handleChange3}
-                    />
-                    <DatePicker
-                        selected={this.state.endDate}
-                        selectsEnd
-                        startDate={this.state.startDate}
-                        endDate={this.state.endDate}
-                        onChange={this.handleChange4}
-                    />
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+            <div className="row">
+                <div className="col-6 offset-md-3" id="p">
+                    <h1 className="title">Enter Your Availability</h1>
+                    <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+                        <Bessemer.Field name="availability" friendlyName="Enter availability"/>
+                        <div className="wrapper">
+                            <DatePicker
+                                selected={this.state.startTime}
+                                onChange={this.handleChange1}
+                                selectsStart
+                                showTimeSelect
+                                showTimeSelectOnly
+                                startDate={this.state.startTime}
+                                endDate={this.state.endTime}
+                                timeIntervals={15}
+                                dateFormat="h:mm aa"
+                                timeCaption="Time"
+                            />
+                            <DatePicker
+                                selected={this.state.endTime}
+                                selectsEnd
+                                onChange={this.handleChange2}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                startDate={this.state.startTime}
+                                endDate={this.state.endTime}
+                                timeIntervals={15}
+                                dateFormat="h:mm aa"
+                                timeCaption="Time"
+                            />
+                            <DatePicker
+                                selected={this.state.startDate}
+                                selectsStart
+                                startDate={this.state.startDate}
+                                endDate={this.state.endDate}
+                                onChange={this.handleChange3}
+                            />
+                            <DatePicker
+                                selected={this.state.endDate}
+                                selectsEnd
+                                startDate={this.state.startDate}
+                                endDate={this.state.endDate}
+                                onChange={this.handleChange4}
+                            />
+                            <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+                        </div>
+                    </form>
                 </div>
-            </form>
             </div>
         );
     }

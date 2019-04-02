@@ -1,15 +1,9 @@
 import React from 'react';
-import * as Users from 'js/users';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-import * as Bessemer from 'js/login';
-import * as Validation from 'js/alloy/utils/validation';
 
 import * as ReduxForm from 'redux-form';
 
-import {connect} from 'react-redux';
 
-import * as Validation from 'js/alloy/utils/validation';
 import * as Bessemer from 'js/alloy/bessemer/components';
 import {Redirect} from 'react-router-dom';
 import * as Users from 'js/users';
@@ -33,10 +27,8 @@ class LeaveRating extends React.Component {
         let {handleSubmit, submitting} = this.props;
 
         if (submitting) {
-            if (this.props.authentication != null) {
-                this.forceUpdate();
-                return <Redirect to={'/'}/>;
-            }
+            this.forceUpdate();
+            return <Redirect to={'/'}/>;
         }
 
         return (
@@ -51,7 +43,7 @@ class LeaveRating extends React.Component {
 
 }
 
-LeaveRating = Redux.reduxForm({form: 'rating'})(LeaveRating);
+LeaveRating = ReduxForm.reduxForm({form: 'rating'})(LeaveRating);
 
 LeaveRating = connect(
     state =>({

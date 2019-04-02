@@ -326,4 +326,11 @@ public class BookingService {
         return false;
     }
 
+    public BookingDto finish(BookingDto bookingDto) {
+        BookingDto temp = bookingDao.findBooking(bookingDto.getId()).get();
+        temp.setStatus(BookingDto.BookingStatus.FINISHED);
+        bookingDao.save(temp);
+        return bookingDto;
+    }
+
 }

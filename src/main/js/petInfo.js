@@ -31,7 +31,6 @@ class PetForm extends React.Component {
 
         return (
             <div id="parent">
-                <div id="p" className="col-6 offset-md-3">
                     <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
                         <Bessemer.Field name="name" friendlyName="Pet Name"
                                         field={<input className="form-control" type="name"/>}/>
@@ -53,7 +52,6 @@ class PetForm extends React.Component {
                             <Bessemer.Button className="buttonType1" loading={submitting}>Add Pet</Bessemer.Button>
                         </div>
                     </form>
-                </div>
             </div>
         );
     }

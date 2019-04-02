@@ -134,6 +134,9 @@ class OwnerDetails extends React.Component {
                 <Link to={'/availableSitters'}>
                     <Button>View Sitters</Button>
                 </Link>
+                <Link to={'/addRating'}>
+                    <Button onClick={() => this.props.finish(this.props.booking)}>Finish Booking</Button>
+                </Link>
                 </ButtonGroup>
 
                 <hr></hr>
@@ -176,7 +179,8 @@ OwnerDetails = connect(
     dispatch => ({
         signUp: booking => dispatch(Users.Actions.signUpBooking(booking)),
         cancel: booking => dispatch(Users.Actions.cancelBooking(booking)),
-        approve: (sitter, booking) => dispatch(Users.Actions.approveBooking(sitter, booking))
+        approve: (sitter, booking) => dispatch(Users.Actions.approveBooking(sitter, booking)),
+        finish: booking => dispatch(Users.Actions.finish(booking))
 
 
     })

@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
+import * as Rating from 'js/rating';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import * as Booking from 'js/bookings/booking';
@@ -173,6 +174,25 @@ export class EditProfilePage extends React.Component {
     }
 }
 
+export class AddRating extends React.Component {
+    render() {
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Add a Rating</div>
+                            <hr/>
+                            <Rating.LeaveRating/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}
+
 export class GoogleMap extends React.Component {
     render() {
         return (
@@ -221,8 +241,13 @@ class Page2 extends React.Component {
             <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
-                    <h1>Owner Profile Page</h1>
-                    <Pets.PetForm/>
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Add a New Pet</div>
+                            <Pets.PetForm/>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         );
@@ -246,8 +271,13 @@ class Page3 extends React.Component {
             <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
-                    <h1>Pets</h1>
-                    <PetList.PetList/>
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Pets</div>
+                            <hr/>
+                            <PetList.PetList/>
+                        </div>
+                    </div>
                 </div>
             </section>
         );
@@ -436,7 +466,6 @@ export class Availability extends React.Component {
             <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
-                    <h1>Set your availability</h1>
                     <Avail.AvailabilityForm/>
                 </div>
             </section>
@@ -490,15 +519,15 @@ export class ViewSitter extends React.Component {
                     <h1>Invitations</h1>
                     {this.state.invitation.map(booking => (
                         <div>
-                        <ListGroup>
-                            <ListGroupItem>Invitation {booking.owner}</ListGroupItem>
-                        </ListGroup>
+                            <ListGroup>
+                                <ListGroupItem>Invitation {booking.owner}</ListGroupItem>
+                            </ListGroup>
 
-                        <Link to={'/'}>
-                        <Button onClick={() => {
-                        this.props.confirm(booking);
-                    }}>Confirm</Button>
-                        </Link>
+                            <Link to={'/'}>
+                                <Button onClick={() => {
+                                    this.props.confirm(booking);
+                                }}>Confirm</Button>
+                            </Link>
                         </div>
                     ))}
 

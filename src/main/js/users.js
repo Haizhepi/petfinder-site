@@ -106,6 +106,10 @@ export function getSitter(userid) {
 	return axios.get(res);
 }
 
+export function finish(booking) {
+	return axios.post('/api/bookings/finish', booking);
+}
+
 export function getUserDetails() {
 	return axios.get('/api/user');
 }
@@ -144,8 +148,10 @@ export function addRating(booking, content) {
 	let res = {
 		sitterPrinciple: booking.sitter,
 		bookingId: booking.id,
-		content: content
+		content: content.rating
 	};
+	console.log('rating: ');
+	console.log(res);
 	return axios.post('/api/rating', res);
 }
 export function inviteSitter(sitter, booking) {
@@ -224,6 +230,12 @@ Actions.addPetUser = (pet, user) => {
 Actions.addAvail = avail => {
 	return (dispatch) => {
 		return addAvailiablity(avail);
+	};
+};
+
+Actions.finish = booking => {
+	return (dispatch) => {
+		return finish(booking);
 	};
 };
 
