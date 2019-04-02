@@ -123,12 +123,17 @@ export function cancelBooking(booking) {
 }
 
 export function getNotifications(principal) {
+
 	let res = encodeURI('/api/user/userNotifications'+principal);
 	return axios.get(res);
 }
 
 export function getBookings(user) {
 	return axios.get('/api/user/userBooking', user);
+}
+
+export function getSitterBookings(user) {
+	return axios.get('/api/sitters/sitterBookings', user);
 }
 
 export function getAvailableBookings() {
@@ -170,6 +175,10 @@ State.getAuthentication = state => {
 	return state.authentication;
 };
 
+State.getNewNoti = state => {
+	return state.notis;
+};
+
 State.getUser = state => {
 	return state.user;
 };
@@ -196,7 +205,8 @@ Actions.Types = {
 	SET_PET: 'SET_PET',
 	SELECT_PET: 'PET_SELECTED',
 	SELECT_BOOKING: 'BOOKING_SELECTED',
-	SELECT_SITTER: 'SITTER_SELECTED'
+	SELECT_SITTER: 'SITTER_SELECTED',
+	NEW_NOTIS: 'NOTIS_NEW'
 };
 
 //save pet
@@ -255,6 +265,12 @@ Actions.makeBooking = booking => {
 Actions.signUpBooking = booking => {
 	return (dispatch) => {
 		return signUpBooking(booking);
+	};
+};
+
+Actions.getSitterBookings = user => {
+	return (dispatch) => {
+		return getSitterBookings(user);
 	};
 };
 
@@ -390,11 +406,29 @@ Actions.selectSitter = sitter => {
 	return {type: Actions.Types.SELECT_SITTER, sitter};
 };
 
+Actions.newNotis = notis => {
+	console.log('storing notis');
+	return {type: Actions.Types.NEW_NOTIS, notis};
+};
+
 
 
 export { Actions };
 
 let Reducers = {};
+
+Reducers.notis = (noti = null, action) => {
+	switch (action.type) {
+		case Actions.Types.NEW_NOTIS: {
+			return action.notis;
+		}
+		default: {
+			return noti;
+		}
+
+	}
+};
+
 
 Reducers.authentication = (authentication = null, action) => {
 	switch (action.type) {
@@ -470,5 +504,6 @@ Reducers.activeSitter = (activeSitter = null, action) => {
 		}
 	}
 };
+
 
 export { Reducers };
