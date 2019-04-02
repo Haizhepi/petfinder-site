@@ -76,7 +76,7 @@ class PetList extends React.Component {
 
     render() {
         return (
-            <div id="p" className="col-6 offset-md-3">
+            <div>
                 <h1> Pet Profile </h1>
                 <table>
                     <thead>

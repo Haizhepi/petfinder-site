@@ -2,17 +2,19 @@ import React from 'react';
 
 import GoogleMapReact from 'google-map-react';
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import { } from 'react-places-autocomplete'
 
-import Geocode from 'react-geocode'
+import { } from 'react-places-autocomplete';
+
+
+import Geocode from 'react-geocode';
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
 export class GoogleMapAPI extends React.Component {
     static defaultProps = {
         center: {
-            lat: 59.95,
-            lng: 30.33
+            lat: 31.54,
+            lng: -97.11
         },
         zoom: 11
     };
@@ -27,8 +29,8 @@ export class GoogleMapAPI extends React.Component {
                     defaultZoom={this.props.zoom}
                 >
                     <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
+                        lat={31.5497}
+                        lng={-97.1143}
                         text='My Marker'
                     />
                 </GoogleMapReact>
@@ -41,4 +43,4 @@ export default GoogleApiWrapper(
     (props) => ({
             apiKey: props.apiKey
         }
-    ))(GoogleMapAPI)
+    ))(GoogleMapAPI);

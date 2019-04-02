@@ -12,6 +12,19 @@ public class SitterAvailabilityDto implements Momento<String> {
     private String startDate;
     private String endDate;
     private String startTime;
+    private List<String> invitations;
+
+    public List<String> getInvitations() {
+        return invitations;
+    }
+
+    public void setInvitations(List<String> invitations) {
+        this.invitations = invitations;
+    }
+
+    public void addInvitation(String bookingId) {
+        invitations.add(bookingId);
+    }
 
     public SitterAvailabilityDto(String principal, String availability, String startDate, String endDate, String startTime, String endTime) {
         this.principal = principal;
