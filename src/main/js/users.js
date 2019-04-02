@@ -47,6 +47,9 @@ export function editPet(pet) {
 	return axios.post('/api/pets/edit_pet', pet);
 }
 
+export function confirm(booking) {
+	return axios.post('/api/bookings/confirm', booking);
+}
 export function addAvailiablity(avail) {
 	return axios.post('/api/sitters', avail);
 }
@@ -107,6 +110,10 @@ export function getUserDetails() {
 	return axios.get('/api/user');
 }
 
+export function getInvitation() {
+	return axios.get('/api/sitters/invitations');
+}
+
 export function cancelBooking(booking) {
 	return axios.post('/api/bookings/delete', booking);
 }
@@ -133,6 +140,15 @@ export function getSitterInfo(userid) {
 	return axios.get(res);
 }
 
+export function inviteSitter(sitter, booking) {
+	let request = {
+		bookingId: booking,
+		principal: sitter
+	};
+	console.log('sitter id: ');
+	console.log(sitter);
+	return axios.post('api/bookings/invite', request);
+}
 let State = {};
 
 State.getAuthentication = state => {
@@ -227,9 +243,21 @@ Actions.approveBooking = (sitter, booking) => {
 	};
 };
 
+Actions.inviteSitter = (sitter, booking) => {
+	return (dispatch) => {
+		return inviteSitter(sitter, booking);
+	};
+};
+
 Actions.cancelBooking = booking => {
 	return (dispatch) => {
 		return cancelBooking(booking);
+	};
+};
+
+Actions.getInvitation = () => {
+	return (dispatch) => {
+		return getInvitation();
 	};
 };
 //get list of pets belonging to current user
@@ -271,6 +299,12 @@ Actions.register = user => {
 		return register(user).then(() => {
 			return dispatch(Actions.authenticate(user.principal, user.password));
 		});
+	};
+};
+
+Actions.confirm = booking => {
+	return (dispatch) => {
+		return confirm(booking);
 	};
 };
 
@@ -328,6 +362,8 @@ Actions.selectSitter = sitter => {
 	console.log('the booking is clicked!', sitter);
 	return {type: Actions.Types.SELECT_SITTER, sitter};
 };
+
+
 
 export { Actions };
 

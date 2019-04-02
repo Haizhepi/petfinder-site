@@ -5,6 +5,7 @@ import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 import { } from 'react-places-autocomplete';
 
+
 import Geocode from 'react-geocode';
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
@@ -42,4 +43,4 @@ export default GoogleApiWrapper(
     (props) => ({
             apiKey: props.apiKey
         }
-    ))(GoogleMapAPI)
+    ))(GoogleMapAPI);

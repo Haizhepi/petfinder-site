@@ -36,8 +36,8 @@ public class SitterAvailabilityDao {
 
     public List<SitterAvailabilityDto> findAllAvailability() {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        String queryString = String.format("principal=*");
-        searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+
+        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
         return sitterAvailabilityRepository.search(searchSourceBuilder);
     }
 

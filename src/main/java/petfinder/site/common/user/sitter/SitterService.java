@@ -31,15 +31,27 @@ public class SitterService {
         BookingDto booking = bookingService.findBooking(bookingId).get();
         List<SitterAndDate> res = new ArrayList<>();
         List<SitterAvailabilityDto> avails = sitterAvailabilityDao.findAllAvailability();
+        System.out.println("list size" + avails.size());
+
         for (SitterAvailabilityDto sitterAvailabilityDto : avails) {
+            if (sitterAvailabilityDto.getStartDate() != null
+                    && sitterAvailabilityDto.getEndDate() != null
+                    && sitterAvailabilityDto.getStartTime() != null
+                    && sitterAvailabilityDto.getEndTime() != null
+                    && booking.getStartDate() != null
+                    && booking.getEndDate() != null
+                    && booking.getStartTime() != null
+                    && booking.getEndTime() != null) {
                 if (bookingService.evaluate(booking.getStartDate(), booking.getEndDate(),
                         sitterAvailabilityDto.getStartDate(), sitterAvailabilityDto.getEndDate(),
                         booking.getStartTime(), booking.getEndTime(),
                         sitterAvailabilityDto.getStartTime(), sitterAvailabilityDto.getEndTime()
                 ) == 1) {
+                    System.out.println("valid");
                     UserDto sitter = userDao.findUserByPrincipal(sitterAvailabilityDto.getPrincipal()).get().getUser();
                     res.add(new SitterAndDate(sitterAvailabilityDto, sitter));
                 }
+            }
 
         }
         return res;
@@ -81,6 +93,16 @@ public class SitterService {
             sitterAvailabilityDao.save(sitterAvailabilityDto);
         }
         return temp;
+    }
+
+    public List<BookingDto> getInvitations(String userId) {
+        SitterAvailabilityDto temp = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(userId)).get();
+        List<BookingDto> res = new ArrayList<>();
+        for (String id : temp.getInvitations()) {
+            res.add(bookingService.findBooking(id).get());
+        }
+        System.out.println("find bookings: " + res.size());
+        return res;
     }
 
 }

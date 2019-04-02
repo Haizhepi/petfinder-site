@@ -85,17 +85,23 @@ class AvailabilityForm extends React.Component {
                     <DatePicker
                         selected={this.state.startTime}
                         onChange={this.handleChange1}
+                        selectsStart
                         showTimeSelect
                         showTimeSelectOnly
+                        startDate={this.state.startTime}
+                        endDate={this.state.endTime}
                         timeIntervals={15}
                         dateFormat="h:mm aa"
                         timeCaption="Time"
                     />
                     <DatePicker
                         selected={this.state.endTime}
+                        selectsEnd
                         onChange={this.handleChange2}
                         showTimeSelect
                         showTimeSelectOnly
+                        startDate={this.state.startTime}
+                        endDate={this.state.endTime}
                         timeIntervals={15}
                         dateFormat="h:mm aa"
                         timeCaption="Time"
