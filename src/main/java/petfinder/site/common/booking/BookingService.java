@@ -198,6 +198,33 @@ public class BookingService {
         return temp;
     }
 
+    public BookingDto confrim(String bookingId) {
+        BookingDto temp = null;
+        Optional<BookingDto> res = bookingDao.findBooking(bookingId);
+        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (!res.isPresent()) {
+            System.out.println("cant find it");
+        }
+        else {
+            temp = res.get();
+            temp.setSitter(principal);
+            temp.signUp();
+
+        }
+        SitterAvailabilityDto avail = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(principal)).get();
+        avail.getInvitations().remove(bookingId);
+        NotificationDto ownerNoti = new NotificationDto();
+        ownerNoti.setUserPrinciple(temp.getOwner());
+        ownerNoti.setInfo("Hi, sitter has agree to the booking");
+        NotificationDto sitterNoti = new NotificationDto();
+        sitterNoti.setUserPrinciple(principal);
+        sitterNoti.setInfo("Hi, your have signed up to the booking");
+        notificationDao.save(ownerNoti);
+        notificationDao.save(sitterNoti);
+        bookingDao.save(temp);
+        return temp;
+    }
+
     public BookingDto approve(String bookingId, String principle) {
         BookingDto temp = null;
         Optional<BookingDto> res = bookingDao.findBooking(bookingId);
@@ -223,6 +250,31 @@ public class BookingService {
 
         return temp;
     }
+
+    public BookingDto invite(String bookingId, String principal) {
+        SitterAvailabilityDto avail = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(principal)).get();
+        BookingDto bookingDto = bookingDao.findBooking(bookingId).get();
+
+        if (avail.getInvitations() == null) {
+            avail.setInvitations(_Lists.list(bookingId));
+        }
+        else {
+            avail.addInvitation(bookingId);
+        }
+        NotificationDto ownerNoti = new NotificationDto();
+        ownerNoti.setUserPrinciple(bookingDto.getOwner());
+        ownerNoti.setInfo("You have invite user: " + principal);
+        NotificationDto sitterNoti = new NotificationDto();
+        sitterNoti.setUserPrinciple(principal);
+        sitterNoti.setInfo(bookingDto.getOwner() + "invites you to the booking");
+        notificationDao.save(ownerNoti);
+        notificationDao.save(sitterNoti);
+        sitterAvailabilityDao.save(avail);
+        System.out.println("invite sitter");
+        return bookingDto;
+    }
+
+
 
 
     public List<BookingDto> findOpenBooking() { return bookingDao.findOpenBooking();}

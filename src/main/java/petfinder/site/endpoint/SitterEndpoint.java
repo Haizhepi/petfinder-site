@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.user.UserDto;
 import petfinder.site.common.user.sitter.SitterAndDate;
 import petfinder.site.common.user.sitter.SitterAvailabilityDto;
@@ -58,5 +59,12 @@ public class SitterEndpoint {
     public List<SitterAndDate> getAvailableSitter(@PathVariable("id") String id) {
         return sitterService.getSitters(id);
     }
+
+    @GetMapping(value = "/invitations", produces = "application/json")
+    public List<BookingDto> getInvitations() {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+        return sitterService.getInvitations(principal);
+    }
+
 
 }

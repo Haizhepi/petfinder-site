@@ -59,6 +59,13 @@ public class BookingEndpoint {
         return booking;
     }
 
+    @PostMapping(value = "/confirm")
+    public BookingDto confirm(@RequestBody BookingDto booking) {
+        System.out.println("calling+" + booking.getId());
+        bookingService.confrim(booking.getId());
+        return booking;
+    }
+
     @PostMapping(value = "/delete")
     public BookingDto cancelBooking(@RequestBody BookingDto booking) {
         System.out.println("calling+" + booking.getId());
@@ -77,7 +84,15 @@ public class BookingEndpoint {
     }
 
 
-
+    @PostMapping(value = "/invite")
+    public BookingDto inviteSitter(@RequestBody ApproveRequest approveRequest) {
+        System.out.println("inviting+" + approveRequest.getBookingId());
+        Optional<BookingDto> temp = bookingService.findBooking(approveRequest.getBookingId());
+        if (temp.isPresent()) {
+            bookingService.invite(approveRequest.getBookingId(), approveRequest.getPrincipal());
+        }
+        return temp.get();
+    }
 
 
 }

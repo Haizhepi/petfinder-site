@@ -95,4 +95,14 @@ public class SitterService {
         return temp;
     }
 
+    public List<BookingDto> getInvitations(String userId) {
+        SitterAvailabilityDto temp = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(userId)).get();
+        List<BookingDto> res = new ArrayList<>();
+        for (String id : temp.getInvitations()) {
+            res.add(bookingService.findBooking(id).get());
+        }
+        System.out.println("find bookings: " + res.size());
+        return res;
+    }
+
 }

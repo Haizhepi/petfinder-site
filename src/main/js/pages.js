@@ -457,19 +457,26 @@ export class ViewSitter extends React.Component {
         this.state = {
             sitter: [{
                 availability: 'no name'
-            }]
+            }],
+            invitation: []
         };
     }
 
     componentWillMount() {
         Users.Actions.getSitter(this.props.user.principal).then(response => {
-            console.log('?????');
             console.log(response);
             this.setState({sitter: response});
+        });
+        this.props.getInvitation().then(response => {
+            console.log('invi');
+            console.log(response);
+            this.setState({invitation: response});
+
         });
     }
 
     render() {
+
         return (
             <section className="webWrapper">
                 <NavBar/>
@@ -480,6 +487,21 @@ export class ViewSitter extends React.Component {
                     <h1>{this.state.sitter.startTime}</h1>
                     <h1>{this.state.sitter.endTime}</h1>
                     <h1>{this.state.sitter.availability}</h1>
+                    <h1>Invitations</h1>
+                    {this.state.invitation.map(booking => (
+                        <div>
+                        <ListGroup>
+                            <ListGroupItem>Invitation {booking.owner}</ListGroupItem>
+                        </ListGroup>
+
+                        <Link to={'/'}>
+                        <Button onClick={() => {
+                        this.props.confirm(booking);
+                    }}>Confirm</Button>
+                        </Link>
+                        </div>
+                    ))}
+
                 </div>
             </section>
         );
@@ -493,6 +515,8 @@ ViewSitter = connect(
     }),
     dispatch => ({
         //getSitter: (user) => dispatch(Users.Actions.getSitter(user))
+        getInvitation: () => dispatch(Users.Actions.getInvitation()),
+        confirm: (booking) => dispatch(Users.Actions.confirm(booking))
     })
 )(ViewSitter);
 
