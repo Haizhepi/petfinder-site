@@ -209,13 +209,7 @@ class BookingDetail extends React.Component {
             console.log(response);
             this.setState({pet: response});
         });
-        if (this.props.user.type !== 'SITTER') {
-            Users.Actions.getRecommend(this.props.booking.id).then(response => {
-                console.log('?????');
-                console.log(response);
-                this.setState({recommend: response});
-            });
-        }
+
     }
 
     render() {

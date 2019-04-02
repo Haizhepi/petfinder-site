@@ -118,20 +118,30 @@ public class BookingService {
             System.out.println("parse problem" +p.toString());
         }
 
-        if (bookingStartDate.compareTo(sitterEndDate) < 0) {
+        if (bookingStartDate.compareTo(sitterStartDate) < 0) {
+            return 0;
+        }
+        if (bookingStartDate.compareTo(sitterEndDate) > 0) {
+            return 0;
+        }
+        if (bookingEndDate.compareTo(sitterStartDate) < 0) {
             return 0;
         }
         if (bookingEndDate.compareTo(sitterEndDate) > 0) {
             return 0;
         }
-        if (bookingStartTime.compareTo(sitterEndTime) < 0) {
-            return 0;
-        }
-        if (bookingEndtime.compareTo(sitterEndTime) > 0) {
-            return 0;
-        }
-
-
+//        if ((int)bookingStartTime.getTime() % (24*60*60*1000L) - (int) (sitterStartTime.getTime() % (24*60*60*1000L)) < 0) {
+//            return 0;
+//        }
+//        if ((int)bookingStartTime.getTime() % (24*60*60*1000L) - (int) (sitterEndTime.getTime() % (24*60*60*1000L)) > 0) {
+//            return 0;
+//        }
+//        if ((int)bookingEndtime.getTime() % (24*60*60*1000L) - (int) (sitterStartTime.getTime() % (24*60*60*1000L)) < 0) {
+//            return 0;
+//        }
+//        if ((int)bookingEndtime.getTime() % (24*60*60*1000L) - (int) (sitterEndTime.getTime() % (24*60*60*1000L)) > 0) {
+//            return 0;
+//        }
         return 1;
     }
 
