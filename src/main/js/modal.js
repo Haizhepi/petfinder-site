@@ -36,6 +36,7 @@ export class MyModal extends React.Component {
                     <section>
                         <a onClick={this.toggle} className="btn btn1">Start as Pet Sitter</a>
                         <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
+                        <a href={'#/searchLocation'} onClick={this.toggle} className="btn btn1">   Add Your Address   </a>
 
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
                             <div className="mtitle">
@@ -57,7 +58,7 @@ export class MyModal extends React.Component {
                     <section>
                         <a onClick={this.toggle} className="btn btn1">Start as Pet Owner</a>
                         <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
-
+                        <a href={'#/searchLocation'} onClick={this.toggle} className="btn btn1">   Add Your Address   </a>
 
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
                             <div className="mtitle">
@@ -78,6 +79,7 @@ export class MyModal extends React.Component {
                     <section>
                         <a onClick={this.toggle} className="btn btn1">   Start   </a>
                         <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
+                        <a href={'#/searchLocation'} onClick={this.toggle} className="btn btn1">   Add Your Address   </a>
 
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
                             <div className="mtitle">

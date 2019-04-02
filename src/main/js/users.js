@@ -123,12 +123,17 @@ export function cancelBooking(booking) {
 }
 
 export function getNotifications(principal) {
+
 	let res = encodeURI('/api/user/userNotifications'+principal);
 	return axios.get(res);
 }
 
 export function getBookings(user) {
 	return axios.get('/api/user/userBooking', user);
+}
+
+export function getSitterBookings() {
+	return axios.get('/api/sitters/sitterBookings');
 }
 
 export function getAvailableBookings() {
@@ -144,11 +149,12 @@ export function getSitterInfo(userid) {
 	return axios.get(res);
 }
 
-export function addRating(booking, content) {
+export function addRating(booking, content, ratingStar) {
 	let res = {
 		sitterPrinciple: booking.sitter,
 		bookingId: booking.id,
-		content: content.rating
+		content: content.rating,
+		rating: ratingStar
 	};
 	console.log('rating: ');
 	console.log(res);
@@ -167,6 +173,10 @@ let State = {};
 
 State.getAuthentication = state => {
 	return state.authentication;
+};
+
+State.getNewNoti = state => {
+	return state.notis;
 };
 
 State.getUser = state => {
@@ -195,7 +205,8 @@ Actions.Types = {
 	SET_PET: 'SET_PET',
 	SELECT_PET: 'PET_SELECTED',
 	SELECT_BOOKING: 'BOOKING_SELECTED',
-	SELECT_SITTER: 'SITTER_SELECTED'
+	SELECT_SITTER: 'SITTER_SELECTED',
+	NEW_NOTIS: 'NOTIS_NEW'
 };
 
 //save pet
@@ -257,6 +268,12 @@ Actions.signUpBooking = booking => {
 	};
 };
 
+Actions.getSitterBookings = () => {
+	return (dispatch) => {
+		return getSitterBookings();
+	};
+};
+
 Actions.approveBooking = (sitter, booking) => {
 	return (dispatch) => {
 		return approveBooking(sitter, booking);
@@ -305,9 +322,9 @@ Actions.getAvailableBookings = user => {
 	return getAvailableBookings();
 };
 
-Actions.addRating = (booking, content) => {
+Actions.addRating = (booking, content, ratingStar) => {
 	return (dispatch) => {
-		return addRating(booking, content);
+		return addRating(booking, content, ratingStar);
 	};
 };
 
@@ -389,11 +406,29 @@ Actions.selectSitter = sitter => {
 	return {type: Actions.Types.SELECT_SITTER, sitter};
 };
 
+Actions.newNotis = notis => {
+	console.log('storing notis');
+	return {type: Actions.Types.NEW_NOTIS, notis};
+};
+
 
 
 export { Actions };
 
 let Reducers = {};
+
+Reducers.notis = (noti = null, action) => {
+	switch (action.type) {
+		case Actions.Types.NEW_NOTIS: {
+			return action.notis;
+		}
+		default: {
+			return noti;
+		}
+
+	}
+};
+
 
 Reducers.authentication = (authentication = null, action) => {
 	switch (action.type) {
@@ -469,5 +504,6 @@ Reducers.activeSitter = (activeSitter = null, action) => {
 		}
 	}
 };
+
 
 export { Reducers };

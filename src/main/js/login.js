@@ -15,6 +15,7 @@ import * as Apps from 'js/app.js';
 import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
+import {LocationSearchInput} from 'js/autoComplete';
 
 //Class that represents the log in form
 class LoginForm extends React.Component {
@@ -249,7 +250,6 @@ class RegistrationForm extends React.Component {
                                     {value: 'owner', label: 'Owner'}]}
                                                         placeholder="Owner or Sitter?"
                                 />}/>
-
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Register</Bessemer.Button>
                 </div>

@@ -7,6 +7,7 @@ import { } from 'react-places-autocomplete';
 
 
 import Geocode from 'react-geocode';
+import {LocationSearchInput} from 'js/autoComplete';
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
@@ -14,13 +15,14 @@ export class GoogleMapAPI extends React.Component {
     static defaultProps = {
         center: {
             lat: 31.54,
-            lng: -97.11
+            lng: -97.10
         },
         zoom: 11
     };
 
     render() {
         return (
+
             // Important! Always set the container height explicitly
             <div style={{height: '100%', width: '100%'}}>
                 <GoogleMapReact
@@ -29,8 +31,8 @@ export class GoogleMapAPI extends React.Component {
                     defaultZoom={this.props.zoom}
                 >
                     <AnyReactComponent
-                        lat={31.5497}
-                        lng={-97.1143}
+                        lat={31.5437039}
+                        lng={-97.1037349}
                         text='My Marker'
                     />
                 </GoogleMapReact>
@@ -38,9 +40,3 @@ export class GoogleMapAPI extends React.Component {
         );
     }
 }
-
-export default GoogleApiWrapper(
-    (props) => ({
-            apiKey: props.apiKey
-        }
-    ))(GoogleMapAPI);

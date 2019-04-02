@@ -66,6 +66,12 @@ public class BookingEndpoint {
         return booking;
     }
 
+    @PostMapping(value = "/sitterCancel")
+    public BookingDto sitterCancel(@RequestBody BookingDto booking) {
+        System.out.println("canceling+" + booking.getId());
+        bookingService.sitterCancel(booking.getId());
+        return booking;
+    }
     @PostMapping(value = "/delete")
     public BookingDto cancelBooking(@RequestBody BookingDto booking) {
         System.out.println("calling+" + booking.getId());
@@ -99,6 +105,8 @@ public class BookingEndpoint {
         System.out.println("Booking finish");
         return bookingService.finish(bookingDto);
     }
+
+
 
 
 }

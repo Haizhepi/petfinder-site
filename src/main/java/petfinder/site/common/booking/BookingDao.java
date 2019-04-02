@@ -45,4 +45,14 @@ public class BookingDao {
     public void save(BookingDto booking) {
         bookingElasticsearchRepository.save(booking);
     }
+
+    public List<BookingDto> sitterBookings(String principal) {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+        String queryString = String.format("sitter=\"%s\"", principal.replace("\"", ""));
+        searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+
+        List<BookingDto> res = bookingElasticsearchRepository.search(searchSourceBuilder);
+        return res;
+    }
 }

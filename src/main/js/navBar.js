@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import {connect} from 'react-redux';
 import * as Users from 'js/users';
-
+import _ from 'lodash';
 export class NavBar extends React.Component {
     constructor(props) {
         super(props);
@@ -52,11 +52,24 @@ export class NavBar extends React.Component {
 
     render() {
         if (this.props.user) {
+            if (this.state.seconds % 10 === 0) {
+                Users.Actions.getNotifications(this.props.user).then(response => {
+                    this.props.getNotis(response);
+                });
+
+                if (this.props.noti){
+                    console.log('check');
+                    console.log(this.props.noti);
+                }
+                this.tick();
+
+
+            }
             if (this.props.user.type === 'SITTER') {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand href="/">Welcome, {this.props.user.firstName}</NavbarBrand>
+                            <NavbarBrand href="/">Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -85,6 +98,9 @@ export class NavBar extends React.Component {
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <NavItem>
+                                            <NavLink href="#/signedBooking" className="navText">Signed Booking</NavLink>
+                                        </NavItem>
+                                        <NavItem>
                                             <NavLink href="#/availableBooking" className="navText">View Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
@@ -104,7 +120,7 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand href="/">Welcome, {this.props.user.firstName}</NavbarBrand>
+                            <NavbarBrand href="/">Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -155,7 +171,7 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand href="/">Welcome, {this.props.user.firstName}</NavbarBrand>
+                            <NavbarBrand href="/">Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -213,10 +229,12 @@ export class NavBar extends React.Component {
                 );
             }
         } else {
+
             return (
+
                 <Navbar light expand="md" className="navBar">
                     <h1 className="animated 1 fadeInLeft">
-                        <NavbarBrand href="/">Welcome to PetFinder {this.state.seconds}</NavbarBrand>
+                        <NavbarBrand href="/">Welcome to PetFinder {_.isDefined(this.state.seconds)}</NavbarBrand>
                     </h1>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -255,9 +273,11 @@ export class NavBar extends React.Component {
 NavBar = connect(
     state => ({
         authentication: Users.State.getAuthentication(state),
-        user: Users.State.getUser(state)
+        user: Users.State.getUser(state),
+        noti: Users.State.getNewNoti(state)
     }),
     dispatch => ({
-        register: user => dispatch(Users.Actions.register(user))
+        register: user => dispatch(Users.Actions.register(user)),
+        getNotis: (noti) => dispatch(Users.Actions.newNotis(noti))
     })
 )(NavBar);

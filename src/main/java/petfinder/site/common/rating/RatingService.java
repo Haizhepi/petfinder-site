@@ -14,8 +14,13 @@ public class RatingService {
         return ratingDao.findRating(id);
     }
     public RatingDto save(RatingDto rating) {
-        ratingDao.save(rating);
-        return rating;
+        RatingDto rat = rating;
+        Optional<RatingDto> temp = ratingDao.findRating(rating.getId());
+        if (temp.isPresent()) {
+            rat = temp.get();
+        }
+        ratingDao.save(rat);
+        return rat;
     }
 
     public List<RatingDto> findRatingByUserID(String principal) {
