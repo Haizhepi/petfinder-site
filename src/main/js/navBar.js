@@ -51,6 +51,8 @@ export class NavBar extends React.Component {
     }
 
     render() {
+        // if (this.state.seconds % 10 === 0) {
+        // }
         if (this.props.user) {
             if (this.props.user.type === 'SITTER') {
                 return (
@@ -213,7 +215,9 @@ export class NavBar extends React.Component {
                 );
             }
         } else {
+
             return (
+
                 <Navbar light expand="md" className="navBar">
                     <h1 className="animated 1 fadeInLeft">
                         <NavbarBrand href="/">Welcome to PetFinder {this.state.seconds}</NavbarBrand>
