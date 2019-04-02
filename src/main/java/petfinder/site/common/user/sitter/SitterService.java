@@ -3,10 +3,13 @@ package petfinder.site.common.user.sitter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import petfinder.site.common.booking.BookingDao;
+import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.user.UserAuthenticationDto;
 import petfinder.site.common.user.UserDao;
 import petfinder.site.common.user.UserDto;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +19,14 @@ public class SitterService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private BookingDao bookingDao;
+
+    public List<SitterAndDate> getSitters(String bookingId) {
+        BookingDto booking = bookingDao.findBooking(bookingId).get();
+        return null;
+    }
 
     public Optional<SitterAvailabilityDto> findAvailability(String id) {
         System.out.println("here"+id);
