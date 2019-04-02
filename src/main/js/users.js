@@ -140,6 +140,14 @@ export function getSitterInfo(userid) {
 	return axios.get(res);
 }
 
+export function addRating(booking, content) {
+	let res = {
+		sitterPrinciple: booking.sitter,
+		bookingId: booking.id,
+		content: content
+	};
+	return axios.post('/api/rating', res);
+}
 export function inviteSitter(sitter, booking) {
 	let request = {
 		bookingId: booking,
@@ -283,6 +291,12 @@ Actions.getNotifications = user => {
 
 Actions.getAvailableBookings = user => {
 	return getAvailableBookings();
+};
+
+Actions.addRating = (booking, content) => {
+	return (dispatch) => {
+		return addRating(booking, content);
+	};
 };
 
 
