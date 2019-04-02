@@ -35,6 +35,7 @@ export class MyModal extends React.Component {
                 return (
                     <section>
                         <a onClick={this.toggle} className="btn btn1">Start as Pet Sitter</a>
+                        <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
 
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
                             <div className="mtitle">
@@ -55,6 +56,7 @@ export class MyModal extends React.Component {
                 return (
                     <section>
                         <a onClick={this.toggle} className="btn btn1">Start as Pet Owner</a>
+                        <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
 
 
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
@@ -75,6 +77,7 @@ export class MyModal extends React.Component {
                 return (
                     <section>
                         <a onClick={this.toggle} className="btn btn1">   Start   </a>
+                        <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
 
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
                             <div className="mtitle">
@@ -100,6 +103,7 @@ export class MyModal extends React.Component {
                 <section>
                     <a onClick={this.toggle} className="btn btn1"> What is PetFinder? </a>
                     <a onClick={this.toggle} className="btn btn1"> Why PetFinder? </a>
+                    <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
 
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
                         <div className="mtitle">
