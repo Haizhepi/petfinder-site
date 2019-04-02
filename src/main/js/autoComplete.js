@@ -50,48 +50,53 @@ export class LocationSearchInput extends React.Component {
 
     render() {
         return (
-            <div id="mydiv">
-                {this.state.gmapsLoaded && (
+            <div className="container padded">
+                <div className="row">
+                    <div className="col-6 offset-md-3" id="p">
+                        <div className="title">Enter Your Address</div>
+                        {this.state.gmapsLoaded && (
 
-                    <PlacesAutocomplete
-                        value={this.state.address}
-                        onChange={this.handleChange}
-                        onSelect={this.handleSelect}
-                    >
-                        {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-                            <div>
-                                <input
-                                    {...getInputProps({
-                                        placeholder: 'Search Places ...',
-                                        className: 'location-search-input',
-                                    })}
-                                />
-                                <div className="autocomplete-dropdown-container">
-                                    {loading && <div>Loading...</div>}
-                                    {suggestions.map(suggestion => {
-                                        const className = suggestion.active
-                                            ? 'suggestion-item--active'
-                                            : 'suggestion-item';
-                                        // inline style for demonstration purpose
-                                        const style = suggestion.active
-                                            ? {backgroundColor: '#fafafa', cursor: 'pointer'}
-                                            : {backgroundColor: '#ffffff', cursor: 'pointer'};
-                                        return (
-                                            <div
-                                                {...getSuggestionItemProps(suggestion, {
-                                                    className,
-                                                    style,
-                                                })}
-                                            >
-                                                <span>{suggestion.description}</span>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
+                            <PlacesAutocomplete
+                                value={this.state.address}
+                                onChange={this.handleChange}
+                                onSelect={this.handleSelect}
+                            >
+                                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                                    <div>
+                                        <input
+                                            {...getInputProps({
+                                                placeholder: 'Search Your Address Here...',
+                                                className: 'location-search-input form-control',
+                                            })}
+                                        />
+                                        <div className="autocomplete-dropdown-container">
+                                            {loading && <div>Loading...</div>}
+                                            {suggestions.map(suggestion => {
+                                                const className = suggestion.active
+                                                    ? 'suggestion-item--active'
+                                                    : 'suggestion-item';
+                                                // inline style for demonstration purpose
+                                                const style = suggestion.active
+                                                    ? {backgroundColor: '#fafafa', cursor: 'pointer'}
+                                                    : {backgroundColor: '#ffffff', cursor: 'pointer'};
+                                                return (
+                                                    <div
+                                                        {...getSuggestionItemProps(suggestion, {
+                                                            className,
+                                                            style,
+                                                        })}
+                                                    >
+                                                        <span>{suggestion.description}</span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </PlacesAutocomplete>
                         )}
-                    </PlacesAutocomplete>
-                )}
+                    </div>
+                </div>
             </div>
 
         );
