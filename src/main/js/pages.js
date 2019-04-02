@@ -20,7 +20,7 @@ import {Alert, Button, ListGroup, ListGroupItem} from 'reactstrap';
 
 import 'styles/main.scss';
 import {MyBookings} from 'js/bookings/MyBookings';
-import {AvailableSitter} from 'js/bookings/availableSitters'
+import {AvailableSitter} from 'js/bookings/availableSitters';
 import {MyModal} from 'js/modal';
 import 'react-datepicker';
 import 'react-datepicker/src/stylesheets/datepicker.scss';

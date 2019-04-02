@@ -125,11 +125,16 @@ class OwnerDetails extends React.Component {
                     <ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>
                     <ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>
                 </ListGroup>
+                <ButtonGroup>
                 <Link to={'/myBooking'}>
                 <Button onClick={() => this.props.cancel(this.props.booking).then(response => {
                    alert('deleting');
                 })}>Cancel</Button>
                 </Link>
+                <Link to={'/availableSitters'}>
+                    <Button>View Sitters</Button>
+                </Link>
+                </ButtonGroup>
 
                 <hr></hr>
 
