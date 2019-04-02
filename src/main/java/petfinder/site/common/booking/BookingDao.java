@@ -18,10 +18,24 @@ public class BookingDao {
         return bookingElasticsearchRepository.find(id);
     }
 
+    public void deleteBooking(String id) {
+        bookingElasticsearchRepository.delete(id);
+    }
+
     public List<BookingDto> findOpenBooking() {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
         String queryString = String.format("status=UNSIGNED");
+        searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+
+        List<BookingDto> bookinsgs = bookingElasticsearchRepository.search(searchSourceBuilder);
+        return bookinsgs;
+    }
+
+    public List<BookingDto> findNotStartedBooking() {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+        String queryString = String.format("status=SIGNED");
         searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
 
         List<BookingDto> bookinsgs = bookingElasticsearchRepository.search(searchSourceBuilder);

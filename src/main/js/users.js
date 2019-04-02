@@ -72,12 +72,22 @@ export function getPets() {
     return axios.get('/api/user/pet');
 }
 
+export function getAvailableSitters(bookingId) {
+	return axios.get('/api/sitters/available' + bookingId);
+}
+
 export function getPetById(id) {
 	return axios.get('/api/pets/' + id);
 }
 
-export function approveBooking(sitter) {
-	return axios.post();
+export function approveBooking(sitter, booking) {
+	let request = {
+		bookingId: booking.id,
+		principal: sitter.principal
+	};
+	console.log('sitter id: ');
+	console.log(sitter);
+	return axios.post('api/bookings/approve', request);
 }
 
 export function getRecommend(id) {
@@ -97,8 +107,13 @@ export function getUserDetails() {
 	return axios.get('/api/user');
 }
 
-export function getNotifications() {
-	return axios.get('/api/user/userNotifications');
+export function cancelBooking(booking) {
+	return axios.post('/api/bookings/delete', booking);
+}
+
+export function getNotifications(principal) {
+	let res = encodeURI('/api/user/userNotifications'+principal);
+	return axios.get(res);
 }
 
 export function getBookings(user) {
@@ -188,6 +203,12 @@ Actions.addAvail = avail => {
 	};
 };
 
+Actions.getAvailableSitters = bookingId => {
+	return (dispatch) => {
+		return getAvailableSitters(bookingId);
+	};
+};
+
 Actions.makeBooking = booking => {
 	return (dispatch) => {
 		return makeBooking(booking);
@@ -200,12 +221,17 @@ Actions.signUpBooking = booking => {
 	};
 };
 
-Actions.approveBooking = sitter => {
+Actions.approveBooking = (sitter, booking) => {
 	return (dispatch) => {
-		return approveBooking(sitter);
-	}
-}
+		return approveBooking(sitter, booking);
+	};
+};
 
+Actions.cancelBooking = booking => {
+	return (dispatch) => {
+		return cancelBooking(booking);
+	};
+};
 //get list of pets belonging to current user
 Actions.getPets = pets => {
     return getPets();
@@ -224,7 +250,7 @@ Actions.getBookings = user => {
 };
 
 Actions.getNotifications = user => {
-	return getNotifications();
+	return getNotifications(user.principal);
 };
 
 Actions.getAvailableBookings = user => {

@@ -20,7 +20,6 @@ public class SitterAvailabilityDao {
     private ElasticSearchClientProvider elasticSearchClientProvider;
 
     public Optional<SitterAvailabilityDto> findAvailability(String id) {
-
         Optional<SitterAvailabilityDto> temp = sitterAvailabilityRepository.find(id);
         if (temp.isPresent()) {
             System.out.println(temp.get().getAvailability());
@@ -33,6 +32,13 @@ public class SitterAvailabilityDao {
         String queryString = String.format("principal=\"%s\"", user.getPrincipal().replace("\"", ""));
         searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
         return sitterAvailabilityRepository.search(searchSourceBuilder).stream().findFirst();
+    }
+
+    public List<SitterAvailabilityDto> findAllAvailability() {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        String queryString = String.format("principal=*");
+        searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+        return sitterAvailabilityRepository.search(searchSourceBuilder);
     }
 
     public void save(SitterAvailabilityDto sitterAvailabilityDto) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Users from 'js/users';
 import {Button, ListGroup, ListGroupItem, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
@@ -125,6 +125,17 @@ class OwnerDetails extends React.Component {
                     <ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>
                     <ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>
                 </ListGroup>
+                <ButtonGroup>
+                <Link to={'/myBooking'}>
+                <Button onClick={() => this.props.cancel(this.props.booking).then(response => {
+                   alert('deleting');
+                })}>Cancel</Button>
+                </Link>
+                <Link to={'/availableSitters'}>
+                    <Button>View Sitters</Button>
+                </Link>
+                </ButtonGroup>
+
                 <hr></hr>
 
                 {
@@ -145,7 +156,10 @@ class OwnerDetails extends React.Component {
                                 <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                             </ModalFooter>
                         </Modal>
-                        <Button>Approve</Button>
+                        <Button onClick={() =>{
+                            alert('approve sitter');
+                            this.props.approve(sitter,this.props.booking);
+                        }}>Approve</Button>
                         </ButtonGroup>
                         </div>
                     ))
@@ -160,7 +174,9 @@ OwnerDetails = connect(
         user: Users.State.getUser(state)
     }),
     dispatch => ({
-        signUp: booking => dispatch(Users.Actions.signUpBooking(booking))
+        signUp: booking => dispatch(Users.Actions.signUpBooking(booking)),
+        cancel: booking => dispatch(Users.Actions.cancelBooking(booking)),
+        approve: (sitter, booking) => dispatch(Users.Actions.approveBooking(sitter, booking))
 
 
     })

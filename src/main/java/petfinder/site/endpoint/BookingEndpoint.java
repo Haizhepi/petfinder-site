@@ -5,6 +5,7 @@ import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import petfinder.site.common.booking.ApproveRequest;
 import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.booking.BookingService;
 import petfinder.site.common.user.UserDto;
@@ -35,6 +36,13 @@ public class BookingEndpoint {
         return bookingService.findOpenBooking();
     }
 
+
+    @GetMapping(value = "/getStartingBooking")
+    public boolean getStartingBooking() {
+        bookingService.checkBookingSentNoti();
+        return true;
+    }
+
     @PostMapping(value = "")
     public BookingDto saveBooking(@RequestBody BookingDto booking) {
         System.out.println(booking.getDescription());
@@ -50,6 +58,26 @@ public class BookingEndpoint {
         bookingService.signUp(booking.getId());
         return booking;
     }
+
+    @PostMapping(value = "/delete")
+    public BookingDto cancelBooking(@RequestBody BookingDto booking) {
+        System.out.println("calling+" + booking.getId());
+        bookingService.deleteBooking(booking);
+        return booking;
+    }
+
+    @PostMapping(value = "/approve")
+    public BookingDto approveBooking(@RequestBody ApproveRequest approveRequest) {
+        System.out.println("approving+" + approveRequest.getBookingId());
+        Optional<BookingDto> temp = bookingService.findBooking(approveRequest.getBookingId());
+        if (temp.isPresent()) {
+            bookingService.approve(approveRequest.getBookingId(), approveRequest.getPrincipal());
+        }
+        return temp.get();
+    }
+
+
+
 
 
 }

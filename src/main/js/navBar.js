@@ -20,7 +20,8 @@ export class NavBar extends React.Component {
         this.toggle = this.toggle.bind(this);
 
         this.state = {
-            isOpen: false
+            isOpen: false,
+            seconds: 0
         };
     }
 
@@ -30,12 +31,23 @@ export class NavBar extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.interval = setInterval(() => this.tick(), 1000);
+    }
+
     componentWillMount() {
+        clearInterval(this.interval);
         if (this.props.user) {
             if (this.props.user.type === 'SITTER') {
                 this.setState({sitter: 'SITTER'});
             }
         }
+    }
+
+    tick() {
+        this.setState(prevState => ({
+            seconds: prevState.seconds + 1
+        }));
     }
 
     render() {
@@ -204,7 +216,7 @@ export class NavBar extends React.Component {
             return (
                 <Navbar light expand="md" className="navBar">
                     <h1 className="animated 1 fadeInLeft">
-                        <NavbarBrand href="/">Welcome to PetFinder</NavbarBrand>
+                        <NavbarBrand href="/">Welcome to PetFinder {this.state.seconds}</NavbarBrand>
                     </h1>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>

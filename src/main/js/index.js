@@ -33,6 +33,7 @@ export default class Index extends React.Component {
 		let availableBooking = <Route exact path="/availableBooking" component={Pages.AvailableBooking}/>;
 		let bookingDetail = <Route exact path="/bookingDetail" component={Pages.BookingDetailPage}/>;
 		let notification = <Route exact path="/notification" component={Pages.Notifications}/>;
+		let availableSitters = <Route exact path="/availableSitters" component={Pages.AvailableSittersPage}/>;
 
 		//alert(this.props.authentication);
 		return (
@@ -54,6 +55,7 @@ export default class Index extends React.Component {
 					{availableBooking}
 					{bookingDetail}
 					{notification}
+					{availableSitters}
 				</div>
 			</HashRouter>
 		);

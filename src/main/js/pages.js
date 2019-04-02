@@ -20,6 +20,7 @@ import {Alert, Button, ListGroup, ListGroupItem} from 'reactstrap';
 
 import 'styles/main.scss';
 import {MyBookings} from 'js/bookings/MyBookings';
+import {AvailableSitter} from 'js/bookings/availableSitters';
 import {MyModal} from 'js/modal';
 import 'react-datepicker';
 import 'react-datepicker/src/stylesheets/datepicker.scss';
@@ -335,6 +336,20 @@ export class AvailableBooking extends React.Component {
                 <NavBar/>
                 <div className="container padded">
                     <Booking.AvailableBooking/>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class AvailableSittersPage extends React.Component {
+    render() {
+
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <AvailableSitter/>
                 </div>
             </section>
         );

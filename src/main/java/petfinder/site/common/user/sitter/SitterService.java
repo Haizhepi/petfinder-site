@@ -3,10 +3,16 @@ package petfinder.site.common.user.sitter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import petfinder.site.common.booking.BookingDao;
+import petfinder.site.common.booking.BookingDto;
+import petfinder.site.common.booking.BookingService;
 import petfinder.site.common.user.UserAuthenticationDto;
 import petfinder.site.common.user.UserDao;
 import petfinder.site.common.user.UserDto;
+import sun.security.pkcs.ParsingException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +22,28 @@ public class SitterService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private BookingService bookingService;
+
+
+    public List<SitterAndDate> getSitters(String bookingId) {
+        BookingDto booking = bookingService.findBooking(bookingId).get();
+        List<SitterAndDate> res = new ArrayList<>();
+        List<SitterAvailabilityDto> avails = sitterAvailabilityDao.findAllAvailability();
+        for (SitterAvailabilityDto sitterAvailabilityDto : avails) {
+                if (bookingService.evaluate(booking.getStartDate(), booking.getEndDate(),
+                        sitterAvailabilityDto.getStartDate(), sitterAvailabilityDto.getEndDate(),
+                        booking.getStartTime(), booking.getEndTime(),
+                        sitterAvailabilityDto.getStartTime(), sitterAvailabilityDto.getEndTime()
+                ) == 1) {
+                    UserDto sitter = userDao.findUserByPrincipal(sitterAvailabilityDto.getPrincipal()).get().getUser();
+                    res.add(new SitterAndDate(sitterAvailabilityDto, sitter));
+                }
+
+        }
+        return res;
+    }
 
     public Optional<SitterAvailabilityDto> findAvailability(String id) {
         System.out.println("here"+id);

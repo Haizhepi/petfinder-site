@@ -25,7 +25,9 @@ if (!authToken) {
 	authToken = {authentication: null, user: null};
 }
 
-const store = createStore(reducer, authToken, applyMiddleware(thunkMiddleware, createLogger()));
+const store = createStore(reducer, authToken, applyMiddleware(thunkMiddleware, createLogger()), );
+
+
 //you'd getItem above
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
