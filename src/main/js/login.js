@@ -30,6 +30,12 @@ class LoginForm extends React.Component {
         if (submitting) {
             if (this.props.authentication != null) {
                 this.forceUpdate();
+                localStorage.setItem('auth', JSON.stringify(this.props.authentication));
+                /*if(localStorage.getItem('auth') != null){
+                    Console.log("got localStorage item");
+                    Console.log(authentication.)
+                    return <Redirect to={'/homepage'}/>;
+                }*/
                 return <Redirect to={'/'}/>;
             }
         }

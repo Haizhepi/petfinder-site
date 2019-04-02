@@ -356,7 +356,7 @@ Actions.authenticate = (username, password) => {
 
 Actions.logout = () => {
 	return (dispatch) => {
-	    localStorage.removeItem(State.getUser.id);
+	    localStorage.clear();
 		dispatch(Actions.setAuthentication(null));
 		dispatch(Actions.setUser(null));
 	};
