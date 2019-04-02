@@ -144,11 +144,12 @@ export function getSitterInfo(userid) {
 	return axios.get(res);
 }
 
-export function addRating(booking, content) {
+export function addRating(booking, content, ratingStar) {
 	let res = {
 		sitterPrinciple: booking.sitter,
 		bookingId: booking.id,
-		content: content.rating
+		content: content.rating,
+		rating: ratingStar
 	};
 	console.log('rating: ');
 	console.log(res);
@@ -305,9 +306,9 @@ Actions.getAvailableBookings = user => {
 	return getAvailableBookings();
 };
 
-Actions.addRating = (booking, content) => {
+Actions.addRating = (booking, content, ratingStar) => {
 	return (dispatch) => {
-		return addRating(booking, content);
+		return addRating(booking, content, ratingStar);
 	};
 };
 
