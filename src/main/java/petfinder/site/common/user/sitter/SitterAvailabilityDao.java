@@ -34,6 +34,13 @@ public class SitterAvailabilityDao {
         return sitterAvailabilityRepository.search(searchSourceBuilder).stream().findFirst();
     }
 
+    public List<SitterAvailabilityDto> findAllAvailability() {
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        String queryString = String.format("principal=*");
+        searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+        return sitterAvailabilityRepository.search(searchSourceBuilder);
+    }
+
     public void save(SitterAvailabilityDto sitterAvailabilityDto) {
         sitterAvailabilityRepository.save(sitterAvailabilityDto);
     }

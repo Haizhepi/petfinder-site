@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import petfinder.site.common.user.UserDto;
+import petfinder.site.common.user.sitter.SitterAndDate;
 import petfinder.site.common.user.sitter.SitterAvailabilityDto;
 import petfinder.site.common.user.sitter.SitterService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -51,4 +53,10 @@ public class SitterEndpoint {
         System.out.println("updating" + sitterAvailabilityDto.getPrincipal());
         return sitterService.update(sitterAvailabilityDto);
     }
+
+    @GetMapping(value = "/available{id}", produces = "application/json")
+    public List<SitterAndDate> getAvailableSitter(@PathVariable("id") String id) {
+        return sitterService.getSitters(id);
+    }
+
 }
