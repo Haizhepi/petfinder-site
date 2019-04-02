@@ -11,10 +11,10 @@ import classNames from 'classnames';
 
 import * as Apps from 'js/app.js';
 
-
 import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
+import {AvailableBooking} from "js/bookings/booking";
 
 class AvailableSitterPage extends React.Component {
 
@@ -56,11 +56,19 @@ class AvailableSitterPage extends React.Component {
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                 </div>
-
             </form>
         );
     }
-
 }
 
+AvailableSitterPage = connect(
+    state =>({
+
+    }),
+    dispatch => ({
+        getAvailableSitters: bookingID => dispatch(Users.Actions.getAvailableSitters(bookingID))
+    })
+)(AvailableSitterPage);
+
+export {AvailableSitterPage};
 
