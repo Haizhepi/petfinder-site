@@ -72,6 +72,10 @@ export function getPets() {
     return axios.get('/api/user/pet');
 }
 
+export function getAvailableSitters(bookingId) {
+	return axios.get('/api/sitters/available' + bookingId);
+}
+
 export function getPetById(id) {
 	return axios.get('/api/pets/' + id);
 }
@@ -196,6 +200,12 @@ Actions.addPetUser = (pet, user) => {
 Actions.addAvail = avail => {
 	return (dispatch) => {
 		return addAvailiablity(avail);
+	};
+};
+
+Actions.getAvailableSitters = bookingId => {
+	return (dispatch) => {
+		return getAvailableSitters(bookingId);
 	};
 };
 

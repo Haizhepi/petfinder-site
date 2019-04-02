@@ -20,7 +20,6 @@ public class SitterAvailabilityDao {
     private ElasticSearchClientProvider elasticSearchClientProvider;
 
     public Optional<SitterAvailabilityDto> findAvailability(String id) {
-
         Optional<SitterAvailabilityDto> temp = sitterAvailabilityRepository.find(id);
         if (temp.isPresent()) {
             System.out.println(temp.get().getAvailability());
