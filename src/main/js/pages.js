@@ -221,8 +221,13 @@ class Page2 extends React.Component {
             <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
-                    <h1>Owner Profile Page</h1>
-                    <Pets.PetForm/>
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Add a New Pet</div>
+                            <Pets.PetForm/>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         );
@@ -246,8 +251,13 @@ class Page3 extends React.Component {
             <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
-                    <h1>Pets</h1>
-                    <PetList.PetList/>
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Pets</div>
+                            <hr/>
+                            <PetList.PetList/>
+                        </div>
+                    </div>
                 </div>
             </section>
         );
@@ -436,7 +446,6 @@ export class Availability extends React.Component {
             <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
-                    <h1>Set your availability</h1>
                     <Avail.AvailabilityForm/>
                 </div>
             </section>
@@ -490,15 +499,15 @@ export class ViewSitter extends React.Component {
                     <h1>Invitations</h1>
                     {this.state.invitation.map(booking => (
                         <div>
-                        <ListGroup>
-                            <ListGroupItem>Invitation {booking.owner}</ListGroupItem>
-                        </ListGroup>
+                            <ListGroup>
+                                <ListGroupItem>Invitation {booking.owner}</ListGroupItem>
+                            </ListGroup>
 
-                        <Link to={'/'}>
-                        <Button onClick={() => {
-                        this.props.confirm(booking);
-                    }}>Confirm</Button>
-                        </Link>
+                            <Link to={'/'}>
+                                <Button onClick={() => {
+                                    this.props.confirm(booking);
+                                }}>Confirm</Button>
+                            </Link>
                         </div>
                     ))}
 
