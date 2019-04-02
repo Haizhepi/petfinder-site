@@ -25,6 +25,7 @@ import {MyModal} from 'js/modal';
 import 'react-datepicker';
 import 'react-datepicker/src/stylesheets/datepicker.scss';
 import {BookingDetail} from 'js/bookings/BookingDetails';
+import {GoogleMapAPI} from 'js/googleMapAPI';
 
 
 export class Home extends React.Component {
@@ -78,7 +79,6 @@ export class Home extends React.Component {
                         <NavBar/>
                         <div className="middle">
                             <MyModal/>
-
                         </div>
                     </section>
                 );
@@ -173,6 +173,16 @@ export class EditProfilePage extends React.Component {
     }
 }
 
+export class GoogleMap extends React.Component {
+    render() {
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <GoogleMapAPI/>
+            </section>
+        );
+    }
+}
 
 class Page1 extends React.Component {
     render() {
