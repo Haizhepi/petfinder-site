@@ -2,9 +2,10 @@ import React from 'react';
 
 import GoogleMapReact from 'google-map-react';
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import { } from 'react-places-autocomplete'
 
-import Geocode from 'react-geocode'
+import { } from 'react-places-autocomplete';
+
+import Geocode from 'react-geocode';
 
 const AnyReactComponent = ({text}) => <div>{text}</div>;
 
