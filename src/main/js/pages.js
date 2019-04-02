@@ -178,13 +178,7 @@ export class GoogleMap extends React.Component {
         return (
             <section className="webWrapper">
                 <NavBar/>
-                <div className="container padded">
-                    <div className="row">
-                        <div className="col-6 offset-md-3" id="p">
-                            <GoogleMapAPI/>
-                        </div>
-                    </div>
-                </div>
+                <GoogleMapAPI/>
             </section>
         );
     }
