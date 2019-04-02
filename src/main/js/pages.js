@@ -199,8 +199,18 @@ export class GoogleMap extends React.Component {
         return (
             <section className="webWrapper">
                 <NavBar/>
-                <LocationSearchInput/>
                 <GoogleMapAPI/>
+            </section>
+        );
+    }
+}
+
+export class SearchBox extends React.Component {
+    render() {
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <LocationSearchInput/>
             </section>
         );
     }
