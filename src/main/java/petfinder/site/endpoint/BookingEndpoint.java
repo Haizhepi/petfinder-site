@@ -94,5 +94,11 @@ public class BookingEndpoint {
         return temp.get();
     }
 
+    @PostMapping(value = "/finish")
+    public BookingDto inviteSitter(@RequestBody BookingDto bookingDto) {
+        System.out.println("Booking finish");
+        return bookingService.finish(bookingDto);
+    }
+
 
 }

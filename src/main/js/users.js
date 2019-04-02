@@ -106,6 +106,10 @@ export function getSitter(userid) {
 	return axios.get(res);
 }
 
+export function finish(booking) {
+	return axios.post('/api/bookings/finish', booking);
+}
+
 export function getUserDetails() {
 	return axios.get('/api/user');
 }
@@ -140,6 +144,16 @@ export function getSitterInfo(userid) {
 	return axios.get(res);
 }
 
+export function addRating(booking, content) {
+	let res = {
+		sitterPrinciple: booking.sitter,
+		bookingId: booking.id,
+		content: content.rating
+	};
+	console.log('rating: ');
+	console.log(res);
+	return axios.post('/api/rating', res);
+}
 export function inviteSitter(sitter, booking) {
 	let request = {
 		bookingId: booking,
@@ -219,6 +233,12 @@ Actions.addAvail = avail => {
 	};
 };
 
+Actions.finish = booking => {
+	return (dispatch) => {
+		return finish(booking);
+	};
+};
+
 Actions.getAvailableSitters = bookingId => {
 	return (dispatch) => {
 		return getAvailableSitters(bookingId);
@@ -283,6 +303,12 @@ Actions.getNotifications = user => {
 
 Actions.getAvailableBookings = user => {
 	return getAvailableBookings();
+};
+
+Actions.addRating = (booking, content) => {
+	return (dispatch) => {
+		return addRating(booking, content);
+	};
 };
 
 

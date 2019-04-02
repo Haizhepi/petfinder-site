@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Pets from 'js/petInfo';
+import * as Rating from 'js/rating';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import * as Booking from 'js/bookings/booking';
@@ -166,6 +167,25 @@ export class EditProfilePage extends React.Component {
                             <div className="title">Edit the profile</div>
                             <hr/>
                             <Login.EditProfileForm/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class AddRating extends React.Component {
+    render() {
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Add a Rating</div>
+                            <hr/>
+                            <Rating.LeaveRating/>
                         </div>
                     </div>
                 </div>
