@@ -329,3 +329,18 @@ body {
   filter: brightness(110%);
 }
 
+#slide {
+  width: 400%;
+  height: 400%;
+  background-position: center;
+}
+
+.carousel .thumb img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.carousel .slide img {
+  max-height: 300px;  /* change this to whatever you want */
+  width: auto;
+}

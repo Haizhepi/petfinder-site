@@ -11,8 +11,9 @@ import '../../styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {ListGroup, ListGroupItem} from 'reactstrap';
-import 'styles/stylesheets/datepicker.scss';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import {MyBookings} from 'js/bookings/MyBookings';
 import {BookingDetail} from 'js/bookings/BookingDetails';
 

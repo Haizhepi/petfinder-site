@@ -26,11 +26,12 @@ import {AvailableSitter} from 'js/bookings/availableSitters';
 import {MyModal} from 'js/modal';
 import 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import 'react-datepicker/src/stylesheets/datepicker.scss';
+
 import {BookingDetail} from 'js/bookings/BookingDetails';
 import {SignedBooking} from 'js/bookings/SignedBooking';
 import {GoogleMapAPI} from 'js/googleMapAPI';
 import {LocationSearchInput} from 'js/autoComplete';
+import {WebHome} from 'js/webHome';
 
 
 export class Home extends React.Component {
@@ -92,6 +93,7 @@ export class Home extends React.Component {
             return (
                 <section className="webWrapper">
                     <NavBar/>
+                    <WebHome/>
                     <div className="middle">
                         <MyModal/>
                     </div>

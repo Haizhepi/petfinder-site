@@ -7,7 +7,7 @@ import * as ReduxForm from 'redux-form';
 import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import 'styles/main.scss';
-import 'styles/stylesheets/datepicker.scss';
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 class AvailabilityForm extends React.Component {
