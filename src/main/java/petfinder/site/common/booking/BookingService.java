@@ -17,6 +17,7 @@ import petfinder.site.common.user.UserDto;
 import petfinder.site.common.user.sitter.SitterAvailabilityDao;
 import petfinder.site.common.user.sitter.SitterAvailabilityDto;
 
+import java.awt.print.Book;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -37,6 +38,20 @@ public class BookingService {
 
     public Optional<BookingDto> findBooking(String id) {
         return bookingDao.findBooking(id);
+    }
+
+    public BookingDto sitterCancel(String bookingId) {
+        BookingDto booking = null;
+        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<BookingDto> res = bookingDao.findBooking(bookingId);
+        if (res.isPresent()) {
+            booking = res.get();
+        }
+        booking.setSitter(null);
+        UserDto sitter = userDao.findUserByPrincipal(principal).get().getUser();
+        sitter.panelty();
+        booking.setStatus(BookingDto.BookingStatus.UNSIGNED);
+        return booking;
     }
 
     public Map<UserDto, Integer> findRecommend(String id) {
@@ -331,6 +346,10 @@ public class BookingService {
         temp.setStatus(BookingDto.BookingStatus.FINISHED);
         bookingDao.save(temp);
         return bookingDto;
+    }
+
+    public List<BookingDto> sitterBookings(String principal) {
+        return bookingDao.sitterBookings(principal);
     }
 
 }

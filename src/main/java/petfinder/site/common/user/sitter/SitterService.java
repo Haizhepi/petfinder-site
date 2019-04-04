@@ -57,6 +57,10 @@ public class SitterService {
         return res;
     }
 
+    public List<BookingDto> sitterBookings(String principal) {
+        return bookingService.sitterBookings(principal);
+    }
+
     public Optional<SitterAvailabilityDto> findAvailability(String id) {
         System.out.println("here"+id);
         return sitterAvailabilityDao.findAvailability(id);

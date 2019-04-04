@@ -38,7 +38,11 @@ public class SitterEndpoint {
         System.out.println(id);
         return sitterService.findUserInfo(id);
     }
-
+    @GetMapping(value = "/sitterBookings", produces = "application/json")
+    public List<BookingDto> sitterBookings() {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+        return sitterService.sitterBookings(principal);
+    }
     // Take a JSON representation of a Pet and save it to Elasticsearch
     @PostMapping(value = "")
     public SitterAvailabilityDto saveAvailability(@RequestBody SitterAvailabilityDto sitterAvailabilityDto) {
@@ -65,6 +69,7 @@ public class SitterEndpoint {
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
         return sitterService.getInvitations(principal);
     }
+
 
 
 }

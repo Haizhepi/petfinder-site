@@ -32,6 +32,9 @@ public class UserDao {
 	private BookingElasticsearchRepository bookingRepository;
 
 	@Autowired
+	private OldNotificationElasticSearchRepository oldNotificationRepository;
+
+	@Autowired
 	private NotificationElasticsearchRepository notificationRepository;
 
 	public Optional<UserAuthenticationDto> findUserByPrincipal(String principal) {
@@ -80,6 +83,11 @@ public class UserDao {
 		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
 
 		List<NotificationDto> notis = notificationRepository.search(searchSourceBuilder);
+		for (NotificationDto noti : notis) {
+			//notificationRepository.delete(noti.getId());
+			//oldNotificationRepository.save(noti);
+		}
+		System.out.println(notis.size());
 		return notis;
 	}
 

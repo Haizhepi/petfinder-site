@@ -38,4 +38,8 @@ public class PetDao {
 	public void save(PetDto pet) {
 		petElasticsearchRepository.save(pet);
 	}
+
+	public PetDao(){
+
+	}
 }

@@ -9,6 +9,7 @@ import * as Rating from 'js/rating';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import * as Booking from 'js/bookings/booking';
+
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
 
@@ -27,6 +28,7 @@ import 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/src/stylesheets/datepicker.scss';
 import {BookingDetail} from 'js/bookings/BookingDetails';
+import {SignedBooking} from 'js/bookings/SignedBooking';
 import {GoogleMapAPI} from 'js/googleMapAPI';
 import {LocationSearchInput} from 'js/autoComplete';
 
@@ -389,6 +391,20 @@ export class AvailableBooking extends React.Component {
                 <NavBar/>
                 <div className="container padded">
                     <Booking.AvailableBooking/>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class SitterBooking extends React.Component {
+    render() {
+
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded">
+                    <SignedBooking/>
                 </div>
             </section>
         );

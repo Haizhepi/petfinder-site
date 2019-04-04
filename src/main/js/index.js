@@ -40,6 +40,8 @@ export default class Index extends React.Component {
         let searchLocation = <Route exact path="/searchLocation" component={Pages.SearchBox}/>;
         let mapHome = <Route exact path="/googleMapHome" component={MapHome}/>;
 
+		let sitterBooking = <Route exact path="/signedBooking" component={Pages.SitterBooking}/>;
+
         //alert(this.props.authentication);
 		return (
 			<HashRouter>
@@ -65,6 +67,7 @@ export default class Index extends React.Component {
 					{addRating}
                     {searchLocation}
 					{mapHome}
+					{sitterBooking}
 				</div>
 			</HashRouter>
 		);
