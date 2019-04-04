@@ -24,6 +24,7 @@ import {MyBookings} from 'js/bookings/MyBookings';
 import {AvailableSitter} from 'js/bookings/availableSitters';
 import {MyModal} from 'js/modal';
 import 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/src/stylesheets/datepicker.scss';
 import {BookingDetail} from 'js/bookings/BookingDetails';
 import {GoogleMapAPI} from 'js/googleMapAPI';

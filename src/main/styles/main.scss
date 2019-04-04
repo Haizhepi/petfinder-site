@@ -1,8 +1,6 @@
 @import "~bootstrap/scss/bootstrap.scss";
 @import "~react-select/scss/default.scss";
 
-$fa-font-path: "~font-awesome/fonts";
-@import "~font-awesome/scss/font-awesome.scss";
 
 @keyframes animation1 {
   0% {
@@ -98,6 +96,8 @@ $fa-font-path: "~font-awesome/fonts";
 
   background-color: white;
   top: 50px;
+  position: center;
+  bottom: 50px;
   border-radius: 8px;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.1);
   animation-name: zoomIn;
@@ -115,6 +115,7 @@ $fa-font-path: "~font-awesome/fonts";
 }
 
 .webWrapper {
+  height: 150%;
   animation-name: Gradient;
   animation-duration: 10s;
   animation-iteration-count: infinite;
@@ -154,8 +155,10 @@ $fa-font-path: "~font-awesome/fonts";
 }
 
 body {
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-  background-size: 400% 400%;
+
+  //background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background: linear-gradient(-45deg, #9673ee, #E73C7E, #23A6D5, #c1d572);
+  background-size: 200% 200%;
 
   -o-animation: Gradient 15s ease infinite;
   -webkit-animation: Gradient 15s ease infinite;

@@ -7,6 +7,7 @@ import * as Users from 'js/users';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import {PetList} from 'js/petList';
+import {MapHome} from 'js/mapHome';
 
 
 export default class Index extends React.Component {
@@ -37,6 +38,7 @@ export default class Index extends React.Component {
 		let googleMap = <Route exact path="/googleMap" component={Pages.GoogleMap}/>;
 		let addRating = <Route exact path="/addRating" component={Pages.AddRating}/>;
         let searchLocation = <Route exact path="/searchLocation" component={Pages.SearchBox}/>;
+        let mapHome = <Route exact path="/googleMapHome" component={MapHome}/>;
 
         //alert(this.props.authentication);
 		return (
@@ -62,6 +64,7 @@ export default class Index extends React.Component {
 					{googleMap}
 					{addRating}
                     {searchLocation}
+					{mapHome}
 				</div>
 			</HashRouter>
 		);

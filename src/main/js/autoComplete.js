@@ -11,13 +11,30 @@ import {Helmet} from 'react-helmet';
 import Typekit from 'react-typekit';
 
 import postscribe from 'postscribe';
+import Geocode from 'react-geocode';
 
+
+Geocode.setApiKey('AIzaSyCtDc6Y9UHdQHwR--vCIFQ56sLOmlBp2dM');
+Geocode.enableDebug();
 
 export class LocationSearchInput extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {address: ''};
+        this.state = {
+            address: '',
+            city: '',
+            area: '',
+            state: '',
+            mapPosition: {
+                lat: '',
+                lng: ''
+            },
+            markerPosition: {
+                lat: '',
+                lng: ''
+            }
+        };
     }
 
     handleChange = address => {
@@ -44,7 +61,7 @@ export class LocationSearchInput extends React.Component {
     componentDidMount() {
         window.initMap = this.initMap;
         const gmapScriptEl = document.createElement('script');
-        gmapScriptEl.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyApj8pWzBoBP9_2GjJE2PQnlcp8oanaEdw&libraries=places&callback=initMap';
+        gmapScriptEl.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCtDc6Y9UHdQHwR--vCIFQ56sLOmlBp2dM&libraries=places&callback=initMap';
         document.querySelector('body').insertAdjacentElement('beforeend', gmapScriptEl);
     }
 
