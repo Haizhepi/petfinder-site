@@ -13,11 +13,6 @@ import * as Booking from 'js/bookings/booking';
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
 
-import 'styles/w3_replica.scss';
-
-import 'styles/animate.scss';
-import 'styles/animate.min.scss';
-
 import {Alert, Button, ListGroup, ListGroupItem} from 'reactstrap';
 
 import 'styles/main.scss';

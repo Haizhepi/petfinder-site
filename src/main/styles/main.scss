@@ -225,9 +225,7 @@ body {
   -webkit-transition: 0.25s all ease;
   transition: 0.25s all ease;
 
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-  background-size: 300% 300%;
-
+  background-color: #49b6bf;
 }
 
 .buttonType1:hover {
@@ -323,26 +321,10 @@ body {
   overflow: hidden !important;
   transition: 0.3s all ease !important;
 
-  background: linear-gradient(-45deg, #23A6D5, #23D5AB);
+  background-color: #49b6bf;
 }
 
 .btnModal:hover {
   border: 2px solid #8180d7;
   filter: brightness(110%);
-}
-
-#slide {
-  width: 400%;
-  height: 400%;
-  background-position: center;
-}
-
-.carousel .thumb img {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.carousel .slide img {
-  max-height: 300px;  /* change this to whatever you want */
-  width: auto;
 }
