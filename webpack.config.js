@@ -27,7 +27,8 @@ const config = {
             use: ['babel-loader'],
             exclude: /node_modules/
         }, {
-            test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|ico|eot)$/,
+            test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|ico|eot)(\?[a-z0-9=.]+)?$/,
+            use: ['url-loader?limit=100000']
         }, {
             test: /\.css$/,
             use: ['style-loader', 'css-loader'],

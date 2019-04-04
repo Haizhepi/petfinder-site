@@ -69,7 +69,7 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand href="/">Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand  className="fas fa-home" href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -94,7 +94,7 @@ export class NavBar extends React.Component {
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar className="navText">
                                     <DropdownToggle nav caret>
-                                        Options
+                                        More
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <NavItem>
@@ -120,7 +120,7 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand href="/">Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand  className="fas fa-home" href="/">  Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -145,7 +145,7 @@ export class NavBar extends React.Component {
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar className="navText">
                                     <DropdownToggle nav caret>
-                                        Options
+                                        More
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <NavItem>
@@ -171,7 +171,7 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand href="/">Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand  className="fas fa-home" href="/">  Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -202,7 +202,7 @@ export class NavBar extends React.Component {
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar className="navText">
                                     <DropdownToggle nav caret>
-                                        Options
+                                        More
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <NavItem>
@@ -234,21 +234,19 @@ export class NavBar extends React.Component {
 
                 <Navbar light expand="md" className="navBar">
                     <h1 className="animated 1 fadeInLeft">
-                        <NavbarBrand href="/">Welcome to PetFinder {_.isDefined(this.state.seconds)}</NavbarBrand>
+                        <NavbarBrand className="fas fa-home" href="/">  Welcome to PetFinder {_.isDefined(this.state.seconds)}</NavbarBrand>
                     </h1>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="#/login" className="navText">Login</NavLink>
+                                <NavLink href="#/login" className="navText fas fa-sign-in-alt">  Sign In</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#/register" className="navText">Register</NavLink>
+                                <NavLink href="#/register" className="navText fas fa-user-plus">  Sign Up</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar className="navText">
-                                <DropdownToggle nav caret>
-                                    Options
-                                </DropdownToggle>
+                                <DropdownToggle className="fas fas fa-sign-in" nav caret> More</DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         Option 1

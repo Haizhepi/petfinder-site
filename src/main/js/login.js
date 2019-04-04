@@ -51,7 +51,7 @@ class LoginForm extends React.Component {
                                 field={<input className="form-control" type="password"
                                 />}/>
                 <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Sign In</Bessemer.Button>
+                    <Bessemer.Button className="buttonType1" loading={submitting}>LOGIN</Bessemer.Button>
                 </div>
             </form>
         );
@@ -251,7 +251,7 @@ class RegistrationForm extends React.Component {
                                                         placeholder="Owner or Sitter?"
                                 />}/>
                 <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Register</Bessemer.Button>
+                    <Bessemer.Button className="buttonType1" loading={submitting}>REGISTER</Bessemer.Button>
                 </div>
             </form>
         );

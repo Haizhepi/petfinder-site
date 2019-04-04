@@ -116,6 +116,8 @@
 
 .webWrapper {
   height: 150%;
+  //background-image: url("bg6.jpg");
+
   animation-name: Gradient;
   animation-duration: 10s;
   animation-iteration-count: infinite;
@@ -156,8 +158,8 @@
 
 body {
 
-  //background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-  background: linear-gradient(-45deg, #9673ee, #E73C7E, #23A6D5, #c1d572);
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  //background: linear-gradient(-45deg, #9673ee, #E73C7E, #23A6D5, #c1d572);
   background-size: 200% 200%;
 
   -o-animation: Gradient 15s ease infinite;

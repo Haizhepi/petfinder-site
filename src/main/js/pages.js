@@ -93,7 +93,6 @@ export class Home extends React.Component {
             return (
                 <section className="webWrapper">
                     <NavBar/>
-                    <WebHome/>
                     <div className="middle">
                         <MyModal/>
                     </div>
@@ -131,7 +130,7 @@ export class RegisterPage extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Sign up</div>
+                            <div className="title">SIGN UP</div>
                             <hr/>
                             <Login.RegistrationForm/>
                         </div>
@@ -150,7 +149,7 @@ export class LoginPage extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Login</div>
+                            <div className="title">SIGN IN</div>
                             <hr/>
                             <Login.LoginForm/>
                         </div>
