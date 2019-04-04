@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
         return (
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 
-                <Bessemer.Field name="principal" friendlyName="Password"
+                <Bessemer.Field name="principal" friendlyName="Email"
                                 validators={[Validation.requiredValidator, Validation.emailValidator]}/>
 
                 <Bessemer.Field name="password" friendlyName="Password"

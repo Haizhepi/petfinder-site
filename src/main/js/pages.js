@@ -86,7 +86,7 @@ export class Home extends React.Component {
             }
         } else {
             return (
-                <section className="webWrapper">
+                <section className="homepageWrapper">
                     <NavBar/>
                     <div className="middle">
                         <MyModal/>
@@ -120,12 +120,12 @@ export class RegisterPage extends React.Component {
 
     render() {
         return (
-            <section className="webWrapper">
+            <section className="homepageWrapper">
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">SIGN UP</div>
+                            <div className="title">Sign Up</div>
                             <hr/>
                             <Login.RegistrationForm/>
                         </div>
@@ -139,12 +139,12 @@ export class RegisterPage extends React.Component {
 export class LoginPage extends React.Component {
     render() {
         return (
-            <section className="webWrapper">
+            <section className="homepageWrapper">
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">SIGN IN</div>
+                            <div className="title">Sign In</div>
                             <hr/>
                             <Login.LoginForm/>
                         </div>
