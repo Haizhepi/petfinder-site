@@ -13,7 +13,7 @@ import * as Booking from 'js/bookings/booking';
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
 
-import {Alert, Button, ListGroup, ListGroupItem} from 'reactstrap';
+import {Alert, Button, ListGroup, ListGroupItem, Navbar} from 'reactstrap';
 
 import 'styles/main.scss';
 import {MyBookings} from 'js/bookings/MyBookings';
@@ -27,6 +27,7 @@ import {SignedBooking} from 'js/bookings/SignedBooking';
 import {GoogleMapAPI} from 'js/googleMapAPI';
 import {LocationSearchInput} from 'js/autoComplete';
 import {WebHome} from 'js/webHome';
+import {SidebarComponent} from 'js/mySidebar';
 
 
 export class Home extends React.Component {
@@ -59,6 +60,7 @@ export class Home extends React.Component {
             if (this.props.user.type === 'SITTER') {
                 return (
                     <section className="webWrapper">
+                        <SidebarComponent/>
                         <NavBar/>
                         <div className="middle">
                             <MyModal/>
@@ -68,6 +70,7 @@ export class Home extends React.Component {
             } else if (this.props.user.type === 'OWNER') {
                 return (
                     <section className="webWrapper">
+                        <SidebarComponent/>
                         <NavBar/>
                         <div className="middle">
                             <MyModal/>
@@ -77,6 +80,7 @@ export class Home extends React.Component {
             } else {
                 return (
                     <section className="webWrapper">
+                        <SidebarComponent/>
                         <NavBar/>
                         <div className="middle">
                             <MyModal/>
@@ -87,6 +91,7 @@ export class Home extends React.Component {
         } else {
             return (
                 <section className="homepageWrapper">
+                    <SidebarComponent/>
                     <NavBar/>
                     <div className="middle">
                         <MyModal/>
@@ -121,6 +126,7 @@ export class RegisterPage extends React.Component {
     render() {
         return (
             <section className="homepageWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -140,6 +146,7 @@ export class LoginPage extends React.Component {
     render() {
         return (
             <section className="homepageWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -159,6 +166,7 @@ export class EditProfilePage extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -178,6 +186,7 @@ export class AddRating extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -197,6 +206,7 @@ export class GoogleMap extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <GoogleMapAPI/>
             </section>
@@ -208,6 +218,7 @@ export class SearchBox extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <LocationSearchInput/>
             </section>
@@ -219,6 +230,7 @@ class Page1 extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <h1>This is page 1</h1>
@@ -250,6 +262,7 @@ class PetForm extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -280,6 +293,7 @@ class PetListing extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -309,6 +323,7 @@ class AddBooking extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <Booking.BookingForm/>
@@ -332,6 +347,7 @@ export class Homepage extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <h1>Home Page</h1>
@@ -366,6 +382,7 @@ export class MyBooking extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <MyBookings/>
@@ -384,6 +401,7 @@ export class AvailableBooking extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <Booking.AvailableBooking/>
@@ -398,6 +416,7 @@ export class SitterBooking extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <SignedBooking/>
@@ -412,6 +431,7 @@ export class AvailableSittersPage extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <AvailableSitter/>
@@ -426,6 +446,7 @@ export class BookingDetailPage extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <BookingDetail/>
@@ -439,6 +460,7 @@ export class Notifications extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <Notification.NotificationCenter/>
@@ -460,6 +482,7 @@ export class Logout extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div>
@@ -489,6 +512,7 @@ export class Availability extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <Avail.AvailabilityForm/>
@@ -533,6 +557,7 @@ export class ViewSitter extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <h1>The Availability: </h1>

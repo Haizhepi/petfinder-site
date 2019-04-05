@@ -15,6 +15,9 @@ import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import _ from 'lodash';
 
+import UserAvatar from 'react-user-avatar';
+import {SidebarComponent} from 'js/mySidebar';
+
 export class NavBar extends React.Component {
     constructor(props) {
         super(props);
@@ -59,7 +62,7 @@ export class NavBar extends React.Component {
                     this.props.getNotis(response);
                 });
 
-                if (this.props.noti){
+                if (this.props.noti) {
                     console.log('check');
                     console.log(this.props.noti);
                 }
@@ -71,7 +74,8 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand  className="fas fa-home navTitle" href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand className="navTitle"
+                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -100,7 +104,8 @@ export class NavBar extends React.Component {
                                             <NavLink href="#/signedBooking" className="navText">Signed Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/availableBooking" className="navText">View Booking</NavLink>
+                                            <NavLink href="#/availableBooking" className="navText">View
+                                                Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
                                             <NavLink href="#/notification" className="navText">Notification</NavLink>
@@ -119,7 +124,8 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand  className="fas fa-home navTitle" href="/">  Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand className="navTitle"
+                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -167,7 +173,8 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand  className="fas fa-home navTitle" href="/">  Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand className="navTitle"
+                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -205,7 +212,8 @@ export class NavBar extends React.Component {
                                             <NavLink href="#/myBooking" className="navText">My Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/availableBooking" className="navText">View Booking</NavLink>
+                                            <NavLink href="#/availableBooking" className="navText">View
+                                                Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
                                             <NavLink href="#/notification" className="navText">Notification</NavLink>
@@ -222,12 +230,11 @@ export class NavBar extends React.Component {
                 );
             }
         } else {
-
             return (
-
                 <Navbar light expand="md" className="navBar">
                     <h1 className="animated 1 fadeInLeft">
-                        <NavbarBrand className="navTitle" href="/">Welcome to PetFinder{_.isDefined(this.state.seconds)}</NavbarBrand>
+                        <NavbarBrand className="navTitle" href="/">Welcome to
+                            PetFinder{_.isDefined(this.state.seconds)}</NavbarBrand>
                     </h1>
 
                     <NavbarToggler onClick={this.toggle}/>
@@ -240,7 +247,9 @@ export class NavBar extends React.Component {
                                 <NavLink href="#/register" className="navText">SIGN UP</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar className="navText">
-                                <DropdownToggle nav caret>MORE</DropdownToggle>
+                                <DropdownToggle nav caret className="far fa-user fa-lg middleA">
+
+                                </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         Option 1
