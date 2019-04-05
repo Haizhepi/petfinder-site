@@ -240,13 +240,13 @@ export class NavBar extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="#/login" className="navText fas fa-sign-in-alt">  Sign In</NavLink>
+                                <NavLink href="#/login" className="navText">  Sign In</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#/register" className="navText fas fa-user-plus">  Sign Up</NavLink>
+                                <NavLink href="#/register" className="navText">  Sign Up</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar className="navText">
-                                <DropdownToggle className="fas fas fa-sign-in" nav caret> More</DropdownToggle>
+                                <DropdownToggle nav caret> More</DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         Option 1
