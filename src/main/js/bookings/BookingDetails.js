@@ -33,25 +33,48 @@ class SitterDetails extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <h2>SITTER: {this.state.pet.name}</h2>
-                <ListGroup>
-                    <ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>
-                    <ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>
-                    <ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>
-                    <ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>
-                    <ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>
-                    <ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>
-                    <ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>
-                    <ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>
-                </ListGroup>
-                <Link to="/">
-                    <Button color="danger" onClick={() => this.props.signUp(this.props.booking)}>Sign Up for
-                        this</Button>
-                </Link>
-            </div>
-        );
+        if (this.props.booking.status === 'UNSIGHED'){
+            return (
+                <div>
+                    <h2>SITTER: {this.state.pet.name}</h2>
+                    <ListGroup>
+                        <ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>
+                        <ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>
+                        <ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>
+                        <ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>
+                        <ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>
+                        <ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>
+                        <ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>
+                        <ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>
+                    </ListGroup>
+                    <Link to="/">
+                        <Button color="danger" onClick={() => this.props.signUp(this.props.booking)}>Sign Up for
+                            this</Button>
+                    </Link>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <h2>SITTER: {this.state.pet.name}</h2>
+                    <ListGroup>
+                        <ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>
+                        <ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>
+                        <ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>
+                        <ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>
+                        <ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>
+                        <ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>
+                        <ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>
+                        <ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>
+                    </ListGroup>
+                    <Link to="/">
+                        <Button color="danger" onClick={() => this.props.sitterCancel(this.props.booking)}>Cancel
+                            this</Button>
+                    </Link>
+                </div>
+            );
+        }
     }
 }
 
@@ -61,7 +84,8 @@ SitterDetails = connect(
         user: Users.State.getUser(state)
     }),
     dispatch => ({
-        signUp: booking => dispatch(Users.Actions.signUpBooking(booking))
+        signUp: booking => dispatch(Users.Actions.signUpBooking(booking)),
+        sitterCancel: booking => dispatch(Users.Actions.sitterCancel(booking))
 
     })
 )(SitterDetails);

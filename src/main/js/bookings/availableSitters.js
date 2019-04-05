@@ -19,10 +19,7 @@ import {Button, ListGroupItem} from 'reactstrap';
 
 class AvailableSitter extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {sitters: []};
-    }
+
 
     componentWillMount() {
         this.props.getAvailableSitters(this.props.booking.id).then(response => {

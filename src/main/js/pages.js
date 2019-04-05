@@ -332,26 +332,76 @@ export {AddBooking};
 
 
 export class Homepage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {ratings: []};
+    }
+
+    componentWillMount() {
+        this.props.getRating(this.props.user).then(response => {
+            console.log('rating');
+            console.log(response);
+            this.setState({ratings: response});
+        });
+        console.log('rating');
+        console.log(this.state.ratings);
+
+    }
+
     render() {
-        return (
-            <section className="webWrapper">
-                <NavBar/>
-                <div className="container padded">
-                    <h1>Home Page</h1>
-                    {_.isDefined(this.props.authentication) &&
-                    <div>
-                        <h1>This is Ur User Profile</h1>
-                        <ListGroup>
-                            <ListGroupItem>FirstName: {this.props.user.firstName}</ListGroupItem>
-                            <ListGroupItem>Last Name: {this.props.user.lastName}</ListGroupItem>
-                            <ListGroupItem>Gender: {this.props.user.gender}</ListGroupItem>
-                            <ListGroupItem>Zip Code: {this.props.user.zipcode}</ListGroupItem>
-                        </ListGroup>
+        if (this.props.user.type !== 'SITTER') {
+            return (
+                <section className="webWrapper">
+                    <NavBar/>
+                    <div className="container padded">
+                        <h1>Home Page</h1>
+                        {_.isDefined(this.props.authentication) &&
+                        <div>
+                            <h1>This is Ur User Profile</h1>
+                            <ListGroup>
+                                <ListGroupItem>FirstName: {this.props.user.firstName}</ListGroupItem>
+                                <ListGroupItem>Last Name: {this.props.user.lastName}</ListGroupItem>
+                                <ListGroupItem>Gender: {this.props.user.gender}</ListGroupItem>
+                                <ListGroupItem>Zip Code: {this.props.user.zipcode}</ListGroupItem>
+                            </ListGroup>
+                        </div>
+                        }
                     </div>
-                    }
-                </div>
-            </section>
-        );
+                </section>
+            );
+        }
+        else {
+            return (
+                <section className="webWrapper">
+                    <NavBar/>
+                    <div className="container padded">
+                        <h1>Home Page</h1>
+                        {_.isDefined(this.props.authentication) &&
+                        <div>
+                            <h1>This is Ur User Profile</h1>
+                            <ListGroup>
+                                <ListGroupItem>FirstName: {this.props.user.firstName}</ListGroupItem>
+                                <ListGroupItem>Last Name: {this.props.user.lastName}</ListGroupItem>
+                                <ListGroupItem>Gender: {this.props.user.gender}</ListGroupItem>
+                                <ListGroupItem>Zip Code: {this.props.user.zipcode}</ListGroupItem>
+                            </ListGroup>
+                        </div>
+                        }
+                        {this.state.ratings.map(rating => (
+                            <ListGroup key={rating.id}>
+                                <ListGroupItem>
+                                    content: {rating.content}
+                                </ListGroupItem>
+                                <ListGroupItem>rating: {rating.rating}</ListGroupItem>
+                            </ListGroup>
+                        ))}
+
+                    </div>
+                </section>
+            );
+        }
+
     }
 }
 
@@ -360,6 +410,9 @@ Homepage = connect(
         authentication: Users.State.getAuthentication(state),
         user: Users.State.getUser(state),
         pet: Users.State.getPet(state)
+    }),
+    dispatch => ({
+        getRating: Users.Actions.getRating()
     })
 )(Homepage);
 

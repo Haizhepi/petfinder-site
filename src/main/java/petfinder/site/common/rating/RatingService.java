@@ -24,6 +24,7 @@ public class RatingService {
     }
 
     public List<RatingDto> findRatingByUserID(String principal) {
-        return ratingDao.findRatingByPrinciple(principal);
+        List<RatingDto> res = ratingDao.findRatingByPrinciple(principal);
+        return res;
     }
 }
