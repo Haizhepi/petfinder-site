@@ -10,9 +10,11 @@ import {
     NavLink,
     UncontrolledDropdown
 } from 'reactstrap';
+
 import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import _ from 'lodash';
+
 export class NavBar extends React.Component {
     constructor(props) {
         super(props);
@@ -225,8 +227,9 @@ export class NavBar extends React.Component {
 
                 <Navbar light expand="md" className="navBar">
                     <h1 className="animated 1 fadeInLeft">
-                        <NavbarBrand className="fas fa-home navTitle" href="/">  Welcome to PetFinder {_.isDefined(this.state.seconds)}</NavbarBrand>
+                        <NavbarBrand className="navTitle" href="/">Welcome to PetFinder{_.isDefined(this.state.seconds)}</NavbarBrand>
                     </h1>
+
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>

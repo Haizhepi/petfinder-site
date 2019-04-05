@@ -125,7 +125,7 @@ export class RegisterPage extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Sign Up</div>
+                            <div className="title">Create Account</div>
                             <hr/>
                             <Login.RegistrationForm/>
                         </div>

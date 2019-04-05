@@ -76,6 +76,7 @@
     "react": "16.2.0",
     "react-animated-css": "^1.0.4",
     "react-background-image-loader": "0.0.5",
+    "react-bootstrap-dropdown-menu": "^1.1.15",
     "react-datepicker": "^2.2.0",
     "react-dom": "16.2.0",
     "react-geocode": "^0.1.2",

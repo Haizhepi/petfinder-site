@@ -16,7 +16,7 @@ import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {LocationSearchInput} from 'js/autoComplete';
-import {Input, Label, ModalBody} from 'reactstrap';
+import {FormText, Input, Label, ModalBody} from 'reactstrap';
 
 //Class that represents the log in form
 class LoginForm extends React.Component {
@@ -259,6 +259,12 @@ class RegistrationForm extends React.Component {
                                     {value: 'owner', label: 'Owner'}]}
                                                         placeholder="Owner or Sitter?"
                                 />}/>
+
+                <FormText className="terms">
+                    By processing you agree to PerFinder's
+                    <a href={'#/register'}> Terms of Use </a>
+                </FormText>
+
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>REGISTER</Bessemer.Button>
                 </div>
