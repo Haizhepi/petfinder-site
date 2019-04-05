@@ -163,7 +163,7 @@ export class EditProfilePage extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Edit the profile</div>
+                            <div className="title">Edit Your Profile</div>
                             <hr/>
                             <Login.EditProfileForm/>
                         </div>
@@ -246,7 +246,7 @@ Page1 = connect(
 
 export {Page1};
 
-class Page2 extends React.Component {
+class PetForm extends React.Component {
     render() {
         return (
             <section className="webWrapper">
@@ -265,17 +265,17 @@ class Page2 extends React.Component {
     }
 }
 
-Page2 = connect(
+PetForm = connect(
     state => ({
         authentication: Users.State.getAuthentication(state),
         user: Users.State.getUser(state),
         pet: Users.State.getPet(state)
     })
-)(Page2);
+)(PetForm);
 
-export {Page2};
+export {PetForm};
 
-class Page3 extends React.Component {
+class PetListing extends React.Component {
 
     render() {
         return (
@@ -295,14 +295,14 @@ class Page3 extends React.Component {
     }
 }
 
-Page3 = connect(
+PetListing = connect(
     state => ({
         authentication: Users.State.getAuthentication(state),
         user: Users.State.getUser(state),
         pet: Users.State.getPet(state)
     })
-)(Page3);
-export {Page3};
+)(PetListing);
+export {PetListing};
 
 class AddBooking extends React.Component {
 

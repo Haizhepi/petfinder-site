@@ -62,11 +62,11 @@
 }
 
 .form-control {
+  color: whitesmoke;
   border: none;
   border-bottom: 2px solid whitesmoke;
   text-align: left;
   background-color: transparent;
-  z-index: 2;
   -moz-transition: background-color 0.25s, border-bottom-color 0.25s;
   -o-transition: background-color 0.25s, border-bottom-color 0.25s;
   -webkit-transition: background-color 0.25s, border-bottom-color 0.25s;
@@ -74,6 +74,7 @@
 }
 
 .form-control:hover {
+  color: black;
   background-color: whitesmoke;
 }
 
@@ -106,8 +107,9 @@
 }
 
 .webWrapper {
-  height: 150%;
-  background-size: 150%;
+  height: 130%;
+  background-image: url("https://www.thekennelclub.org.uk/media/220672/puppy_and_dog_walking_dan_miller.jpg");
+  background-size: 120%;
   animation-name: Gradient;
   animation-duration: 25s;
   animation-iteration-count: infinite;
@@ -234,8 +236,8 @@ body {
 }
 
 .btn {
-  margin: 20px;
-  padding: 12px 100px;
+  margin: 25px;
+  padding: 6px 120px;
   position: relative !important;
   display: block !important;
   color: white !important;
@@ -378,3 +380,75 @@ body {
 }
 
 .far { display:inline; }
+
+.navTitle {
+
+}
+
+.form-left {
+  position: absolute;
+  left: 10px;
+  padding: 5px 5px 10px 5px;
+  color: #d2d2d2;
+  background-color: transparent;
+  -moz-transition: 0.6s ease !important;
+  -o-transition: 0.6s ease !important;
+  -webkit-transition: 0.6s ease !important;
+  transition: all 0.6s ease !important;
+}
+
+.form-left:hover {
+  filter: brightness(250%);
+}
+
+.form-right {
+  position: absolute;
+  right: 10px;
+  padding: 5px 5px 10px 5px;
+  color: #d2d2d2;
+  background-color: transparent;
+  -moz-transition: 0.6s ease !important;
+  -o-transition: 0.6s ease !important;
+  -webkit-transition: 0.6s ease !important;
+  transition: all 0.6s ease !important;
+}
+
+.form-right:hover {
+  filter: brightness(250%);
+}
+
+.form-middle {
+  display: block;
+  text-align: center;
+  padding: 5px 5px 10px 5px;
+  color: #d2d2d2;
+  background-color: transparent;
+  -moz-transition: 0.6s ease !important;
+  -o-transition: 0.6s ease !important;
+  -webkit-transition: 0.6s ease !important;
+  transition: all 0.6s ease !important;
+}
+
+.form-middle:hover {
+  filter: brightness(250%);
+}
+
+.middle-align{
+  text-align: center;
+}
+
+.checkBox {
+  position: relative;
+  left: 15px;
+  padding: 20px 5px 10px 5px;
+  color: #d2d2d2;
+  background-color: transparent;
+  -moz-transition: 0.6s ease !important;
+  -o-transition: 0.6s ease !important;
+  -webkit-transition: 0.6s ease !important;
+  transition: all 0.6s ease !important;
+}
+
+.checkBox:hover {
+  filter: brightness(250%);
+}

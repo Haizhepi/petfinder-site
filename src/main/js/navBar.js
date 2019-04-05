@@ -69,14 +69,11 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand  className="fas fa-home" href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand  className="fas fa-home navTitle" href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <NavLink href="#/page-1" className="navText">Page1</NavLink>
-                                </NavItem>
                                 <NavItem>
                                     <NavLink href="#/homepage" className="navText">Profile</NavLink>
                                 </NavItem>
@@ -87,7 +84,7 @@ export class NavBar extends React.Component {
                                     <NavLink href="#/schedule" className="navText">Schedule</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/viewSitter" className="navText">View Sitter Info</NavLink>
+                                    <NavLink href="#/viewSitter" className="navText">Sitter Information</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/logout" className="navText">Logout</NavLink>
@@ -120,19 +117,16 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand  className="fas fa-home" href="/">  Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand  className="fas fa-home navTitle" href="/">  Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/page-1" className="navText">Page1</NavLink>
-                                </NavItem>
-                                <NavItem>
                                     <NavLink href="#/homepage" className="navText">Profile</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/page-3" className="navText">Pet List</NavLink>
+                                    <NavLink href="#/page-3" className="navText">My Pets</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/pet" className="navText">Add a Pet</NavLink>
@@ -171,19 +165,16 @@ export class NavBar extends React.Component {
                 return (
                     <Navbar light expand="md" className="navBar">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand  className="fas fa-home" href="/">  Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand  className="fas fa-home navTitle" href="/">  Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/page-1" className="navText">Page1</NavLink>
-                                </NavItem>
-                                <NavItem>
                                     <NavLink href="#/homepage" className="navText">Profile</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/page-3" className="navText">Pet List</NavLink>
+                                    <NavLink href="#/page-3" className="navText">My Pets</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/pet" className="navText">Add a Pet</NavLink>
@@ -195,7 +186,7 @@ export class NavBar extends React.Component {
                                     <NavLink href="#/edit_profile" className="navText">Edit Profile</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/viewSitter" className="navText">View Sitter Info</NavLink>
+                                    <NavLink href="#/viewSitter" className="navText">Sitter Information</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/logout" className="navText">Logout</NavLink>
@@ -234,19 +225,19 @@ export class NavBar extends React.Component {
 
                 <Navbar light expand="md" className="navBar">
                     <h1 className="animated 1 fadeInLeft">
-                        <NavbarBrand className="fas fa-home" href="/">  Welcome to PetFinder {_.isDefined(this.state.seconds)}</NavbarBrand>
+                        <NavbarBrand className="fas fa-home navTitle" href="/">  Welcome to PetFinder {_.isDefined(this.state.seconds)}</NavbarBrand>
                     </h1>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="#/login" className="navText">  Sign In</NavLink>
+                                <NavLink href="#/login" className="navText">LOG IN</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#/register" className="navText">  Sign Up</NavLink>
+                                <NavLink href="#/register" className="navText">SIGN UP</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar className="navText">
-                                <DropdownToggle nav caret> More</DropdownToggle>
+                                <DropdownToggle nav caret>MORE</DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         Option 1

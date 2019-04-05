@@ -22,8 +22,8 @@ export default class Index extends React.Component {
 		let register = <Route exact path="/register" component={Pages.RegisterPage}/>;
 		let login = <Route exact path="/login" component={Pages.LoginPage}/>;
 		let userInfo = <Route exact path="/page-1" component={Pages.Page1}/>;
-		let addpet = <Route exact path="/pet" component={Pages.Page2}/>;
-		let page3 = <Route exact path="/page-3" component={Pages.Page3}/>;
+		let addpet = <Route exact path="/pet" component={Pages.PetForm}/>;
+		let page3 = <Route exact path="/page-3" component={Pages.PetListing}/>;
 		let homepath = <Route exact path="/homepage" component={Pages.Homepage}/>;
 		let logout = <Route exact path="/logout" component={Pages.Logout}/>;
 		let editProfile = <Route exact path="/edit_profile" component={Pages.EditProfilePage}/>;

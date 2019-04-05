@@ -16,6 +16,7 @@ import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {LocationSearchInput} from 'js/autoComplete';
+import {Input, Label, ModalBody} from 'reactstrap';
 
 //Class that represents the log in form
 class LoginForm extends React.Component {
@@ -44,16 +45,23 @@ class LoginForm extends React.Component {
         return (
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 
-                    <Bessemer.Field name="principal" friendlyName="Email"
-                                    validators={[Validation.requiredValidator, Validation.emailValidator]}/>
+                <Bessemer.Field name="principal" friendlyName="Email"
+                                validators={[Validation.requiredValidator, Validation.emailValidator]}/>
 
                 <Bessemer.Field name="password" friendlyName="Password"
                                 validators={[Validation.requiredValidator, Validation.passwordValidator]}
                                 field={<input className="form-control" type="password"
                                 />}/>
+                <Label check className="checkBox">
+                    <Input type="checkbox" className="Box" />{' '}
+                    Keep me signed in
+                </Label>
+
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>LOGIN</Bessemer.Button>
                 </div>
+                <a className="form-left" href={'#/login'}>Forgot password?</a>
+                <a className="form-right" href={'#/register'}>Not a member yet?</a>
             </form>
         );
     }
@@ -253,6 +261,9 @@ class RegistrationForm extends React.Component {
                                 />}/>
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>REGISTER</Bessemer.Button>
+                </div>
+                <div className="middle-align">
+                    <a className="form-middle" href={'#/login'}>Already have an account?</a>
                 </div>
             </form>
         );
