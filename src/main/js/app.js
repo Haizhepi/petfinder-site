@@ -20,7 +20,7 @@ const reducers = [
 ];
 
 const reducer = Utils.combineReducers(reducers);
-let authToken = localStorage.getItem('auth');
+let authToken = JSON.parse(localStorage.getItem('auth'));
 if (!authToken) {
 	authToken = {authentication: null, user: null};
 }

@@ -23,20 +23,23 @@ const config = {
     },
     module: {
         rules: [{
-                test: /\.js$/,
-                use: ['babel-loader'],
-                exclude: /node_modules/
-            }, {
-                test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|ico|eot)$/,
-                use: "url-loader?limit=100000"
-            } ]
+            test: /\.js$/,
+            use: ['babel-loader'],
+            exclude: /node_modules/
+        }, {
+            test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|ico|eot)(\?[a-z0-9=.]+)?$/,
+            use: ['url-loader?limit=100000']
+        }, {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+        }]
     },
     resolve: {
         alias: {
             js: path.resolve(src, 'js'),
             styles: path.resolve(src, 'styles')
         },
-        extensions: ['.json', '.js', '.scss']
+        extensions: ['.json', '.js', '.scss', '.css']
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

@@ -13,23 +13,21 @@ import * as Booking from 'js/bookings/booking';
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
 
-import 'styles/w3_replica.scss';
-
-import 'styles/animate.scss';
-import 'styles/animate.min.scss';
-
-import {Alert, Button, ListGroup, ListGroupItem} from 'reactstrap';
+import {Alert, Button, ListGroup, ListGroupItem, Navbar} from 'reactstrap';
 
 import 'styles/main.scss';
 import {MyBookings} from 'js/bookings/MyBookings';
 import {AvailableSitter} from 'js/bookings/availableSitters';
 import {MyModal} from 'js/modal';
 import 'react-datepicker';
-import 'react-datepicker/src/stylesheets/datepicker.scss';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import {BookingDetail} from 'js/bookings/BookingDetails';
 import {SignedBooking} from 'js/bookings/SignedBooking';
 import {GoogleMapAPI} from 'js/googleMapAPI';
 import {LocationSearchInput} from 'js/autoComplete';
+import {WebHome} from 'js/webHome';
+import {SidebarComponent} from 'js/mySidebar';
 
 
 export class Home extends React.Component {
@@ -62,6 +60,7 @@ export class Home extends React.Component {
             if (this.props.user.type === 'SITTER') {
                 return (
                     <section className="webWrapper">
+                        <SidebarComponent/>
                         <NavBar/>
                         <div className="middle">
                             <MyModal/>
@@ -71,6 +70,7 @@ export class Home extends React.Component {
             } else if (this.props.user.type === 'OWNER') {
                 return (
                     <section className="webWrapper">
+                        <SidebarComponent/>
                         <NavBar/>
                         <div className="middle">
                             <MyModal/>
@@ -80,6 +80,7 @@ export class Home extends React.Component {
             } else {
                 return (
                     <section className="webWrapper">
+                        <SidebarComponent/>
                         <NavBar/>
                         <div className="middle">
                             <MyModal/>
@@ -89,7 +90,8 @@ export class Home extends React.Component {
             }
         } else {
             return (
-                <section className="webWrapper">
+                <section className="homepageWrapper">
+                    <SidebarComponent/>
                     <NavBar/>
                     <div className="middle">
                         <MyModal/>
@@ -123,12 +125,13 @@ export class RegisterPage extends React.Component {
 
     render() {
         return (
-            <section className="webWrapper">
+            <section className="homepageWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Sign up</div>
+                            <div className="title">Create Account</div>
                             <hr/>
                             <Login.RegistrationForm/>
                         </div>
@@ -142,12 +145,13 @@ export class RegisterPage extends React.Component {
 export class LoginPage extends React.Component {
     render() {
         return (
-            <section className="webWrapper">
+            <section className="homepageWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Login</div>
+                            <div className="title">Sign In</div>
                             <hr/>
                             <Login.LoginForm/>
                         </div>
@@ -162,11 +166,12 @@ export class EditProfilePage extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Edit the profile</div>
+                            <div className="title">Edit Your Profile</div>
                             <hr/>
                             <Login.EditProfileForm/>
                         </div>
@@ -181,6 +186,7 @@ export class AddRating extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -200,6 +206,7 @@ export class GoogleMap extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <GoogleMapAPI/>
             </section>
@@ -211,6 +218,7 @@ export class SearchBox extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <LocationSearchInput/>
             </section>
@@ -222,6 +230,7 @@ class Page1 extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <h1>This is page 1</h1>
@@ -249,10 +258,11 @@ Page1 = connect(
 
 export {Page1};
 
-class Page2 extends React.Component {
+class PetForm extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -268,21 +278,22 @@ class Page2 extends React.Component {
     }
 }
 
-Page2 = connect(
+PetForm = connect(
     state => ({
         authentication: Users.State.getAuthentication(state),
         user: Users.State.getUser(state),
         pet: Users.State.getPet(state)
     })
-)(Page2);
+)(PetForm);
 
-export {Page2};
+export {PetForm};
 
-class Page3 extends React.Component {
+class PetListing extends React.Component {
 
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -298,20 +309,21 @@ class Page3 extends React.Component {
     }
 }
 
-Page3 = connect(
+PetListing = connect(
     state => ({
         authentication: Users.State.getAuthentication(state),
         user: Users.State.getUser(state),
         pet: Users.State.getPet(state)
     })
-)(Page3);
-export {Page3};
+)(PetListing);
+export {PetListing};
 
 class AddBooking extends React.Component {
 
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <Booking.BookingForm/>
@@ -332,76 +344,27 @@ export {AddBooking};
 
 
 export class Homepage extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {ratings: []};
-    }
-
-    componentWillMount() {
-        this.props.getRating(this.props.user).then(response => {
-            console.log('rating');
-            console.log(response);
-            this.setState({ratings: response});
-        });
-        console.log('rating');
-        console.log(this.state.ratings);
-
-    }
-
     render() {
-        if (this.props.user.type !== 'SITTER') {
-            return (
-                <section className="webWrapper">
-                    <NavBar/>
-                    <div className="container padded">
-                        <h1>Home Page</h1>
-                        {_.isDefined(this.props.authentication) &&
-                        <div>
-                            <h1>This is Ur User Profile</h1>
-                            <ListGroup>
-                                <ListGroupItem>FirstName: {this.props.user.firstName}</ListGroupItem>
-                                <ListGroupItem>Last Name: {this.props.user.lastName}</ListGroupItem>
-                                <ListGroupItem>Gender: {this.props.user.gender}</ListGroupItem>
-                                <ListGroupItem>Zip Code: {this.props.user.zipcode}</ListGroupItem>
-                            </ListGroup>
-                        </div>
-                        }
+        return (
+            <section className="webWrapper">
+                <SidebarComponent/>
+                <NavBar/>
+                <div className="container padded">
+                    <h1>Home Page</h1>
+                    {_.isDefined(this.props.authentication) &&
+                    <div>
+                        <h1>This is Ur User Profile</h1>
+                        <ListGroup>
+                            <ListGroupItem>FirstName: {this.props.user.firstName}</ListGroupItem>
+                            <ListGroupItem>Last Name: {this.props.user.lastName}</ListGroupItem>
+                            <ListGroupItem>Gender: {this.props.user.gender}</ListGroupItem>
+                            <ListGroupItem>Zip Code: {this.props.user.zipcode}</ListGroupItem>
+                        </ListGroup>
                     </div>
-                </section>
-            );
-        }
-        else {
-            return (
-                <section className="webWrapper">
-                    <NavBar/>
-                    <div className="container padded">
-                        <h1>Home Page</h1>
-                        {_.isDefined(this.props.authentication) &&
-                        <div>
-                            <h1>This is Ur User Profile</h1>
-                            <ListGroup>
-                                <ListGroupItem>FirstName: {this.props.user.firstName}</ListGroupItem>
-                                <ListGroupItem>Last Name: {this.props.user.lastName}</ListGroupItem>
-                                <ListGroupItem>Gender: {this.props.user.gender}</ListGroupItem>
-                                <ListGroupItem>Zip Code: {this.props.user.zipcode}</ListGroupItem>
-                            </ListGroup>
-                        </div>
-                        }
-                        {this.state.ratings.map(rating => (
-                            <ListGroup key={rating.id}>
-                                <ListGroupItem>
-                                    content: {rating.content}
-                                </ListGroupItem>
-                                <ListGroupItem>rating: {rating.rating}</ListGroupItem>
-                            </ListGroup>
-                        ))}
-
-                    </div>
-                </section>
-            );
-        }
-
+                    }
+                </div>
+            </section>
+        );
     }
 }
 
@@ -410,9 +373,6 @@ Homepage = connect(
         authentication: Users.State.getAuthentication(state),
         user: Users.State.getUser(state),
         pet: Users.State.getPet(state)
-    }),
-    dispatch => ({
-        getRating: Users.Actions.getRating()
     })
 )(Homepage);
 
@@ -422,6 +382,7 @@ export class MyBooking extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <MyBookings/>
@@ -440,6 +401,7 @@ export class AvailableBooking extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <Booking.AvailableBooking/>
@@ -454,6 +416,7 @@ export class SitterBooking extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <SignedBooking/>
@@ -468,6 +431,7 @@ export class AvailableSittersPage extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <AvailableSitter/>
@@ -482,6 +446,7 @@ export class BookingDetailPage extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <BookingDetail/>
@@ -495,6 +460,7 @@ export class Notifications extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <Notification.NotificationCenter/>
@@ -516,6 +482,7 @@ export class Logout extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <div>
@@ -545,6 +512,7 @@ export class Availability extends React.Component {
     render() {
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <Avail.AvailabilityForm/>
@@ -589,6 +557,7 @@ export class ViewSitter extends React.Component {
 
         return (
             <section className="webWrapper">
+                <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
                     <h1>The Availability: </h1>

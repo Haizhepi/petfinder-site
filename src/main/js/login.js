@@ -16,6 +16,7 @@ import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {LocationSearchInput} from 'js/autoComplete';
+import {FormText, Input, Label, ModalBody} from 'reactstrap';
 
 //Class that represents the log in form
 class LoginForm extends React.Component {
@@ -31,22 +32,36 @@ class LoginForm extends React.Component {
         if (submitting) {
             if (this.props.authentication != null) {
                 this.forceUpdate();
+                localStorage.setItem('auth', JSON.stringify(this.props.authentication));
+                /*if(localStorage.getItem('auth') != null){
+                    Console.log("got localStorage item");
+                    Console.log(authentication.)
+                    return <Redirect to={'/homepage'}/>;
+                }*/
                 return <Redirect to={'/'}/>;
             }
         }
 
         return (
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                <Bessemer.Field name="principal" friendlyName="Email Address"
+
+                <Bessemer.Field name="principal" friendlyName="Email"
                                 validators={[Validation.requiredValidator, Validation.emailValidator]}/>
 
                 <Bessemer.Field name="password" friendlyName="Password"
                                 validators={[Validation.requiredValidator, Validation.passwordValidator]}
                                 field={<input className="form-control" type="password"
                                 />}/>
+                <Label check className="checkBox">
+                    <Input type="checkbox" className="Box" />{' '}
+                    Keep me signed in
+                </Label>
+
                 <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Sign In</Bessemer.Button>
+                    <Bessemer.Button className="buttonType1" loading={submitting}>LOGIN</Bessemer.Button>
                 </div>
+                <a className="form-left" href={'#/login'}>Forgot password?</a>
+                <a className="form-right" href={'#/register'}>Not a member yet?</a>
             </form>
         );
     }
@@ -244,8 +259,17 @@ class RegistrationForm extends React.Component {
                                     {value: 'owner', label: 'Owner'}]}
                                                         placeholder="Owner or Sitter?"
                                 />}/>
+
+                <FormText className="terms">
+                    By processing you agree to PerFinder's
+                    <a href={'#/register'}> Terms of Use </a>
+                </FormText>
+
                 <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Register</Bessemer.Button>
+                    <Bessemer.Button className="buttonType1" loading={submitting}>REGISTER</Bessemer.Button>
+                </div>
+                <div className="middle-align">
+                    <a className="form-middle" href={'#/login'}>Already have an account?</a>
                 </div>
             </form>
         );
@@ -294,10 +318,22 @@ class EditProfileForm extends React.Component {
 
         return (
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                <Bessemer.Field name="firstName" friendlyName="first name"/>
-                <Bessemer.Field name="lastName" friendlyName="last name"/>
-                <Bessemer.Field name="gender" friendlyName="Gender"/>
-                <Bessemer.Field name="zipcode" friendlyName="zip code"/>
+
+                <Bessemer.Field name="firstName" friendlyName="First Name"
+                                field={<input className="form-control" type="firstName"
+                                />}/>
+
+                <Bessemer.Field name="lastName" friendlyName="Last Name"
+                                field={<input className="form-control" type="lastName"
+                                />}/>
+                <Bessemer.Field name="gender" friendlyName="Gender"
+                                field={<Bessemer.Select options={[{value: 'female', label: 'Female'},
+                                    {value: 'male', label: 'Male'},
+                                    {value: 'other', label: 'Other'}]}
+                                                        placeholder="Choose Your Gender"
+                                />}/>
+                <Bessemer.Field name="zipcode" friendlyName="Zip Code"
+                                field={<input className="form-control" type="zipcode"/>}/>
                 <Bessemer.Field name="userType" friendlyName="User Type"
                                 field={<Bessemer.Select options={[{value: 'sitter', label: 'Sitter'},
                                     {value: 'owner', label: 'Owner'}]}

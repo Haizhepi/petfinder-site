@@ -7,6 +7,7 @@ import * as Users from 'js/users';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import {PetList} from 'js/petList';
+import {MapHome} from 'js/mapHome';
 
 
 export default class Index extends React.Component {
@@ -21,8 +22,8 @@ export default class Index extends React.Component {
 		let register = <Route exact path="/register" component={Pages.RegisterPage}/>;
 		let login = <Route exact path="/login" component={Pages.LoginPage}/>;
 		let userInfo = <Route exact path="/page-1" component={Pages.Page1}/>;
-		let addpet = <Route exact path="/pet" component={Pages.Page2}/>;
-		let page3 = <Route exact path="/page-3" component={Pages.Page3}/>;
+		let addpet = <Route exact path="/pet" component={Pages.PetForm}/>;
+		let page3 = <Route exact path="/page-3" component={Pages.PetListing}/>;
 		let homepath = <Route exact path="/homepage" component={Pages.Homepage}/>;
 		let logout = <Route exact path="/logout" component={Pages.Logout}/>;
 		let editProfile = <Route exact path="/edit_profile" component={Pages.EditProfilePage}/>;
@@ -37,6 +38,7 @@ export default class Index extends React.Component {
 		let googleMap = <Route exact path="/googleMap" component={Pages.GoogleMap}/>;
 		let addRating = <Route exact path="/addRating" component={Pages.AddRating}/>;
         let searchLocation = <Route exact path="/searchLocation" component={Pages.SearchBox}/>;
+        let mapHome = <Route exact path="/googleMapHome" component={MapHome}/>;
 
 		let sitterBooking = <Route exact path="/signedBooking" component={Pages.SitterBooking}/>;
 
@@ -64,6 +66,7 @@ export default class Index extends React.Component {
 					{googleMap}
 					{addRating}
                     {searchLocation}
+					{mapHome}
 					{sitterBooking}
 				</div>
 			</HashRouter>
