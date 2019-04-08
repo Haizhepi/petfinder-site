@@ -28,6 +28,7 @@ import {GoogleMapAPI} from 'js/googleMapAPI';
 import {LocationSearchInput} from 'js/autoComplete';
 import {WebHome} from 'js/webHome';
 import {SidebarComponent} from 'js/mySidebar';
+import {MyCard} from 'js/card';
 
 
 export class Home extends React.Component {
@@ -60,8 +61,10 @@ export class Home extends React.Component {
             if (this.props.user.type === 'SITTER') {
                 return (
                     <section className="webWrapper">
-                        <SidebarComponent/>
-                        <NavBar/>
+                        <div className="barWrapper">
+                            <SidebarComponent/>
+                            <NavBar/>
+                        </div>
                         <div className="middle">
                             <MyModal/>
                         </div>
@@ -70,8 +73,10 @@ export class Home extends React.Component {
             } else if (this.props.user.type === 'OWNER') {
                 return (
                     <section className="webWrapper">
-                        <SidebarComponent/>
-                        <NavBar/>
+                        <div className="barWrapper">
+                            <SidebarComponent/>
+                            <NavBar/>
+                        </div>
                         <div className="middle">
                             <MyModal/>
                         </div>
@@ -80,8 +85,10 @@ export class Home extends React.Component {
             } else {
                 return (
                     <section className="webWrapper">
-                        <SidebarComponent/>
-                        <NavBar/>
+                        <div className="barWrapper">
+                            <SidebarComponent/>
+                            <NavBar/>
+                        </div>
                         <div className="middle">
                             <MyModal/>
                         </div>
@@ -91,8 +98,11 @@ export class Home extends React.Component {
         } else {
             return (
                 <section className="homepageWrapper">
-                    <SidebarComponent/>
-                    <NavBar/>
+                    <div className="barWrapper">
+                        <SidebarComponent/>
+                        <NavBar/>
+                    </div>
+
                     <div className="middle">
                         <MyModal/>
                     </div>
