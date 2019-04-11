@@ -2,6 +2,8 @@ import React from 'react';
 import Sidebar from 'react-sidebar';
 import * as Users from 'js/users';
 import {connect} from 'react-redux';
+import Avatar from 'react-avatar';
+
 
 export class SidebarComponent extends React.Component {
     constructor(props) {
@@ -30,7 +32,14 @@ export class SidebarComponent extends React.Component {
                 <Sidebar
                     sidebar={
                         <div className="sidebarPane">
-                            <div>
+
+                            <div className="sidebarTopWrapper">
+                                <a className="sidebarAvatar" href={'#/edit_profile'}>
+                                    <Avatar
+                                        name={this.props.user.firstName + ' ' + this.props.user.lastName}
+                                        size={60} round={true}
+                                    />
+                                </a>
                                 <a className="sidebarTitle">
                                     {this.props.user.firstName}
                                 </a>
@@ -65,15 +74,15 @@ export class SidebarComponent extends React.Component {
                     sidebar={
                         <div className="sidebarPane">
                             <div>
-                                <a className="sidebarTitle">
+                                <a className="homeSidebarTitle">
                                     Welcome
                                 </a>
                             </div>
                             <div className="sbTextContainer">
                                 <a className="sidebarText" href={'#/login'}>
-                                    <i className="far fa-sign-in sbIconSmall"> </i>
-                                    Login
-                                </a>
+                                <i className="far fa-sign-in sbIconSmall"> </i>
+                                Login
+                            </a>
                             </div>
                             <div className="sbTextContainer">
                                 <a className="sidebarText" href={'#/register'}>

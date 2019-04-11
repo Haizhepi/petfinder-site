@@ -90,7 +90,7 @@ export class Home extends React.Component {
                             <NavBar/>
                         </div>
                         <div className="middle">
-                            {/*<MyModal/>*/}
+                            <MyModal/>
                             <MyCard/>
                         </div>
                     </section>
