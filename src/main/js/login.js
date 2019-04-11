@@ -42,6 +42,7 @@ class LoginForm extends React.Component {
             }
         }
 
+
         return (
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 
@@ -53,14 +54,14 @@ class LoginForm extends React.Component {
                                 field={<input className="form-control" type="password"
                                 />}/>
                 <Label check className="checkBox">
-                    <Input type="checkbox" className="Box" />{' '}
+                    <Input type="checkbox" className="Box"/>{' '}
                     Keep me signed in
                 </Label>
 
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>LOGIN</Bessemer.Button>
                 </div>
-                <a className="form-left" href={'#/login'}>Forgot password?</a>
+                <a className="form-left" >Forgot password?</a>
                 <a className="form-right" href={'#/register'}>Not a member yet?</a>
             </form>
         );
@@ -261,8 +262,8 @@ class RegistrationForm extends React.Component {
                                 />}/>
 
                 <FormText className="terms">
-                    By processing you agree to PerFinder's
-                    <a href={'#/register'}> Terms of Use </a>
+                    {'By processing you agree to PetFinder\'s '}
+                    <a href={'#/register'}>Terms of Use</a>
                 </FormText>
 
                 <div className="wrapper">

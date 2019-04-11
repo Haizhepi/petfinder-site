@@ -10,11 +10,11 @@ export class MyCard extends React.Component {
     constructor(props) {
         super(props);
 
-        this.toggle = this.toggle.bind(this);
+        //
+        // this.toggle = this.toggle.bind(this);
     }
 
     componentWillMount() {
-        clearInterval(this.interval);
         if (this.props.user) {
             if (this.props.user.type === 'SITTER') {
                 this.setState({sitter: 'SITTER'});
@@ -27,12 +27,13 @@ export class MyCard extends React.Component {
             <div>
                 <Card>
                     <CardBody>
-                        <CardTitle>Card title</CardTitle>
+                        <CardTitle>{this.props.user.firstName}</CardTitle>
                         <CardSubtitle>Card subtitle</CardSubtitle>
-
+                        <CardText/>asd <CardText/>
                         <CardLink href="#">Card Link</CardLink>
                         <CardLink href="#">Another Link</CardLink>
                     </CardBody>
+
                 </Card>
             </div>
         );
@@ -47,10 +48,12 @@ MyCard = connect(
         noti: Users.State.getNewNoti(state)
     }),
 
-    sitterId => ({
-        sitter: Users.Actions.getSitter(sitterId),
-        availableSitters: Users.Actions.getAvailableSitters(sitterId)
-    }),
+
+
+    // sitterId => ({
+    //     sitter: Users.Actions.getSitter(sitterId),
+    //     availableSitters: Users.Actions.getAvailableSitters(sitterId)
+    // }),
 
     dispatch => ({
         register: user => dispatch(Users.Actions.register(user)),

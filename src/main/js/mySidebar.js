@@ -55,7 +55,7 @@ export class SidebarComponent extends React.Component {
                     styles={{sidebar: {background: 'white'}}}
                 >
                     <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
-                        <i className="far fa-align-justify fa-lg"> </i>
+                        <i className="far fa-align-justify fa-lg sbButtonIcon"> </i>
                     </button>
                 </Sidebar>
             );
@@ -94,7 +94,7 @@ export class SidebarComponent extends React.Component {
                     styles={{sidebar: {background: 'white'}}}
                 >
                     <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
-                        <i className="far fa-align-justify fa-lg"> </i>
+                        <i className="far fa-align-justify fa-lg sbButtonIcon"> </i>
                     </button>
                 </Sidebar>
             );
