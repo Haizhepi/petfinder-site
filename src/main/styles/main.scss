@@ -131,9 +131,8 @@
   right: 0;
   font-size: 17px;
   height: 55px;
-  width: 95%;
+  width: 96%;
   margin: 0;
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.1);
   -moz-transition: background-color 0.3s, color 0.3s;
   -o-transition: background-color 0.3s, color 0.3s;
   -webkit-transition: background-color 0.3s, color 0.3s;
@@ -479,12 +478,12 @@ body {
 }
 
 .sbButton {
-  width: 5%;
+  width: 4%;
   height: 55px;
   color: black;
   border: none;
   font-family: Century Gothic, sans-serif;
-  background-color: transparent;
+  background-color: whitesmoke;
   -moz-transition: 0.3s ease !important;
   -o-transition: 0.3s ease !important;
   -webkit-transition: 0.3s ease !important;
@@ -553,4 +552,7 @@ body {
 .sbIconSmall {
   margin-right: 14px;
   margin-left: 10px;
+}
+
+.barWrapper {
 }

@@ -32,11 +32,11 @@ export class SidebarComponent extends React.Component {
                         <div className="sidebarPane">
                             <div>
                                 <a className="sidebarTitle">
-                                    You are logged in as, {this.props.user.firstName}
+                                    {this.props.user.firstName}
                                 </a>
                             </div>
                             <div className="sbTextContainer">
-                                <a className="sidebarText" href={'#/'}>
+                                <a className="sidebarText" href={'#/logout'}>
                                     <i className="far fa-sign-out sbIconSmall"> </i>
                                     Logout
                                 </a>
@@ -55,7 +55,7 @@ export class SidebarComponent extends React.Component {
                     styles={{sidebar: {background: 'white'}}}
                 >
                     <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
-                        <i className="fas fa-home-lg fa-lg"> </i>
+                        <i className="far fa-align-justify fa-lg sbButtonIcon"> </i>
                     </button>
                 </Sidebar>
             );
@@ -94,7 +94,7 @@ export class SidebarComponent extends React.Component {
                     styles={{sidebar: {background: 'white'}}}
                 >
                     <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
-                        <i className="fas fa-home-lg fa-lg"> </i>
+                        <i className="far fa-align-justify fa-lg sbButtonIcon"> </i>
                     </button>
                 </Sidebar>
             );
