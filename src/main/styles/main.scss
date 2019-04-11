@@ -106,7 +106,7 @@
 }
 
 .webWrapper {
-  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 
   height: 130%;
   background-image: url("http://www.imagefully.com/wp-content/uploads/2015/07/Cute-Dog-Walking-Forest-Animal-Photo.jpg");
@@ -121,7 +121,7 @@
 }
 
 .homepageWrapper {
-  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 
   height: 100%;
   -webkit-filter: grayscale(30%);
@@ -386,6 +386,7 @@ body {
 .far { display:inline; }
 
 .navTitle {
+  font-size: 22px;
   top: 4px;
   vertical-align: baseline;
   position: relative;
@@ -588,7 +589,6 @@ body {
 }
 
 .navTitleHome {
-  font-size: 20px;
   color: white !important;
   background-color: transparent;
 }
