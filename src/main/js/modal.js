@@ -107,8 +107,6 @@ export class MyModal extends React.Component {
                 <section>
                     <a onClick={this.toggle} className="btn-home btn2"> What is PetFinder? </a>
                     <a onClick={this.toggle} className="btn-home btn2"> Why PetFinder? </a>
-                    <a href={'#/googleMap'} onClick={this.toggle} className="btn-home btn2">   View Map   </a>
-                    <a href={'#/googleMapHome'} onClick={this.toggle} className="btn-home btn2">   Google Map   </a>
 
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
                         <div className="mtitle">

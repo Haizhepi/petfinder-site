@@ -91,7 +91,6 @@ export class Home extends React.Component {
                         </div>
                         <div className="middle">
                             <MyModal/>
-                            <MyCard/>
                         </div>
                     </section>
                 );
@@ -100,7 +99,6 @@ export class Home extends React.Component {
             return (
                 <section className="homepageWrapper">
                     <div className="barWrapper">
-                        <SidebarComponent/>
                         <NavBar/>
                     </div>
 
@@ -136,8 +134,7 @@ export class RegisterPage extends React.Component {
 
     render() {
         return (
-            <section className="homepageWrapper">
-                <SidebarComponent/>
+            <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -156,8 +153,7 @@ export class RegisterPage extends React.Component {
 export class LoginPage extends React.Component {
     render() {
         return (
-            <section className="homepageWrapper">
-                <SidebarComponent/>
+            <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">

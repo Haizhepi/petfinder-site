@@ -99,7 +99,6 @@
   animation-name: zoomIn;
   animation-duration: 0.75s;
   animation-iteration-count: 1;
-  font-family: Century Gothic, sans-serif;
   -moz-transition: all ease 0.75s;
   -o-transition: all ease 0.75s;
   -webkit-transition: all ease 0.75s;
@@ -107,8 +106,14 @@
 }
 
 .webWrapper {
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+
   height: 130%;
-  background-image: url("https://www.thekennelclub.org.uk/media/220672/puppy_and_dog_walking_dan_miller.jpg");
+  background-image: url("http://www.imagefully.com/wp-content/uploads/2015/07/Cute-Dog-Walking-Forest-Animal-Photo.jpg");
+  //background-image: url("https://static.wixstatic.com/media/97dfa2_eb1fd433674f4720b0c07b54e57719d4~mv2_d_2048_1536_s_2.jpg");
+  //background-image: url("https://images.axios.com/D_V2LglTeIOYB3-r2xecUm6exfM=/0x0:3311x1862/1920x1080/2018/01/30/1517330159909.jpg");
+  //background-image: url("https://images.pexels.com/photos/210180/pexels-photo-210180.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  //background-image: url("https://www.thekennelclub.org.uk/media/220672/puppy_and_dog_walking_dan_miller.jpg");
   background-size: 120%;
   animation-name: Gradient;
   animation-duration: 25s;
@@ -116,31 +121,30 @@
 }
 
 .homepageWrapper {
-  height: 130%;
-  background-image: url("https://www.thekennelclub.org.uk/media/220672/puppy_and_dog_walking_dan_miller.jpg");
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+
+  height: 100%;
+  -webkit-filter: grayscale(30%);
+  filter: grayscale(30%);
+  background-image: url("https://images.axios.com/D_V2LglTeIOYB3-r2xecUm6exfM=/0x0:3311x1862/1920x1080/2018/01/30/1517330159909.jpg");
+  //background-image: url("https://www.gannett-cdn.com/-mm-/4144246e9bac7bfbe86c498755676998660ef052/c=0-116-2109-1308/local/-/media/2017/01/18/TennGroup/Nashville/636203378751878152-dogwalk.jpg?width=3200&height=1680&fit=crop");
+  //background-image: url("https://images.pexels.com/photos/210180/pexels-photo-210180.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
   background-size: 120%;
   animation-name: Gradient;
   animation-duration: 25s;
   animation-iteration-count: infinite;
 }
 
-.navBar {
-  background-color: whitesmoke;
-  font-family: Century Gothic, sans-serif;
+.navBarIn {
+  background-color: transparent;
+  color: whitesmoke;
+
   position: absolute;
   right: 0;
   font-size: 17px;
   height: 55px;
   width: 96%;
   margin: 0;
-  -moz-transition: background-color 0.3s, color 0.3s;
-  -o-transition: background-color 0.3s, color 0.3s;
-  -webkit-transition: background-color 0.3s, color 0.3s;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.navBar:hover {
-  background-color: #cccccc;
 }
 
 .navText {
@@ -160,8 +164,7 @@
 
 body {
 
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-  //background: linear-gradient(-45deg, #9673ee, #E73C7E, #23A6D5, #c1d572);
+  background-color: whitesmoke;
   background-size: 200% 200%;
 
   -o-animation: Gradient 15s ease infinite;
@@ -480,24 +483,13 @@ body {
 .sbButton {
   width: 4%;
   height: 55px;
-  color: black;
-  border: none;
-  font-family: Century Gothic, sans-serif;
-  background-color: whitesmoke;
-  -moz-transition: 0.3s ease !important;
-  -o-transition: 0.3s ease !important;
-  -webkit-transition: 0.3s ease !important;
-  transition: all 0.3s ease !important;
-}
-
-.sbButton:hover {
   color: whitesmoke;
-  background-color: black;
+  border: none;
+  background-color: transparent;
 }
 
 .sidebarPane {
   width: 250px;
-  font-family: Century Gothic, sans-serif;
   text-align: center;
   font-size: 16px;
   -moz-transition: 0.3s ease !important;
@@ -509,8 +501,8 @@ body {
 .sbTextContainer {
   background-color: transparent;
   color: black;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   -moz-transition: 0.3s ease !important;
   -o-transition: 0.3s ease !important;
   -webkit-transition: 0.3s ease !important;
@@ -527,7 +519,6 @@ body {
   color: black;
 
   padding: 0 10px 10px 10px;
-  font-family: Century Gothic, sans-serif;
   font-size: 20px;
   display: block;
 }
@@ -537,7 +528,6 @@ body {
   color: black;
 
   padding: 15px 10px 15px 10px;
-  font-family: Century Gothic, sans-serif;
   font-size: 20px;
   display: block;
 }
@@ -590,4 +580,34 @@ body {
 
 .sidebarTopWrapper:hover {
   filter: brightness(130%);
+}
+
+.navTextHome {
+  color: whitesmoke !important;
+  background-color: transparent;
+}
+
+.navTitleHome {
+  font-size: 20px;
+  color: whitesmoke !important;
+  background-color: transparent;
+}
+
+.navTitleHomeLeftMargin {
+  margin-left: 50px;
+}
+
+.navTextHomeRightMargin {
+  margin-right: 50px;
+}
+
+.homeBar {
+  position: absolute;
+  right: 0;
+  font-size: 17px;
+  height: 55px;
+  width: 100%;
+  margin: 0;
+  background-color: transparent;
+  color: whitesmoke;
 }
