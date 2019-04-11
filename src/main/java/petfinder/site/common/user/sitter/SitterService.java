@@ -26,6 +26,15 @@ public class SitterService {
     @Autowired
     private BookingService bookingService;
 
+    public List<SitterInfo> getAllSitters() {
+        List<SitterInfo> res = new ArrayList<>();
+        List<SitterAvailabilityDto> avail = sitterAvailabilityDao.findAllAvailability();
+        for (SitterAvailabilityDto a : avail) {
+            UserDto userDto = userDao.findUserByPrincipal(a.getPrincipal()).get().getUser();
+            res.add(new SitterInfo(userDto, a));
+        }
+        return res;
+    }
 
     public List<SitterAndDate> getSitters(String bookingId) {
         BookingDto booking = bookingService.findBooking(bookingId).get();

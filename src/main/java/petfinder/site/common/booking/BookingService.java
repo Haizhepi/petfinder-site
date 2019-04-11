@@ -47,7 +47,7 @@ public class BookingService {
         if (res.isPresent()) {
             booking = res.get();
         }
-        booking.setSitter(null);
+        booking.setSitter("none");
         UserDto sitter = userDao.findUserByPrincipal(principal).get().getUser();
         sitter.panelty();
         booking.setStatus(BookingDto.BookingStatus.UNSIGNED);
