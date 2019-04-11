@@ -2,6 +2,7 @@ package petfinder.site.common.user.sitter;
 
 import alloy.util.Momento;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import petfinder.site.common.booking.BookingDto;
 
 import java.util.List;
 
@@ -13,6 +14,20 @@ public class SitterAvailabilityDto implements Momento<String> {
     private String endDate;
     private String startTime;
     private List<String> invitations;
+    private location location;
+    class location {
+        Double lat;
+        Double lng;
+
+    }
+
+    public SitterAvailabilityDto.location getLocation() {
+        return location;
+    }
+
+    public void setLocation(SitterAvailabilityDto.location location) {
+        this.location = location;
+    }
 
     public List<String> getInvitations() {
         return invitations;

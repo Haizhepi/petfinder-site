@@ -16,6 +16,20 @@ public class BookingDto implements Momento<String> {
     private String endDate;
     private String startTime;
     private String endTime;
+    private location location;
+    class location {
+        Double lat;
+        Double lng;
+
+    }
+
+    public BookingDto.location getLocation() {
+        return location;
+    }
+
+    public void setLocation(BookingDto.location location) {
+        this.location = location;
+    }
 
     public List<String> getWaitingSitter() {
         return waitingSitter;

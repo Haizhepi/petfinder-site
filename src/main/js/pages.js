@@ -90,8 +90,8 @@ export class Home extends React.Component {
                             <NavBar/>
                         </div>
                         <div className="middle">
-                            {/*<MyModal/>*/}
-                            <MyCard/>
+                            {<MyModal/>}
+                            //<MyCard/>
                         </div>
                     </section>
                 );

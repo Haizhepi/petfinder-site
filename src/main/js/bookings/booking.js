@@ -73,6 +73,7 @@ class BookingForm extends React.Component {
         booking.endTime = this.state.endTime;
         booking.startDate = this.state.startDate;
         booking.endDate = this.state.endDate;
+
         console.log('???');
         console.log(booking);
         return this.props.makeBooking(booking).then(() => {
