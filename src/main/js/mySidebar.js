@@ -41,7 +41,7 @@ export class SidebarComponent extends React.Component {
                                     />
                                 </a>
                                 <a className="sidebarTitle">
-                                    {this.props.user.firstName}
+                                    {this.props.user.firstName + ' ' + this.props.user.lastName}
                                 </a>
                             </div>
                             <div className="sbTextContainer">
