@@ -3,6 +3,7 @@ import * as Users from 'js/users';
 import {connect} from 'react-redux';
 import {EditProfileForm} from 'js/login';
 import * as Bessemer from 'js/alloy/bessemer/components';
+import { Redirect } from 'react-router-dom';
 
 import * as Validation from 'js/alloy/utils/validation';
 import * as ReduxForm from 'redux-form';
@@ -12,36 +13,85 @@ import {
 } from 'reactstrap';
 
 import {Container, Row, Col} from 'reactstrap';
+import {SidebarComponent} from 'js/mySidebar';
+import {NavBar} from 'js/navBar';
 
 
-class PetEdit extends React.Component {
+export class PetEdit extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {hasSubmitSucceeded: false};
+    }
 
     onSubmit = pet => {
         let newPet = this.props.pet;
         newPet.name = pet.name;
         newPet.type = pet.type;
         newPet.preference = pet.preference;
-        this.props.editPet(newPet);
+        this.props.editPet(newPet).then(this.setState({hasSubmitSucceeded: true}));
     };
 
     render() {
+
         let {handleSubmit, submitting} = this.props;
+
         if (!this.props.pet) {
-            return (<h1>select a pet</h1>);
+            return (<h1>Select a pet</h1>);
         }
+
+        if (this.state.hasSubmitSucceeded) {
+            //alert('success');
+            return <Redirect to={'/page-3'}/>;
+        }
+
         console.log(this.props.initialValues);
         return (
-            <div>
-                <h2>Pet: {this.props.pet.name}</h2>
-                <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                    <Bessemer.Field name="name" friendlyName="Pet Name" value="????" className="form-control"/>
+            <section className="webWrapper">
+                <SidebarComponent/>
+                <NavBar/>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <h2>Pet: {this.props.pet.name}</h2>
+                            <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+                                <Bessemer.Field name="name" friendlyName="Pet Name" value="????"
+                                                className="form-control"/>
 
-                    <Bessemer.Field name="type" friendlyName="Pet Type" className="form-control"/>
-                    <div className="wrapper">
-                        <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
+                                <Bessemer.Field name="type" friendlyName="Pet Type"
+                                                field={<Bessemer.Select options={[{value: 'dog', label: 'Dog'},
+                                                    {value: 'cat', label: 'Cat'}, {
+                                                        value: 'guinea pig',
+                                                        label: 'Guinea pig'
+                                                    },
+                                                    {value: 'hamster', label: 'Hamster'}, {
+                                                        value: 'mouse',
+                                                        label: 'Mouse'
+                                                    },
+                                                    {value: 'rat', label: 'Rat'}, {value: 'gerbil', label: 'Gerbil'},
+                                                    {value: 'turtle', label: 'Turtle'},
+                                                    {value: 'frog', label: 'Frog'}, {value: 'lizard', label: 'Lizard'},
+                                                    {value: 'snake', label: 'Snake'}, {value: 'bird', label: 'Bird'},
+                                                    {value: 'ferret', label: 'Ferret'}, {
+                                                        value: 'rabbit',
+                                                        label: 'Rabbit'
+                                                    },
+                                                    {value: 'hedgehog', label: 'Hedgehog'}, {
+                                                        value: 'fish',
+                                                        label: 'Fish'
+                                                    },
+                                                    {value: 'other', label: 'Other'},]}/>}
+                                />
+                                <div className="wrapper">
+                                    <Bessemer.Button className="buttonType1" loading={submitting} >
+                                            Save Changes
+                                    </Bessemer.Button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </section>
         );
     }
 }
@@ -62,9 +112,7 @@ PetEdit = connect(
     })
 )(PetEdit);
 
-export {PetEdit};
-
-class PetList extends React.Component {
+export class PetList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -85,7 +133,7 @@ class PetList extends React.Component {
     render() {
         return (
             <div className="petTable">
-                <table>
+                <table className="actualPetTable">
                     <div className="petTableBody">
                         <tbody>
                         {this.state.pets.map(pet => (
@@ -96,7 +144,7 @@ class PetList extends React.Component {
                                             <CardTitle>{' ' + pet.name + ' '}</CardTitle>
                                             <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
                                             <CardText> {' '} </CardText>
-                                            <CardLink className="cardLinkLeft" href={'#'}>Edit</CardLink>
+                                            <CardLink className="cardLinkLeft" href={'#/editPet'}>Edit</CardLink>
                                             <CardLink className="cardLinkRight" href={'#'}>Delete</CardLink>
                                         </CardBody>
                                     </div>
@@ -120,7 +168,6 @@ PetList = connect(
     })
 )(PetList);
 
-export {PetList};
 
 
 

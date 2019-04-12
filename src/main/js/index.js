@@ -6,7 +6,7 @@ import * as Pages from 'js/pages';
 import * as Users from 'js/users';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import {PetList} from 'js/petList';
+import {PetEdit, PetList} from 'js/petList';
 import {MapHome} from 'js/mapHome';
 
 
@@ -39,8 +39,8 @@ export default class Index extends React.Component {
 		let addRating = <Route exact path="/addRating" component={Pages.AddRating}/>;
         let searchLocation = <Route exact path="/searchLocation" component={Pages.SearchBox}/>;
         let mapHome = <Route exact path="/googleMapHome" component={MapHome}/>;
-
 		let sitterBooking = <Route exact path="/signedBooking" component={Pages.SitterBooking}/>;
+		let editPet = <Route exact path="/editPet" component={PetEdit}/>;
 
         //alert(this.props.authentication);
 		return (
@@ -68,6 +68,7 @@ export default class Index extends React.Component {
                     {searchLocation}
 					{mapHome}
 					{sitterBooking}
+					{editPet}
 				</div>
 			</HashRouter>
 		);

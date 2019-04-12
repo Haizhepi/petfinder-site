@@ -43,7 +43,7 @@ export function savePet(pet) {
 }
 
 export function editPet(pet) {
-	alert(pet.id);
+	// alert(pet.id);
 	return axios.post('/api/pets/edit_pet', pet);
 }
 

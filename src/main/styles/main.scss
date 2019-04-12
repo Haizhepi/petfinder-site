@@ -640,7 +640,7 @@ body {
 
 .petTable {
   width: 100%;
-  background-color: transparent;
+  max-height: 50px;
   text-align: center;
   display: inline-block;
   border-radius: 5px;
@@ -654,9 +654,10 @@ body {
 
 .middleWrapper {
   position: absolute !important;
-  top: 40% !important;
+  top: 25% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
+  text-align: center;
 }
 
 .cardLinkRight {
@@ -685,4 +686,8 @@ body {
 .cardLinkRight:hover {
   -webkit-filter: brightness(130%);
   filter: brightness(130%);
+}
+
+.actualPetTable {
+
 }
