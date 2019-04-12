@@ -178,7 +178,7 @@ export class EditProfilePage extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Edit Your Profile</div>
+                            <div className="title">Profile</div>
                             <hr/>
                             <Login.EditProfileForm/>
                         </div>
@@ -302,14 +302,11 @@ class PetListing extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
-                    <div className="row">
-                        <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Pets</div>
-                            <hr/>
+                <div className="container padded middleWrapper">
+                        <div id="p">
+                            <div className="title">My Pets</div>
                             <PetList.PetList/>
                         </div>
-                    </div>
                 </div>
             </section>
         );

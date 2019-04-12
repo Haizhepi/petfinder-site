@@ -6,6 +6,13 @@ import * as Bessemer from 'js/alloy/bessemer/components';
 
 import * as Validation from 'js/alloy/utils/validation';
 import * as ReduxForm from 'redux-form';
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button, CardLink
+} from 'reactstrap';
+
+import {Container, Row, Col} from 'reactstrap';
+
 
 class PetEdit extends React.Component {
 
@@ -71,35 +78,36 @@ class PetList extends React.Component {
     componentWillMount() {
         Users.Actions.getPets().then(response => {
             this.setState({pets: response});
+            console.log('size ' + this.state.pets.length);
         });
     }
 
     render() {
         return (
-            <div>
-                <h1> Pet Profile </h1>
+            <div className="petTable">
                 <table>
-                    <thead>
-                    <tr>
-                        <th>Pet Name</th>
-                        <th>Pet Type</th>
-                        <th>Pet Preference</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.state.pets.map(pet => (
-                        <tr key={pet.id} className="pet" onClick={() => this.props.selectPet(pet)}>
-                            <td>{pet.name}</td>
-                            <td>{pet.type}</td>
-                            <td>{pet.preference}</td>
-                        </tr>
-
-                    ))}
-                    </tbody>
+                    <div className="petTableBody">
+                        <tbody>
+                        {this.state.pets.map(pet => (
+                            <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
+                                <Card style={{width: '150px', height: '150px', margin: '5px 0 5px 0', border: 'none'}}>
+                                    <div className="cardBody">
+                                        <CardBody>
+                                            <CardTitle>{' ' + pet.name + ' '}</CardTitle>
+                                            <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
+                                            <CardText> {' '} </CardText>
+                                            <CardLink className="cardLinkLeft" href={'#'}>Edit</CardLink>
+                                            <CardLink className="cardLinkRight" href={'#'}>Delete</CardLink>
+                                        </CardBody>
+                                    </div>
+                                </Card>
+                            </div>
+                        ))}
+                        </tbody>
+                    </div>
                 </table>
-                <hr></hr>
-                <h1> Pet detail </h1>
-                <PetEdit/>
+                {/*<h1> Pet detail </h1>*/}
+                {/*<PetEdit/>*/}
             </div>
         );
     }

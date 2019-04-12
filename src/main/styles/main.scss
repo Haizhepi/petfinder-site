@@ -165,7 +165,7 @@
 
 body {
 
-  background-color: whitesmoke;
+  background-color: black;
   background-size: 200% 200%;
 
   -o-animation: Gradient 15s ease infinite;
@@ -341,12 +341,7 @@ body {
 
 .mtitle {
   color: white;
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-  background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
-  -o-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+  background-color: #7f7f7f;
 }
 
 .media-body {
@@ -491,7 +486,7 @@ body {
 }
 
 .sidebarPane {
-  width: 250px;
+  width: 230px;
   text-align: center;
   font-size: 16px;
   -moz-transition: 0.3s ease !important;
@@ -512,8 +507,8 @@ body {
 }
 
 .sbTextContainer:hover {
-  background-color: #ff7675;
-  color: white;
+  background-color: gainsboro;
+  color: black;
 }
 
 .sidebarTitle {
@@ -553,11 +548,11 @@ body {
   color: black;
   display: list-item;
   text-align: left;
-  padding: 6px 13px 6px 13px;
+  padding: 5px 13px 5px 13px;
 }
 
 .sidebarText:hover {
-  color: white;
+  color: black;
 }
 
 .sbIcon {
@@ -568,6 +563,8 @@ body {
 .sbIconSmall {
   margin-right: 14px;
   margin-left: 10px;
+  color: #7f7f7f;
+  background-color: transparent;
 }
 
 .barWrapper {
@@ -581,7 +578,7 @@ body {
 }
 
 .sidebarTopWrapper:hover {
-  filter: brightness(130%);
+  filter: brightness(140%);
 }
 
 .navTextHome {
@@ -611,4 +608,81 @@ body {
   margin: 0;
   background-color: transparent;
   color: white;
+}
+
+.petCard {
+  max-width: 200px;
+  max-height: 200px;
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
+}
+
+.cardBody {
+  color: white;
+  background-color: #ff7675;
+  border-radius: 2px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.3), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
+}
+
+.cardBody:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.petTable {
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.petTableBody {
+  width: 100%;
+  text-align: center;
+  display: inline;
+}
+
+.middleWrapper {
+  position: absolute !important;
+  top: 40% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.cardLinkRight {
+  bottom: 10px;
+  right: 10px;
+  position: absolute;
+  display: inline-block;
+  color: black;
+  background-color: transparent;
+}
+
+.cardLinkLeft {
+  bottom: 10px;
+  left: 10px;
+  position: absolute;
+  display: inline-block;
+  color: black;
+  background-color: transparent;
+}
+
+.cardLinkLeft:hover {
+ -webkit-filter: brightness(130%);
+  filter: brightness(130%);
+}
+
+.cardLinkRight:hover {
+  -webkit-filter: brightness(130%);
+  filter: brightness(130%);
 }

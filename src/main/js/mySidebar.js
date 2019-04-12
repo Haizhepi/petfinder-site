@@ -45,15 +45,21 @@ export class SidebarComponent extends React.Component {
                                 </a>
                             </div>
                             <div className="sbTextContainer">
-                                <a className="sidebarText" href={'#/logout'}>
-                                    <i className="far fa-sign-out sbIconSmall"> </i>
-                                    Logout
+                                <a className="sidebarText" href={'#/'}>
+                                    <i className="far fa-home-lg-alt sbIconSmall"> </i>
+                                    Home
                                 </a>
                             </div>
                             <div className="sbTextContainer">
                                 <a className="sidebarText" href={'#/'}>
                                     <i className="far fa-cog sbIconSmall"> </i>
                                     Settings
+                                </a>
+                            </div>
+                            <div className="sbTextContainer">
+                                <a className="sidebarText" href={'/'}>
+                                    <i className="far fa-sign-out sbIconSmall"> </i>
+                                    Logout
                                 </a>
                             </div>
 
@@ -61,46 +67,7 @@ export class SidebarComponent extends React.Component {
                     }
                     open={this.state.sidebarOpen}
                     onSetOpen={this.onSetSidebarOpen}
-                    styles={{sidebar: {background: 'white'}}}
-                >
-                    <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
-                        <i className="far fa-align-justify fa-lg sbButtonIcon"> </i>
-                    </button>
-                </Sidebar>
-            );
-        } else {
-            return (
-                <Sidebar
-                    sidebar={
-                        <div className="sidebarPane">
-                            <div>
-                                <a className="homeSidebarTitle">
-                                    Welcome
-                                </a>
-                            </div>
-                            <div className="sbTextContainer">
-                                <a className="sidebarText" href={'#/login'}>
-                                <i className="far fa-sign-in sbIconSmall"> </i>
-                                Login
-                            </a>
-                            </div>
-                            <div className="sbTextContainer">
-                                <a className="sidebarText" href={'#/register'}>
-                                    <i className="far fa-user-plus sbIcon"> </i>
-                                    Register
-                                </a>
-                            </div>
-                            <div className="sbTextContainer">
-                                <a className="sidebarText" href={'#/'}>
-                                    <i className="far fa-cog sbIconSmall"> </i>
-                                    Settings
-                                </a>
-                            </div>
-                        </div>
-                    }
-                    open={this.state.sidebarOpen}
-                    onSetOpen={this.onSetSidebarOpen}
-                    styles={{sidebar: {background: 'white'}}}
+                    styles={{sidebar: {background: 'whitesmoke'}}}
                 >
                     <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
                         <i className="far fa-align-justify fa-lg sbButtonIcon"> </i>

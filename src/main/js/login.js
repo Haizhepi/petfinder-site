@@ -341,7 +341,7 @@ class EditProfileForm extends React.Component {
                                                         placeholder="Owner or Sitter?"
                                 />}/>
                 <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
                 </div>
 
             </form>

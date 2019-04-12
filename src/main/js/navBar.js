@@ -81,19 +81,10 @@ export class NavBar extends React.Component {
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/homepage" className="navText navTextHome">Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/edit_profile" className="navText navTextHome">Edit Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
                                     <NavLink href="#/schedule" className="navText navTextHome">Schedule</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/viewSitter" className="navText navTextHome">Sitter Information</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/logout" className="navText navTextHome">Logout</NavLink>
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar className="navText navTextHome">
                                     <DropdownToggle nav caret className="navText navTextHome">
@@ -131,20 +122,12 @@ export class NavBar extends React.Component {
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/homepage" className="navText navTextHome">Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
                                     <NavLink href="#/page-3" className="navText navTextHome">My Pets</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/pet" className="navText navTextHome">Add a Pet</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/edit_profile" className="navText navTextHome">Edit Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/logout" className="navText navTextHome">Logout</NavLink>
-                                </NavItem>
+
                                 <UncontrolledDropdown nav inNavbar className="navText navTextHome">
                                     <DropdownToggle nav caret className="navText navTextHome">
                                         More
@@ -180,9 +163,6 @@ export class NavBar extends React.Component {
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/homepage" className="navText navTextHome">Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
                                     <NavLink href="#/page-3" className="navText navTextHome">My Pets</NavLink>
                                 </NavItem>
                                 <NavItem>
@@ -191,15 +171,11 @@ export class NavBar extends React.Component {
                                 <NavItem>
                                     <NavLink href="#/schedule" className="navText navTextHome">Schedule</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/edit_profile" className="navText navTextHome">Edit Profile</NavLink>
-                                </NavItem>
+
                                 <NavItem>
                                     <NavLink href="#/viewSitter" className="navText navTextHome">Sitter Information</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/logout" className="navText navTextHome">Logout</NavLink>
-                                </NavItem>
+
                                 <UncontrolledDropdown nav inNavbar className="navText navTextHome">
                                     <DropdownToggle nav caret className="navText navTextHome">
                                         More

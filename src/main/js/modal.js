@@ -132,7 +132,6 @@ export class MyModal extends React.Component {
                                 <div>
                                     Owners have more free time
                                 </div>
-
                         </ModalBody>
                     </Modal>
                 </section>
