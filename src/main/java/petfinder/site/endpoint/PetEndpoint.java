@@ -28,6 +28,7 @@ public class PetEndpoint {
 	private PetService petService;
 	private UserPetDto userPetDto;
 
+
 	// Take an id, and look up the corresponding pet
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public Optional<PetDto> getPet(@PathVariable("id") String id) {
@@ -45,10 +46,16 @@ public class PetEndpoint {
 		return pet;
 	}
 
-
 	@PostMapping(value = "/edit_pet")
 	public PetDto editProfile(@RequestBody PetDto pet) {
 		System.out.println("updating" + pet.getName());
 		return petService.update(pet);
+	}
+
+	@PostMapping(value = "/delete_pet")
+	public PetDto deletePet(@RequestBody PetDto pet) {
+		System.out.println("deleting" + pet.getId());
+		petService.deletePet(pet);
+		return pet;
 	}
 }

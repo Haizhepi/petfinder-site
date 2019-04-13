@@ -100,7 +100,7 @@ public class UserDao {
 		List<UserAuthenticationDto> notis = userRepository.search(searchSourceBuilder);
 		return notis;
 	}
-
+	public UserPetDto delete(String principal){return null;}
 
 
 	public UserPetDto save(UserPetDto userPetDto) {

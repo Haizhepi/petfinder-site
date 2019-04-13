@@ -3,7 +3,7 @@ import * as Users from 'js/users';
 import {connect} from 'react-redux';
 import {EditProfileForm} from 'js/login';
 import * as Bessemer from 'js/alloy/bessemer/components';
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 import * as Validation from 'js/alloy/utils/validation';
 import * as ReduxForm from 'redux-form';
@@ -83,8 +83,8 @@ export class PetEdit extends React.Component {
                                                     {value: 'other', label: 'Other'},]}/>}
                                 />
                                 <div className="wrapper">
-                                    <Bessemer.Button className="buttonType1" loading={submitting} >
-                                            Save Changes
+                                    <Bessemer.Button className="buttonType1" loading={submitting}>
+                                        Save Changes
                                     </Bessemer.Button>
                                 </div>
                             </form>
@@ -118,9 +118,18 @@ export class PetList extends React.Component {
         this.state = {
             pets: [{
                 name: 'no name'
-            }]
+            }],
+            deleted: false
         };
     }
+
+    onSubmit = pet => {
+        let newPet = this.props.pet;
+        newPet.name = pet.name;
+        newPet.type = pet.type;
+        newPet.preference = pet.preference;
+        this.props.deletePet(newPet).then(this.setState({deleted: true}));
+    };
 
     //set state as array of user's pets
     componentWillMount() {
@@ -131,29 +140,49 @@ export class PetList extends React.Component {
     }
 
     render() {
+        let {handleSubmit, submitting} = this.props;
+
+        if (this.state.deleted) {
+            //alert('success');
+            return <Redirect to={'/page-3'}/>;
+        }
+
         return (
             <div className="petTable">
-                <table className="actualPetTable">
-                    <div className="petTableBody">
-                        <tbody>
-                        {this.state.pets.map(pet => (
-                            <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
-                                <Card style={{width: '150px', height: '150px', margin: '5px 0 5px 0', border: 'none'}}>
-                                    <div className="cardBody">
-                                        <CardBody>
-                                            <CardTitle>{' ' + pet.name + ' '}</CardTitle>
-                                            <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
-                                            <CardText> {' '} </CardText>
-                                            <CardLink className="cardLinkLeft" href={'#/editPet'}>Edit</CardLink>
-                                            <CardLink className="cardLinkRight" href={'#'}>Delete</CardLink>
-                                        </CardBody>
-                                    </div>
-                                </Card>
-                            </div>
-                        ))}
-                        </tbody>
-                    </div>
-                </table>
+                {/*<Button onClick={() => this.props.dele.then(response => {*/}
+                    {/*alert('deleting');*/}
+                {/*})}>Cancel</Button>*/}
+                {/*<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>*/}
+                    <table className="actualPetTable">
+                        <div className="petTableBody">
+                            <tbody>
+                            {this.state.pets.map(pet => (
+                                <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
+                                    <Card style={{
+                                        width: '150px',
+                                        height: '150px',
+                                        margin: '5px 0 5px 0',
+                                        border: 'none'
+                                    }}>
+                                        <div className="cardBody">
+                                            <CardBody>
+                                                <CardTitle>{' ' + pet.name + ' '}</CardTitle>
+                                                <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
+                                                <CardText> {' '} </CardText>
+                                                <CardLink className="cardLinkLeft" href={'#/editPet'}>Edit</CardLink>
+                                                <CardLink className="cardLinkRight" href={'#'}>Delete</CardLink>
+                                                {/*<Bessemer.Button className="buttonType1" loading={submitting}>*/}
+                                                    {/*Delete*/}
+                                                {/*</Bessemer.Button>*/}
+                                            </CardBody>
+                                        </div>
+                                    </Card>
+                                </div>
+                            ))}
+                            </tbody>
+                        </div>
+                    </table>
+                {/*</form>*/}
                 {/*<h1> Pet detail </h1>*/}
                 {/*<PetEdit/>*/}
             </div>

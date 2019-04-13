@@ -126,6 +126,10 @@ export function cancelBooking(booking) {
 	return axios.post('/api/bookings/delete', booking);
 }
 
+export function deletePet(pet) {
+	return axios.post('/api/pets/delete_pet', pet);
+}
+
 export function getNotifications(principal) {
 
 	let res = encodeURI('/api/user/userNotifications'+principal);
@@ -223,12 +227,20 @@ Actions.savePet = pet => {
 	return savePet(pet);
 };
 
+Actions.deletePet = pet => {
+	return (dispatch) =>
+	{
+		return deletePet(pet);
+	};
+};
+
 Actions.editPet = pet => {
 	//alert('update pet');
 	return (dispatch) => {
 		return editPet(pet);
 	};
 };
+
 
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {

@@ -39,6 +39,10 @@ public class PetDao {
 		petElasticsearchRepository.save(pet);
 	}
 
+	public void deletePet(String id) {
+		petElasticsearchRepository.delete(id);
+	}
+
 	public PetDao(){
 
 	}
