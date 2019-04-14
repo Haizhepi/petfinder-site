@@ -34,7 +34,6 @@ export class MyModal extends React.Component {
                 return (
                     <section>
                         <a onClick={this.toggle} className="btn btn1">Start as Pet Sitter</a>
-                        <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
                         <a href={'#/searchLocation'} onClick={this.toggle} className="btn btn1">   Add Your Address   </a>
                         <a href={'#/googleMapHome'} onClick={this.toggle} className="btn btn1">   Google Map   </a>
 
@@ -57,7 +56,6 @@ export class MyModal extends React.Component {
                 return (
                     <section>
                         <a onClick={this.toggle} className="btn btn1">Start as Pet Owner</a>
-                        <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
                         <a href={'#/searchLocation'} onClick={this.toggle} className="btn btn1">   Add Your Address   </a>
                         <a href={'#/googleMapHome'} onClick={this.toggle} className="btn btn1">   Google Map   </a>
 
@@ -79,7 +77,6 @@ export class MyModal extends React.Component {
                 return (
                     <section>
                         <a onClick={this.toggle} className="btn btn1">   Start   </a>
-                        <a href={'#/googleMap'} onClick={this.toggle} className="btn btn1">   View Map   </a>
                         <a href={'#/searchLocation'} onClick={this.toggle} className="btn btn1">   Add Your Address   </a>
                         <a href={'#/googleMapHome'} onClick={this.toggle} className="btn btn1">   Google Map   </a>
 

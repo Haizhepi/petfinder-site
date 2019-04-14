@@ -278,6 +278,7 @@ body {
 }
 
 .btn {
+  text-transform: uppercase;
   margin: 25px;
   padding: 6px 120px;
   position: relative !important;
@@ -285,7 +286,7 @@ body {
   color: white !important;
   font-size: 20px !important;
   text-decoration: none !important;
-  border: 2px solid #ff7675 !important;
+  //border: 2px solid #ff7675 !important;
   overflow: hidden !important;
   -moz-transition: 1s all ease !important;
   -o-transition: 1s all ease !important;
