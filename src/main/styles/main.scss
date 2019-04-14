@@ -20,6 +20,18 @@
   }
 }
 
+
+@keyframes preLoading {
+  0% {
+    background: black no-repeat center;
+    z-index: 2;
+  }
+  100% {
+    background: transparent no-repeat center;
+    z-index: -1;
+  }
+}
+
 @keyframes animation3 {
   from {
     border-radius: 20px;
@@ -105,35 +117,60 @@
   transition: all ease 0.75s;
 }
 
+.backgroundWrapper {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4724264705882353) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.webBackground {
+  -webkit-animation-name: zoomIn;
+  -moz-animation-name: zoomIn;
+  -o-animation-name: zoomIn;
+  animation-name: zoomIn;
+  animation-duration: 0.5s;
+  animation-delay: 1s;
+  animation-iteration-count: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.26234243697478987) 0%, rgba(0, 0, 0, 0.8701855742296919) 100%), url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg") no-repeat center;
+}
+
+.preWrapper {
+  -webkit-animation-name: preLoading;
+  -moz-animation-name: preLoading;
+  -o-animation-name: preLoading;
+  animation-name: preLoading;
+
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+
+}
+
 .webWrapper {
-  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 
   height: 118%;
-  background-image: url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg");
-  //background-image: url("https://besthqwallpapers.com/Uploads/25-8-2018/63032/american-staffordshire-terrier-black-and-white-big-dog-forest-autumn-pets.jpg");
-  //background-image: url("https://static.wixstatic.com/media/97dfa2_eb1fd433674f4720b0c07b54e57719d4~mv2_d_2048_1536_s_2.jpg");
-  //background-image: url("https://images.axios.com/D_V2LglTeIOYB3-r2xecUm6exfM=/0x0:3311x1862/1920x1080/2018/01/30/1517330159909.jpg");
-  //background-image: url("https://images.pexels.com/photos/210180/pexels-photo-210180.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
-  //background-image: url("https://www.thekennelclub.org.uk/media/220672/puppy_and_dog_walking_dan_miller.jpg");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.738532913165266) 100%), url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg")
+  no-repeat center;
+
   background-size: 120%;
-  animation-name: Gradient;
-  animation-duration: 25s;
-  animation-iteration-count: infinite;
+  animation-name: Gradient, fadeIn;
+  animation-duration: 25s, 1.4s;
+  animation-iteration-count: infinite, 1;
 }
 
 .homepageWrapper {
-  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 
   height: 100%;
   -webkit-filter: grayscale(30%);
   filter: grayscale(30%);
-  background-image: url("https://images.axios.com/D_V2LglTeIOYB3-r2xecUm6exfM=/0x0:3311x1862/1920x1080/2018/01/30/1517330159909.jpg");
-  //background-image: url("https://www.gannett-cdn.com/-mm-/4144246e9bac7bfbe86c498755676998660ef052/c=0-116-2109-1308/local/-/media/2017/01/18/TennGroup/Nashville/636203378751878152-dogwalk.jpg?width=3200&height=1680&fit=crop");
-  //background-image: url("https://images.pexels.com/photos/210180/pexels-photo-210180.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48363095238095233) 100%),
+  url("https://images.axios.com/D_V2LglTeIOYB3-r2xecUm6exfM=/0x0:3311x1862/1920x1080/2018/01/30/1517330159909.jpg") no-repeat center;
+
   background-size: 120%;
-  animation-name: Gradient;
-  animation-duration: 25s;
-  animation-iteration-count: infinite;
+  animation-name: Gradient, fadeIn;
+  animation-duration: 25s, 1.4s;
+  animation-iteration-count: infinite, 1;
 }
 
 .navBarIn {
@@ -215,7 +252,7 @@ body {
   transform: translate(0%, 0%);
 }
 
-.buttonType1{
+.buttonType1 {
   border: transparent solid 1px;
   border-radius: 3px;
   text-align: center;
@@ -379,7 +416,9 @@ body {
   filter: brightness(120%);
 }
 
-.far { display:inline; }
+.far {
+  display: inline;
+}
 
 .navTitle {
   font-size: 22px;
@@ -436,7 +475,7 @@ body {
   filter: brightness(250%);
 }
 
-.middle-align{
+.middle-align {
   text-align: center;
 }
 
@@ -495,9 +534,13 @@ body {
   transition: all 0.3s ease !important;
 }
 
+.sidebarWrapper {
+
+}
+
 .sbTextContainer {
   background-color: transparent;
-  color: black;
+  color: whitesmoke;
   padding-top: 5px;
   padding-bottom: 5px;
   -moz-transition: 0.3s ease !important;
@@ -556,14 +599,24 @@ body {
 }
 
 .sbIcon {
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
   margin-right: 10px;
   margin-left: 10px;
+  color: #343434;
+  background-color: transparent;
 }
 
 .sbIconSmall {
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
   margin-right: 14px;
   margin-left: 10px;
-  color: #7f7f7f;
+  color: #343434;
   background-color: transparent;
 }
 
@@ -626,7 +679,7 @@ body {
   color: white;
   background-color: #ff7675;
   border-radius: 2px;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.3), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
   -moz-transition: 0.3s ease !important;
   -o-transition: 0.3s ease !important;
   -webkit-transition: 0.3s ease !important;
@@ -679,7 +732,7 @@ body {
 }
 
 .cardLinkLeft:hover {
- -webkit-filter: brightness(130%);
+  -webkit-filter: brightness(130%);
   filter: brightness(130%);
 }
 

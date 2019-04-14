@@ -303,10 +303,10 @@ class PetListing extends React.Component {
                 <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded middleWrapper">
-                        <div id="p">
-                            <div className="title">My Pets</div>
-                            <PetList.PetList/>
-                        </div>
+                    <div id="p">
+                        <div className="title">My Pets</div>
+                        <PetList.PetList/>
+                    </div>
                 </div>
             </section>
         );

@@ -29,7 +29,7 @@ export class SidebarComponent extends React.Component {
     render() {
         if (this.props.user) {
             return (
-                <Sidebar
+                <Sidebar rootClassName="sidebarwrapper"
                     sidebar={
                         <div className="sidebarPane">
 
@@ -67,7 +67,8 @@ export class SidebarComponent extends React.Component {
                     }
                     open={this.state.sidebarOpen}
                     onSetOpen={this.onSetSidebarOpen}
-                    styles={{sidebar: {background: 'whitesmoke'}}}
+                    styles={{sidebar: {
+                        background: 'whitesmoke'}}}
                 >
                     <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
                         <i className="far fa-align-justify fa-lg sbButtonIcon"> </i>
