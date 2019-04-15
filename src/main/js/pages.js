@@ -274,7 +274,7 @@ class PetForm extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Add a New Pet</div>
+                            <div className="title">New Pet</div>
                             <Pets.PetForm/>
                         </div>
                     </div>

@@ -46,7 +46,6 @@ class MyBookings extends React.Component {
                         </ListGroup>
                     ))}
 
-
                 </div>
             </div>
         );

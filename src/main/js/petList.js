@@ -84,7 +84,7 @@ export class PetEdit extends React.Component {
                                 />
                                 <Bessemer.Field name="preference" friendlyName="Preference" value="???"
                                                 className="form-control"/>
-                                                {/*// field={<input className="form-control" type="name"/>}/>*/}
+                                {/*// field={<input className="form-control" type="name"/>}/>*/}
                                 <div className="wrapper">
                                     <Bessemer.Button className="buttonType1" loading={submitting}>
                                         Save Changes
@@ -154,33 +154,27 @@ export class PetList extends React.Component {
 
         return (
             <div className="petTable">
-                <table className="actualPetTable">
-                    <div className="petTableBody">
-                        <tbody>
-                        {this.state.pets.map(pet => (
-                            <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
+                {this.state.pets.map(pet => (
+                    <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
 
-                                <Card style={{
-                                    width: '150px',
-                                    height: '150px',
-                                    margin: '5px 0 5px 0',
-                                    border: 'none'
-                                }}>
-                                    <div className="cardBody">
-                                        <CardBody>
-                                            <CardTitle>{' ' + pet.name + ' '}</CardTitle>
-                                            <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
-                                            <CardText> {' '} </CardText>
-                                            <CardLink className="cardLinkLeft" href={'#/editPet'}>Edit</CardLink>
-                                            <CardLink className="cardLinkRight" href={'#/page-3'}>Delete</CardLink>
-                                        </CardBody>
-                                    </div>
-                                </Card>
+                        <Card style={{
+                            width: '150px',
+                            height: '150px',
+                            margin: '5px 0 5px 0',
+                            border: 'none'
+                        }}>
+                            <div className="cardBody">
+                                <CardBody>
+                                    <CardTitle>{' ' + pet.name + ' '}</CardTitle>
+                                    <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
+                                    <CardText> {' '} </CardText>
+                                    <CardLink className="cardLinkLeft" href={'#/editPet'}>Edit</CardLink>
+                                    <CardLink className="cardLinkRight" href={'#/page-3'}>Delete</CardLink>
+                                </CardBody>
                             </div>
-                        ))}
-                        </tbody>
+                        </Card>
                     </div>
-                </table>
+                ))}
             </div>
         );
     }
