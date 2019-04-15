@@ -85,48 +85,53 @@ class AvailabilityForm extends React.Component {
                 <div className="col-6 offset-md-3" id="p">
                     <h1 className="title">Enter Your Availability</h1>
                     <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                        <Bessemer.Field name="availability" friendlyName="Enter availability"/>
-                        <div className="wrapper">
-                            <DatePicker
-                                selected={this.state.startTime}
-                                onChange={this.handleChange1}
-                                selectsStart
-                                showTimeSelect
-                                showTimeSelectOnly
-                                startDate={this.state.startTime}
-                                endDate={this.state.endTime}
-                                timeIntervals={15}
-                                dateFormat="h:mm aa"
-                                timeCaption="Time"
-                            />
-                            <DatePicker
-                                selected={this.state.endTime}
-                                selectsEnd
-                                onChange={this.handleChange2}
-                                showTimeSelect
-                                showTimeSelectOnly
-                                startDate={this.state.startTime}
-                                endDate={this.state.endTime}
-                                timeIntervals={15}
-                                dateFormat="h:mm aa"
-                                timeCaption="Time"
-                            />
-                            <DatePicker
-                                selected={this.state.startDate}
-                                selectsStart
-                                startDate={this.state.startDate}
-                                endDate={this.state.endDate}
-                                onChange={this.handleChange3}
-                            />
-                            <DatePicker
-                                selected={this.state.endDate}
-                                selectsEnd
-                                startDate={this.state.startDate}
-                                endDate={this.state.endDate}
-                                onChange={this.handleChange4}
-                            />
-                            <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+                        <Bessemer.Field name="availability" friendlyName="More Detail"/>
+                        <div className="dateTagWrapper">
+                            <div className="fromTime">From
+                                <DatePicker className="dpBoxLeft"
+                                            selected={this.state.startDate}
+                                            selectsStart
+                                            startDate={this.state.startDate}
+                                            endDate={this.state.endDate}
+                                            onChange={this.handleChange3}
+                                            dateFormat="MM-dd-yyyy"
+                                            placeholderText={'Start Date...'}
+
+                                />
+                                <DatePicker className="dpBox"
+                                            selected={this.state.startTime}
+                                            onChange={this.handleChange1}
+                                            showTimeSelect
+                                            showTimeSelectOnly
+                                            timeIntervals={15}
+                                            dateFormat="h:mm aa"
+                                            timeCaption="Time"
+                                            placeholderText={'Start Time...'}
+                                />
+                            </div>
+                            <div className="toTime">To
+                                <DatePicker className="dpBoxLeft2"
+                                            selected={this.state.endDate}
+                                            selectsEnd
+                                            startDate={this.state.startDate}
+                                            endDate={this.state.endDate}
+                                            onChange={this.handleChange4}
+                                            dateFormat="MM-dd-yyyy"
+                                            placeholderText={'End Date...'}
+                                />
+                                <DatePicker className="dpBox"
+                                            selected={this.state.endTime}
+                                            onChange={this.handleChange2}
+                                            showTimeSelect
+                                            showTimeSelectOnly
+                                            timeIntervals={15}
+                                            dateFormat="h:mm aa"
+                                            timeCaption="Time"
+                                            placeholderText={'End Time...'}
+                                />
+                            </div>
                         </div>
+                        <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                     </form>
                 </div>
             </div>

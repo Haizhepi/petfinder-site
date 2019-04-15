@@ -75,7 +75,7 @@ export class NavBar extends React.Component {
                     <Navbar light expand="md" className="navBarIn">
                         <h1 className="animated 1 fadeInLeft">
                             <NavbarBrand className="navTitle navTitleHome"
-                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
+                                         href={'#/'}> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -116,7 +116,7 @@ export class NavBar extends React.Component {
                     <Navbar light expand="md" className="navBarIn">
                         <h1 className="animated 1 fadeInLeft">
                             <NavbarBrand className="navTitle navTitleHome"
-                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
+                                         href={'#/'}> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -157,7 +157,7 @@ export class NavBar extends React.Component {
                     <Navbar light expand="md" className="navBarIn">
                         <h1 className="animated 1 fadeInLeft">
                             <NavbarBrand className="navTitle navTitleHome"
-                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
+                                         href={'#/'}> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>

@@ -527,7 +527,7 @@ export class Availability extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapperNotAlign">
                     <Avail.AvailabilityForm/>
                 </div>
             </section>
