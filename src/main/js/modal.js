@@ -38,23 +38,6 @@ export class MyModal extends React.Component {
                         <a href={'#/selectionPane'} className="btn btn1">Start as Pet Sitter</a>
                         <a href={'#/searchLocation'} onClick={this.toggle} className="btn btn1"> Add Your Address </a>
                         <a href={'#/googleMapHome'} onClick={this.toggle} className="btn btn1"> Google Map </a>
-
-                        {/*<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">*/}
-                        {/*<div className="mtitle">*/}
-                        {/*<ModalHeader toggle={this.toggle}>What would you like to do?</ModalHeader>*/}
-                        {/*</div>*/}
-                        {/*<div className="mbodyWrapper">*/}
-
-                        {/*<ModalBody className="mbody">*/}
-
-                        {/*<a href={'#/notification'} onClick={this.toggle}*/}
-                        {/*className="btnModal">Notifications</a>*/}
-                        {/*<a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">View*/}
-                        {/*Booking</a>*/}
-
-                        {/*</ModalBody>*/}
-                        {/*</div>*/}
-                        {/*</Modal>*/}
                     </section>
                 );
 
@@ -64,21 +47,6 @@ export class MyModal extends React.Component {
                         <a href={'#/selectionPane'} className="btn btn1">Start as Pet Owner</a>
                         <a href={'#/searchLocation'} onClick={this.toggle} className="btn btn1"> Add Your Address </a>
                         <a href={'#/googleMapHome'} onClick={this.toggle} className="btn btn1"> Google Map </a>
-
-                        {/*<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">*/}
-                        {/*<div className="mtitle">*/}
-                        {/*<ModalHeader toggle={this.toggle}>What would you like to do?</ModalHeader>*/}
-                        {/*</div>*/}
-
-                        {/*<div className="mbodyWrapper">*/}
-                        {/*<ModalBody className="mbody">*/}
-                        {/*<a href={'#/addBooking'} onClick={this.toggle} className="btnModal">New Booking</a>*/}
-                        {/*<a href={'#/myBooking'} onClick={this.toggle} className="btnModal">My Booking</a>*/}
-                        {/*<a href={'#/notification'} onClick={this.toggle}*/}
-                        {/*className="btnModal">Notifications</a>*/}
-                        {/*</ModalBody>*/}
-                        {/*</div>*/}
-                        {/*</Modal>*/}
                     </section>
                 );
 
@@ -178,7 +146,7 @@ export class SelectionPage extends React.Component {
                                     <a href={'#/notification'} onClick={this.toggle}
                                        className="btnModal">Notifications</a>
                                     <a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">View
-                                        Booking</a>
+                                        Bookings</a>
                                 </div>
                             </div>
                         </div>
@@ -194,7 +162,7 @@ export class SelectionPage extends React.Component {
                             <div className="row">
                                 <div className="col-6 offset-md-3" id="p">
                                     <a href={'#/addBooking'} onClick={this.toggle} className="btnModal">New Booking</a>
-                                    <a href={'#/myBooking'} onClick={this.toggle} className="btnModal">My Booking</a>
+                                    <a href={'#/myBooking'} onClick={this.toggle} className="btnModal">My Bookings</a>
                                     <a href={'#/notification'} onClick={this.toggle}
                                        className="btnModal">Notifications</a>
                                 </div>
@@ -215,11 +183,11 @@ export class SelectionPage extends React.Component {
                                     <a href={'#/addBooking'} onClick={this.toggle} className="btnModal">New
                                         Booking</a>
                                     <a href={'#/myBooking'} onClick={this.toggle} className="btnModal">My
-                                        Booking</a>
+                                        Bookings</a>
                                     <a href={'#/notification'} onClick={this.toggle}
                                        className="btnModal">Notifications</a>
                                     <a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">View
-                                        Booking
+                                        Bookings
                                     </a>
                                 </div>
                             </div>

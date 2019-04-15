@@ -802,3 +802,76 @@ body {
 .mbodyWrapper {
   background-color: black;
 }
+
+.dpBox {
+  border-radius: 3px;
+  border: none;
+  padding: 3px 3px 3px 3px;
+  margin: 10px 5px 10px 5px;
+
+  background-color: transparent;
+  color: white;
+  width: 125px;
+  text-align: center;
+}
+
+.dpBoxLeft {
+  border-radius: 3px;
+  border: none;
+
+  padding: 3px 3px 3px 3px;
+
+  left: 0;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  background-color: transparent;
+  color: white;
+  width: 125px;
+  text-align: center;
+
+}
+
+.dpBoxRight {
+  border-radius: 3px;
+  border: none;
+
+  padding: 3px 3px 3px 3px;
+
+  right: 0;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  background-color: transparent;
+  color: white;
+  width: 125px;
+  text-align: center;
+
+
+}
+
+.middleDp {
+
+  text-align: center;
+  position: center;
+}
+
+.selPet {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.petCardMarginBottom {
+  margin-bottom: 150px;
+}
+
+.cardLinkMiddle2 {
+  bottom: 10px;
+  left: 49px;
+  position: absolute;
+  display: inline-block;
+  color: black;
+  background-color: transparent;
+}

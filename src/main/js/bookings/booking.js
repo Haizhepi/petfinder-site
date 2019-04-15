@@ -63,7 +63,8 @@ export class BookingForm extends React.Component {
                                             <CardTitle>{' ' + pet.name + ' '}</CardTitle>
                                             <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
                                             <CardText> {' '} </CardText>
-                                            <CardLink className="cardLinkMiddle" href={'#/confirmBooking'}>Select</CardLink>
+                                            <CardLink className="cardLinkMiddle"
+                                                      href={'#/confirmBooking'}>Select</CardLink>
                                         </CardBody>
                                     </div>
                                 </Card>
@@ -165,46 +166,76 @@ export class BookingFormConfirm extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded middleWrapperNotAlign">
+                <div className="container padded middleWrapper3">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <h2>Selected Pet: {this.props.pet.name}</h2>
+                            <div className="title">Confirm Booking</div>
+                            <div className="petTable petCardMarginBottom">
+                                <div className="petCard">
+                                    <Card style={{
+                                        width: '150px',
+                                        height: '150px',
+                                        margin: '5px 0 5px 0',
+                                        border: 'none'
+                                    }}>
+                                        <div className="cardBody">
+                                            <CardBody>
+                                                <CardTitle>{' ' + this.props.pet.name + ' '}</CardTitle>
+                                                <CardSubtitle>{' ' + this.props.pet.type + ' '}</CardSubtitle>
+                                                <CardText> {' '} </CardText>
+                                                <CardLink className="cardLinkMiddle2"
+                                                          href={'#/addBooking'}>Change</CardLink>
+                                            </CardBody>
+                                        </div>
+                                    </Card>
+                                </div>
+                            </div>
+
                             <form className="regf" name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                                <DatePicker
-                                    selected={this.state.startTime}
-                                    onChange={this.handleChange1}
-                                    showTimeSelect
-                                    showTimeSelectOnly
-                                    timeIntervals={15}
-                                    dateFormat="h:mm aa"
-                                    timeCaption="Time"
-                                />
-                                <DatePicker
-                                    selected={this.state.endTime}
-                                    onChange={this.handleChange2}
-                                    showTimeSelect
-                                    showTimeSelectOnly
-                                    timeIntervals={15}
-                                    dateFormat="h:mm aa"
-                                    timeCaption="Time"
-                                />
-                                <DatePicker
-                                    selected={this.state.startDate}
-                                    selectsStart
-                                    startDate={this.state.startDate}
-                                    endDate={this.state.endDate}
-                                    onChange={this.handleChange3}
-                                />
-                                <DatePicker
-                                    selected={this.state.endDate}
-                                    selectsEnd
-                                    startDate={this.state.startDate}
-                                    endDate={this.state.endDate}
-                                    onChange={this.handleChange4}
-                                />
-                                <Bessemer.Field name="time" friendlyName="time"/>
-                                <Bessemer.Field name="description" friendlyName="description"/>
-                                <Bessemer.Button className="buttonType1" loading={submitting}>Confirm Booking</Bessemer.Button>
+                                <div className="middleDp">
+                                    <DatePicker className="dpBoxLeft"
+                                                selected={this.state.startDate}
+                                                selectsStart
+                                                startDate={this.state.startDate}
+                                                endDate={this.state.endDate}
+                                                onChange={this.handleChange3}
+                                                dateFormat="MM-dd-yyyy"
+                                                placeholderText={'Start Date...'}
+
+                                    />
+                                    <DatePicker className="dpBox"
+                                                selected={this.state.startTime}
+                                                onChange={this.handleChange1}
+                                                showTimeSelect
+                                                showTimeSelectOnly
+                                                timeIntervals={15}
+                                                dateFormat="h:mm aa"
+                                                timeCaption="Time"
+                                                placeholderText={'Start Time...'}
+                                    />
+                                    <DatePicker className="dpBox"
+                                                selected={this.state.endDate}
+                                                selectsEnd
+                                                startDate={this.state.startDate}
+                                                endDate={this.state.endDate}
+                                                onChange={this.handleChange4}
+                                                dateFormat="MM-dd-yyyy"
+                                                placeholderText={'End Date...'}
+                                    />
+                                    <DatePicker className="dpBoxRight"
+                                                selected={this.state.endTime}
+                                                onChange={this.handleChange2}
+                                                showTimeSelect
+                                                showTimeSelectOnly
+                                                timeIntervals={15}
+                                                dateFormat="h:mm aa"
+                                                timeCaption="Time"
+                                                placeholderText={'End Time...'}
+                                    />
+                                </div>
+                                <Bessemer.Field name="time" friendlyName="Time"/>
+                                <Bessemer.Field name="description" friendlyName="Description"/>
+                                <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                             </form>
                         </div>
                     </div>

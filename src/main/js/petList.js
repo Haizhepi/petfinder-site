@@ -53,7 +53,27 @@ export class PetEdit extends React.Component {
                 <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <h2>Edit Pet: {this.props.pet.name}</h2>
+                            <div className="title">Edit Pet</div>
+                            <div className="petTable petCardMarginBottom">
+                                <div className="petCard">
+                                    <Card style={{
+                                        width: '150px',
+                                        height: '150px',
+                                        margin: '5px 0 5px 0',
+                                        border: 'none'
+                                    }}>
+                                        <div className="cardBody">
+                                            <CardBody>
+                                                <CardTitle>{' ' + this.props.pet.name + ' '}</CardTitle>
+                                                <CardSubtitle>{' ' + this.props.pet.type + ' '}</CardSubtitle>
+                                                <CardText> {' '} </CardText>
+                                                <CardLink className="cardLinkMiddle2"
+                                                          href={'#/page-3'}>Change</CardLink>
+                                            </CardBody>
+                                        </div>
+                                    </Card>
+                                </div>
+                            </div>
                             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
                                 <Bessemer.Field name="name" friendlyName="Pet Name" value="????"
                                                 className="form-control"/>
