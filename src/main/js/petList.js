@@ -11,8 +11,14 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button, CardLink
 } from 'reactstrap';
+import {ScrollArea} from 'react-scrollbar';
 
-import {Container, Row, Col} from 'reactstrap';
+
+import CustomScroll from 'react-custom-scroll';
+import 'react-sticky-table/dist/react-sticky-table.css';
+import { StickyTable, Row, Cell } from 'react-sticky-table';
+
+
 import {SidebarComponent} from 'js/mySidebar';
 import {NavBar} from 'js/navBar';
 
@@ -144,7 +150,8 @@ export class PetList extends React.Component {
             pets: [{
                 name: 'no name'
             }],
-            deleted: false
+            deleted: false,
+            myVar: false
         };
     }
 
@@ -196,6 +203,7 @@ export class PetList extends React.Component {
                     </div>
                 ))}
             </div>
+
         );
     }
 }

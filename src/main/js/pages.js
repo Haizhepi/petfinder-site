@@ -9,7 +9,8 @@ import * as Rating from 'js/rating';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import * as Booking from 'js/bookings/booking';
-
+import 'react-sticky-table/dist/react-sticky-table.css';
+import {StickyTable, Row, Cell} from 'react-sticky-table';
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
 
@@ -29,6 +30,9 @@ import {LocationSearchInput} from 'js/autoComplete';
 import {WebHome} from 'js/webHome';
 import {SidebarComponent} from 'js/mySidebar';
 import {MyCard} from 'js/card';
+import {ScrollArea} from 'react-scrollbar';
+import CustomScroll from 'react-custom-scroll';
+
 
 
 export class Home extends React.Component {
@@ -305,8 +309,10 @@ class PetListing extends React.Component {
                 <div className="container padded middleWrapper">
                     <div id="p">
                         <div className="title">My Pets</div>
+
                         <PetList.PetList/>
                     </div>
+
                 </div>
             </section>
         );
@@ -388,7 +394,7 @@ export class MyBooking extends React.Component {
     render() {
 
         return (
-            <section className="webWrapper">
+            <section className="bookingWrapper">
                 <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">

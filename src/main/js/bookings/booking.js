@@ -19,6 +19,7 @@ import {BookingDetail} from 'js/bookings/BookingDetails';
 import {SidebarComponent} from 'js/mySidebar';
 import {NavBar} from 'js/navBar';
 
+import {ScrollArea} from 'react-scrollbar';
 
 export class BookingForm extends React.Component {
     constructor(props) {
@@ -192,48 +193,52 @@ export class BookingFormConfirm extends React.Component {
                             </div>
 
                             <form className="regf" name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
-                                <div className="middleDp">
-                                    <DatePicker className="dpBoxLeft"
-                                                selected={this.state.startDate}
-                                                selectsStart
-                                                startDate={this.state.startDate}
-                                                endDate={this.state.endDate}
-                                                onChange={this.handleChange3}
-                                                dateFormat="MM-dd-yyyy"
-                                                placeholderText={'Start Date...'}
+                                <div className="dateTagWrapper">
+                                    <div className="fromTime">From
+                                        <DatePicker className="dpBoxLeft"
+                                                    selected={this.state.startDate}
+                                                    selectsStart
+                                                    startDate={this.state.startDate}
+                                                    endDate={this.state.endDate}
+                                                    onChange={this.handleChange3}
+                                                    dateFormat="MM-dd-yyyy"
+                                                    placeholderText={'Start Date...'}
 
-                                    />
-                                    <DatePicker className="dpBox"
-                                                selected={this.state.startTime}
-                                                onChange={this.handleChange1}
-                                                showTimeSelect
-                                                showTimeSelectOnly
-                                                timeIntervals={15}
-                                                dateFormat="h:mm aa"
-                                                timeCaption="Time"
-                                                placeholderText={'Start Time...'}
-                                    />
-                                    <DatePicker className="dpBox"
-                                                selected={this.state.endDate}
-                                                selectsEnd
-                                                startDate={this.state.startDate}
-                                                endDate={this.state.endDate}
-                                                onChange={this.handleChange4}
-                                                dateFormat="MM-dd-yyyy"
-                                                placeholderText={'End Date...'}
-                                    />
-                                    <DatePicker className="dpBoxRight"
-                                                selected={this.state.endTime}
-                                                onChange={this.handleChange2}
-                                                showTimeSelect
-                                                showTimeSelectOnly
-                                                timeIntervals={15}
-                                                dateFormat="h:mm aa"
-                                                timeCaption="Time"
-                                                placeholderText={'End Time...'}
-                                    />
+                                        />
+                                        <DatePicker className="dpBox"
+                                                    selected={this.state.startTime}
+                                                    onChange={this.handleChange1}
+                                                    showTimeSelect
+                                                    showTimeSelectOnly
+                                                    timeIntervals={15}
+                                                    dateFormat="h:mm aa"
+                                                    timeCaption="Time"
+                                                    placeholderText={'Start Time...'}
+                                        />
+                                    </div>
+                                    <div className="toTime">To
+                                        <DatePicker className="dpBoxLeft2"
+                                                    selected={this.state.endDate}
+                                                    selectsEnd
+                                                    startDate={this.state.startDate}
+                                                    endDate={this.state.endDate}
+                                                    onChange={this.handleChange4}
+                                                    dateFormat="MM-dd-yyyy"
+                                                    placeholderText={'End Date...'}
+                                        />
+                                        <DatePicker className="dpBox"
+                                                    selected={this.state.endTime}
+                                                    onChange={this.handleChange2}
+                                                    showTimeSelect
+                                                    showTimeSelectOnly
+                                                    timeIntervals={15}
+                                                    dateFormat="h:mm aa"
+                                                    timeCaption="Time"
+                                                    placeholderText={'End Time...'}
+                                        />
+                                    </div>
                                 </div>
-                                <Bessemer.Field name="time" friendlyName="Time"/>
+                                {/*<Bessemer.Field name="time" friendlyName="Time"/>*/}
                                 <Bessemer.Field name="description" friendlyName="Description"/>
                                 <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                             </form>

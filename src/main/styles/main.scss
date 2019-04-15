@@ -149,12 +149,18 @@
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 
   height: 118%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.738532913165266) 100%), url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg")
-  no-repeat center;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.21192226890756305) 0%, rgba(0, 0, 0, 0.8337710084033614) 100%), url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg") no-repeat center;
   -webkit-filter: grayscale(10%);
   filter: grayscale(10%);
-
   background-size: 120%;
+  animation-name: Gradient, fadeIn;
+  animation-duration: 25s, 1.4s;
+  animation-iteration-count: infinite, 1;
+}
+
+.bookingWrapper {
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+
   animation-name: Gradient, fadeIn;
   animation-duration: 25s, 1.4s;
   animation-iteration-count: infinite, 1;
@@ -204,13 +210,7 @@
 
 body {
 
-  background-color: black;
-  background-size: 200% 200%;
-
-  -o-animation: Gradient 15s ease infinite;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+  background-color: #252525;
 }
 
 @-webkit-keyframes Gradient {
@@ -382,8 +382,6 @@ body {
 .mtitle {
   color: white;
   background-color: #272727;
-  //background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.738532913165266) 100%), url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg")
-  //no-repeat center;
   animation-name: Gradient;
   animation-duration: 200s;
   animation-iteration-count: infinite;
@@ -424,6 +422,29 @@ body {
 
 .btnModal:hover {
   border: whitesmoke solid 1px;
+  filter: brightness(120%);
+}
+
+.btnModal2 {
+  border-radius: 3px;
+  text-align: center;
+  margin: 20px;
+  padding: 10px 100px;
+  position: relative !important;
+  display: block !important;
+  color: white !important;
+  font-size: 16px !important;
+  text-decoration: none !important;
+  overflow: hidden !important;
+  transition: 0.3s all ease !important;
+
+  text-transform: uppercase;
+
+  background-color: black;
+}
+
+.btnModal2:hover {
+  background-color: #252525;
   filter: brightness(120%);
 }
 
@@ -703,6 +724,21 @@ body {
   color: black;
 }
 
+.cardBody2 {
+  color: black;
+  background-color: whitesmoke;
+  border-radius: 2px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
+}
+
+.cardBody2:hover {
+  background-color: #d7d7d7;
+}
+
 .petTable {
   width: 100%;
   max-height: 50px;
@@ -766,7 +802,7 @@ body {
 
 .cardLinkMiddle {
   bottom: 10px;
-  left: 53px;
+  left: 52px;
   position: absolute;
   display: inline-block;
   color: black;
@@ -804,6 +840,10 @@ body {
 }
 
 .dpBox {
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
   border-radius: 3px;
   border: none;
   padding: 3px 3px 3px 3px;
@@ -815,25 +855,65 @@ body {
   text-align: center;
 }
 
+.dpBox:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+
 .dpBoxLeft {
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
   border-radius: 3px;
   border: none;
 
   padding: 3px 3px 3px 3px;
 
-  left: 0;
-  margin-right: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 5px 10px 20px;
 
   background-color: transparent;
   color: white;
   width: 125px;
   text-align: center;
-
 }
 
+.dpBoxLeft:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+
+.dpBoxLeft2 {
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
+  border-radius: 3px;
+  border: none;
+
+  padding: 3px 3px 3px 3px;
+
+  margin: 10px 5px 10px 37px;
+
+  background-color: transparent;
+  color: white;
+  width: 125px;
+  text-align: center;
+}
+
+.dpBoxLeft2:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+
 .dpBoxRight {
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
   border-radius: 3px;
   border: none;
 
@@ -848,9 +928,13 @@ body {
   color: white;
   width: 125px;
   text-align: center;
-
-
 }
+
+.dpBoxRight:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
 
 .middleDp {
 
@@ -869,9 +953,38 @@ body {
 
 .cardLinkMiddle2 {
   bottom: 10px;
-  left: 49px;
+  left: 48px;
   position: absolute;
   display: inline-block;
+  color: black;
+  background-color: transparent;
+}
+
+.cardLinkMiddle3 {
+  font-size: 20px;
+  bottom: 20px;
+  left: 220px;
+  position: absolute;
+  display: inline-block;
+  color: black;
+  background-color: transparent;
+}
+
+.bookingSub {
+  padding: 10px 20px 10px 20px;
+}
+
+.bookingDetailTitle {
+  border-radius: 5px;
+  margin: 20px;
+  padding: 15px;
+  font-size: 22px;
+  text-align: center;
+  background-color: #cacaca;
+  color: black;
+}
+
+.reverseColor {
   color: black;
   background-color: transparent;
 }
