@@ -50,10 +50,10 @@ export class PetEdit extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <h2>Pet: {this.props.pet.name}</h2>
+                            <h2>Edit Pet: {this.props.pet.name}</h2>
                             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
                                 <Bessemer.Field name="name" friendlyName="Pet Name" value="????"
                                                 className="form-control"/>
@@ -82,6 +82,9 @@ export class PetEdit extends React.Component {
                                                     },
                                                     {value: 'other', label: 'Other'},]}/>}
                                 />
+                                <Bessemer.Field name="preference" friendlyName="Preference" value="???"
+                                                className="form-control"/>
+                                                {/*// field={<input className="form-control" type="name"/>}/>*/}
                                 <div className="wrapper">
                                     <Bessemer.Button className="buttonType1" loading={submitting}>
                                         Save Changes
@@ -103,7 +106,8 @@ PetEdit = connect(
     state => ({
         initialValues: {
             name: Users.State.getActivePet(state).name,
-            type: Users.State.getActivePet(state).type
+            type: Users.State.getActivePet(state).type,
+            preference: Users.State.getActivePet(state).preference
         },
         pet: Users.State.getActivePet(state)
     }),
@@ -111,6 +115,7 @@ PetEdit = connect(
         editPet: pet => dispatch(Users.Actions.editPet(pet))
     })
 )(PetEdit);
+
 
 export class PetList extends React.Component {
     constructor(props) {
@@ -123,12 +128,12 @@ export class PetList extends React.Component {
         };
     }
 
-    onSubmit = pet => {
+    handleClick = pet => {
         let newPet = this.props.pet;
         newPet.name = pet.name;
         newPet.type = pet.type;
         newPet.preference = pet.preference;
-        this.props.deletePet(newPet).then(this.setState({deleted: true}));
+        this.setState({deleted: true});
     };
 
     //set state as array of user's pets
@@ -149,42 +154,33 @@ export class PetList extends React.Component {
 
         return (
             <div className="petTable">
-                {/*<Button onClick={() => this.props.dele.then(response => {*/}
-                    {/*alert('deleting');*/}
-                {/*})}>Cancel</Button>*/}
-                {/*<form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>*/}
-                    <table className="actualPetTable">
-                        <div className="petTableBody">
-                            <tbody>
-                            {this.state.pets.map(pet => (
-                                <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
-                                    <Card style={{
-                                        width: '150px',
-                                        height: '150px',
-                                        margin: '5px 0 5px 0',
-                                        border: 'none'
-                                    }}>
-                                        <div className="cardBody">
-                                            <CardBody>
-                                                <CardTitle>{' ' + pet.name + ' '}</CardTitle>
-                                                <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
-                                                <CardText> {' '} </CardText>
-                                                <CardLink className="cardLinkLeft" href={'#/editPet'}>Edit</CardLink>
-                                                <CardLink className="cardLinkRight" href={'#'}>Delete</CardLink>
-                                                {/*<Bessemer.Button className="buttonType1" loading={submitting}>*/}
-                                                    {/*Delete*/}
-                                                {/*</Bessemer.Button>*/}
-                                            </CardBody>
-                                        </div>
-                                    </Card>
-                                </div>
-                            ))}
-                            </tbody>
-                        </div>
-                    </table>
-                {/*</form>*/}
-                {/*<h1> Pet detail </h1>*/}
-                {/*<PetEdit/>*/}
+                <table className="actualPetTable">
+                    <div className="petTableBody">
+                        <tbody>
+                        {this.state.pets.map(pet => (
+                            <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
+
+                                <Card style={{
+                                    width: '150px',
+                                    height: '150px',
+                                    margin: '5px 0 5px 0',
+                                    border: 'none'
+                                }}>
+                                    <div className="cardBody">
+                                        <CardBody>
+                                            <CardTitle>{' ' + pet.name + ' '}</CardTitle>
+                                            <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
+                                            <CardText> {' '} </CardText>
+                                            <CardLink className="cardLinkLeft" href={'#/editPet'}>Edit</CardLink>
+                                            <CardLink className="cardLinkRight" href={'#/page-3'}>Delete</CardLink>
+                                        </CardBody>
+                                    </div>
+                                </Card>
+                            </div>
+                        ))}
+                        </tbody>
+                    </div>
+                </table>
             </div>
         );
     }

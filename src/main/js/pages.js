@@ -65,7 +65,7 @@ export class Home extends React.Component {
                             <SidebarComponent/>
                             <NavBar/>
                         </div>
-                        <div className="middle">
+                        <div className="middleWrapper2">
                             <MyModal/>
                         </div>
                     </section>
@@ -77,7 +77,7 @@ export class Home extends React.Component {
                             <SidebarComponent/>
                             <NavBar/>
                         </div>
-                        <div className="middle">
+                        <div className="middleWrapper2">
                             <MyModal/>
                         </div>
                     </section>
@@ -89,7 +89,7 @@ export class Home extends React.Component {
                             <SidebarComponent/>
                             <NavBar/>
                         </div>
-                        <div className="middle">
+                        <div className="middleWrapper2">
                             <MyModal/>
                         </div>
                     </section>
@@ -155,7 +155,7 @@ export class LoginPage extends React.Component {
         return (
             <section className="webWrapper">
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
                             <div className="title">Sign In</div>
@@ -329,8 +329,11 @@ class AddBooking extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
-                    <Booking.BookingForm/>
+                <div className="container padded middleWrapper">
+                    <div id="p">
+                        <div className="title">CHOOSE YOUR PET</div>
+                        <Booking.BookingForm/>
+                    </div>
                 </div>
             </section>
         );

@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import {PetEdit, PetList} from 'js/petList';
 import {MapHome} from 'js/mapHome';
+import {BookingFormConfirm} from 'js/bookings/booking';
 
 
 export default class Index extends React.Component {
@@ -41,8 +42,10 @@ export default class Index extends React.Component {
         let mapHome = <Route exact path="/googleMapHome" component={MapHome}/>;
 		let sitterBooking = <Route exact path="/signedBooking" component={Pages.SitterBooking}/>;
 		let editPet = <Route exact path="/editPet" component={PetEdit}/>;
+		let confirmBooking = <Route exact path="/confirmBooking" component={BookingFormConfirm}/>;
 
-        //alert(this.props.authentication);
+
+		//alert(this.props.authentication);
 		return (
 			<HashRouter>
 				<div>
@@ -69,6 +72,7 @@ export default class Index extends React.Component {
 					{mapHome}
 					{sitterBooking}
 					{editPet}
+					{confirmBooking}
 				</div>
 			</HashRouter>
 		);

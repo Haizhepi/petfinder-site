@@ -151,6 +151,8 @@
   height: 118%;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.738532913165266) 100%), url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg")
   no-repeat center;
+  -webkit-filter: grayscale(10%);
+  filter: grayscale(10%);
 
   background-size: 120%;
   animation-name: Gradient, fadeIn;
@@ -714,6 +716,21 @@ body {
   text-align: center;
 }
 
+.middleWrapper2 {
+  position: absolute !important;
+  top: 40% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.middleWrapperNotAlign {
+  position: absolute !important;
+  top: 30% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+
 .cardLinkRight {
   bottom: 10px;
   right: 10px;
@@ -731,6 +748,21 @@ body {
   color: black;
   background-color: transparent;
 }
+
+.cardLinkMiddle {
+  bottom: 10px;
+  left: 53px;
+  position: absolute;
+  display: inline-block;
+  color: black;
+  background-color: transparent;
+}
+
+.cardLinkMiddle:hover {
+  -webkit-filter: brightness(130%);
+  filter: brightness(130%);
+}
+
 
 .cardLinkLeft:hover {
   -webkit-filter: brightness(130%);
