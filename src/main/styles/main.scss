@@ -381,7 +381,12 @@ body {
 
 .mtitle {
   color: white;
-  background-color: #7f7f7f;
+  background-color: #272727;
+  //background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.738532913165266) 100%), url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg")
+  //no-repeat center;
+  animation-name: Gradient;
+  animation-duration: 200s;
+  animation-iteration-count: infinite;
 }
 
 .media-body {
@@ -403,7 +408,7 @@ body {
   border-radius: 3px;
   text-align: center;
   margin: 20px;
-  padding: 12px 100px;
+  padding: 10px 100px;
   position: relative !important;
   display: block !important;
   color: white !important;
@@ -412,10 +417,13 @@ body {
   overflow: hidden !important;
   transition: 0.3s all ease !important;
 
-  background-color: #ff7675;
+  text-transform: uppercase;
+
+  background-color: transparent;
 }
 
 .btnModal:hover {
+  border: whitesmoke solid 1px;
   filter: brightness(120%);
 }
 
@@ -723,13 +731,19 @@ body {
   transform: translate(-50%, -50%) !important;
 }
 
-.middleWrapperNotAlign {
+.middleWrapper3 {
   position: absolute !important;
-  top: 30% !important;
+  top: 33% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
 }
 
+.middleWrapperNotAlign {
+  position: absolute !important;
+  top: 25% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
 
 .cardLinkRight {
   bottom: 10px;
@@ -775,5 +789,15 @@ body {
 }
 
 .actualPetTable {
+}
 
+.mbody {
+}
+
+.modalWrapper {
+
+}
+
+.mbodyWrapper {
+  background-color: black;
 }

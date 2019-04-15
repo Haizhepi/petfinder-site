@@ -331,7 +331,7 @@ class AddBooking extends React.Component {
                 <NavBar/>
                 <div className="container padded middleWrapper">
                     <div id="p">
-                        <div className="title">CHOOSE YOUR PET</div>
+                        <div className="title">Choose Your Pet</div>
                         <Booking.BookingForm/>
                     </div>
                 </div>

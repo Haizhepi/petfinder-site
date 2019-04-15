@@ -27,44 +27,8 @@ export class BookingForm extends React.Component {
             pets: [{
                 name: 'no name'
             }],
-            // startDate: new Date(),
-            // endDate: new Date(),
-            // startTime: new Date(),
-            // endTime: new Date()
         };
-        //
-        // this.handleChange1 = this.handleChange1.bind(this);
-        // this.handleChange2 = this.handleChange2.bind(this);
-        // this.handleChange3 = this.handleChange3.bind(this);
-        // this.handleChange4 = this.handleChange4.bind(this);
-
     }
-
-    // handleChange1(date) {
-    //     console.log('+');
-    //     console.log(date);
-    //     this.setState({
-    //         startTime: date,
-    //     });
-    // }
-    //
-    // handleChange2(date) {
-    //     this.setState({
-    //         endTime: date,
-    //     });
-    // }
-    //
-    // handleChange3(date) {
-    //     this.setState({
-    //         startDate: date,
-    //     });
-    // }
-    //
-    // handleChange4(date) {
-    //     this.setState({
-    //         endDate: date,
-    //     });
-    // }
 
     //set state as array of user's pets
     componentWillMount() {
@@ -72,21 +36,6 @@ export class BookingForm extends React.Component {
             this.setState({pets: response});
         });
     }
-
-    // onSubmit = booking => {
-    //     booking.owner = this.props.user.principal;
-    //     booking.petId = this.props.pet.id;
-    //     booking.startTime = this.state.startTime;
-    //     booking.endTime = this.state.endTime;
-    //     booking.startDate = this.state.startDate;
-    //     booking.endDate = this.state.endDate;
-    //
-    //     console.log('???');
-    //     console.log(booking);
-    //     return this.props.makeBooking(booking).then(() => {
-    //         //and then .catch and redirect in .then
-    //     });
-    // };
 
     render() {
         let {handleSubmit, submitting} = this.props;
@@ -123,45 +72,6 @@ export class BookingForm extends React.Component {
                         </tbody>
                     </div>
                 </table>
-                {/*<h1> Select the Pet to be take care of: </h1>*/}
-                {/*<h2>Pet: {this.props.pet.name}</h2>*/}
-                {/*<form className="regf" name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>*/}
-                {/*<DatePicker*/}
-                {/*selected={this.state.startTime}*/}
-                {/*onChange={this.handleChange1}*/}
-                {/*showTimeSelect*/}
-                {/*showTimeSelectOnly*/}
-                {/*timeIntervals={15}*/}
-                {/*dateFormat="h:mm aa"*/}
-                {/*timeCaption="Time"*/}
-                {/*/>*/}
-                {/*<DatePicker*/}
-                {/*selected={this.state.endTime}*/}
-                {/*onChange={this.handleChange2}*/}
-                {/*showTimeSelect*/}
-                {/*showTimeSelectOnly*/}
-                {/*timeIntervals={15}*/}
-                {/*dateFormat="h:mm aa"*/}
-                {/*timeCaption="Time"*/}
-                {/*/>*/}
-                {/*<DatePicker*/}
-                {/*selected={this.state.startDate}*/}
-                {/*selectsStart*/}
-                {/*startDate={this.state.startDate}*/}
-                {/*endDate={this.state.endDate}*/}
-                {/*onChange={this.handleChange3}*/}
-                {/*/>*/}
-                {/*<DatePicker*/}
-                {/*selected={this.state.endDate}*/}
-                {/*selectsEnd*/}
-                {/*startDate={this.state.startDate}*/}
-                {/*endDate={this.state.endDate}*/}
-                {/*onChange={this.handleChange4}*/}
-                {/*/>*/}
-                {/*<Bessemer.Field name="time" friendlyName="time"/>*/}
-                {/*<Bessemer.Field name="description" friendlyName="description"/>*/}
-                {/*<Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>*/}
-                {/*</form>*/}
             </div>
         );
     }
@@ -174,7 +84,6 @@ BookingForm = connect(
         selectPet: pet => dispatch(Users.Actions.selectPet(pet))
     })
 )(BookingForm);
-
 
 
 export class BookingFormConfirm extends React.Component {
@@ -295,7 +204,7 @@ export class BookingFormConfirm extends React.Component {
                                 />
                                 <Bessemer.Field name="time" friendlyName="time"/>
                                 <Bessemer.Field name="description" friendlyName="description"/>
-                                <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+                                <Bessemer.Button className="buttonType1" loading={submitting}>Confirm Booking</Bessemer.Button>
                             </form>
                         </div>
                     </div>
