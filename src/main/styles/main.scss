@@ -149,10 +149,9 @@
 }
 
 .webWrapper {
-
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 
-  height: 118%;
+  height: 120%;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.21192226890756305) 0%, rgba(0, 0, 0, 0.8337710084033614) 100%), url("http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg") no-repeat center;
   -webkit-filter: grayscale(10%);
   filter: grayscale(10%);
@@ -741,17 +740,21 @@ body {
 
 .cardBody {
   color: white;
-  background-color: #ff7675;
+  background: #EC6F66;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #F3A183, #EC6F66);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #F3A183, #EC6F66); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
   border-radius: 2px;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
-  -moz-transition: 0.3s ease !important;
-  -o-transition: 0.3s ease !important;
-  -webkit-transition: 0.3s ease !important;
+  -moz-transition: all 0.3s ease !important;
+  -o-transition: all 0.3s ease !important;
+  -webkit-transition: all 0.3s ease !important;
   transition: all 0.3s ease !important;
 }
 
 .cardBody:hover {
-  background-color: whitesmoke;
+  background: whitesmoke;
   color: black;
 }
 
