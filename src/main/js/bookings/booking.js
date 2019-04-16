@@ -232,7 +232,7 @@ export class BookingFormConfirm extends React.Component {
                                         />
                                     </div>
                                 </div>
-                                {/*<Bessemer.Field name="time" friendlyName="Time"/>*/}
+                                <Bessemer.Field name="time" friendlyName="Title"/>
                                 <Bessemer.Field name="description" friendlyName="Description"/>
                                 <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                             </form>
