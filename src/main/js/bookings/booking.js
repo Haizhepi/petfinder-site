@@ -21,6 +21,14 @@ import {NavBar} from 'js/navBar';
 
 import {ScrollArea} from 'react-scrollbar';
 
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng,
+} from 'react-places-autocomplete';
+import Geocode from 'react-geocode';
+Geocode.setApiKey('AIzaSyCtDc6Y9UHdQHwR--vCIFQ56sLOmlBp2dM');
+Geocode.enableDebug();
+
 export class BookingForm extends React.Component {
     constructor(props) {
         super(props);
@@ -92,7 +100,19 @@ export class BookingFormConfirm extends React.Component {
             startDate: new Date(),
             endDate: new Date(),
             startTime: new Date(),
-            endTime: new Date()
+            endTime: new Date(),
+            address: '',
+            city: '',
+            area: '',
+            state: '',
+            mapPosition: {
+                lat: '',
+                lng: ''
+            },
+            markerPosition: {
+                lat: '',
+                lng: ''
+            }
         };
 
         this.handleChange1 = this.handleChange1.bind(this);
@@ -126,6 +146,42 @@ export class BookingFormConfirm extends React.Component {
         this.setState({
             endDate: date,
         });
+    }
+    handleChange = address => {
+        console.log(this.state);
+        this.setState({address});
+    };
+
+    handleSelect = address => {
+        geocodeByAddress(address)
+            .then(results => {
+                getLatLng(results[0]);
+                console.log('ppp');
+
+                console.log(results[0].formatted_address);
+                this.setState({address: results[0].formatted_address});
+            })
+            .then(latLng => {
+                console.log('Success', latLng);
+            })
+            .catch(error => console.error('Error', error));
+    };
+
+    state = {
+        gmapsLoaded: false,
+    };
+
+    initMap = () => {
+        this.setState({
+            gmapsLoaded: true,
+        });
+    };
+
+    componentDidMount() {
+        window.initMap = this.initMap;
+        const gmapScriptEl = document.createElement('script');
+        gmapScriptEl.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCtDc6Y9UHdQHwR--vCIFQ56sLOmlBp2dM&libraries=places&callback=initMap';
+        document.querySelector('body').insertAdjacentElement('beforeend', gmapScriptEl);
     }
 
     //set state as array of user's pets
@@ -234,9 +290,52 @@ export class BookingFormConfirm extends React.Component {
                                 </div>
                                 <Bessemer.Field name="time" friendlyName="Title"/>
                                 <Bessemer.Field name="description" friendlyName="Description"/>
+                                {this.state.gmapsLoaded && (
+
+                                    <PlacesAutocomplete
+                                        value={this.state.address}
+                                        onChange={this.handleChange}
+                                        onSelect={this.handleSelect}
+                                    >
+                                        {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                                            <div>
+                                                <input
+                                                    {...getInputProps({
+                                                        placeholder: 'Search Your Address Here...',
+                                                        className: 'location-search-input form-control',
+                                                    })}
+                                                />
+                                                <div className="autocomplete-dropdown-container adc">
+                                                    {loading && <div>Loading...</div>}
+                                                    {suggestions.map(suggestion => {
+                                                        const className = suggestion.active
+                                                            ? 'suggestion-item--active'
+                                                            : 'suggestion-item';
+                                                        // inline style for demonstration purpose
+                                                        const style = suggestion.active
+                                                            ? {backgroundColor: 'transparent', cursor: 'pointer'}
+                                                            : {backgroundColor: '#434343', cursor: 'pointer'};
+                                                        return (
+                                                            <div
+                                                                {...getSuggestionItemProps(suggestion, {
+                                                                    className,
+                                                                    style,
+                                                                })}
+                                                            >
+                                                                <span>{suggestion.description}</span>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </PlacesAutocomplete>
+                                )}
                                 <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                             </form>
+
                         </div>
+
                     </div>
                 </div>
             </section>

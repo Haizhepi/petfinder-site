@@ -50,20 +50,7 @@ export class LocationSearchInput extends React.Component {
                 this.setState({address: results[0].formatted_address});
             })
             .then(latLng => {
-                // const geocoding = new require('reverse-geocoding');
                 console.log('Success', latLng);
-                // let config = {
-                //     'latitude': latLng.lat,
-                //     'longitude': latLng.lng
-                // };
-                // //let geocoding = 'aa';
-                // geocoding.location(config, function (err, data) {
-                //     if (err) {
-                //         console.log(err);
-                //     }else {
-                //         console.log(data);
-                //     }
-                // });
             })
             .catch(error => console.error('Error', error));
     };

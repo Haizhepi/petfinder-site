@@ -551,7 +551,7 @@ export class ViewSitter extends React.Component {
             sitter: [{
                 availability: 'no name'
             }],
-            invitation: []
+            invitation: ['no name']
         };
     }
 
