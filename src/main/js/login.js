@@ -212,9 +212,18 @@ class RegistrationForm extends React.Component {
     }
     */
     onSubmit = user => {
-        return this.props.register(user).then(() => {
-            //and then .catch and redirect in .then
-        });
+        if (user.confirmPassword !== user.password) {
+            alert('password does not match');
+        }
+        else if (!user.userType) {
+            alert('must enter a valid user type');
+        }
+        else {
+            return this.props.register(user).then(() => {
+                alert('can not register');
+                //and then .catch and redirect in .then
+            });
+        }
     };
 
     render() {
