@@ -25,7 +25,7 @@ class MyBookings extends React.Component {
         return (
             <div>
                 <div id="p" className="col-6 offset-md-3">
-                    <div className="title">All Bookings</div>
+                    <div className="title">My Bookings</div>
                     {this.state.booking.map(booking => (
                         <ListGroup key={booking.id}>
 

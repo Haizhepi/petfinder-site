@@ -1,6 +1,16 @@
 import React from 'react';
 import * as Users from 'js/users';
-import {Button, ListGroup, ListGroupItem, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {
+    Button,
+    ListGroup,
+    ListGroupItem,
+    ButtonGroup,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    CardBody, CardTitle, CardSubtitle, Card, CardText, CardLink
+} from 'reactstrap';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import _ from 'lodash';
@@ -33,7 +43,7 @@ class SitterDetails extends React.Component {
     }
 
     render() {
-        if (this.props.booking.status === 'UNSIGHED'){
+        if (this.props.booking.status === 'UNSIGHED') {
             return (
                 <div>
                     <h2>SITTER: {this.state.pet.name}</h2>
@@ -53,8 +63,7 @@ class SitterDetails extends React.Component {
                     </Link>
                 </div>
             );
-        }
-        else {
+        } else {
             return (
                 <div>
                     <h2>SITTER: {this.state.pet.name}</h2>
@@ -79,7 +88,7 @@ class SitterDetails extends React.Component {
 }
 
 SitterDetails = connect(
-    state =>({
+    state => ({
         booking: Users.State.getActiveBooking(state),
         user: Users.State.getUser(state)
     }),
@@ -137,66 +146,131 @@ class OwnerDetails extends React.Component {
     render() {
         return (
             <div>
-                <h1>Owner</h1>
-                <h2>Pet: {this.state.pet.name}</h2>
-                <ListGroup>
-                    <ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>
-                    <ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>
-                    <ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>
-                    <ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>
-                    <ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>
-                    <ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>
-                    <ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>
-                    <ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>
-                </ListGroup>
-                <ButtonGroup>
-                <Link to={'/myBooking'}>
-                <Button onClick={() => this.props.cancel(this.props.booking).then(response => {
-                   alert('deleting');
-                })}>Cancel</Button>
-                </Link>
-                <Link to={'/availableSitters'}>
-                    <Button>View Sitters</Button>
-                </Link>
-                <Link to={'/addRating'}>
-                    <Button onClick={() => this.props.finish(this.props.booking)}>Finish Booking</Button>
-                </Link>
-                </ButtonGroup>
+                <div id="p" className="col-6 offset-md-3">
+                    <Card style={{
+                        width: '500px',
+                        height: '300px',
+                        margin: '80px 0 80px 0',
+                        border: 'none'
+                    }}>
+                        <div className="cardBody2">
+                            <CardBody>
+                                <CardTitle>
+                                    <div className="bookT">Booking Details</div>
+                                    <div className="bookingDetailTitle">
+                                        {this.props.booking.owner}
+                                    </div>
+                                </CardTitle>
+                                <CardSubtitle className="bookingSub">
+                                    <div className="petTable petCardMarginBottomSm">
+                                        <div className="petCard">
+                                            <Card style={{
+                                                width: '150px',
+                                                height: '80px',
+                                                margin: '5px 0 5px 0',
+                                                border: 'none',
+                                            }}>
+                                                <div className="cardBody">
+                                                    <CardBody>
+                                                        <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
+                                                        <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
+                                                        <CardText> {' '} </CardText>
+                                                    </CardBody>
+                                                </div>
+                                            </Card>
+                                        </div>
+                                    </div>
+                                </CardSubtitle>
+                                {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                <CardSubtitle className="bookingSub">Pet: {this.props.booking.petId}</CardSubtitle>
+                                <CardSubtitle
+                                    className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
+                                <CardSubtitle
+                                    className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
+                                <CardSubtitle
+                                    className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
+                                <div>
 
-                <hr></hr>
+                                    <div onClick={() => this.props.cancel(this.props.booking).then(response => {
+                                        // alert('deleting');
+                                    })}>
+                                        <a href={'#/myBooking'} className="btnModal2">Cancel</a>
+                                    </div>
 
-                {
-                    this.state.sitters.map(sitter => (
-                        <div key={sitter.principal}>
-                        <h2>{sitter.principal}</h2>
-                        <ButtonGroup>
-                        <Button onClick={this.toggle}>{this.props.buttonLabel}>View Sitter Info</Button>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                            <ModalBody>
-                                <ListGroup>
-                                    <ListGroupItem>Sitter FirstName: {sitter.firstName}</ListGroupItem>
-                                </ListGroup>
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                            </ModalFooter>
-                        </Modal>
-                        <Button onClick={() =>{
-                            alert('approve sitter');
-                            this.props.approve(sitter,this.props.booking);
-                        }}>Approve</Button>
-                        </ButtonGroup>
+                                    <div>
+                                        <a href={'#/availableSitters'} className="btnModal2">Sitters Available</a>
+                                    </div>
+
+                                    <div onClick={() => this.props.finish(this.props.booking)}>
+                                        <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
+                                    </div>
+
+
+                                    {/*<Link to={'/myBooking'}>*/}
+                                        {/*<Button className="buttonType2" onClick={() => this.props.cancel(this.props.booking).then(response => {*/}
+                                            {/*// alert('deleting');*/}
+                                        {/*})}>Cancel</Button>*/}
+                                    {/*</Link>*/}
+                                    {/*<Link to={'/availableSitters'}>*/}
+                                        {/*<Button>View Sitters</Button>*/}
+                                    {/*</Link>*/}
+                                    {/*<Link to={'/addRating'}>*/}
+                                        {/*<Button onClick={() => this.props.finish(this.props.booking)}>Finish Booking</Button>*/}
+                                    {/*</Link>*/}
+                                </div>
+                            </CardBody>
+
                         </div>
-                    ))
+
+                    </Card>
+
+                    {/*<ListGroup>*/}
+                    {/*<ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>*/}
+                    {/*<ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>*/}
+                    {/*<ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>*/}
+                    {/*</ListGroup>*/}
+
+
+                    {
+                        this.state.sitters.map(sitter => (
+                            <div key={sitter.principal}>
+                                <h2>{sitter.principal}</h2>
+                                <ButtonGroup>
+                                    <Button onClick={this.toggle}>{this.props.buttonLabel}>View Sitter Info</Button>
+                                    <Modal isOpen={this.state.modal} toggle={this.toggle}
+                                           className={this.props.className}>
+                                        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+                                        <ModalBody>
+                                            <ListGroup>
+                                                <ListGroupItem>Sitter FirstName: {sitter.firstName}</ListGroupItem>
+                                            </ListGroup>
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+                                            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                                        </ModalFooter>
+                                    </Modal>
+                                    <Button onClick={() => {
+                                        alert('approve sitter');
+                                        this.props.approve(sitter, this.props.booking);
+                                    }}>Approve</Button>
+                                </ButtonGroup>
+                            </div>
+                        ))
                     }
+                </div>
             </div>
         );
     }
 }
+
 OwnerDetails = connect(
-    state =>({
+    state => ({
         booking: Users.State.getActiveBooking(state),
         user: Users.State.getUser(state)
     }),
@@ -260,7 +334,7 @@ class BookingDetail extends React.Component {
 }
 
 BookingDetail = connect(
-    state =>({
+    state => ({
         booking: Users.State.getActiveBooking(state),
         user: Users.State.getUser(state)
     }),

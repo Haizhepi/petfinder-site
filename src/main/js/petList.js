@@ -16,7 +16,7 @@ import {ScrollArea} from 'react-scrollbar';
 
 import CustomScroll from 'react-custom-scroll';
 import 'react-sticky-table/dist/react-sticky-table.css';
-import { StickyTable, Row, Cell } from 'react-sticky-table';
+import {StickyTable, Row, Cell} from 'react-sticky-table';
 
 
 import {SidebarComponent} from 'js/mySidebar';
@@ -56,7 +56,7 @@ export class PetEdit extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded middleWrapperNotAlign">
+                <div className="container padded middleWrapper3">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
                             <div className="title">Edit Pet</div>
