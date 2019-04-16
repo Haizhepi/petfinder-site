@@ -47,6 +47,7 @@ export class LocationSearchInput extends React.Component {
                 console.log('ppp');
 
                 console.log(results[0].formatted_address);
+                this.setState({address: results[0].formatted_address});
             })
             .then(latLng => {
                 // const geocoding = new require('reverse-geocoding');
