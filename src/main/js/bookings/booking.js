@@ -47,33 +47,27 @@ export class BookingForm extends React.Component {
         }
         return (
             <div className="petTable">
-                <table className="actualPetTable">
-                    <div className="petTableBody">
-                        <tbody>
-                        {this.state.pets.map(pet => (
-                            <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
+                {this.state.pets.map(pet => (
+                    <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
 
-                                <Card style={{
-                                    width: '150px',
-                                    height: '150px',
-                                    margin: '5px 0 5px 0',
-                                    border: 'none'
-                                }}>
-                                    <div className="cardBody">
-                                        <CardBody>
-                                            <CardTitle>{' ' + pet.name + ' '}</CardTitle>
-                                            <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
-                                            <CardText> {' '} </CardText>
-                                            <CardLink className="cardLinkMiddle"
-                                                      href={'#/confirmBooking'}>Select</CardLink>
-                                        </CardBody>
-                                    </div>
-                                </Card>
+                        <Card style={{
+                            width: '150px',
+                            height: '150px',
+                            margin: '5px 0 5px 0',
+                            border: 'none'
+                        }}>
+                            <div className="cardBody">
+                                <CardBody>
+                                    <CardTitle>{' ' + pet.name + ' '}</CardTitle>
+                                    <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
+                                    <CardText> {' '} </CardText>
+                                    <CardLink className="cardLinkMiddle"
+                                              href={'#/confirmBooking'}>Select</CardLink>
+                                </CardBody>
                             </div>
-                        ))}
-                        </tbody>
+                        </Card>
                     </div>
-                </table>
+                ))}
             </div>
         );
     }
@@ -285,29 +279,97 @@ class AvailableBooking extends React.Component {
         return (
             <div>
                 <div id="p" className="col-6 offset-md-3">
-                    <h1>Available booking</h1>
+                    <div className="title">Available Bookings</div>
                     {this.state.booking.map(booking => (
                         <ListGroup>
-                            <ListGroupItem>
-                                <div onClick={() => this.props.selectBooking(booking)}>
-                                    <Link to="/bookingDetail">
-                                        Owner: {booking.owner}
-                                    </Link>
-                                </div>
-                            </ListGroupItem>
 
-                            <ListGroupItem>Pet: {booking.petId}</ListGroupItem>
-                            <ListGroupItem>Time: {booking.time}</ListGroupItem>
-                            <ListGroupItem>Des: {booking.description}</ListGroupItem>
-                            <ListGroupItem>Start Time: {booking.startTime}</ListGroupItem>
-                            <ListGroupItem>End Time: {booking.endTime}</ListGroupItem>
-                            <ListGroupItem>Start Date: {booking.startDate}</ListGroupItem>
-                            <ListGroupItem>End Date: {booking.endDate}</ListGroupItem>
+                            <Card style={{
+                                width: '500px',
+                                height: '300px',
+                                margin: '80px 0 80px 0',
+                                border: 'none'
+                            }}>
+                                <div className="cardBody2">
+                                    <CardBody>
+                                        <CardTitle>
+                                            <div className="bookingDetailTitle">
+                                                {booking.owner}
+                                            </div>
+                                        </CardTitle>
+                                        <CardSubtitle className="bookingSub">Status: {booking.status}</CardSubtitle>
+                                        <CardSubtitle className="bookingSub">Pet: {booking.petId}</CardSubtitle>
+                                        {/*<CardSubtitle className="bookingSub">Time: {booking.time}</CardSubtitle>*/}
+                                        <CardSubtitle
+                                            className="bookingSub">Description: {booking.description}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">From: {booking.startTime + '   ' + booking.startDate}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">To: {booking.endTime + '   ' + booking.endDate}</CardSubtitle>
+                                        {/*<CardSubtitle className="bookingSub">Start Date: {booking.startDate}</CardSubtitle>*/}
+                                        {/*<CardSubtitle className="bookingSub">End Date: {booking.endDate}</CardSubtitle>*/}
+
+                                        <div onClick={() => this.props.selectBooking(booking)}>
+
+                                            <a href={'#/bookingDetail'} className="btnModal2">Booking Detail</a>
+                                        </div>
+
+                                    </CardBody>
+                                </div>
+                            </Card>
+
                         </ListGroup>
                     ))}
 
-
                 </div>
+
+                {/*<div>*/}
+                {/*<div id="p" className="col-6 offset-md-3">*/
+                }
+                {/*<h1>Available booking</h1>*/
+                }
+                {/*{this.state.booking.map(booking => (*/
+                }
+                {/*<ListGroup>*/
+                }
+                {/*<ListGroupItem>*/
+                }
+                {/*<div onClick={() => this.props.selectBooking(booking)}>*/
+                }
+                {/*<Link to="/bookingDetail">*/
+                }
+                {/*Owner: {booking.owner}*/
+                }
+                {/*</Link>*/
+                }
+                {/*</div>*/
+                }
+                {/*</ListGroupItem>*/
+                }
+
+                {/*<ListGroupItem>Pet: {booking.petId}</ListGroupItem>*/
+                }
+                {/*<ListGroupItem>Time: {booking.time}</ListGroupItem>*/
+                }
+                {/*<ListGroupItem>Des: {booking.description}</ListGroupItem>*/
+                }
+                {/*<ListGroupItem>Start Time: {booking.startTime}</ListGroupItem>*/
+                }
+                {/*<ListGroupItem>End Time: {booking.endTime}</ListGroupItem>*/
+                }
+                {/*<ListGroupItem>Start Date: {booking.startDate}</ListGroupItem>*/
+                }
+                {/*<ListGroupItem>End Date: {booking.endDate}</ListGroupItem>*/
+                }
+                {/*</ListGroup>*/
+                }
+                {/*))}*/
+                }
+
+
+                {/*</div>*/
+                }
+                {/*</div>*/
+                }
             </div>
         );
     }

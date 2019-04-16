@@ -413,7 +413,7 @@ export class AvailableBooking extends React.Component {
     render() {
 
         return (
-            <section className="webWrapper">
+            <section className="bookingWrapper">
                 <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
@@ -475,7 +475,7 @@ export class Notifications extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapper3">
                     <Notification.NotificationCenter/>
                 </div>
             </section>
