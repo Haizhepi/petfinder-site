@@ -33,6 +33,7 @@ import {MyCard} from 'js/card';
 import {ScrollArea} from 'react-scrollbar';
 import CustomScroll from 'react-custom-scroll';
 
+import Favicon from 'react-favicon';
 
 
 export class Home extends React.Component {
@@ -102,6 +103,7 @@ export class Home extends React.Component {
         } else {
             return (
                 <section className="homepageWrapper">
+                    <Favicon url="https://www.petidentityuk.info/views/standard/images/mh-hp365-icon.png" />
                     <div className="barWrapper">
                         <NavBar/>
                     </div>

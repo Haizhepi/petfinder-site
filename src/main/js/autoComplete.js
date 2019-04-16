@@ -70,7 +70,7 @@ export class LocationSearchInput extends React.Component {
             <div className="container padded">
                 <div className="row">
                     <div className="col-6 offset-md-3" id="p">
-                        <div className="title">Enter Your Address</div>
+                        <div className="title topMarg1">Enter Your Address</div>
                         {this.state.gmapsLoaded && (
 
                             <PlacesAutocomplete
@@ -86,7 +86,7 @@ export class LocationSearchInput extends React.Component {
                                                 className: 'location-search-input form-control',
                                             })}
                                         />
-                                        <div className="autocomplete-dropdown-container">
+                                        <div className="autocomplete-dropdown-container adc">
                                             {loading && <div>Loading...</div>}
                                             {suggestions.map(suggestion => {
                                                 const className = suggestion.active
@@ -94,8 +94,8 @@ export class LocationSearchInput extends React.Component {
                                                     : 'suggestion-item';
                                                 // inline style for demonstration purpose
                                                 const style = suggestion.active
-                                                    ? {backgroundColor: '#fafafa', cursor: 'pointer'}
-                                                    : {backgroundColor: '#ffffff', cursor: 'pointer'};
+                                                    ? {backgroundColor: 'transparent', cursor: 'pointer'}
+                                                    : {backgroundColor: '#434343', cursor: 'pointer'};
                                                 return (
                                                     <div
                                                         {...getSuggestionItemProps(suggestion, {
