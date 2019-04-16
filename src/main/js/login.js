@@ -308,15 +308,31 @@ class EditProfileForm extends React.Component {
     }
 
     onSubmit = user => {
-        let newUser = this.props.user;
-        newUser.firstName = user.firstName;
-        newUser.lastName = user.lastName;
-        newUser.gender = user.gender;
-        newUser.zipcode = user.zipcode;
-        if (user.userType !== newUser.type) {
-            newUser.type = 'BOTH';
+        console.log(user);
+        if (!user.firstName) {
+            alert('please enter a valid first name');
         }
-        this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
+        else if (!user.lastName) {
+            alert('please enter a valid last name');
+        }
+        else if (user.gender !== 'male' && user.gender !== 'female' && user.gender !== 'other') {
+            alert('please enter a valid gender');
+        }
+        else if (user.zipcode.length !== 5) {
+            alert('please enter a valid zip code');
+        }
+        else {
+            let newUser = this.props.user;
+            newUser.firstName = user.firstName;
+            newUser.lastName = user.lastName;
+            newUser.gender = user.gender;
+            newUser.zipcode = user.zipcode;
+            if (user.userType !== newUser.type) {
+                newUser.type = 'BOTH';
+            }
+            this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
+        }
+
     };
 
     render() {

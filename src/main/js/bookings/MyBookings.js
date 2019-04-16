@@ -39,12 +39,14 @@ class MyBookings extends React.Component {
                                     <CardBody>
                                         <CardTitle>
                                             <div className="bookingDetailTitle">
-                                                {booking.owner}
+                                                <div> {booking.time}</div>
+
+                                                <div> {booking.owner} </div>
+
                                             </div>
                                         </CardTitle>
                                         <CardSubtitle className="bookingSub">Status: {booking.status}</CardSubtitle>
                                         <CardSubtitle className="bookingSub">Pet: {booking.petId}</CardSubtitle>
-                                        {/*<CardSubtitle className="bookingSub">Time: {booking.time}</CardSubtitle>*/}
                                         <CardSubtitle className="bookingSub">Description: {booking.description}</CardSubtitle>
                                         <CardSubtitle className="bookingSub">From: {booking.startTime + '   ' + booking.startDate}</CardSubtitle>
                                         <CardSubtitle className="bookingSub">To: {booking.endTime + '   ' +booking.endDate}</CardSubtitle>

@@ -57,18 +57,24 @@ class AvailabilityForm extends React.Component {
 
     //Defines the on submit behavior
     onSubmit = (form) => {
-        let avail = {
-            principal: this.props.user.principal,
-            availability: form.availability,
-            startTime: this.state.startTime,
-            endTime: this.state.endTime,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate
-        };
-        console.log('here');
-        console.log(avail);
-        return this.props.addAvail(avail);
+        if (form.availability.length <= 20) {
+            alert('Please enter at least 20 characters');
+        }
+        else {
+            let avail = {
+                principal: this.props.user.principal,
+                availability: form.availability,
+                startTime: this.state.startTime,
+                endTime: this.state.endTime,
+                startDate: this.state.startDate,
+                endDate: this.state.endDate
+            };
+            console.log('here');
+            console.log(avail);
+            return this.props.addAvail(avail);
+        }
     };
+
 
     render() {
         let {handleSubmit, submitting} = this.props;
