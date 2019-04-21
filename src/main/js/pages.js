@@ -9,6 +9,7 @@ import * as Rating from 'js/rating';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import * as Booking from 'js/bookings/booking';
+import * as PasswdReset from 'js/passwordReset';
 
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
@@ -599,3 +600,42 @@ ViewSitter = connect(
     })
 )(ViewSitter);
 
+export class PasswordReset extends React.Component {
+    render() {
+        return (
+            <section className="homepageWrapper">
+                <SidebarComponent/>
+                <NavBar/>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Password Reset</div>
+                            <hr/>
+                            <PasswdReset.PasswordResetForm/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class PasswordDisplay extends React.Component {
+    render() {
+        return (
+            <section className="homepageWrapper">
+                <SidebarComponent/>
+                <NavBar/>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Password Recovery</div>
+                            <hr/>
+                            <PasswdReset.PasswordDisplay/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}

@@ -43,6 +43,7 @@ public class UserService {
 		private String firstName;
 		private String lastName;
 		private String userType;
+		private String securityAnswer;
 
 		public UserType getUserType() {
 			if (userType.equalsIgnoreCase("owner")) {
@@ -56,6 +57,13 @@ public class UserService {
 			}
 		}
 
+		public String getSecurityAnswer() {
+			return securityAnswer;
+		}
+
+		public void setSecurityAnswer(String securityAnswer) {
+			this.securityAnswer = securityAnswer;
+		}
 		public String getFirstName() {
 			return firstName;
 		}
@@ -122,9 +130,8 @@ public class UserService {
 				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"),
 						request.getFirstName(), request.getLastName(),
 						request.getGender(), request.getZipcode(),
-						request.getUserType(), request.getAttributes()),
+						request.getUserType(), request.getAttributes(), request.getSecurityAnswer()),
 				passwordEncoder.encode(request.getPassword()));
-		System.out.println(request.getGender());
 		userDao.save(userAuthentication);
 		return userAuthentication.getUser();
 	}

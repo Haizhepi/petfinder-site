@@ -169,10 +169,24 @@ export function inviteSitter(sitter, booking) {
 	console.log(sitter);
 	return axios.post('api/bookings/invite', request);
 }
+
+export function authSecurityAnswer(principal, securityAnswer){
+    let user = {
+        principal: principal,
+        answer: securityAnswer
+    };
+    alert('securityAnswer');
+    return axios.get('api/user/securityAnswer', user);
+}
+
 let State = {};
 
 State.getAuthentication = state => {
 	return state.authentication;
+};
+
+State.getSecurityAnswer = state => {
+    return state.securityAnswer;
 };
 
 State.getNewNoti = state => {
@@ -195,6 +209,10 @@ State.getActiveBooking = state => {
 	return state.activeBooking;
 };
 
+State.getPassword = state => {
+    return state.password;
+};
+
 export { State };
 
 let Actions = {};
@@ -206,7 +224,9 @@ Actions.Types = {
 	SELECT_PET: 'PET_SELECTED',
 	SELECT_BOOKING: 'BOOKING_SELECTED',
 	SELECT_SITTER: 'SITTER_SELECTED',
-	NEW_NOTIS: 'NOTIS_NEW'
+	NEW_NOTIS: 'NOTIS_NEW',
+	SET_SECURITYANSWER: 'SET_SECURITYANSWER',
+	SET_PASSWORD: 'SET_PASSWORD'
 };
 
 //save pet
@@ -222,12 +242,20 @@ Actions.editPet = pet => {
 	};
 };
 
+Actions.authSecurityAnswer = (principal, securityAnswer) => {
+    return (dispatch) => {
+        return authSecurityAnswer(principal, securityAnswer).then(password => {
+            dispatch(Actions.setPassword(password));
+        });
+    };
+};
+
+Actions.setPassword = (password) => {
+    alert(password);
+    return {type: Actions.Types.SET_PASSWORD, password};
+};
 // save the relation of pet and user
 Actions.addPetUser = (pet, user) => {
-	console.log('here1');
-	console.log(pet);
-	console.log(user);
-
 	Actions.savePet(pet).then(response =>{
 		let petUser = {
 			//id : pet.id,
@@ -425,8 +453,18 @@ Reducers.notis = (noti = null, action) => {
 		default: {
 			return noti;
 		}
-
 	}
+};
+
+Reducers.securityAnswer = (securityAnswer = null, action) => {
+    switch (action.type) {
+        case Actions.Types.SET_SECURITYANSWER:{
+            return action.securityAnswer;
+        }
+        default: {
+            return securityAnswer;
+        }
+    }
 };
 
 
@@ -505,5 +543,15 @@ Reducers.activeSitter = (activeSitter = null, action) => {
 	}
 };
 
+Reducers.password = (password = null, action) => {
+	switch (action.type) {
+		case Actions.Types.SET_PASSWORD: {
+			return action.password;
+		}
+		default: {
+			return password;
+		}
+	}
+};
 
 export { Reducers };

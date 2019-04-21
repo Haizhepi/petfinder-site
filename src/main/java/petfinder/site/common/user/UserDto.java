@@ -24,6 +24,7 @@ public class UserDto implements Momento<String> {
 	private String firstName;
 	private String lastName;
 	private int score;
+	private String securityAnswer;
 
 	public int getScore() {
 		return score;
@@ -37,6 +38,14 @@ public class UserDto implements Momento<String> {
 		if (this.score < 100) {
 			score++;
 		}
+	}
+
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
 	}
 
 	public void panelty() {
@@ -98,7 +107,7 @@ public class UserDto implements Momento<String> {
 
 	}
 
-	public UserDto(String principal, List<String> roles, String firstName, String lastName, String gender, String zipcode, UserType type, Map<String, Object> attributes) {
+	public UserDto(String principal, List<String> roles, String firstName, String lastName, String gender, String zipcode, UserType type, Map<String, Object> attributes, String securityAnswer) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
@@ -108,6 +117,7 @@ public class UserDto implements Momento<String> {
 		this.attributes = attributes;
 		this.type = type;
 		this.score = 2;
+		this.securityAnswer = securityAnswer;
 	}
 
 	public UserDto(String principal) {
