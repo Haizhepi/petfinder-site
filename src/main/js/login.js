@@ -42,6 +42,7 @@ class LoginForm extends React.Component {
             }
         }
 
+
         return (
             <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
 
@@ -53,7 +54,7 @@ class LoginForm extends React.Component {
                                 field={<input className="form-control" type="password"
                                 />}/>
                 <Label check className="checkBox">
-                    <Input type="checkbox" className="Box" />{' '}
+                    <Input type="checkbox" className="Box"/>{' '}
                     Keep me signed in
                 </Label>
 
@@ -211,9 +212,18 @@ class RegistrationForm extends React.Component {
     }
     */
     onSubmit = user => {
-        return this.props.register(user).then(() => {
-            //and then .catch and redirect in .then
-        });
+        if (user.confirmPassword !== user.password) {
+            alert('password does not match');
+        }
+        else if (!user.userType) {
+            alert('must enter a valid user type');
+        }
+        else {
+            return this.props.register(user).then(() => {
+                alert('can not register');
+                //and then .catch and redirect in .then
+            });
+        }
     };
 
     render() {
@@ -265,8 +275,8 @@ class RegistrationForm extends React.Component {
                     field={<input className="form-control" type="securityAnswer"/>}/>
 
                 <FormText className="terms">
-                    By processing you agree to PetFinder's
-                    <a href={'#/register'}> Terms of Use </a>
+                    {'By processing you agree to PetFinder\'s '}
+                    <a href={'#/register'}>Terms of Use</a>
                 </FormText>
 
                 <div className="wrapper">
@@ -302,16 +312,31 @@ class EditProfileForm extends React.Component {
     }
 
     onSubmit = user => {
-        let newUser = this.props.user;
-        newUser.firstName = user.firstName;
-        newUser.lastName = user.lastName;
-        newUser.gender = user.gender;
-        newUser.zipcode = user.zipcode;
-        newUser.securityAnswer = user.securityAnswer;
-        if (user.userType !== newUser.type) {
-            newUser.type = 'BOTH';
+        console.log(user);
+        if (!user.firstName) {
+            alert('please enter a valid first name');
         }
-        this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
+        else if (!user.lastName) {
+            alert('please enter a valid last name');
+        }
+        else if (user.gender !== 'male' && user.gender !== 'female' && user.gender !== 'other') {
+            alert('please enter a valid gender');
+        }
+        else if (user.zipcode.length !== 5) {
+            alert('please enter a valid zip code');
+        }
+        else {
+            let newUser = this.props.user;
+            newUser.firstName = user.firstName;
+            newUser.lastName = user.lastName;
+            newUser.gender = user.gender;
+            newUser.zipcode = user.zipcode;
+            if (user.userType !== newUser.type) {
+                newUser.type = 'BOTH';
+            }
+            this.props.editProfile(newUser).then(this.setState({hasSubmitSucceeded: true}));
+        }
+
     };
 
     render() {
@@ -345,7 +370,7 @@ class EditProfileForm extends React.Component {
                                                         placeholder="Owner or Sitter?"
                                 />}/>
                 <div className="wrapper">
-                    <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
                 </div>
 
             </form>

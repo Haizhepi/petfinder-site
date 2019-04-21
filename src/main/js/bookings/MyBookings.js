@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Users from 'js/users';
-import {ListGroup, ListGroupItem} from 'reactstrap';
+import {Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle, ListGroup, ListGroupItem} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -25,27 +25,45 @@ class MyBookings extends React.Component {
         return (
             <div>
                 <div id="p" className="col-6 offset-md-3">
-                    <h1>This is Ur Booking</h1>
+                    <div className="title">My Bookings</div>
                     {this.state.booking.map(booking => (
                         <ListGroup key={booking.id}>
-                            <ListGroupItem>
-                                <div onClick={() => this.props.selectBooking(booking)}>
-                                    <Link to="/bookingDetail">
-                                        Owner: {booking.owner}
-                                    </Link>
+
+                            <Card style={{
+                                width: '500px',
+                                height: '300px',
+                                margin: '80px 0 80px 0',
+                                border: 'none'
+                            }}>
+                                <div className="cardBody2">
+                                    <CardBody>
+                                        <CardTitle>
+                                            <div className="bookingDetailTitle">
+                                                <div> {booking.time}</div>
+
+                                                <div> {booking.owner} </div>
+
+                                            </div>
+                                        </CardTitle>
+                                        <CardSubtitle className="bookingSub">Status: {booking.status}</CardSubtitle>
+                                        <CardSubtitle className="bookingSub">Pet: {booking.petId}</CardSubtitle>
+                                        <CardSubtitle className="bookingSub">Description: {booking.description}</CardSubtitle>
+                                        <CardSubtitle className="bookingSub">From: {booking.startTime + '   ' + booking.startDate}</CardSubtitle>
+                                        <CardSubtitle className="bookingSub">To: {booking.endTime + '   ' +booking.endDate}</CardSubtitle>
+                                        {/*<CardSubtitle className="bookingSub">Start Date: {booking.startDate}</CardSubtitle>*/}
+                                        {/*<CardSubtitle className="bookingSub">End Date: {booking.endDate}</CardSubtitle>*/}
+
+                                        <div onClick={() => this.props.selectBooking(booking)}>
+
+                                            <a href={'#/bookingDetail'} className="btnModal2">Booking Detail</a>
+                                        </div>
+
+                                    </CardBody>
                                 </div>
-                            </ListGroupItem>
-                            <ListGroupItem>Status: {booking.status}</ListGroupItem>
-                            <ListGroupItem>Pet: {booking.petId}</ListGroupItem>
-                            <ListGroupItem>Time: {booking.time}</ListGroupItem>
-                            <ListGroupItem>Des: {booking.description}</ListGroupItem>
-                            <ListGroupItem>Start Time: {booking.startTime}</ListGroupItem>
-                            <ListGroupItem>End Time: {booking.endTime}</ListGroupItem>
-                            <ListGroupItem>Start Date: {booking.startDate}</ListGroupItem>
-                            <ListGroupItem>End Date: {booking.endDate}</ListGroupItem>
+                            </Card>
+
                         </ListGroup>
                     ))}
-
 
                 </div>
             </div>
@@ -54,11 +72,12 @@ class MyBookings extends React.Component {
 
 
 }
+
 MyBookings = connect(
-    state =>({
+    state => ({
         user: Users.State.getUser(state)
     }),
-    dispatch =>({
+    dispatch => ({
         selectBooking: booking => dispatch(Users.Actions.selectBooking(booking))
     })
 )(MyBookings);

@@ -9,6 +9,8 @@ import * as Rating from 'js/rating';
 import * as PetList from 'js/petList';
 import * as Avail from 'js/schedule';
 import * as Booking from 'js/bookings/booking';
+import 'react-sticky-table/dist/react-sticky-table.css';
+import {StickyTable, Row, Cell} from 'react-sticky-table';
 import * as PasswdReset from 'js/passwordReset';
 
 import * as Notification from 'js/notification';
@@ -29,6 +31,11 @@ import {GoogleMapAPI} from 'js/googleMapAPI';
 import {LocationSearchInput} from 'js/autoComplete';
 import {WebHome} from 'js/webHome';
 import {SidebarComponent} from 'js/mySidebar';
+import {MyCard} from 'js/card';
+import {ScrollArea} from 'react-scrollbar';
+import CustomScroll from 'react-custom-scroll';
+
+import Favicon from 'react-favicon';
 
 
 export class Home extends React.Component {
@@ -61,9 +68,11 @@ export class Home extends React.Component {
             if (this.props.user.type === 'SITTER') {
                 return (
                     <section className="webWrapper">
-                        <SidebarComponent/>
-                        <NavBar/>
-                        <div className="middle">
+                        <div className="barWrapper">
+                            <SidebarComponent/>
+                            <NavBar/>
+                        </div>
+                        <div className="middleWrapper2">
                             <MyModal/>
                         </div>
                     </section>
@@ -71,9 +80,11 @@ export class Home extends React.Component {
             } else if (this.props.user.type === 'OWNER') {
                 return (
                     <section className="webWrapper">
-                        <SidebarComponent/>
-                        <NavBar/>
-                        <div className="middle">
+                        <div className="barWrapper">
+                            <SidebarComponent/>
+                            <NavBar/>
+                        </div>
+                        <div className="middleWrapper2">
                             <MyModal/>
                         </div>
                     </section>
@@ -81,9 +92,11 @@ export class Home extends React.Component {
             } else {
                 return (
                     <section className="webWrapper">
-                        <SidebarComponent/>
-                        <NavBar/>
-                        <div className="middle">
+                        <div className="barWrapper">
+                            <SidebarComponent/>
+                            <NavBar/>
+                        </div>
+                        <div className="middleWrapper2">
                             <MyModal/>
                         </div>
                     </section>
@@ -92,8 +105,11 @@ export class Home extends React.Component {
         } else {
             return (
                 <section className="homepageWrapper">
-                    <SidebarComponent/>
-                    <NavBar/>
+                    <Favicon url="https://www.petidentityuk.info/views/standard/images/mh-hp365-icon.png" />
+                    <div className="barWrapper">
+                        <NavBar/>
+                    </div>
+
                     <div className="middle">
                         <MyModal/>
                     </div>
@@ -126,8 +142,7 @@ export class RegisterPage extends React.Component {
 
     render() {
         return (
-            <section className="homepageWrapper">
-                <SidebarComponent/>
+            <section className="webWrapper">
                 <NavBar/>
                 <div className="container padded">
                     <div className="row">
@@ -146,10 +161,9 @@ export class RegisterPage extends React.Component {
 export class LoginPage extends React.Component {
     render() {
         return (
-            <section className="homepageWrapper">
-                <SidebarComponent/>
+            <section className="webWrapper">
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
                             <div className="title">Sign In</div>
@@ -172,7 +186,7 @@ export class EditProfilePage extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Edit Your Profile</div>
+                            <div className="title">Profile</div>
                             <hr/>
                             <Login.EditProfileForm/>
                         </div>
@@ -268,7 +282,7 @@ class PetForm extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Add a New Pet</div>
+                            <div className="title">New Pet</div>
                             <Pets.PetForm/>
                         </div>
                     </div>
@@ -296,14 +310,13 @@ class PetListing extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
-                    <div className="row">
-                        <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Pets</div>
-                            <hr/>
-                            <PetList.PetList/>
-                        </div>
+                <div className="container padded middleWrapper">
+                    <div id="p">
+                        <div className="title">My Pets</div>
+
+                        <PetList.PetList/>
                     </div>
+
                 </div>
             </section>
         );
@@ -326,8 +339,11 @@ class AddBooking extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
-                    <Booking.BookingForm/>
+                <div className="container padded middleWrapper">
+                    <div id="p">
+                        <div className="title">Choose Your Pet</div>
+                        <Booking.BookingForm/>
+                    </div>
                 </div>
             </section>
         );
@@ -382,7 +398,7 @@ export class MyBooking extends React.Component {
     render() {
 
         return (
-            <section className="webWrapper">
+            <section className="bookingWrapper">
                 <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
@@ -401,7 +417,7 @@ export class AvailableBooking extends React.Component {
     render() {
 
         return (
-            <section className="webWrapper">
+            <section className="bookingWrapper">
                 <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
@@ -463,7 +479,7 @@ export class Notifications extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapper3">
                     <Notification.NotificationCenter/>
                 </div>
             </section>
@@ -515,7 +531,7 @@ export class Availability extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapperNotAlign">
                     <Avail.AvailabilityForm/>
                 </div>
             </section>
@@ -537,7 +553,7 @@ export class ViewSitter extends React.Component {
             sitter: [{
                 availability: 'no name'
             }],
-            invitation: []
+            invitation: ['no name']
         };
     }
 

@@ -48,6 +48,7 @@ public class BookingEndpoint {
         System.out.println(booking.getDescription());
         System.out.println(booking.getOwner());
         System.out.println(booking.getPetId());
+        System.out.println(booking.getTime());
         bookingService.save(booking);
         return booking;
     }

@@ -19,6 +19,7 @@ public class UserPetDto implements Identifiable {
 		this.petId = petId;
 	}
 
+
 	public Long getId() {
 		return id;
 	}

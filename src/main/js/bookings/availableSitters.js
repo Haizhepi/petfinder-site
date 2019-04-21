@@ -18,11 +18,13 @@ import {AvailableBooking} from 'js/bookings/booking';
 import {Button, ListGroupItem} from 'reactstrap';
 
 class AvailableSitter extends React.Component {
-
     constructor(props) {
         super(props);
-        this.state = {sitters: []};
+        this.state = {
+            sitters: null
+        };
     }
+
 
     componentWillMount() {
         this.props.getAvailableSitters(this.props.booking.id).then(response => {
@@ -34,7 +36,11 @@ class AvailableSitter extends React.Component {
 
     render() {
         console.log('xxxx');
-        console.log(this.state.sitters);
+        if (!this.state.sitters) {
+            return (
+                <div><h2>Pet finder could not find any matching sitters</h2></div>
+            );
+        }
         return (
             <div>
             <h2>Available Sitters: </h2>

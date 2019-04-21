@@ -6,8 +6,10 @@ import * as Pages from 'js/pages';
 import * as Users from 'js/users';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import {PetList} from 'js/petList';
+import {PetEdit, PetList} from 'js/petList';
 import {MapHome} from 'js/mapHome';
+import {BookingFormConfirm} from 'js/bookings/booking';
+import {SelectionPage} from 'js/modal';
 
 
 export default class Index extends React.Component {
@@ -42,8 +44,12 @@ export default class Index extends React.Component {
         let passwordReset = <Route exact path="/passwordReset" component={Pages.PasswordReset}/>;
 		let passwordDisplay = <Route exact path="/passwordDisplay" component={Pages.PasswordDisplay}/>;
 		let sitterBooking = <Route exact path="/signedBooking" component={Pages.SitterBooking}/>;
+		let editPet = <Route exact path="/editPet" component={PetEdit}/>;
+		let confirmBooking = <Route exact path="/confirmBooking" component={BookingFormConfirm}/>;
+		let selectionPane = <Route exact path="/selectionPane" component={SelectionPage}/>;
 
-        //alert(this.props.authentication);
+
+		//alert(this.props.authentication);
 		return (
 			<HashRouter>
 				<div>
@@ -71,6 +77,9 @@ export default class Index extends React.Component {
 					{sitterBooking}
 					{passwordReset}
 					{passwordDisplay}
+					{editPet}
+					{confirmBooking}
+					{selectionPane}
 				</div>
 			</HashRouter>
 		);

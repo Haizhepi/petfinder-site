@@ -72,31 +72,22 @@ export class NavBar extends React.Component {
             }
             if (this.props.user.type === 'SITTER') {
                 return (
-                    <Navbar light expand="md" className="navBar">
+                    <Navbar light expand="md" className="navBarIn">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand className="navTitle"
-                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand className="navTitle navTitleHome"
+                                         href={'#/'}> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/homepage" className="navText">Profile</NavLink>
+                                    <NavLink href="#/schedule" className="navText navTextHome">Schedule</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/edit_profile" className="navText">Edit Profile</NavLink>
+                                    <NavLink href="#/viewSitter" className="navText navTextHome">Sitter Information</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/schedule" className="navText">Schedule</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/viewSitter" className="navText">Sitter Information</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/logout" className="navText">Logout</NavLink>
-                                </NavItem>
-                                <UncontrolledDropdown nav inNavbar className="navText">
-                                    <DropdownToggle nav caret>
+                                <UncontrolledDropdown nav inNavbar className="navText navTextHome">
+                                    <DropdownToggle nav caret className="navText navTextHome">
                                         More
                                     </DropdownToggle>
                                     <DropdownMenu right>
@@ -122,31 +113,23 @@ export class NavBar extends React.Component {
                 );
             } else if (this.props.user.type === 'OWNER') {
                 return (
-                    <Navbar light expand="md" className="navBar">
+                    <Navbar light expand="md" className="navBarIn">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand className="navTitle"
-                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand className="navTitle navTitleHome"
+                                         href={'#/'}> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/homepage" className="navText">Profile</NavLink>
+                                    <NavLink href="#/page-3" className="navText navTextHome">My Pets</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/page-3" className="navText">My Pets</NavLink>
+                                    <NavLink href="#/pet" className="navText navTextHome">Add a Pet</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/pet" className="navText">Add a Pet</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/edit_profile" className="navText">Edit Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/logout" className="navText">Logout</NavLink>
-                                </NavItem>
-                                <UncontrolledDropdown nav inNavbar className="navText">
-                                    <DropdownToggle nav caret>
+
+                                <UncontrolledDropdown nav inNavbar className="navText navTextHome">
+                                    <DropdownToggle nav caret className="navText navTextHome">
                                         More
                                     </DropdownToggle>
                                     <DropdownMenu right>
@@ -171,37 +154,30 @@ export class NavBar extends React.Component {
                 );
             } else {
                 return (
-                    <Navbar light expand="md" className="navBar">
+                    <Navbar light expand="md" className="navBarIn">
                         <h1 className="animated 1 fadeInLeft">
-                            <NavbarBrand className="navTitle"
-                                         href="/"> Welcome, {this.props.user.firstName} </NavbarBrand>
+                            <NavbarBrand className="navTitle navTitleHome"
+                                         href={'#/'}> Welcome, {this.props.user.firstName} </NavbarBrand>
                         </h1>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/homepage" className="navText">Profile</NavLink>
+                                    <NavLink href="#/page-3" className="navText navTextHome">My Pets</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/page-3" className="navText">My Pets</NavLink>
+                                    <NavLink href="#/pet" className="navText navTextHome">Add a Pet</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/pet" className="navText">Add a Pet</NavLink>
+                                    <NavLink href="#/schedule" className="navText navTextHome">Schedule</NavLink>
                                 </NavItem>
+
                                 <NavItem>
-                                    <NavLink href="#/schedule" className="navText">Schedule</NavLink>
+                                    <NavLink href="#/viewSitter" className="navText navTextHome">Sitter Information</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/edit_profile" className="navText">Edit Profile</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/viewSitter" className="navText">Sitter Information</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#/logout" className="navText">Logout</NavLink>
-                                </NavItem>
-                                <UncontrolledDropdown nav inNavbar className="navText">
-                                    <DropdownToggle nav caret>
+
+                                <UncontrolledDropdown nav inNavbar className="navText navTextHome">
+                                    <DropdownToggle nav caret className="navText navTextHome">
                                         More
                                     </DropdownToggle>
                                     <DropdownMenu right>
@@ -231,38 +207,26 @@ export class NavBar extends React.Component {
             }
         } else {
             return (
-                <Navbar light expand="md" className="navBar">
+                <Navbar expand="md" className="homebar">
                     <h1 className="animated 1 fadeInLeft">
-                        <NavbarBrand className="navTitle" href="/">Welcome to
-                            PetFinder{_.isDefined(this.state.seconds)}</NavbarBrand>
+                        <NavbarBrand className="navTitle navTitleHome navTitleHomeLeftMargin" href="/">
+                            PetFinder{_.isDefined(this.state.seconds)}
+                        </NavbarBrand>
                     </h1>
 
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="#/login" className="navText">LOG IN</NavLink>
+                                <NavLink href="#/login" className="navText navTextHome">
+                                    LOG IN
+                                </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#/register" className="navText">SIGN UP</NavLink>
+                                <NavLink href="#/register" className="navText navTextHome navTextHomeRightMargin">
+                                    SIGN UP
+                                </NavLink>
                             </NavItem>
-                            <UncontrolledDropdown nav inNavbar className="navText">
-                                <DropdownToggle nav caret className="far fa-user fa-lg middleA">
-
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                    </DropdownItem>
-                                    <DropdownItem divider/>
-                                    <DropdownItem>
-                                        Reset
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
                         </Nav>
                     </Collapse>
                 </Navbar>

@@ -2,6 +2,8 @@ import React from 'react';
 import Sidebar from 'react-sidebar';
 import * as Users from 'js/users';
 import {connect} from 'react-redux';
+import Avatar from 'react-avatar';
+
 
 export class SidebarComponent extends React.Component {
     constructor(props) {
@@ -27,24 +29,37 @@ export class SidebarComponent extends React.Component {
     render() {
         if (this.props.user) {
             return (
-                <Sidebar
+                <Sidebar rootClassName="sidebarwrapper"
                     sidebar={
                         <div className="sidebarPane">
-                            <div>
+
+                            <div className="sidebarTopWrapper">
+                                <a className="sidebarAvatar" href={'#/edit_profile'}>
+                                    <Avatar
+                                        name={this.props.user.firstName + ' ' + this.props.user.lastName}
+                                        size={60} round={true}
+                                    />
+                                </a>
                                 <a className="sidebarTitle">
-                                    You are logged in as, {this.props.user.firstName}
+                                    {this.props.user.firstName + ' ' + this.props.user.lastName}
                                 </a>
                             </div>
                             <div className="sbTextContainer">
                                 <a className="sidebarText" href={'#/'}>
-                                    <i className="far fa-sign-out sbIconSmall"> </i>
-                                    Logout
+                                    <i className="far fa-home-lg-alt sbIconSmall"> </i>
+                                    Home
                                 </a>
                             </div>
                             <div className="sbTextContainer">
                                 <a className="sidebarText" href={'#/'}>
                                     <i className="far fa-cog sbIconSmall"> </i>
                                     Settings
+                                </a>
+                            </div>
+                            <div className="sbTextContainer">
+                                <a className="sidebarText" href={'/'}>
+                                    <i className="far fa-sign-out sbIconSmall"> </i>
+                                    Logout
                                 </a>
                             </div>
 
@@ -52,49 +67,11 @@ export class SidebarComponent extends React.Component {
                     }
                     open={this.state.sidebarOpen}
                     onSetOpen={this.onSetSidebarOpen}
-                    styles={{sidebar: {background: 'white'}}}
+                    styles={{sidebar: {
+                        background: 'whitesmoke'}}}
                 >
                     <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
-                        <i className="fas fa-home-lg fa-lg"> </i>
-                    </button>
-                </Sidebar>
-            );
-        } else {
-            return (
-                <Sidebar
-                    sidebar={
-                        <div className="sidebarPane">
-                            <div>
-                                <a className="sidebarTitle">
-                                    Welcome
-                                </a>
-                            </div>
-                            <div className="sbTextContainer">
-                                <a className="sidebarText" href={'#/login'}>
-                                    <i className="far fa-sign-in sbIconSmall"> </i>
-                                    Login
-                                </a>
-                            </div>
-                            <div className="sbTextContainer">
-                                <a className="sidebarText" href={'#/register'}>
-                                    <i className="far fa-user-plus sbIcon"> </i>
-                                    Register
-                                </a>
-                            </div>
-                            <div className="sbTextContainer">
-                                <a className="sidebarText" href={'#/'}>
-                                    <i className="far fa-cog sbIconSmall"> </i>
-                                    Settings
-                                </a>
-                            </div>
-                        </div>
-                    }
-                    open={this.state.sidebarOpen}
-                    onSetOpen={this.onSetSidebarOpen}
-                    styles={{sidebar: {background: 'white'}}}
-                >
-                    <button className="sbButton" onClick={() => this.onSetSidebarOpen(true)}>
-                        <i className="fas fa-home-lg fa-lg"> </i>
+                        <i className="far fa-align-justify fa-lg sbButtonIcon"> </i>
                     </button>
                 </Sidebar>
             );

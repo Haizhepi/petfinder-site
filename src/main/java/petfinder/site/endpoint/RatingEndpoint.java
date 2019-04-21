@@ -2,6 +2,7 @@ package petfinder.site.endpoint;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import petfinder.site.common.rating.RatingDto;
 import petfinder.site.common.rating.RatingService;
@@ -26,8 +27,10 @@ public class RatingEndpoint {
         return rating;
     }
 
-    @GetMapping(value = "/info{id:.+}", produces = "application/json")
-    public List<RatingDto> getRagingByUserId(@PathVariable("id") String id) {
-        return ratingService.findRatingByUserID(id);
+    @GetMapping(value = "/rating", produces = "application/json")
+    public List<RatingDto> getRagingByUserId() {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return ratingService.findRatingByUserID(principal);
     }
 }

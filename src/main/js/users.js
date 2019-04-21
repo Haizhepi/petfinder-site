@@ -43,7 +43,7 @@ export function savePet(pet) {
 }
 
 export function editPet(pet) {
-	alert(pet.id);
+	// alert(pet.id);
 	return axios.post('/api/pets/edit_pet', pet);
 }
 
@@ -106,6 +106,10 @@ export function getSitter(userid) {
 	return axios.get(res);
 }
 
+export function sitterCancel(booking) {
+	return axios.post('/api/bookings/sitterCancel', booking);
+}
+
 export function finish(booking) {
 	return axios.post('/api/bookings/finish', booking);
 }
@@ -120,6 +124,10 @@ export function getInvitation() {
 
 export function cancelBooking(booking) {
 	return axios.post('/api/bookings/delete', booking);
+}
+
+export function deletePet(pet) {
+	return axios.post('/api/pets/delete_pet', pet);
 }
 
 export function getNotifications(principal) {
@@ -138,6 +146,10 @@ export function getSitterBookings() {
 
 export function getAvailableBookings() {
 	return axios.get('/api/bookings/openingBooking');
+}
+
+export function getRating() {
+	return axios.get('/api/rating/rating');
 }
 
 export function editProfile(user) {
@@ -235,6 +247,13 @@ Actions.savePet = pet => {
 	return savePet(pet);
 };
 
+Actions.deletePet = pet => {
+	return (dispatch) =>
+	{
+		return deletePet(pet);
+	};
+};
+
 Actions.editPet = pet => {
 	//alert('update pet');
 	return (dispatch) => {
@@ -271,6 +290,13 @@ Actions.addAvail = avail => {
 		return addAvailiablity(avail);
 	};
 };
+
+Actions.sitterCancel = (booking) => {
+	return (dispatch) => {
+		return sitterCancel(booking);
+	};
+};
+
 
 Actions.finish = booking => {
 	return (dispatch) => {
@@ -342,6 +368,7 @@ Actions.getBookings = user => {
 	return getBookings(user);
 };
 
+
 Actions.getNotifications = user => {
 	return getNotifications(user.principal);
 };
@@ -353,6 +380,12 @@ Actions.getAvailableBookings = user => {
 Actions.addRating = (booking, content, ratingStar) => {
 	return (dispatch) => {
 		return addRating(booking, content, ratingStar);
+	};
+};
+
+Actions.getRating = () => {
+	return (dispatch) => {
+		return getRating();
 	};
 };
 

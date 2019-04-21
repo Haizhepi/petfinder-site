@@ -26,7 +26,7 @@ class PetForm extends React.Component {
         let {handleSubmit, submitting} = this.props;
         if (this.state.hasSubmitSucceeded) {
             //alert('success');
-            return <Redirect to={'/'}/>;
+            return <Redirect to={'/page-3'}/>;
         }
 
         return (
@@ -49,7 +49,7 @@ class PetForm extends React.Component {
                         <Bessemer.Field name="preference" friendlyName="Preference"
                                         field={<input className="form-control" type="name"/>}/>
                         <div className="wrapper">
-                            <Bessemer.Button className="buttonType1" loading={submitting}>Add Pet</Bessemer.Button>
+                            <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                         </div>
                     </form>
             </div>

@@ -13,8 +13,10 @@ import petfinder.site.common.booking.BookingDto;
 import petfinder.site.common.user.UserDto;
 import petfinder.site.common.user.sitter.SitterAndDate;
 import petfinder.site.common.user.sitter.SitterAvailabilityDto;
+import petfinder.site.common.user.sitter.SitterInfo;
 import petfinder.site.common.user.sitter.SitterService;
 
+import javax.xml.crypto.dsig.SignedInfo;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,6 +72,10 @@ public class SitterEndpoint {
         return sitterService.getInvitations(principal);
     }
 
+    @GetMapping(value = "/allSitter", produces = "application/json")
+    public List<SitterInfo> getAllSitters() {
+        return sitterService.getAllSitters();
+    }
 
 
 }

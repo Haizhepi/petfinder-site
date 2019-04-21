@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import petfinder.site.common.user.UserPetDto;
 
 /**
  * If this is your first time looking at Spring Services, check out the detailed explanation in UserService first.
@@ -23,6 +24,11 @@ public class PetService {
 	public PetDto save(PetDto pet) {
 		petDao.save(pet);
 		return pet;
+	}
+
+	public void deletePet(PetDto petDto) {
+		petDao.deletePet(petDto.getId());
+//		petDao.deletePet(userPetDto.getPetId());
 	}
 
 	public PetDto update(PetDto pet) {
