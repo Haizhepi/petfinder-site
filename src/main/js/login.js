@@ -331,6 +331,7 @@ class EditProfileForm extends React.Component {
             newUser.lastName = user.lastName;
             newUser.gender = user.gender;
             newUser.zipcode = user.zipcode;
+            newUser.securityAnswer = user.securityAnswer;
             if (user.userType !== newUser.type) {
                 newUser.type = 'BOTH';
             }
