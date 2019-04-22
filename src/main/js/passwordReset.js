@@ -14,32 +14,28 @@ import * as Apps from 'js/app.js';
 import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
-import {LocationSearchInput} from 'js/autoComplete';
 import {FormText, Input, Label, ModalBody} from 'reactstrap';
 
 //Class that represents the password reset form
 class PasswordResetForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {hasSubmitSucceeded: false};
-    }
 
-    //check
     onSubmit = ({principal, securityAnswer}) => {
-        this.props.authSecurityAnswer(principal, securityAnswer).then(this.setState({hasSubmitSucceeded: true}));
-        if (this.state.hasSubmitSucceeded) {
-            return <Redirect to={'/passwordDisplay'}/>;
-
-        }
+        this.props.answer = securityAnswer;
+        alert(this.props.answer);
+        return (this.props.authSecurityAnswer(principal));
     };
 
     render() {
         let {handleSubmit, submitting} = this.props;
         if (submitting) {
-            if (this.props.authSecurityAnswer == null) {
+            alert(this.props.securityAnswer);
+            alert(this.props.answer);
+            if (this.props.securityAnswer === this.props.answer) {
                 this.forceUpdate();
-                return <Redirect to={'/'}/>;
+                return <Redirect to={'/passwordDisplay'}/>;
             }
+            alert('Your security answer did not match our records');
+            return;
         }
 
         return (
@@ -47,10 +43,7 @@ class PasswordResetForm extends React.Component {
 
                 <Bessemer.Field name="principal" friendlyName="Email"
                                 validators={[Validation.requiredValidator, Validation.emailValidator]}/>
-                <Bessemer.Field name="securityAnswer" friendlyName="What primary school did you attend?"
-                                validators={[Validation.requiredValidator, Validation.passwordValidator]}
-                                field={<input className="form-control" type="securityAnswer"
-                                />}/>
+                <Bessemer.Field name="securityAnswer" friendlyName="What primary school did you attend?"/>
 
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Submit</Bessemer.Button>
@@ -64,12 +57,10 @@ PasswordResetForm = ReduxForm.reduxForm({form: 'passwordReset'})(PasswordResetFo
 
 PasswordResetForm = connect(
     state => ({
-        initialValues: {principal: '', securityAnswer: ''},
-        authSecurityAnswer: Users.State.getSecurityAnswer(state)
-
+        initialValues: {principal: '', securityAnswer: '', answer: ''}
     }),
     dispatch => ({
-        authSecurityAnswer: (principal, securityAnswer) => dispatch(Users.Actions.authSecurityAnswer(principal, securityAnswer))
+        authSecurityAnswer: (principal) => dispatch(Users.Actions.authSecurityAnswer(principal))
     })
 )(PasswordResetForm);
 

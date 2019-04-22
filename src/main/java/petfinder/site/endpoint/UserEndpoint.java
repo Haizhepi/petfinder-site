@@ -82,6 +82,7 @@ public class UserEndpoint {
 		System.out.println(request.getGender());
 		System.out.println(request.getFirstName());
 		System.out.println(request.getUserType());
+		System.out.println(request.getSecurityAnswer());
 		return userService.register(request);
 	}
 
@@ -125,13 +126,13 @@ public class UserEndpoint {
 	}
 
 	@GetMapping(value = "/securityAnswer")
-	public UserAuthenticationDto authSecurityAnswer(@RequestBody UserDto userDto) {
+	public String authSecurityAnswer(@RequestBody UserDto userDto) {
 		System.out.println("Getting Security Answer");
 		UserDto user = userService.findUserByPrincipal(userDto.getPrincipal()).get();
 		if(user != null){
-			if(user.getSecurityAnswer().equalsIgnoreCase(userDto.getSecurityAnswer())){
-				return userService.findUserAuthenticationByPrincipal(userDto.getPrincipal()).get();
-			}
+			System.out.println(user.getPrincipal());
+			System.out.println(user.getSecurityAnswer());
+			return user.getSecurityAnswer();
 		}
 		return null;
 	}

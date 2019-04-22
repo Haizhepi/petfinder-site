@@ -182,12 +182,10 @@ export function inviteSitter(sitter, booking) {
 	return axios.post('api/bookings/invite', request);
 }
 
-export function authSecurityAnswer(principal, securityAnswer){
+export function authSecurityAnswer(principal){
     let user = {
-        principal: principal,
-        answer: securityAnswer
+        principal: principal
     };
-    alert('securityAnswer');
     return axios.get('api/user/securityAnswer', user);
 }
 
@@ -261,10 +259,12 @@ Actions.editPet = pet => {
 	};
 };
 
-Actions.authSecurityAnswer = (principal, securityAnswer) => {
+Actions.authSecurityAnswer = principal => {
     return (dispatch) => {
-        return authSecurityAnswer(principal, securityAnswer).then(password => {
-            dispatch(Actions.setPassword(password));
+        return authSecurityAnswer(principal).then(
+            securityAnswer => {
+                alert(securityAnswer);
+                return dispatch(Actions.setSecurityAnswer(securityAnswer));
         });
     };
 };

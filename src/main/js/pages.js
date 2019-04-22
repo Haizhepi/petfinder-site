@@ -37,7 +37,6 @@ import CustomScroll from 'react-custom-scroll';
 
 import Favicon from 'react-favicon';
 
-
 export class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -619,13 +618,12 @@ ViewSitter = connect(
 export class PasswordReset extends React.Component {
     render() {
         return (
-            <section className="homepageWrapper">
-                <SidebarComponent/>
+            <section className="webWrapper">
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Password Reset</div>
+                            <div className="title">Password Recovery</div>
                             <hr/>
                             <PasswdReset.PasswordResetForm/>
                         </div>
@@ -639,15 +637,14 @@ export class PasswordReset extends React.Component {
 export class PasswordDisplay extends React.Component {
     render() {
         return (
-            <section className="homepageWrapper">
-                <SidebarComponent/>
+            <section className="webWrapper">
                 <NavBar/>
-                <div className="container padded">
+                <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Password Recovery</div>
+                            <div className="title">Password Recovered</div>
                             <hr/>
-                            <PasswdReset.PasswordDisplay/>
+                            <PasswdReset.PasswordResetForm/>
                         </div>
                     </div>
                 </div>
