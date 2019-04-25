@@ -29,6 +29,8 @@ public class UserAuthenticationDto implements Momento<String> {
 		return password;
 	}
 
+	public void setPassword(String password) { this.password = password; }
+
 	@JsonIgnore
 	@Override
 	public String getMomento() {

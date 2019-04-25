@@ -20,6 +20,7 @@ import {FormText, Input, Label, ModalBody} from 'reactstrap';
 class PasswordResetForm extends React.Component {
 
     onSubmit = ({principal, securityAnswer}) => {
+        alert(this.props.answer);
         this.props.answer = securityAnswer;
         alert(this.props.answer);
         return (this.props.authSecurityAnswer(principal));

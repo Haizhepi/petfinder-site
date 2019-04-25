@@ -125,17 +125,6 @@ public class UserEndpoint {
 		return userService.findBookings(user);
 	}
 
-	@GetMapping(value = "/securityAnswer")
-	public String authSecurityAnswer(@RequestBody UserDto userDto) {
-		System.out.println("Getting Security Answer");
-		UserDto user = userService.findUserByPrincipal(userDto.getPrincipal()).get();
-		if(user != null){
-			System.out.println(user.getPrincipal());
-			System.out.println(user.getSecurityAnswer());
-			return user.getSecurityAnswer();
-		}
-		return null;
-	}
 
 	@GetMapping(value = "/userNotifications{id:.+}", produces = "application/json")
 	public List<NotificationDto> getUserNotifications(@PathVariable("id") String id) {

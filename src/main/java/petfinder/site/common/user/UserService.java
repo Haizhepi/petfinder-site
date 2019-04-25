@@ -1,11 +1,13 @@
 package petfinder.site.common.user;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,20 @@ public class UserService {
 		private String lastName;
 		private String userType;
 		private String securityAnswer;
+
+		public void setUserType(String userType) {
+			this.userType = userType;
+		}
+
+		public String getSecurtiyQuestion() {
+			return securtiyQuestion;
+		}
+
+		public void setSecurtiyQuestion(String securtiyQuestion) {
+			this.securtiyQuestion = securtiyQuestion;
+		}
+
+		private String securtiyQuestion;
 
 		public UserType getUserType() {
 			if (userType.equalsIgnoreCase("owner")) {
@@ -130,10 +146,24 @@ public class UserService {
 				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"),
 						request.getFirstName(), request.getLastName(),
 						request.getGender(), request.getZipcode(),
-						request.getUserType(), request.getAttributes(), request.getSecurityAnswer()),
+						request.getUserType(), request.getAttributes(), request.getSecurityAnswer(), request.getSecurtiyQuestion()),
 				passwordEncoder.encode(request.getPassword()));
 		userDao.save(userAuthentication);
 		return userAuthentication.getUser();
+	}
+
+	public UserDto passwordUpdate(String password) {
+		UserDto u = null;
+		UserAuthenticationDto userAuthentication = null;
+		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
+		if (temp.isPresent()) {
+			userAuthentication = temp.get();
+			u = userAuthentication.getUser();
+			userAuthentication.setPassword(passwordEncoder.encode(password));
+		}
+
+		return u;
 	}
 
 	public UserPetDto save(UserPetDto userPetDto) {
@@ -170,5 +200,14 @@ public class UserService {
 
 	public List<NotificationDto> findNotifications(UserDto user) {
 		return userDao.findNotification(user);
+	}
+
+	public List<String> questionList() {
+		List<String> stringList = new ArrayList<>();
+		stringList.add("What was your childhood nickname?");
+		stringList.add("In what city or town did your mother and father meet?");
+		stringList.add("What is your favorite Overwatch League team?");
+		stringList.add("What was your favorite food as a child?");
+		return stringList;
 	}
 }
