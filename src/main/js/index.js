@@ -45,7 +45,7 @@ export default class Index extends React.Component {
 		let editPet = <Route exact path="/editPet" component={PetEdit}/>;
 		let confirmBooking = <Route exact path="/confirmBooking" component={BookingFormConfirm}/>;
 		let selectionPane = <Route exact path="/selectionPane" component={SelectionPage}/>;
-
+		let backgroundTrans = <Route exact path="/transformBackground" component={Pages.TransImage}/>;
 
 		//alert(this.props.authentication);
 		return (
@@ -76,6 +76,7 @@ export default class Index extends React.Component {
 					{editPet}
 					{confirmBooking}
 					{selectionPane}
+					{backgroundTrans}
 				</div>
 			</HashRouter>
 		);

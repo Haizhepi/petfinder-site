@@ -156,9 +156,15 @@
   -webkit-filter: grayscale(10%);
   filter: grayscale(10%);
   background-size: 120%;
+
   animation-name: Gradient, fadeIn;
-  animation-duration: 25s, 1.4s;
+  animation-duration: 50s, 1.5s;
   animation-iteration-count: infinite, 1;
+}
+
+.webWrapper:hover {
+  //width: 120%;
+  //height: 140%;
 }
 
 .bookingWrapper {
@@ -220,37 +226,13 @@ body {
 
 @-webkit-keyframes Gradient {
   0% {
-    background-position: 0% 50%
+    background-position: 0 50%
   }
   50% {
     background-position: 100% 50%
   }
   100% {
-    background-position: 0% 50%
-  }
-}
-
-@-moz-keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
-}
-
-@keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
+    background-position: 0 50%
   }
 }
 
@@ -1038,4 +1020,34 @@ body {
 
 .topMarg1 {
   margin-top: 100px;
+}
+
+
+.searchBoxGoogle {
+  z-index: 99;
+  margin-bottom: 20px;
+}
+
+
+.inputSearch{
+  color: white;
+  background-color: transparent;
+}
+
+//.autoSpan{
+//  background-color: #343434 !important;
+//  color: white !important;
+//  -moz-transition: 0.3s ease !important;
+//  -o-transition: 0.3s ease !important;
+//  -webkit-transition: 0.3s ease !important;
+//  transition: all 0.3s ease !important;
+//}
+//
+//.autoSpan:hover {
+//  background-color: black;
+//}
+
+.location-search-input{
+  color: white;
+  background-color: transparent;
 }

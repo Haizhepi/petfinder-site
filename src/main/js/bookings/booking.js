@@ -26,6 +26,7 @@ import PlacesAutocomplete, {
     getLatLng,
 } from 'react-places-autocomplete';
 import Geocode from 'react-geocode';
+
 Geocode.setApiKey('AIzaSyCtDc6Y9UHdQHwR--vCIFQ56sLOmlBp2dM');
 Geocode.enableDebug();
 
@@ -147,6 +148,7 @@ export class BookingFormConfirm extends React.Component {
             endDate: date,
         });
     }
+
     handleChange = address => {
         console.log(this.state);
         this.setState({address});
@@ -291,45 +293,48 @@ export class BookingFormConfirm extends React.Component {
                                 <Bessemer.Field name="time" friendlyName="Title"/>
                                 <Bessemer.Field name="description" friendlyName="Description"/>
                                 {this.state.gmapsLoaded && (
-
-                                    <PlacesAutocomplete
-                                        value={this.state.address}
-                                        onChange={this.handleChange}
-                                        onSelect={this.handleSelect}
-                                    >
-                                        {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-                                            <div>
-                                                <input
-                                                    {...getInputProps({
-                                                        placeholder: 'Search Your Address Here...',
-                                                        className: 'location-search-input form-control',
-                                                    })}
-                                                />
-                                                <div className="autocomplete-dropdown-container adc">
-                                                    {loading && <div>Loading...</div>}
-                                                    {suggestions.map(suggestion => {
-                                                        const className = suggestion.active
-                                                            ? 'suggestion-item--active'
-                                                            : 'suggestion-item';
-                                                        // inline style for demonstration purpose
-                                                        const style = suggestion.active
-                                                            ? {backgroundColor: 'transparent', cursor: 'pointer'}
-                                                            : {backgroundColor: '#434343', cursor: 'pointer'};
-                                                        return (
-                                                            <div
-                                                                {...getSuggestionItemProps(suggestion, {
-                                                                    className,
-                                                                    style,
-                                                                })}
-                                                            >
-                                                                <span>{suggestion.description}</span>
-                                                            </div>
-                                                        );
-                                                    })}
+                                    <div className="searchBoxGoogle">
+                                        <PlacesAutocomplete
+                                            value={this.state.address}
+                                            onChange={this.handleChange}
+                                            onSelect={this.handleSelect}
+                                        >
+                                            {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                                                <div>
+                                                    <input className="inputSearch"
+                                                        {...getInputProps({
+                                                            placeholder: 'Enter Your Pickup Address Here',
+                                                            className: 'location-search-input form-control',
+                                                        })}
+                                                    />
+                                                    <div className="autocomplete-dropdown-container adc">
+                                                        {loading && <div>Loading...</div>}
+                                                        {suggestions.map(suggestion => {
+                                                            const className = suggestion.active
+                                                                ? 'suggestion-item--active'
+                                                                : 'suggestion-item';
+                                                            // inline style for demonstration purpose
+                                                            const style = suggestion.active
+                                                                ? {backgroundColor: 'transparent', cursor: 'pointer'}
+                                                                : {backgroundColor: '#434343', cursor: 'pointer'};
+                                                            return (
+                                                                <div
+                                                                    {...getSuggestionItemProps(suggestion, {
+                                                                        className,
+                                                                        style,
+                                                                    })}
+                                                                >
+                                                                    <div className="autoSpan">
+                                                                        <span>{suggestion.description}</span>
+                                                                    </div>
+                                                                </div>
+                                                            );
+                                                        })}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )}
-                                    </PlacesAutocomplete>
+                                            )}
+                                        </PlacesAutocomplete>
+                                    </div>
                                 )}
                                 <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                             </form>

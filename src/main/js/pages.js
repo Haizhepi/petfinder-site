@@ -34,6 +34,7 @@ import {ScrollArea} from 'react-scrollbar';
 import CustomScroll from 'react-custom-scroll';
 
 import Favicon from 'react-favicon';
+import {TiltPhaseSix} from 'js/ImageTrans';
 
 
 export class Home extends React.Component {
@@ -614,3 +615,32 @@ ViewSitter = connect(
     })
 )(ViewSitter);
 
+const options = {
+    max: 10,
+    perspective: 1000,
+    scale: 1.05,
+};
+
+export class TransImage extends React.Component {
+    render() {
+        return (
+            <div>
+                <TiltPhaseSix
+                    options={{}}
+                    style={{
+                        background: 'url(${"http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg"}) no-repeat fixed center',
+                        backgroundSize: 'fit',
+                        height: 700,
+                        width: 740,
+                    }}
+                >
+                    <TiltPhaseSix
+                        options={options}
+                    >
+                        <img src={'http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg'} alt="" />
+                    </TiltPhaseSix>
+                </TiltPhaseSix>
+            </div>
+        );
+    }
+}

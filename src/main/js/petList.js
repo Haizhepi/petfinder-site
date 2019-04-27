@@ -155,13 +155,13 @@ export class PetList extends React.Component {
         };
     }
 
-    handleClick = pet => {
-        let newPet = this.props.pet;
-        newPet.name = pet.name;
-        newPet.type = pet.type;
-        newPet.preference = pet.preference;
+    handleClick() {
+        // let newPet = this.props.pet;
+        // newPet.name = pet.name;
+        // newPet.type = pet.type;
+        // newPet.preference = pet.preference;
         this.setState({deleted: true});
-    };
+    }
 
     //set state as array of user's pets
     componentWillMount() {
@@ -182,6 +182,7 @@ export class PetList extends React.Component {
         return (
             <div className="petTable">
                 {this.state.pets.map(pet => (
+                    // !this.state.deleted && this.props.pet.id === pet.id(
                     <div className="petCard" key={pet.id} onClick={() => this.props.selectPet(pet)}>
 
                         <Card style={{
@@ -196,7 +197,8 @@ export class PetList extends React.Component {
                                     <CardSubtitle>{' ' + pet.type + ' '}</CardSubtitle>
                                     <CardText> {' '} </CardText>
                                     <CardLink className="cardLinkLeft" href={'#/editPet'}>Edit</CardLink>
-                                    <CardLink className="cardLinkRight" href={'#/page-3'}>Delete</CardLink>
+
+                                    <CardLink className="cardLinkRight" href={'#/'}>Delete</CardLink>
                                 </CardBody>
                             </div>
                         </Card>

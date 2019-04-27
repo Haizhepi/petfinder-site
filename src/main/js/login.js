@@ -213,14 +213,14 @@ class RegistrationForm extends React.Component {
     */
     onSubmit = user => {
         if (user.confirmPassword !== user.password) {
-            alert('password does not match');
+            // alert('password does not match');
         }
         else if (!user.userType) {
-            alert('must enter a valid user type');
+            // alert('must enter a valid user type');
         }
         else {
             return this.props.register(user).then(() => {
-                alert('can not register');
+                // alert('can not register');
                 //and then .catch and redirect in .then
             });
         }
