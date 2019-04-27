@@ -15,6 +15,8 @@ import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.*;
 import petfinder.site.common.user.UserService.RegistrationRequest;
 
+import javax.validation.constraints.Null;
+
 /**
  * This is a controller endpoint which is intended to manage users and their association with pets. Because the class
  * is annotated with @RestController Spring will automatically take care of the creation of this class... we will never do
@@ -80,6 +82,7 @@ public class UserEndpoint {
 		System.out.println(request.getGender());
 		System.out.println(request.getFirstName());
 		System.out.println(request.getUserType());
+		System.out.println(request.getSecurityAnswer());
 		return userService.register(request);
 	}
 
@@ -120,6 +123,18 @@ public class UserEndpoint {
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDto user = userService.findUserByPrincipal(principal).get();
 		return userService.findBookings(user);
+	}
+
+	@GetMapping(value = "/securityAnswer")
+	public String authSecurityAnswer(@RequestBody UserDto userDto) {
+		System.out.println("Getting Security Answer");
+		UserDto user = userService.findUserByPrincipal(userDto.getPrincipal()).get();
+		if(user != null){
+			System.out.println(user.getPrincipal());
+			System.out.println(user.getSecurityAnswer());
+			return user.getSecurityAnswer();
+		}
+		return null;
 	}
 
 	@GetMapping(value = "/userNotifications{id:.+}", produces = "application/json")

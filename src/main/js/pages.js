@@ -11,6 +11,8 @@ import * as Avail from 'js/schedule';
 import * as Booking from 'js/bookings/booking';
 import 'react-sticky-table/dist/react-sticky-table.css';
 import {StickyTable, Row, Cell} from 'react-sticky-table';
+import * as PasswdReset from 'js/passwordReset';
+
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
 
@@ -35,7 +37,6 @@ import CustomScroll from 'react-custom-scroll';
 
 import Favicon from 'react-favicon';
 import {TiltPhaseSix} from 'js/ImageTrans';
-
 
 export class Home extends React.Component {
     constructor(props) {
@@ -637,10 +638,49 @@ export class TransImage extends React.Component {
                     <TiltPhaseSix
                         options={options}
                     >
-                        <img src={'http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg'} alt="" />
+                        <img
+                            src={'http://www.thestudentsidehustle.com/wp-content/uploads/2018/05/frederik-trovatten-604146-unsplash.jpg'}
+                            alt=""/>
                     </TiltPhaseSix>
                 </TiltPhaseSix>
             </div>
+        );
+    }
+}
+export class PasswordReset extends React.Component {
+    render() {
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded middleWrapperNotAlign">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Password Recovery</div>
+                            <hr/>
+                            <PasswdReset.PasswordResetForm/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class PasswordDisplay extends React.Component {
+    render() {
+        return (
+            <section className="webWrapper">
+                <NavBar/>
+                <div className="container padded middleWrapperNotAlign">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">Password Recovered</div>
+                            <hr/>
+                            <PasswdReset.PasswordResetForm/>
+                        </div>
+                    </div>
+                </div>
+            </section>
         );
     }
 }

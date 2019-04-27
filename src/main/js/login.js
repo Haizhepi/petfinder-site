@@ -34,8 +34,8 @@ class LoginForm extends React.Component {
                 this.forceUpdate();
                 localStorage.setItem('auth', JSON.stringify(this.props.authentication));
                 /*if(localStorage.getItem('auth') != null){
-                    Console.log("got localStorage item");
-                    Console.log(authentication.)
+                    console.log('got localStorage item');
+                    console.log(JSON.parse(localStorage.getItem('auth')));
                     return <Redirect to={'/homepage'}/>;
                 }*/
                 return <Redirect to={'/'}/>;
@@ -61,7 +61,7 @@ class LoginForm extends React.Component {
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>LOGIN</Bessemer.Button>
                 </div>
-                <a className="form-left" >Forgot password?</a>
+                <a className="form-left" href={'#/passwordReset'}>Forgot password?</a>
                 <a className="form-right" href={'#/register'}>Not a member yet?</a>
             </form>
         );
@@ -269,6 +269,10 @@ class RegistrationForm extends React.Component {
                                     {value: 'owner', label: 'Owner'}]}
                                                         placeholder="Owner or Sitter?"
                                 />}/>
+                 Security Question:
+                 What primary school did you attend?
+                <Bessemer.Field name="securityAnswer" friendlyName="Answer:"
+                    field={<input className="form-control" type="securityAnswer"/>}/>
 
                 <FormText className="terms">
                     {'By processing you agree to PetFinder\'s '}
@@ -327,6 +331,7 @@ class EditProfileForm extends React.Component {
             newUser.lastName = user.lastName;
             newUser.gender = user.gender;
             newUser.zipcode = user.zipcode;
+            newUser.securityAnswer = user.securityAnswer;
             if (user.userType !== newUser.type) {
                 newUser.type = 'BOTH';
             }
