@@ -2,6 +2,7 @@ package petfinder.site.common.booking;
 
 import alloy.util.Momento;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ public class BookingDto implements Momento<String> {
     private String locationName;
     private Double lat;
     private Double lng;
+    private Date createDate;
 
     public Double getLat() {
         return lat;
@@ -44,6 +46,14 @@ public class BookingDto implements Momento<String> {
 
     public void setLng(Double lng) {
         this.lng = lng;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public String getLocationName() {
@@ -121,6 +131,7 @@ public class BookingDto implements Momento<String> {
         // Randomly generate an id when constructing a pet object.
         this.id = UUID.randomUUID().toString();
         this.status = BookingStatus.UNSIGNED;
+        this.createDate = new Date();
     }
 
     public String getId() {
