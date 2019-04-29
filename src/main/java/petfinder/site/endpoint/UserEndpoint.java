@@ -118,6 +118,11 @@ public class UserEndpoint {
 		return userService.save(userPetDto);
 	}
 
+	@PostMapping(value = "/reset")
+	public UserDto resetPassword(@RequestBody String password) {
+		return userService.passwordUpdate(password);
+	}
+
 	@GetMapping(value = "/userBooking")
 	public List<BookingDto> getUserBookings() {
 		System.out.println("Calling end point user booking");

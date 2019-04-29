@@ -162,7 +162,7 @@ public class UserService {
 			u = userAuthentication.getUser();
 			userAuthentication.setPassword(passwordEncoder.encode(password));
 		}
-
+		userDao.save(userAuthentication);
 		return u;
 	}
 
