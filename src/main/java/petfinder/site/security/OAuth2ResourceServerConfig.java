@@ -57,7 +57,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 				return false;
 			}
 
-			if(path.contains("/api/user/register")) {
+			if(path.contains("/api/user/register") || path.contains("/api/user/check")) {
 				return false;
 			}
 

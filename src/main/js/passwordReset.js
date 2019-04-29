@@ -19,24 +19,14 @@ import {FormText, Input, Label, ModalBody} from 'reactstrap';
 //Class that represents the password reset form
 class PasswordResetForm extends React.Component {
 
-    onSubmit = ({principal, securityAnswer}) => {
-        alert(this.props.answer);
-        this.props.answer = securityAnswer;
-        alert(this.props.answer);
-        return (this.props.authSecurityAnswer(principal));
+    onSubmit = (form) => {
+        alert(form.principal);
     };
 
     render() {
         let {handleSubmit, submitting} = this.props;
         if (submitting) {
-            alert(this.props.securityAnswer);
-            alert(this.props.answer);
-            if (this.props.securityAnswer === this.props.answer) {
-                this.forceUpdate();
-                return <Redirect to={'/passwordDisplay'}/>;
-            }
-            alert('Your security answer did not match our records');
-            return;
+            alert('submit');
         }
 
         return (
@@ -44,7 +34,6 @@ class PasswordResetForm extends React.Component {
 
                 <Bessemer.Field name="principal" friendlyName="Email"
                                 validators={[Validation.requiredValidator, Validation.emailValidator]}/>
-                <Bessemer.Field name="securityAnswer" friendlyName="What primary school did you attend?"/>
 
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Submit</Bessemer.Button>

@@ -15,6 +15,7 @@ import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.*;
 import petfinder.site.common.user.UserService.RegistrationRequest;
 
+import javax.annotation.RegEx;
 import javax.validation.constraints.Null;
 
 /**
@@ -116,6 +117,11 @@ public class UserEndpoint {
 		System.out.println(userPetDto.getPetId());
 		System.out.println(userPetDto.getUserPrincipal());
 		return userService.save(userPetDto);
+	}
+
+	@PostMapping(value = "/check")
+	public Boolean checkEmail(@RequestBody String principal) {
+		return userService.checkEmailExist(principal);
 	}
 
 	@PostMapping(value = "/reset")

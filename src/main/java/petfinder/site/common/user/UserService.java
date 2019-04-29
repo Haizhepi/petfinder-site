@@ -1,10 +1,7 @@
 package petfinder.site.common.user;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,6 +30,14 @@ public class UserService {
 
 	public Optional<UserDto> findUserByPrincipal(String principal) {
 		return userDao.findUserByPrincipal(principal).map(UserAuthenticationDto::getUser);
+	}
+
+	public Boolean checkEmailExist(String principal) {
+		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
+		if (temp.isPresent()) {
+			return true;
+		}
+		return false;
 	}
 
 	public Optional<UserAuthenticationDto> findUserAuthenticationByPrincipal(String principal) {
