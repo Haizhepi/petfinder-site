@@ -14,19 +14,32 @@ public class SitterAvailabilityDto implements Momento<String> {
     private String endDate;
     private String startTime;
     private List<String> invitations;
-    private location location;
-    class location {
-        Double lat;
-        Double lng;
+    private Double lat;
+    private Double lng;
+    private String locationName;
 
+    public Double getLat() {
+        return lat;
     }
 
-    public SitterAvailabilityDto.location getLocation() {
-        return location;
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
-    public void setLocation(SitterAvailabilityDto.location location) {
-        this.location = location;
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 
     public List<String> getInvitations() {

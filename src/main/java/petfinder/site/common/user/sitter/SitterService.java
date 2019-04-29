@@ -100,6 +100,9 @@ public class SitterService {
             temp.setEndDate(sitterAvailabilityDto.getEndDate());
             temp.setStartTime(sitterAvailabilityDto.getStartTime());
             temp.setEndTime(sitterAvailabilityDto.getEndTime());
+            temp.setLat(sitterAvailabilityDto.getLat());
+            temp.setLng(sitterAvailabilityDto.getLng());
+            temp.setLocationName(sitterAvailabilityDto.getLocationName());
             sitterAvailabilityDao.save(temp);
         }
         else {

@@ -8,7 +8,11 @@ import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import 'styles/main.scss';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import Geocode from 'react-geocode';
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng,
+} from 'react-places-autocomplete';
 
 class AvailabilityForm extends React.Component {
 
@@ -18,7 +22,10 @@ class AvailabilityForm extends React.Component {
             startDate: new Date(),
             endDate: new Date(),
             startTime: new Date(),
-            endTime: new Date()
+            endTime: new Date(),
+            address: '',
+            lati: '',
+            lngi: ''
 
         };
 
@@ -55,6 +62,55 @@ class AvailabilityForm extends React.Component {
         });
     }
 
+    handleChange = address => {
+        this.setState({address});
+        console.log(this.state.address);
+
+    };
+
+    handleSelect = address => {
+        geocodeByAddress(address)
+            .then(results => {
+                getLatLng(results[0]);
+                console.log('ppp');
+                console.log(results);
+                console.log(results[0].formatted_address);
+                this.setState({address: results[0].formatted_address});
+                Geocode.fromAddress(results[0].formatted_address).then(
+                    response => {
+                        const { lat, lng } = response.results[0].geometry.location;
+                        console.log(lat, lng);
+                        this.setState({lati: lat,lngi: lng});
+                    },
+                    error => {
+                        console.error(error);
+                    }
+                );
+            })
+            .then(latLng => {
+                console.log('Success', latLng);
+            })
+            .catch(error => console.error('Error', error));
+    };
+
+    state = {
+        gmapsLoaded: false,
+    };
+
+    initMap = () => {
+        this.setState({
+            gmapsLoaded: true,
+        });
+    };
+
+    componentDidMount() {
+        window.initMap = this.initMap;
+        const gmapScriptEl = document.createElement('script');
+        gmapScriptEl.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCtDc6Y9UHdQHwR--vCIFQ56sLOmlBp2dM&libraries=places&callback=initMap';
+        document.querySelector('body').insertAdjacentElement('beforeend', gmapScriptEl);
+    }
+
+
     //Defines the on submit behavior
     onSubmit = (form) => {
         if (form.availability.length <= 20) {
@@ -67,7 +123,10 @@ class AvailabilityForm extends React.Component {
                 startTime: this.state.startTime,
                 endTime: this.state.endTime,
                 startDate: this.state.startDate,
-                endDate: this.state.endDate
+                endDate: this.state.endDate,
+                locationName: this.state.address,
+                lat : this.state.lati,
+                lng : this.state.lngi
             };
             console.log('here');
             console.log(avail);
@@ -137,6 +196,47 @@ class AvailabilityForm extends React.Component {
                                 />
                             </div>
                         </div>
+                        {this.state.gmapsLoaded && (
+
+                            <PlacesAutocomplete
+                                value={this.state.address}
+                                onChange={this.handleChange}
+                                onSelect={this.handleSelect}
+                            >
+                                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                                    <div>
+                                        <input
+                                            {...getInputProps({
+                                                placeholder: 'Search Your Address Here...',
+                                                className: 'location-search-input form-control',
+                                            })}
+                                        />
+                                        <div className="autocomplete-dropdown-container adc">
+                                            {loading && <div>Loading...</div>}
+                                            {suggestions.map(suggestion => {
+                                                const className = suggestion.active
+                                                    ? 'suggestion-item--active'
+                                                    : 'suggestion-item';
+                                                // inline style for demonstration purpose
+                                                const style = suggestion.active
+                                                    ? {backgroundColor: 'transparent', cursor: 'pointer'}
+                                                    : {backgroundColor: '#434343', cursor: 'pointer'};
+                                                return (
+                                                    <div
+                                                        {...getSuggestionItemProps(suggestion, {
+                                                            className,
+                                                            style,
+                                                        })}
+                                                    >
+                                                        <span>{suggestion.description}</span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </PlacesAutocomplete>
+                        )}
                         <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                     </form>
                 </div>

@@ -58,15 +58,15 @@ export class NavBar extends React.Component {
     render() {
         if (this.props.user) {
             if (this.state.seconds % 10 === 0) {
-                Users.Actions.getNotifications(this.props.user).then(response => {
-                    this.props.getNotis(response);
-                });
-
-                if (this.props.noti) {
-                    console.log('check');
-                    console.log(this.props.noti);
-                }
-                this.tick();
+                // Users.Actions.getNotifications(this.props.user).then(response => {
+                //     this.props.getNotis(response);
+                // });
+                //
+                // if (this.props.noti) {
+                //     console.log('check');
+                //     console.log(this.props.noti);
+                // }
+                // this.tick();
 
 
             }

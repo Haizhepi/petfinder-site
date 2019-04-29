@@ -62,6 +62,7 @@ public class UserEndpoint {
 	public Optional<UserDto> getUserDetails() {
 		// This line gets the "principal" of the currently logged in user - Spring sets this value for us based on the authentication header that is passed with the request
 		// In this case "principal" refers to the email address of the user
+		System.out.println("getting profile");
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 
 		// Then, we simply look up that user by their email address in Elasticsearch
