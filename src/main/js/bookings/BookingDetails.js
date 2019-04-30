@@ -182,7 +182,6 @@ class OwnerDetails extends React.Component {
                                     </div>
                                 </CardSubtitle>
                                 {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
-                                <CardSubtitle className="bookingSub">Pet: {this.props.booking.petId}</CardSubtitle>
                                 <CardSubtitle
                                     className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
                                 <CardSubtitle

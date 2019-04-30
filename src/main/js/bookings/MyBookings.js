@@ -46,12 +46,8 @@ class MyBookings extends React.Component {
                                             </div>
                                         </CardTitle>
                                         <CardSubtitle className="bookingSub">Status: {booking.status}</CardSubtitle>
-                                        <CardSubtitle className="bookingSub">Pet: {booking.petId}</CardSubtitle>
-                                        <CardSubtitle className="bookingSub">Description: {booking.description}</CardSubtitle>
                                         <CardSubtitle className="bookingSub">From: {booking.startTime + '   ' + booking.startDate}</CardSubtitle>
                                         <CardSubtitle className="bookingSub">To: {booking.endTime + '   ' +booking.endDate}</CardSubtitle>
-                                        {/*<CardSubtitle className="bookingSub">Start Date: {booking.startDate}</CardSubtitle>*/}
-                                        {/*<CardSubtitle className="bookingSub">End Date: {booking.endDate}</CardSubtitle>*/}
 
                                         <div onClick={() => this.props.selectBooking(booking)}>
 
