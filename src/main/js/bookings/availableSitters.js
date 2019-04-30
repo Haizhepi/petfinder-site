@@ -28,6 +28,7 @@ class AvailableSitter extends React.Component {
 
     componentWillMount() {
         this.props.getAvailableSitters(this.props.booking.id).then(response => {
+            console.log(response);
             this.setState({sitters: response});
         });
 
