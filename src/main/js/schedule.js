@@ -78,9 +78,9 @@ class AvailabilityForm extends React.Component {
                 this.setState({address: results[0].formatted_address});
                 Geocode.fromAddress(results[0].formatted_address).then(
                     response => {
-                        const { lat, lng } = response.results[0].geometry.location;
+                        const {lat, lng} = response.results[0].geometry.location;
                         console.log(lat, lng);
-                        this.setState({lati: lat,lngi: lng});
+                        this.setState({lati: lat, lngi: lng});
                     },
                     error => {
                         console.error(error);
@@ -115,8 +115,7 @@ class AvailabilityForm extends React.Component {
     onSubmit = (form) => {
         if (form.availability.length <= 20) {
             alert('Please enter at least 20 characters');
-        }
-        else {
+        } else {
             let avail = {
                 principal: this.props.user.principal,
                 availability: form.availability,
@@ -125,8 +124,8 @@ class AvailabilityForm extends React.Component {
                 startDate: this.state.startDate,
                 endDate: this.state.endDate,
                 locationName: this.state.address,
-                lat : this.state.lati,
-                lng : this.state.lngi
+                lat: this.state.lati,
+                lng: this.state.lngi
             };
             console.log('here');
             console.log(avail);
@@ -197,45 +196,47 @@ class AvailabilityForm extends React.Component {
                             </div>
                         </div>
                         {this.state.gmapsLoaded && (
+                            <div className="searchBoxGoogle">
 
-                            <PlacesAutocomplete
-                                value={this.state.address}
-                                onChange={this.handleChange}
-                                onSelect={this.handleSelect}
-                            >
-                                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-                                    <div>
-                                        <input
-                                            {...getInputProps({
-                                                placeholder: 'Search Your Address Here...',
-                                                className: 'location-search-input form-control',
-                                            })}
-                                        />
-                                        <div className="autocomplete-dropdown-container adc">
-                                            {loading && <div>Loading...</div>}
-                                            {suggestions.map(suggestion => {
-                                                const className = suggestion.active
-                                                    ? 'suggestion-item--active'
-                                                    : 'suggestion-item';
-                                                // inline style for demonstration purpose
-                                                const style = suggestion.active
-                                                    ? {backgroundColor: 'transparent', cursor: 'pointer'}
-                                                    : {backgroundColor: '#434343', cursor: 'pointer'};
-                                                return (
-                                                    <div
-                                                        {...getSuggestionItemProps(suggestion, {
-                                                            className,
-                                                            style,
-                                                        })}
-                                                    >
-                                                        <span>{suggestion.description}</span>
-                                                    </div>
-                                                );
-                                            })}
+                                <PlacesAutocomplete
+                                    value={this.state.address}
+                                    onChange={this.handleChange}
+                                    onSelect={this.handleSelect}
+                                >
+                                    {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                                        <div>
+                                            <input className="inputSearch"
+                                                   {...getInputProps({
+                                                       placeholder: 'Enter Your Pickup Address Here',
+                                                       className: 'location-search-input form-control',
+                                                   })}
+                                            />
+                                            <div className="autocomplete-dropdown-container adc">
+                                                {loading && <div>Loading...</div>}
+                                                {suggestions.map(suggestion => {
+                                                    const className = suggestion.active
+                                                        ? 'suggestion-item--active'
+                                                        : 'suggestion-item';
+                                                    // inline style for demonstration purpose
+                                                    const style = suggestion.active
+                                                        ? {backgroundColor: 'transparent', cursor: 'pointer'}
+                                                        : {backgroundColor: '#434343', cursor: 'pointer'};
+                                                    return (
+                                                        <div
+                                                            {...getSuggestionItemProps(suggestion, {
+                                                                className,
+                                                                style,
+                                                            })}
+                                                        >
+                                                            <span>{suggestion.description}</span>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </PlacesAutocomplete>
+                                    )}
+                                </PlacesAutocomplete>
+                            </div>
                         )}
                         <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                     </form>

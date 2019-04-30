@@ -228,14 +228,12 @@ class RegistrationForm extends React.Component {
         });
     }
 
-        onSubmit = user => {
+    onSubmit = user => {
         if (user.confirmPassword !== user.password) {
             // alert('password does not match');
-        }
-        else if (!user.userType) {
+        } else if (!user.userType) {
             // alert('must enter a valid user type');
-        }
-        else {
+        } else {
             user.securityQuestion = 'What primary school did you attend?';
             return this.props.register(user).then(() => {
                 // alert('can not register');
@@ -287,10 +285,12 @@ class RegistrationForm extends React.Component {
                                     {value: 'owner', label: 'Owner'}]}
                                                         placeholder="Owner or Sitter?"
                                 />}/>
-                 Security Question:
-                {this.state.question}
-                <Bessemer.Field name="securityAnswer" friendlyName="Answer:"
-                    field={<input className="form-control" type="securityAnswer"/>}/>
+                <div className="secAnswer">
+                    Security Question: {' ' + this.state.question}
+                </div>
+
+                <Bessemer.Field name="securityAnswer" friendlyName="Answer"
+                                field={<input className="form-control" type="securityAnswer"/>}/>
 
                 <FormText className="terms">
                     {'By processing you agree to PetFinder\'s '}
@@ -333,17 +333,13 @@ class EditProfileForm extends React.Component {
         console.log(user);
         if (!user.firstName) {
             alert('please enter a valid first name');
-        }
-        else if (!user.lastName) {
+        } else if (!user.lastName) {
             alert('please enter a valid last name');
-        }
-        else if (user.gender !== 'male' && user.gender !== 'female' && user.gender !== 'other') {
+        } else if (user.gender !== 'male' && user.gender !== 'female' && user.gender !== 'other') {
             alert('please enter a valid gender');
-        }
-        else if (user.zipcode.length !== 5) {
+        } else if (user.zipcode.length !== 5) {
             alert('please enter a valid zip code');
-        }
-        else {
+        } else {
             let newUser = this.props.user;
             newUser.firstName = user.firstName;
             newUser.lastName = user.lastName;
