@@ -54,6 +54,37 @@ public class BookingService {
         return booking;
     }
 
+    public static class RecommendSitter{
+        UserDto user;
+        SitterAvailabilityDto sitterAvailabilityDto;
+        Double distance;
+
+        public UserDto getUser() {
+            return user;
+        }
+
+        public void setUser(UserDto user) {
+            this.user = user;
+        }
+
+        public SitterAvailabilityDto getSitterAvailabilityDto() {
+            return sitterAvailabilityDto;
+        }
+
+        public void setSitterAvailabilityDto(SitterAvailabilityDto sitterAvailabilityDto) {
+            this.sitterAvailabilityDto = sitterAvailabilityDto;
+        }
+
+        public Double getDistance() {
+            return distance;
+        }
+
+        public void setDistance(Double distance) {
+            this.distance = distance;
+        }
+    }
+
+
     public Map<UserDto, Integer> findRecommend(String id) {
         BookingDto booking = null;
         Map<UserDto, Integer> map = new HashMap<>();
