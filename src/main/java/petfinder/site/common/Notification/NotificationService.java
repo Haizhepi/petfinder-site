@@ -19,5 +19,15 @@ public class NotificationService {
         return notification;
     }
 
+    public String readNotification(String id) {
+        Optional<NotificationDto> temp = findNotification(id);
+        if (!temp.isPresent()) {
+            return "notification not found";
+        }
+        temp.get().read();
+        notificationDao.save(temp.get());
+        return "success";
+    }
+
 
 }

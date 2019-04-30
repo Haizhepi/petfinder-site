@@ -2,12 +2,11 @@ package petfinder.site.endpoint;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import petfinder.site.common.Notification.NotificationDto;
 import petfinder.site.common.Notification.NotificationService;
+import petfinder.site.common.user.UpdateRequest;
+import petfinder.site.common.user.UserDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,5 +21,11 @@ public class NotificationEndpoint {
 
         return notificationService.findNotification(id);
     }
+
+    @PostMapping(value = "/readNoti")
+    public String editProfile(@RequestBody String notiId) {
+        return notificationService.readNotification(notiId);
+    }
+
 
 }
