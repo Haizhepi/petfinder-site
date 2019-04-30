@@ -22,6 +22,10 @@ import {StickyTable, Row, Cell} from 'react-sticky-table';
 import {SidebarComponent} from 'js/mySidebar';
 import {NavBar} from 'js/navBar';
 
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+
 
 export class PetEdit extends React.Component {
 
@@ -30,12 +34,34 @@ export class PetEdit extends React.Component {
         this.state = {hasSubmitSucceeded: false};
     }
 
+
     onSubmit = pet => {
         let newPet = this.props.pet;
         newPet.name = pet.name;
         newPet.type = pet.type;
         newPet.preference = pet.preference;
         this.props.editPet(newPet).then(this.setState({hasSubmitSucceeded: true}));
+    };
+
+    createNotification = (type) => {
+        return () => {
+            switch (type) {
+                case 'info':
+                    NotificationManager.info('Info message');
+                    break;
+                case 'success':
+                    NotificationManager.success('Success message', 'Title here');
+                    break;
+                case 'warning':
+                    NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+                    break;
+                case 'error':
+                    NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                        alert('callback');
+                    });
+                    break;
+            }
+        };
     };
 
     render() {
@@ -48,7 +74,7 @@ export class PetEdit extends React.Component {
 
         if (this.state.hasSubmitSucceeded) {
             //alert('success');
-            return <Redirect to={'/page-3'}/>;
+            // return <Redirect to={'/page-3'}/>;
         }
 
         console.log(this.props.initialValues);
@@ -112,10 +138,13 @@ export class PetEdit extends React.Component {
                                                 className="form-control"/>
                                 {/*// field={<input className="form-control" type="name"/>}/>*/}
                                 <div className="wrapper">
-                                    <Bessemer.Button className="buttonType1" loading={submitting}>
-                                        Save Changes
-                                    </Bessemer.Button>
+                                    <div onClick={this.createNotification('info')}>
+                                        <Bessemer.Button className="buttonType1" loading={submitting}>
+                                            Save Changes
+                                        </Bessemer.Button>
+                                    </div>
                                 </div>
+                                <NotificationContainer/>
                             </form>
                         </div>
                     </div>
