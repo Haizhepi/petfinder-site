@@ -1051,3 +1051,26 @@ body {
   color: white;
   background-color: transparent;
 }
+
+.marginTopBtn {
+  margin-top: 20px;
+}
+
+.blackText {
+  border-radius: 2px;
+  border: 1px transparent solid;
+  background-color: whitesmoke;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
+}
+.blackText:hover {
+  border: 1px whitesmoke solid;
+
+  background-color: transparent;
+  color: white;
+}

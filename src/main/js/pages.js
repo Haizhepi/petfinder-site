@@ -105,7 +105,7 @@ export class Home extends React.Component {
         } else {
             return (
                 <section className="homepageWrapper">
-                    <Favicon url="https://www.petidentityuk.info/views/standard/images/mh-hp365-icon.png" />
+                    <Favicon url="https://www.petidentityuk.info/views/standard/images/mh-hp365-icon.png"/>
                     <div className="barWrapper">
                         <NavBar/>
                     </div>
@@ -186,7 +186,7 @@ export class EditProfilePage extends React.Component {
                 <div className="container padded">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Profile</div>
+                            <div className="title">My Profile</div>
                             <hr/>
                             <Login.EditProfileForm/>
                         </div>
@@ -576,28 +576,33 @@ export class ViewSitter extends React.Component {
             <section className="webWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded">
-                    <h1>The Availability: </h1>
-                    <h1>{this.state.sitter.startDate}</h1>
-                    <h1>{this.state.sitter.endDate}</h1>
-                    <h1>{this.state.sitter.startTime}</h1>
-                    <h1>{this.state.sitter.endTime}</h1>
-                    <h1>{this.state.sitter.availability}</h1>
-                    <h1>Invitations</h1>
-                    {this.state.invitation.map(booking => (
-                        <div>
-                            <ListGroup>
-                                <ListGroupItem>Invitation {booking.owner}</ListGroupItem>
-                            </ListGroup>
+                <div className="container padded middleWrapperNotAlign">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <div className="title">My Availability</div>
+                            <div>{this.state.sitter.startDate}</div>
+                            <div>{this.state.sitter.endDate}</div>
+                            <div>{this.state.sitter.startTime}</div>
+                            <div>{this.state.sitter.endTime}</div>
+                            <div>{this.state.sitter.availability}</div>
+                            <div>Invitations</div>
+                            {this.state.invitation.map(booking => (
+                                <div>
+                                    {booking.owner}
 
-                            <Link to={'/'}>
-                                <Button onClick={() => {
-                                    this.props.confirm(booking);
-                                }}>Confirm</Button>
-                            </Link>
+                                    <Link to={'/'}>
+                                        <div className="wrapper">
+                                            <div className="buttonType1 marginTopBtn" onClick={() => {
+                                                this.props.confirm(booking);
+                                            }}>Confirm
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            ))}
+
                         </div>
-                    ))}
-
+                    </div>
                 </div>
             </section>
         );
@@ -647,6 +652,7 @@ export class TransImage extends React.Component {
         );
     }
 }
+
 export class PasswordReset extends React.Component {
     render() {
         return (

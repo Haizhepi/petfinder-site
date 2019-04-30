@@ -92,14 +92,14 @@ export class NavBar extends React.Component {
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <NavItem>
-                                            <NavLink href="#/signedBooking" className="navText">Signed Booking</NavLink>
+                                            <NavLink href="#/signedBooking" className="">Signed Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/availableBooking" className="navText">View
+                                            <NavLink href="#/availableBooking" className="">View
                                                 Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/notification" className="navText">Notification</NavLink>
+                                            <NavLink href="#/notification" className="">Notification</NavLink>
                                         </NavItem>
                                         <DropdownItem divider/>
                                         <DropdownItem>
@@ -134,13 +134,13 @@ export class NavBar extends React.Component {
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <NavItem>
-                                            <NavLink href="#/addBooking" className="navText">Add Booking</NavLink>
+                                            <NavLink href="#/addBooking" className="">Add Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/myBooking" className="navText">My Booking</NavLink>
+                                            <NavLink href="#/myBooking" className="">My Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/notification" className="navText">Notification</NavLink>
+                                            <NavLink href="#/notification" className="">Notification</NavLink>
                                         </NavItem>
                                         <DropdownItem divider/>
                                         <DropdownItem>
@@ -182,17 +182,17 @@ export class NavBar extends React.Component {
                                     </DropdownToggle>
                                     <DropdownMenu right>
                                         <NavItem>
-                                            <NavLink href="#/addBooking" className="navText">Add Booking</NavLink>
+                                            <NavLink href="#/addBooking" className="">Add Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/myBooking" className="navText">My Booking</NavLink>
+                                            <NavLink href="#/myBooking" className="">My Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/availableBooking" className="navText">View
+                                            <NavLink href="#/availableBooking" className="">View
                                                 Booking</NavLink>
                                         </NavItem>
                                         <NavItem>
-                                            <NavLink href="#/notification" className="navText">Notification</NavLink>
+                                            <NavLink href="#/notification" className="">Notification</NavLink>
                                         </NavItem>
                                         <DropdownItem divider/>
                                         <DropdownItem>

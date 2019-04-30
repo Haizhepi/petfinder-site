@@ -34,7 +34,7 @@ class NotificationCenter extends React.Component {
                     <div className="title">Notifications</div>
                     {this.state.notifications.map(noti =>(
                         <ListGroup>
-                            <ListGroupItem>{noti.info}</ListGroupItem>
+                            <ListGroupItem className="blackText">{noti.info}</ListGroupItem>
                         </ListGroup>
                     ))}
                 </div>
