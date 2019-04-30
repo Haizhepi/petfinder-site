@@ -36,18 +36,28 @@ export class LocationSearchInput extends React.Component {
     }
 
     handleChange = address => {
-        console.log(this.state);
         this.setState({address});
+
     };
 
     handleSelect = address => {
         geocodeByAddress(address)
             .then(results => {
-                getLatLng(results[0]);
-                console.log('ppp');
+                console.log(results);
 
                 console.log(results[0].formatted_address);
                 this.setState({address: results[0].formatted_address});
+                getLatLng(results[0]);
+                Geocode.fromAddress(results[0].formatted_address).then(
+                    response => {
+                        const { lat, lng } = response.results[0].geometry.location;
+                        console.log(lat, lng);
+                    },
+                    error => {
+                        console.error(error);
+                    }
+                );
+
             })
             .then(latLng => {
                 console.log('Success', latLng);

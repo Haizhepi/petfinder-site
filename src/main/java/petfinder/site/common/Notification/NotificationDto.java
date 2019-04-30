@@ -2,6 +2,7 @@ package petfinder.site.common.Notification;
 
 import alloy.util.Momento;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class NotificationDto implements Momento<String> {
@@ -9,6 +10,23 @@ public class NotificationDto implements Momento<String> {
     private String userPrinciple;
     private String read;
     private String info;
+    private Date createDate;
+
+    public String getRead() {
+        return read;
+    }
+
+    public void setRead(String read) {
+        this.read = read;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
     public void read() {
         read = "Y";
@@ -20,6 +38,8 @@ public class NotificationDto implements Momento<String> {
     }
 
     public NotificationDto() {
+        this.createDate = new Date();
+
         // Randomly generate an id when constructing a pet object.
         this.id = UUID.randomUUID().toString();
         read = "N";

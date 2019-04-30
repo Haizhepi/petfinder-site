@@ -106,6 +106,8 @@ export function getSitter(userid) {
 	return axios.get(res);
 }
 
+
+
 export function sitterCancel(booking) {
 	return axios.post('/api/bookings/sitterCancel', booking);
 }
@@ -215,6 +217,11 @@ State.getActivePet = state => {
 	return state.activePet;
 };
 
+State.getEmail = state => {
+	console.log(state);
+	return state.activeEmail;
+};
+
 State.getActiveBooking = state => {
 	return state.activeBooking;
 };
@@ -236,7 +243,8 @@ Actions.Types = {
 	SELECT_SITTER: 'SITTER_SELECTED',
 	NEW_NOTIS: 'NOTIS_NEW',
 	SET_SECURITYANSWER: 'SET_SECURITYANSWER',
-	SET_PASSWORD: 'SET_PASSWORD'
+	SET_PASSWORD: 'SET_PASSWORD',
+	SELECT_EMAIL: 'EMAIL'
 };
 
 //save pet
@@ -297,7 +305,6 @@ Actions.sitterCancel = (booking) => {
 	};
 };
 
-
 Actions.finish = booking => {
 	return (dispatch) => {
 		return finish(booking);
@@ -351,7 +358,7 @@ Actions.getInvitation = () => {
 		return getInvitation();
 	};
 };
-//get list of pets belonging to current user
+
 Actions.getPets = pets => {
     return getPets();
 };
@@ -367,7 +374,6 @@ Actions.getPetById = id => {
 Actions.getBookings = user => {
 	return getBookings(user);
 };
-
 
 Actions.getNotifications = user => {
 	return getNotifications(user.principal);
@@ -388,7 +394,6 @@ Actions.getRating = () => {
 		return getRating();
 	};
 };
-
 
 Actions.getSitter = (userid) => {
 	return getSitter(userid);
@@ -455,6 +460,11 @@ Actions.setUser = user => {
 Actions.selectPet = pet => {
 	console.log('the pet is clicked!', pet.name);
 	return {type: Actions.Types.SELECT_PET, pet};
+};
+
+Actions.checkedEmail = email => {
+	console.log('email is chosen', email);
+	return {type: Actions.Types.SELECT_EMAIL, email};
 };
 
 Actions.selectBooking = booking => {
@@ -546,6 +556,21 @@ Reducers.activePet = (activePet = {}, action) => {
 		}
 		default: {
 			return activePet;
+		}
+	}
+};
+
+Reducers.activeEmail = (activeEmail = {}, action) => {
+	console.log('returning'+ action.type);
+
+	switch (action.type) {
+		case Actions.Types.SELECT_EMAIL: {
+			console.log('rrrr'+ action.email);
+
+			return action.email;
+		}
+		default: {
+			return activeEmail;
 		}
 	}
 };

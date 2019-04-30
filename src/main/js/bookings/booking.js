@@ -103,17 +103,8 @@ export class BookingFormConfirm extends React.Component {
             startTime: new Date(),
             endTime: new Date(),
             address: '',
-            city: '',
-            area: '',
-            state: '',
-            mapPosition: {
-                lat: '',
-                lng: ''
-            },
-            markerPosition: {
-                lat: '',
-                lng: ''
-            }
+            lati: '',
+            lngi: ''
         };
 
         this.handleChange1 = this.handleChange1.bind(this);
@@ -150,8 +141,9 @@ export class BookingFormConfirm extends React.Component {
     }
 
     handleChange = address => {
-        console.log(this.state);
         this.setState({address});
+        console.log(this.state.address);
+
     };
 
     handleSelect = address => {
@@ -159,9 +151,19 @@ export class BookingFormConfirm extends React.Component {
             .then(results => {
                 getLatLng(results[0]);
                 console.log('ppp');
-
+                console.log(results);
                 console.log(results[0].formatted_address);
                 this.setState({address: results[0].formatted_address});
+                Geocode.fromAddress(results[0].formatted_address).then(
+                    response => {
+                        const { lat, lng } = response.results[0].geometry.location;
+                        console.log(lat, lng);
+                        this.setState({lati: lat,lngi: lng});
+                    },
+                    error => {
+                        console.error(error);
+                    }
+                );
             })
             .then(latLng => {
                 console.log('Success', latLng);
@@ -200,7 +202,10 @@ export class BookingFormConfirm extends React.Component {
         booking.endTime = this.state.endTime;
         booking.startDate = this.state.startDate;
         booking.endDate = this.state.endDate;
-
+        booking.lat = this.state.lati;
+        booking.lng = this.state.lngi;
+        booking.locationName = this.state.address;
+        //booking.locationName = t
         console.log('???');
         console.log(booking);
         return this.props.makeBooking(booking).then(() => {

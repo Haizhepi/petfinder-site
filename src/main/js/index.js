@@ -42,7 +42,7 @@ export default class Index extends React.Component {
         let searchLocation = <Route exact path="/searchLocation" component={Pages.SearchBox}/>;
         let mapHome = <Route exact path="/googleMapHome" component={MapHome}/>;
         let passwordReset = <Route exact path="/passwordReset" component={Pages.PasswordReset}/>;
-		let passwordDisplay = <Route exact path="/passwordDisplay" component={Pages.PasswordDisplay}/>;
+		let passwordDisplay = <Route exact path="/answerQuestion" component={Pages.AnsweringQuestion}/>;
 		let sitterBooking = <Route exact path="/signedBooking" component={Pages.SitterBooking}/>;
 		let editPet = <Route exact path="/editPet" component={PetEdit}/>;
 		let confirmBooking = <Route exact path="/confirmBooking" component={BookingFormConfirm}/>;

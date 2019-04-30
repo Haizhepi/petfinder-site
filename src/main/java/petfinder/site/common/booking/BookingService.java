@@ -1,8 +1,8 @@
 package petfinder.site.common.booking;
 
+import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import petfinder.site.common.Notification.NotificationDao;
 import petfinder.site.common.Notification.NotificationDto;
@@ -162,6 +162,10 @@ public class BookingService {
 
     public BookingDto save(BookingDto booking) {
         bookingDao.save(booking);
+        NotificationDto ownerNoti = new NotificationDto();
+        ownerNoti.setUserPrinciple(booking.getOwner());
+        ownerNoti.setInfo("You have started a booking of ur pet: " + booking.getPetId());
+        notificationDao.save(ownerNoti);
         return booking;
     }
 
@@ -298,48 +302,6 @@ public class BookingService {
         bookingDao.deleteBooking(bookingDto.getId());
     }
 
-    public void checkBookingSentNoti() {
-        List<BookingDto> bookings = bookingDao.findNotStartedBooking();
-        Date today = new Date();
-        Date startDate = new Date();
-
-
-        for (BookingDto bookingDto : bookings) {
-            String startDateString = bookingDto.getStartDate();
-            if (startDateString != null) {
-                try {
-                    startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDateString.substring(0, 10));
-                }catch (ParseException p) {
-                    System.out.println("error parsing");
-                }
-                if (isWithInOneDay(today, startDate)) {
-                    NotificationDto ownerNoti = new NotificationDto();
-                    ownerNoti.setUserPrinciple(bookingDto.getOwner());
-                    ownerNoti.setInfo("your booking starting from" + bookingDto.getStartDate() + " with: " + bookingDto.getSitter() + "will start soon. ");
-                    NotificationDto sitterNoti = new NotificationDto();
-                    sitterNoti.setUserPrinciple(bookingDto.getSitter());
-                    sitterNoti.setInfo("your booking with" + bookingDto.getOwner() + " will start soon" );
-                    notificationDao.save(ownerNoti);
-                    notificationDao.save(sitterNoti);
-                }
-            }
-
-
-        }
-    }
-
-    public boolean isWithInOneDay(Date today, Date startDate) {
-        Calendar todayCal = Calendar.getInstance();
-        Calendar startCal = Calendar.getInstance();
-        todayCal.setTime(today);
-        startCal.setTime(startDate);
-        if (todayCal.get(Calendar.YEAR) == startCal.get(Calendar.YEAR)
-                && todayCal.get(Calendar.MONTH) == startCal.get(Calendar.MONTH)
-                && Math.abs(todayCal.get(Calendar.DAY_OF_MONTH) - startCal.get(Calendar.DAY_OF_MONTH)) < 1) {
-            return true;
-        }
-        return false;
-    }
 
     public BookingDto finish(BookingDto bookingDto) {
         BookingDto temp = bookingDao.findBooking(bookingDto.getId()).get();
@@ -350,6 +312,58 @@ public class BookingService {
 
     public List<BookingDto> sitterBookings(String principal) {
         return bookingDao.sitterBookings(principal);
+    }
+
+    public String checkApproachingBooking() {
+        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
+        if (!temp.isPresent()) {
+            return "not logged in";
+        }
+        List<BookingDto> bookings = new ArrayList<>();
+
+        UserDto.UserType type = temp.get().getUser().getType();
+        UserDto user = temp.get().getUser();
+        Date lastCheckDate = temp.get().getUser().getLastCheckDate();
+        Date today = new Date();
+        if (! withInOneDay(user.getLastCheckDate(), today)) {
+            if (type == UserDto.UserType.OWNER) {
+                bookings.addAll(userDao.findBookings(user));
+            } else if (type == UserDto.UserType.SITTER) {
+                bookings.addAll(bookingDao.sitterBookings(user.getPrincipal()));
+            } else {
+                bookings.addAll(userDao.findBookings(user));
+                bookings.addAll(bookingDao.sitterBookings(user.getPrincipal()));
+            }
+
+            for (BookingDto booking : bookings) {
+                Date bookingStartDate = new Date();
+                try {
+                    bookingStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(booking.getStartDate().substring(0, 10));
+                } catch (ParseException e) {
+
+                }
+                if (withInOneDay(today, bookingStartDate)) {
+                    NotificationDto ownerNoti = new NotificationDto();
+                    ownerNoti.setUserPrinciple(booking.getOwner());
+                    ownerNoti.setInfo("your booking starting from" + booking.getStartDate() + " with: " + booking.getSitter() + "will start soon. ");
+                    NotificationDto sitterNoti = new NotificationDto();
+                    sitterNoti.setUserPrinciple(booking.getSitter());
+                    sitterNoti.setInfo("your booking with" + booking.getOwner() + " will start soon");
+                    notificationDao.save(ownerNoti);
+                    notificationDao.save(sitterNoti);
+                    userDao.save(temp.get());
+                }
+            }
+        }
+        temp.get().getUser().setLastCheckDate(today);
+        userDao.save(temp.get());
+        return "all checked";
+    }
+    public final static long MILLIS_PER_DAY = 24 * 60 * 60 * 1000L;
+
+    public boolean withInOneDay(Date date1, Date date2) {
+        return Math.abs(date1.getTime() - date2.getTime()) < MILLIS_PER_DAY;
     }
 
 }

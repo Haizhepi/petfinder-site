@@ -15,6 +15,7 @@ import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.*;
 import petfinder.site.common.user.UserService.RegistrationRequest;
 
+import javax.annotation.RegEx;
 import javax.validation.constraints.Null;
 
 /**
@@ -62,6 +63,7 @@ public class UserEndpoint {
 	public Optional<UserDto> getUserDetails() {
 		// This line gets the "principal" of the currently logged in user - Spring sets this value for us based on the authentication header that is passed with the request
 		// In this case "principal" refers to the email address of the user
+		System.out.println("getting profile");
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 
 		// Then, we simply look up that user by their email address in Elasticsearch
@@ -117,6 +119,45 @@ public class UserEndpoint {
 		return userService.save(userPetDto);
 	}
 
+	@PostMapping(value = "/check")
+	public String checkEmail(@RequestBody String principal) {
+		Boolean res = userService.checkEmailExist(principal);
+		if (res) {
+			return "found";
+		}
+		else {
+			return "not";
+		}
+	}
+
+	@PostMapping(value = "/getQuestion")
+	public String getQuestion(@RequestBody String principal) {
+		String res = userService.getQuestion(principal);
+		if (res != null) {
+			return res;
+		}
+		else {
+			return "no question is set for this user";
+		}
+	}
+
+	@PostMapping(value = "/checkAnswer")
+	public String checkAnswer(@RequestBody UserService.UpdatePasswordRequest upr) {
+		Boolean res = userService.checkAnswer(upr.getAnswer(), upr.getPrincipal(), upr.getNewPassword());
+		if (res) {
+			return "correct";
+		}
+		else {
+			return "not";
+		}
+	}
+
+	@GetMapping(value = "/getQuestion")
+	public String getRandomQuestion() {
+		return userService.getRandQuestion();
+	}
+
+
 	@GetMapping(value = "/userBooking")
 	public List<BookingDto> getUserBookings() {
 		System.out.println("Calling end point user booking");
@@ -125,17 +166,6 @@ public class UserEndpoint {
 		return userService.findBookings(user);
 	}
 
-	@GetMapping(value = "/securityAnswer")
-	public String authSecurityAnswer(@RequestBody UserDto userDto) {
-		System.out.println("Getting Security Answer");
-		UserDto user = userService.findUserByPrincipal(userDto.getPrincipal()).get();
-		if(user != null){
-			System.out.println(user.getPrincipal());
-			System.out.println(user.getSecurityAnswer());
-			return user.getSecurityAnswer();
-		}
-		return null;
-	}
 
 	@GetMapping(value = "/userNotifications{id:.+}", produces = "application/json")
 	public List<NotificationDto> getUserNotifications(@PathVariable("id") String id) {

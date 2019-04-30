@@ -11,12 +11,16 @@ import classNames from 'classnames';
 
 import * as Apps from 'js/app.js';
 
-
+import axios from 'axios';
 import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {LocationSearchInput} from 'js/autoComplete';
 import {FormText, Input, Label, ModalBody} from 'reactstrap';
+
+export function getRandQuestion() {
+    return axios.get('/api/user/getQuestion');
+}
 
 //Class that represents the log in form
 class LoginForm extends React.Component {
@@ -211,7 +215,20 @@ class RegistrationForm extends React.Component {
 
     }
     */
-    onSubmit = user => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            question: 'default question'
+        };
+    }
+
+    componentWillMount() {
+        getRandQuestion().then(response => {
+            this.setState({question: response});
+        });
+    }
+
+        onSubmit = user => {
         if (user.confirmPassword !== user.password) {
             // alert('password does not match');
         }
@@ -219,6 +236,7 @@ class RegistrationForm extends React.Component {
             // alert('must enter a valid user type');
         }
         else {
+            user.securityQuestion = 'What primary school did you attend?';
             return this.props.register(user).then(() => {
                 // alert('can not register');
                 //and then .catch and redirect in .then
@@ -270,7 +288,7 @@ class RegistrationForm extends React.Component {
                                                         placeholder="Owner or Sitter?"
                                 />}/>
                  Security Question:
-                 What primary school did you attend?
+                {this.state.question}
                 <Bessemer.Field name="securityAnswer" friendlyName="Answer:"
                     field={<input className="form-control" type="securityAnswer"/>}/>
 

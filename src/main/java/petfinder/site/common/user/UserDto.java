@@ -1,9 +1,8 @@
 package petfinder.site.common.user;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -24,6 +23,17 @@ public class UserDto implements Momento<String> {
 	private String firstName;
 	private String lastName;
 	private int score;
+	private Date lastCheckDate;
+
+	public String getSecurtyQuestion() {
+		return securtyQuestion;
+	}
+
+	public void setSecurtyQuestion(String securtyQuestion) {
+		this.securtyQuestion = securtyQuestion;
+	}
+
+	private String securtyQuestion;
 	private String securityAnswer;
 
 	public int getScore() {
@@ -100,14 +110,29 @@ public class UserDto implements Momento<String> {
 		return zipcode;
 	}
 
+	public Date getLastCheckDate() {
+		return lastCheckDate;
+	}
+
+	public void setLastCheckDate(Date lastCheckDate) {
+		this.lastCheckDate = lastCheckDate;
+	}
+
 	private String gender;
 	private String zipcode;
 
 	private UserDto() {
-
+		String firstDay = "01/01/1970";
+		try {
+			this.lastCheckDate = new SimpleDateFormat("dd/MM/yyyy").parse(firstDay);
+		}catch (ParseException e) {
+			System.out.println("some issue");
+		}
 	}
 
-	public UserDto(String principal, List<String> roles, String firstName, String lastName, String gender, String zipcode, UserType type, Map<String, Object> attributes, String securityAnswer) {
+	public UserDto(String principal, List<String> roles, String firstName,
+				   String lastName, String gender, String zipcode, UserType type,
+				   Map<String, Object> attributes, String securityAnswer, String securtyQuestion) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
@@ -118,6 +143,7 @@ public class UserDto implements Momento<String> {
 		this.type = type;
 		this.score = 2;
 		this.securityAnswer = securityAnswer;
+		this.securtyQuestion = securtyQuestion;
 	}
 
 	public UserDto(String principal) {

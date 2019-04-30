@@ -1,11 +1,10 @@
 package petfinder.site.common.user;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +32,37 @@ public class UserService {
 		return userDao.findUserByPrincipal(principal).map(UserAuthenticationDto::getUser);
 	}
 
+	public Boolean checkEmailExist(String principal) {
+		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
+		if (temp.isPresent()) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean checkAnswer(String answer, String principal, String newPassword) {
+		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
+		if (temp.isPresent()) {
+			if (temp.get().getUser().getSecurityAnswer().equals(answer)) {
+				passwordUpdate(newPassword, temp.get());
+				return true;
+			}
+			return false;
+		}
+		return false;
+
+	}
+
+	public String getQuestion(String principal) {
+		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
+		if (temp.isPresent()) {
+			return temp.get().getUser().getSecurtyQuestion();
+		}
+		else {
+			return null;
+		}
+	}
+
 	public Optional<UserAuthenticationDto> findUserAuthenticationByPrincipal(String principal) {
 		return userDao.findUserByPrincipal(principal);
 	}
@@ -44,6 +74,20 @@ public class UserService {
 		private String lastName;
 		private String userType;
 		private String securityAnswer;
+		private String securityQuestion;
+
+		public String getSecurityQuestion() {
+			return securityQuestion;
+		}
+
+		public void setSecurityQuestion(String securityQuestion) {
+			this.securityQuestion = securityQuestion;
+		}
+
+		public void setUserType(String userType) {
+			this.userType = userType;
+		}
+
 
 		public UserType getUserType() {
 			if (userType.equalsIgnoreCase("owner")) {
@@ -125,15 +169,61 @@ public class UserService {
 		}
 	}
 
+	public static class UpdatePasswordRequest {
+		private String principal;
+		private String newPassword;
+		private String answer;
+
+		public UpdatePasswordRequest(String principal, String newPassword, String answer) {
+			this.principal = principal;
+			this.newPassword = newPassword;
+			this.answer = answer;
+		}
+
+		public UpdatePasswordRequest() {
+		}
+
+		public String getPrincipal() {
+			return principal;
+		}
+
+		public void setPrincipal(String principal) {
+			this.principal = principal;
+		}
+
+		public String getNewPassword() {
+			return newPassword;
+		}
+
+		public void setNewPassword(String newPassword) {
+			this.newPassword = newPassword;
+		}
+
+		public String getAnswer() {
+			return answer;
+		}
+
+		public void setAnswer(String answer) {
+			this.answer = answer;
+		}
+	}
 	public UserDto register(RegistrationRequest request) {
 		UserAuthenticationDto userAuthentication = new UserAuthenticationDto(
 				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"),
 						request.getFirstName(), request.getLastName(),
 						request.getGender(), request.getZipcode(),
-						request.getUserType(), request.getAttributes(), request.getSecurityAnswer()),
+						request.getUserType(), request.getAttributes(), request.getSecurityAnswer(), request.getSecurityQuestion()),
 				passwordEncoder.encode(request.getPassword()));
 		userDao.save(userAuthentication);
 		return userAuthentication.getUser();
+	}
+
+	public UserDto passwordUpdate(String password, UserAuthenticationDto userAuthenticationDto) {
+		UserDto u = null;
+		userAuthenticationDto.setPassword(passwordEncoder.encode(password));
+		u = userAuthenticationDto.getUser();
+		userDao.save(userAuthenticationDto);
+		return u;
 	}
 
 	public UserPetDto save(UserPetDto userPetDto) {
@@ -170,5 +260,15 @@ public class UserService {
 
 	public List<NotificationDto> findNotifications(UserDto user) {
 		return userDao.findNotification(user);
+	}
+
+	public String getRandQuestion() {
+		List<String> stringList = new ArrayList<>();
+		Random rand = new Random();
+		stringList.add("What was your childhood nickname?");
+		stringList.add("In what city or town did your mother and father meet?");
+		stringList.add("What is your favorite Overwatch League team?");
+		stringList.add("What was your favorite food as a child?");
+		return stringList.get(rand.nextInt(stringList.size()));
 	}
 }

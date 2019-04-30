@@ -17,7 +17,7 @@ public class UserDtoTest {
     @BeforeEach
     void init() {
         user = new UserDto("1@test.com", _Lists.list("ROLE_USER"),
-                "Yunzhe", "Liu", "Male", "78787", UserDto.UserType.OWNER, null, "Mars");
+                "Yunzhe", "Liu", "Male", "78787", UserDto.UserType.OWNER, null, "Mars", "haha");
     }
 
     @Test
