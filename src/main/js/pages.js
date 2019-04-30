@@ -623,7 +623,7 @@ export class PasswordReset extends React.Component {
                 <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Password Recovery</div>
+                            <div className="title">Please enter your email address</div>
                             <hr/>
                             <PasswdReset.PasswordResetForm/>
                         </div>
@@ -634,7 +634,7 @@ export class PasswordReset extends React.Component {
     }
 }
 
-export class PasswordDisplay extends React.Component {
+export class AnsweringQuestion extends React.Component {
     render() {
         return (
             <section className="webWrapper">
@@ -642,9 +642,8 @@ export class PasswordDisplay extends React.Component {
                 <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Password Recovered</div>
-                            <hr/>
-                            <PasswdReset.PasswordResetForm/>
+
+                            <PasswdReset.AnswerQuestion/>
                         </div>
                     </div>
                 </div>

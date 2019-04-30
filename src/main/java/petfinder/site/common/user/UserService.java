@@ -40,6 +40,28 @@ public class UserService {
 		return false;
 	}
 
+	public Boolean checkAnswer(String answer, String principal) {
+		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
+		if (temp.isPresent()) {
+			if (temp.get().getUser().getSecurityAnswer() == answer) {
+				return true;
+			}
+			return false;
+		}
+		return false;
+
+	}
+
+	public String getQuestion(String principal) {
+		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
+		if (temp.isPresent()) {
+			return temp.get().getUser().getSecurtyQuestion();
+		}
+		else {
+			return null;
+		}
+	}
+
 	public Optional<UserAuthenticationDto> findUserAuthenticationByPrincipal(String principal) {
 		return userDao.findUserByPrincipal(principal);
 	}

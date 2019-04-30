@@ -15,17 +15,36 @@ import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {FormText, Input, Label, ModalBody} from 'reactstrap';
+import axios from 'axios';
 
 //Class that represents the password reset form
+export function checkEmail(email) {
+    return axios.post('/api/user/check', email);
+}
+
 class PasswordResetForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {hasSubmitSucceeded: false};
+    }
 
     onSubmit = (form) => {
         alert(form.principal);
+        checkEmail(form.principal).then(response => {
+            console.log(response);
+            if (response === 'found' ) {
+                this.setState({hasSubmitSucceeded: true});
+            }
+            else {
+                alert('Email not found');
+            }
+        });
     };
 
     render() {
         let {handleSubmit, submitting} = this.props;
-        if (submitting) {
+        if (this.state.hasSubmitSucceeded) {
             alert('submit');
         }
 
@@ -56,7 +75,7 @@ PasswordResetForm = connect(
 
 export {PasswordResetForm};
 
-class PasswordDisplay extends React.Component {
+class AnswerQuestion extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -69,19 +88,26 @@ class PasswordDisplay extends React.Component {
         }
         return (
             <form name="form">
-                Password:
+                <div className="title">Password Recovered</div>
+                <hr/>
+                <Bessemer.Field name="answer" friendlyName="Your answer: "
+                                field={<input className="form-control" type="answer"
+                                />}/>
+                <div className="wrapper">
+                    <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
+                </div>
             </form>
         );
     }
 }
 
-PasswordDisplay = ReduxForm.reduxForm({form: 'passwordDisplay'})(PasswordDisplay);
+AnswerQuestion = ReduxForm.reduxForm({form: 'passwordDisplay'})(PasswordDisplay);
 
-PasswordDisplay = connect(
+AnswerQuestion = connect(
     state => ({
         initialValues: {
         }
     })
-)(PasswordDisplay);
+)(AnswerQuestion);
 
-export {PasswordDisplay};
+export {AnswerQuestion};

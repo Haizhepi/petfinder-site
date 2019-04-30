@@ -120,9 +120,38 @@ public class UserEndpoint {
 	}
 
 	@PostMapping(value = "/check")
-	public Boolean checkEmail(@RequestBody String principal) {
-		return userService.checkEmailExist(principal);
+	public String checkEmail(@RequestBody String principal) {
+		Boolean res = userService.checkEmailExist(principal);
+		if (res) {
+			return "found";
+		}
+		else {
+			return "not";
+		}
 	}
+
+	@PostMapping(value = "/getQuestion")
+	public String getQuestion(@RequestBody String principal) {
+		String res = userService.getQuestion(principal);
+		if (res != null) {
+			return res;
+		}
+		else {
+			return "no question is set for this user";
+		}
+	}
+
+	@PostMapping(value = "/checkAnswer")
+	public String checkAnswer(@RequestBody String answer, @RequestBody String principal) {
+		Boolean res = userService.checkAnswer(answer, principal);
+		if (res) {
+			return "correct";
+		}
+		else {
+			return "not";
+		}
+	}
+
 
 	@PostMapping(value = "/reset")
 	public UserDto resetPassword(@RequestBody String password) {

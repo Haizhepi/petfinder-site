@@ -106,6 +106,8 @@ export function getSitter(userid) {
 	return axios.get(res);
 }
 
+
+
 export function sitterCancel(booking) {
 	return axios.post('/api/bookings/sitterCancel', booking);
 }
