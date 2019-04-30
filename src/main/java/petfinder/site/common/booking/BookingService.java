@@ -162,6 +162,10 @@ public class BookingService {
 
     public BookingDto save(BookingDto booking) {
         bookingDao.save(booking);
+        NotificationDto ownerNoti = new NotificationDto();
+        ownerNoti.setUserPrinciple(booking.getOwner());
+        ownerNoti.setInfo("You have started a booking of ur pet: " + booking.getPetId());
+        notificationDao.save(ownerNoti);
         return booking;
     }
 

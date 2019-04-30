@@ -59,7 +59,7 @@ public class UserDao {
 
 		String queryString = String.format("userPrincipal=\"%s\"", user.getPrincipal().replace("\"", ""));
 		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
-
+		searchSourceBuilder.size(20);
 		List<UserPetDto> userPets = userPetRepository.search(searchSourceBuilder);
 		return userPets.stream()
 				.map(userPet -> petRepository.find(userPet.getPetId()).get())

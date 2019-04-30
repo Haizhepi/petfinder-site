@@ -39,7 +39,7 @@ public class BookingEndpoint {
 
     @GetMapping(value = "/getStartingBooking")
     public boolean getStartingBooking() {
-        bookingService.checkBookingSentNoti();
+        bookingService.checkApproachingBooking();
         return true;
     }
 
