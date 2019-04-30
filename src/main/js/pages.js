@@ -476,10 +476,10 @@ export class BookingDetailPage extends React.Component {
 export class Notifications extends React.Component {
     render() {
         return (
-            <section className="webWrapper">
+            <section className="bookingWrapper">
                 <SidebarComponent/>
                 <NavBar/>
-                <div className="container padded middleWrapper3">
+                <div className="container padded middleWrapper3 topMarg1">
                     <Notification.NotificationCenter/>
                 </div>
             </section>
@@ -661,7 +661,7 @@ export class PasswordReset extends React.Component {
                 <div className="container padded middleWrapperNotAlign">
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
-                            <div className="title">Please enter your email address</div>
+                            <div className="title">Please Enter Your Email Address</div>
                             <hr/>
                             <PasswdReset.PasswordResetForm/>
                         </div>
