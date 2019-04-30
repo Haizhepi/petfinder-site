@@ -325,8 +325,6 @@ public class BookingService {
     }
 
 
-
-
     public List<BookingDto> findOpenBooking() { return bookingDao.findOpenBooking();}
 
     public void deleteBooking(BookingDto bookingDto) {
