@@ -142,8 +142,8 @@ public class UserEndpoint {
 	}
 
 	@PostMapping(value = "/checkAnswer")
-	public String checkAnswer(@RequestBody String answer, @RequestBody String principal) {
-		Boolean res = userService.checkAnswer(answer, principal);
+	public String checkAnswer(@RequestBody UserService.UpdatePasswordRequest upr) {
+		Boolean res = userService.checkAnswer(upr.getAnswer(), upr.getPrincipal(), upr.getNewPassword());
 		if (res) {
 			return "correct";
 		}
@@ -152,11 +152,11 @@ public class UserEndpoint {
 		}
 	}
 
-
-	@PostMapping(value = "/reset")
-	public UserDto resetPassword(@RequestBody String password) {
-		return userService.passwordUpdate(password);
+	@GetMapping(value = "/getQuestion")
+	public String getRandomQuestion() {
+		return userService.getRandQuestion();
 	}
+
 
 	@GetMapping(value = "/userBooking")
 	public List<BookingDto> getUserBookings() {

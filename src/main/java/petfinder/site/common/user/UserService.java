@@ -40,10 +40,11 @@ public class UserService {
 		return false;
 	}
 
-	public Boolean checkAnswer(String answer, String principal) {
+	public Boolean checkAnswer(String answer, String principal, String newPassword) {
 		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
 		if (temp.isPresent()) {
-			if (temp.get().getUser().getSecurityAnswer() == answer) {
+			if (temp.get().getUser().getSecurityAnswer().equals(answer)) {
+				passwordUpdate(newPassword, temp.get());
 				return true;
 			}
 			return false;
@@ -73,20 +74,20 @@ public class UserService {
 		private String lastName;
 		private String userType;
 		private String securityAnswer;
+		private String securityQuestion;
+
+		public String getSecurityQuestion() {
+			return securityQuestion;
+		}
+
+		public void setSecurityQuestion(String securityQuestion) {
+			this.securityQuestion = securityQuestion;
+		}
 
 		public void setUserType(String userType) {
 			this.userType = userType;
 		}
 
-		public String getSecurtiyQuestion() {
-			return securtiyQuestion;
-		}
-
-		public void setSecurtiyQuestion(String securtiyQuestion) {
-			this.securtiyQuestion = securtiyQuestion;
-		}
-
-		private String securtiyQuestion;
 
 		public UserType getUserType() {
 			if (userType.equalsIgnoreCase("owner")) {
@@ -168,28 +169,60 @@ public class UserService {
 		}
 	}
 
+	public static class UpdatePasswordRequest {
+		private String principal;
+		private String newPassword;
+		private String answer;
+
+		public UpdatePasswordRequest(String principal, String newPassword, String answer) {
+			this.principal = principal;
+			this.newPassword = newPassword;
+			this.answer = answer;
+		}
+
+		public UpdatePasswordRequest() {
+		}
+
+		public String getPrincipal() {
+			return principal;
+		}
+
+		public void setPrincipal(String principal) {
+			this.principal = principal;
+		}
+
+		public String getNewPassword() {
+			return newPassword;
+		}
+
+		public void setNewPassword(String newPassword) {
+			this.newPassword = newPassword;
+		}
+
+		public String getAnswer() {
+			return answer;
+		}
+
+		public void setAnswer(String answer) {
+			this.answer = answer;
+		}
+	}
 	public UserDto register(RegistrationRequest request) {
 		UserAuthenticationDto userAuthentication = new UserAuthenticationDto(
 				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"),
 						request.getFirstName(), request.getLastName(),
 						request.getGender(), request.getZipcode(),
-						request.getUserType(), request.getAttributes(), request.getSecurityAnswer(), request.getSecurtiyQuestion()),
+						request.getUserType(), request.getAttributes(), request.getSecurityAnswer(), request.getSecurityQuestion()),
 				passwordEncoder.encode(request.getPassword()));
 		userDao.save(userAuthentication);
 		return userAuthentication.getUser();
 	}
 
-	public UserDto passwordUpdate(String password) {
+	public UserDto passwordUpdate(String password, UserAuthenticationDto userAuthenticationDto) {
 		UserDto u = null;
-		UserAuthenticationDto userAuthentication = null;
-		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
-		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
-		if (temp.isPresent()) {
-			userAuthentication = temp.get();
-			u = userAuthentication.getUser();
-			userAuthentication.setPassword(passwordEncoder.encode(password));
-		}
-		userDao.save(userAuthentication);
+		userAuthenticationDto.setPassword(passwordEncoder.encode(password));
+		u = userAuthenticationDto.getUser();
+		userDao.save(userAuthenticationDto);
 		return u;
 	}
 
@@ -229,12 +262,13 @@ public class UserService {
 		return userDao.findNotification(user);
 	}
 
-	public List<String> questionList() {
+	public String getRandQuestion() {
 		List<String> stringList = new ArrayList<>();
+		Random rand = new Random();
 		stringList.add("What was your childhood nickname?");
 		stringList.add("In what city or town did your mother and father meet?");
 		stringList.add("What is your favorite Overwatch League team?");
 		stringList.add("What was your favorite food as a child?");
-		return stringList;
+		return stringList.get(rand.nextInt(stringList.size()));
 	}
 }

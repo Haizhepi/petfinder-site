@@ -22,6 +22,14 @@ export function checkEmail(email) {
     return axios.post('/api/user/check', email);
 }
 
+export function getQuestion(email) {
+    return axios.post('/api/user/getQuestion', email);
+}
+
+export function checkAndReset(form) {
+    return axios.post('/api/user/checkAnswer', form);
+}
+
 class PasswordResetForm extends React.Component {
 
     constructor(props) {
@@ -34,7 +42,9 @@ class PasswordResetForm extends React.Component {
         checkEmail(form.principal).then(response => {
             console.log(response);
             if (response === 'found' ) {
+                this.props.checkEmail(form.principal);
                 this.setState({hasSubmitSucceeded: true});
+
             }
             else {
                 alert('Email not found');
@@ -46,6 +56,7 @@ class PasswordResetForm extends React.Component {
         let {handleSubmit, submitting} = this.props;
         if (this.state.hasSubmitSucceeded) {
             alert('submit');
+            return <Redirect to={'/answerQuestion'}/>;
         }
 
         return (
@@ -69,7 +80,7 @@ PasswordResetForm = connect(
         initialValues: {principal: '', securityAnswer: '', answer: ''}
     }),
     dispatch => ({
-        authSecurityAnswer: (principal) => dispatch(Users.Actions.authSecurityAnswer(principal))
+        checkEmail: email => dispatch(Users.Actions.checkedEmail(email))
     })
 )(PasswordResetForm);
 
@@ -78,20 +89,55 @@ export {PasswordResetForm};
 class AnswerQuestion extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            hasSubmitSucceeded: false,
+            question: 'default question'};
+
     }
 
+    onSubmit = (form) => {
+        form.principal = this.props.email;
+        checkAndReset(form).then(response => {
+            console.log(response);
+            if (response === 'correct' ) {
+                alert('success!');
+                this.setState({hasSubmitSucceeded: true});
+
+            }
+            else {
+                alert('your answer is wrong');
+            }
+        });
+    };
+
+    componentWillMount() {
+        console.log('what');
+        console.log(this.props.email);
+        getQuestion(this.props.email).then(response => {
+            this.setState({question: response});
+            this.setState({hasSubmitSucceeded: false});
+            console.log(response);
+        });
+
+    }
+
+
     render() {
-        alert('hello');
         let {handleSubmit, submitting} = this.props;
-        if (!this.state.hasSubmitSucceeded) {
+        if (this.state.hasSubmitSucceeded) {
             return <Redirect to={'/login'}/>;
         }
         return (
-            <form name="form">
-                <div className="title">Password Recovered</div>
+            <form name="form" onSubmit={handleSubmit(form => this.onSubmit(form))}>
+                <div className="title">{this.state.question}</div>
+
                 <hr/>
                 <Bessemer.Field name="answer" friendlyName="Your answer: "
                                 field={<input className="form-control" type="answer"
+                                />}/>
+                <Bessemer.Field name="newPassword" friendlyName="New Password"
+                                validators={[Validation.requiredValidator, Validation.passwordValidator]}
+                                field={<input className="form-control" type="password"
                                 />}/>
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
@@ -101,12 +147,11 @@ class AnswerQuestion extends React.Component {
     }
 }
 
-AnswerQuestion = ReduxForm.reduxForm({form: 'passwordDisplay'})(PasswordDisplay);
+AnswerQuestion = ReduxForm.reduxForm({form: 'AnswerQuestion'})(AnswerQuestion);
 
 AnswerQuestion = connect(
     state => ({
-        initialValues: {
-        }
+        email: Users.State.getEmail(state)
     })
 )(AnswerQuestion);
 
