@@ -71,6 +71,7 @@ public class UserDao {
 
 		String queryString = String.format("owner=\"%s\"", user.getPrincipal().replace("\"", ""));
 		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
+		searchSourceBuilder.size(20);
 
 		List<BookingDto> bookinsgs = bookingRepository.search(searchSourceBuilder);
 		return bookinsgs;

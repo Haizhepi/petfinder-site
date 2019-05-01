@@ -21,8 +21,12 @@ public class BookingEndpoint {
     private BookingService bookingService;
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public Optional<BookingDto> getBooking(@PathVariable("id") String id) {
-        return bookingService.findBooking(id);
+    public BookingDto getBooking(@PathVariable("id") String id) {
+        Optional<BookingDto> temp = bookingService.findBooking(id);
+        if (temp.isPresent()) {
+            return bookingService.processDate(temp.get());
+        }
+        return null;
     }
 
     @GetMapping(value = "/recommend{id}", produces = "application/json")

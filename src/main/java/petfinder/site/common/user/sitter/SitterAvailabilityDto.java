@@ -4,6 +4,7 @@ import alloy.util.Momento;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import petfinder.site.common.booking.BookingDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SitterAvailabilityDto implements Momento<String> {
@@ -17,6 +18,23 @@ public class SitterAvailabilityDto implements Momento<String> {
     private Double lat;
     private Double lng;
     private String locationName;
+
+    public SitterAvailabilityDto(SitterAvailabilityDto a) {
+        this.principal = a.principal;
+        this.availability = a.availability;
+        this.startDate = a.startDate;
+        this.startTime = a.startTime;
+        this.endTime = a.endTime;
+        this.endDate = a.endDate;
+        this.locationName = a.locationName;
+        if (a.invitations != null) {
+            this.invitations = new ArrayList<>();
+            this.invitations.addAll(a.invitations);
+        }
+
+        this.lat = a.lat;
+        this.lng = a.lng;
+    }
 
     public Double getLat() {
         return lat;
@@ -102,7 +120,8 @@ public class SitterAvailabilityDto implements Momento<String> {
         this.availability = availability;
     }
 
-    private SitterAvailabilityDto() {}
+    public SitterAvailabilityDto() {}
+
     public String getPrincipal() {
         return principal;
     }

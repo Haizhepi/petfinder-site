@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import * as ReduxForm from 'redux-form';
+import axios from 'axios';
 import {connect} from 'react-redux';
 import * as Bessemer from 'js/alloy/bessemer/components';
 
 import * as Users from 'js/users';
 import {Link, Redirect} from 'react-router-dom';
 import {ListGroup, ListGroupItem} from 'reactstrap';
+
+export function readNotification(id) {
+    axios.post('/api/notification/read', id);
+}
 
 class NotificationCenter extends React.Component {
     constructor(props) {

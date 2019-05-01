@@ -14,6 +14,7 @@ import alloy.util._Lists;
 import alloy.util._Maps;
 import petfinder.site.common.Notification.NotificationDto;
 import petfinder.site.common.booking.BookingDto;
+import petfinder.site.common.booking.BookingService;
 import petfinder.site.common.pet.PetDto;
 import petfinder.site.common.user.UserDto.UserType;
 
@@ -24,6 +25,7 @@ import petfinder.site.common.user.UserDto.UserType;
 public class UserService {
 	@Autowired
 	private UserDao userDao;
+
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -255,7 +257,14 @@ public class UserService {
 	}
 
 	public List<BookingDto> findBookings(UserDto user) {
-		return userDao.findBookings(user);
+		List<BookingDto> list = userDao.findBookings(user);
+		for (BookingDto bookingDto: list) {
+			bookingDto.setStartDate(bookingDto.getStartDate().substring(0, 10));
+			bookingDto.setEndDate(bookingDto.getEndDate().substring(0, 10));
+			bookingDto.setStartTime(bookingDto.getStartTime().substring(11, 19));
+			bookingDto.setEndTime(bookingDto.getEndTime().substring(11, 19));
+		}
+		return list;
 	}
 
 	public List<NotificationDto> findNotifications(UserDto user) {

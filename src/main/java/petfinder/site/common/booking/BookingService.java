@@ -40,6 +40,14 @@ public class BookingService {
         return bookingDao.findBooking(id);
     }
 
+    public BookingDto processDate(BookingDto bookingDto) {
+        bookingDto.setStartDate(bookingDto.getStartDate().substring(0, 10));
+        bookingDto.setEndDate(bookingDto.getEndDate().substring(0, 10));
+        bookingDto.setStartTime(bookingDto.getStartTime().substring(11, 19));
+        bookingDto.setEndTime(bookingDto.getEndTime().substring(11, 19));
+        return bookingDto;
+    }
+
     public BookingDto sitterCancel(String bookingId) {
         BookingDto booking = null;
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -325,7 +333,14 @@ public class BookingService {
     }
 
 
-    public List<BookingDto> findOpenBooking() { return bookingDao.findOpenBooking();}
+    public List<BookingDto> findOpenBooking() {
+        List<BookingDto> list = bookingDao.findOpenBooking();
+        List<BookingDto> res = new ArrayList<>();
+        for (BookingDto b : list) {
+            res.add(processDate(b));
+        }
+        return res;
+    }
 
     public void deleteBooking(BookingDto bookingDto) {
         bookingDao.deleteBooking(bookingDto.getId());

@@ -30,7 +30,7 @@ public class SitterEndpoint {
 
     // Take an id, and look up the corresponding pet
     @GetMapping(value = "/{id:.+}", produces = "application/json")
-    public Optional<SitterAvailabilityDto> getAvailability(@PathVariable("id") String id) {
+    public SitterAvailabilityDto getAvailability(@PathVariable("id") String id) {
         System.out.println(id);
         return sitterService.findAvailability(id);
     }

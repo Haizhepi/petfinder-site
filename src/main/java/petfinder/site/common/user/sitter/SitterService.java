@@ -70,9 +70,22 @@ public class SitterService {
         return bookingService.sitterBookings(principal);
     }
 
-    public Optional<SitterAvailabilityDto> findAvailability(String id) {
+    public SitterAvailabilityDto findAvailability(String id) {
         System.out.println("here"+id);
-        return sitterAvailabilityDao.findAvailability(id);
+        Optional<SitterAvailabilityDto> temp = sitterAvailabilityDao.findAvailability(id);
+        if (!temp.isPresent()) {
+            return null;
+        }
+        return processDate(temp.get());
+    }
+
+    public SitterAvailabilityDto processDate(SitterAvailabilityDto sitterAvailabilityDto) {
+        SitterAvailabilityDto st = new SitterAvailabilityDto(sitterAvailabilityDto);
+        st.setStartDate(st.getStartDate().substring(0, 10));
+        st.setEndDate(st.getEndDate().substring(0, 10));
+        st.setStartTime(st.getStartTime().substring(11, 19));
+        st.setEndTime(st.getEndTime().substring(11, 19));
+        return st;
     }
 
     public UserDto findUserInfo(String principle) {

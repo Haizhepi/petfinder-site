@@ -22,6 +22,10 @@ export function getRandQuestion() {
     return axios.get('/api/user/getQuestion');
 }
 
+export function checkStartingBooking() {
+    return axios.get('/api/bookings/getStartingBooking');
+}
+
 //Class that represents the log in form
 class LoginForm extends React.Component {
 
@@ -35,6 +39,9 @@ class LoginForm extends React.Component {
 
         if (submitting) {
             if (this.props.authentication != null) {
+                checkStartingBooking().then(response => {
+                    alert(response);
+                });
                 this.forceUpdate();
                 localStorage.setItem('auth', JSON.stringify(this.props.authentication));
                 /*if(localStorage.getItem('auth') != null){
