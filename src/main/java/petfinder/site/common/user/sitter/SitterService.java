@@ -93,10 +93,9 @@ public class SitterService {
                 * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double distance = R * c * 1000; // convert to meters
-
+        distance /= 1609.344;
 
         distance = Math.pow(distance, 2);
-        distance /= 1609.344;
 
         return Math.sqrt(distance);
     }

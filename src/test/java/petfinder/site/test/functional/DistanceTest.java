@@ -11,7 +11,7 @@ public class DistanceTest {
 
     @Test
     void test() {
-        Double tem = sitterService.calculateDistance(31.5493, 32.7767, -97.1467, -96.7970);
+        Double tem = sitterService.calculateDistance(31.5493, 31.5561122, -97.111544, -97.12456);
         System.out.println(tem);
     }
 
