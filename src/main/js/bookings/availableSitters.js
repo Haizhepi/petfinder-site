@@ -103,6 +103,10 @@ class AvailableSitter extends React.Component {
                                         <CardTitle>{sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}</CardTitle>
 
                                         <div className="cb">
+                                            <div className="stars">
+                                                {sitterDate.sitter.score + ' stars'}
+                                            </div>
+
                                             <CardSubtitle>{sitterDate.distance.toFixed(1) + ' miles away from you'}</CardSubtitle>
                                             <CardText> {sitterDate.sitter.firstName + ' is available between'} </CardText>
                                             <CardText> {sitterDate.availability.startDate + ' ' + sitterDate.availability.startTime + ' to ' + sitterDate.availability.endDate + ' ' + sitterDate.availability.endTime} </CardText>
@@ -233,6 +237,9 @@ class AvailableSitter1 extends React.Component {
                                         <CardTitle>{sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}</CardTitle>
 
                                         <div className="cb">
+                                            <div className="stars">
+                                                {sitterDate.sitter.score + ' stars'}
+                                            </div>
                                             <CardSubtitle>{sitterDate.distance.toFixed(1) + ' miles away from you'}</CardSubtitle>
                                             <CardText> {sitterDate.sitter.firstName + ' is available between'} </CardText>
                                             <CardText> {sitterDate.availability.startDate + ' ' + sitterDate.availability.startTime + ' to ' + sitterDate.availability.endDate + ' ' + sitterDate.availability.endTime} </CardText>
@@ -353,6 +360,9 @@ class AvailableSitter2 extends React.Component {
                                         <CardTitle>{sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}</CardTitle>
 
                                         <div className="cb">
+                                            <div className="stars">
+                                                {sitterDate.sitter.score + ' stars'}
+                                            </div>
                                             <CardSubtitle>{sitterDate.distance.toFixed(1) + ' miles away from you'}</CardSubtitle>
                                             <CardText> {sitterDate.sitter.firstName + ' is available between'} </CardText>
                                             <CardText> {sitterDate.availability.startDate + ' ' + sitterDate.availability.startTime + ' to ' + sitterDate.availability.endDate + ' ' + sitterDate.availability.endTime} </CardText>

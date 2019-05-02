@@ -727,7 +727,7 @@ body {
 }
 
 .invCard {
-  margin-bottom: 175px;
+  margin-bottom: 240px;
   border-radius: 2px;
   max-width: 1000px;
   max-height: 500px;
@@ -1032,7 +1032,6 @@ body {
   text-align: center;
   background-color: #cacaca;
   color: black;
-  border: 1px black solid;
   //box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25), 0 5px 5px 0 rgba(0, 0, 0, 0.25);
 
 }
@@ -1179,4 +1178,9 @@ body {
 
 .sortLink:hover {
 
+}
+
+.stars {
+  font-size: 18px;
+  margin-bottom: 13px;
 }
