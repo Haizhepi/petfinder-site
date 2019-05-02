@@ -202,37 +202,12 @@ class OwnerDetails extends React.Component {
                                     <div onClick={() => this.props.finish(this.props.booking)}>
                                         <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
                                     </div>
-
-
-                                    {/*<Link to={'/myBooking'}>*/}
-                                        {/*<Button className="buttonType2" onClick={() => this.props.cancel(this.props.booking).then(response => {*/}
-                                            {/*// alert('deleting');*/}
-                                        {/*})}>Cancel</Button>*/}
-                                    {/*</Link>*/}
-                                    {/*<Link to={'/availableSitters'}>*/}
-                                        {/*<Button>View Sitters</Button>*/}
-                                    {/*</Link>*/}
-                                    {/*<Link to={'/addRating'}>*/}
-                                        {/*<Button onClick={() => this.props.finish(this.props.booking)}>Finish Booking</Button>*/}
-                                    {/*</Link>*/}
                                 </div>
                             </CardBody>
 
                         </div>
 
                     </Card>
-
-                    {/*<ListGroup>*/}
-                    {/*<ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>*/}
-                    {/*<ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>*/}
-                    {/*<ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>*/}
-                    {/*<ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>*/}
-                    {/*<ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>*/}
-                    {/*<ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>*/}
-                    {/*<ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>*/}
-                    {/*<ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>*/}
-                    {/*</ListGroup>*/}
-
 
                     {
                         this.state.sitters.map(sitter => (

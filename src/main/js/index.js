@@ -11,6 +11,7 @@ import {MapHome} from 'js/mapHome';
 import {BookingFormConfirm} from 'js/bookings/booking';
 import {SelectionPage} from 'js/modal';
 import {OwnerBookingDetail} from 'js/bookings/BookingDetails';
+import {OwnerBookingDetailPage} from 'js/pages';
 
 
 export default class Index extends React.Component {
@@ -49,7 +50,7 @@ export default class Index extends React.Component {
 		let confirmBooking = <Route exact path="/confirmBooking" component={BookingFormConfirm}/>;
 		let selectionPane = <Route exact path="/selectionPane" component={SelectionPage}/>;
 		let backgroundTrans = <Route exact path="/transformBackground" component={Pages.TransImage}/>;
-		let ownerBookingDetail = <Route exact path="/ownerBookingDetail" component={OwnerBookingDetail}/>;
+		let ownerBookingDetail = <Route exact path="/ownerBookingDetail" component={Pages.OwnerBookingDetailPage}/>;
 
 		//alert(this.props.authentication);
 		return (

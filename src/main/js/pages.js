@@ -36,7 +36,7 @@ import {MyModal} from 'js/modal';
 import 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import {BookingDetail} from 'js/bookings/BookingDetails';
+import {BookingDetail, OwnerBookingDetail} from 'js/bookings/BookingDetails';
 import {SignedBooking} from 'js/bookings/SignedBooking';
 import {GoogleMapAPI} from 'js/googleMapAPI';
 import {LocationSearchInput} from 'js/autoComplete';
@@ -490,6 +490,22 @@ export class BookingDetailPage extends React.Component {
         );
     }
 }
+
+export class OwnerBookingDetailPage extends React.Component {
+    render() {
+
+        return (
+            <section className="webWrapper">
+                <SidebarComponent/>
+                <NavBar/>
+                <div className="container padded">
+                    <OwnerBookingDetail/>
+                </div>
+            </section>
+        );
+    }
+}
+
 
 export class Notifications extends React.Component {
     render() {
