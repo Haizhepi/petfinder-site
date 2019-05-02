@@ -115,7 +115,7 @@ class RegistrationForm extends React.Component {
         } else if (!user.userType) {
             // alert('must enter a valid user type');
         } else {
-            user.securityQuestion = 'What primary school did you attend?';
+            user.securityQuestion = this.state.question;
             return this.props.register(user).then(() => {
                 // alert('can not register');
                 //and then .catch and redirect in .then

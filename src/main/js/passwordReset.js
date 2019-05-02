@@ -91,7 +91,8 @@ class AnswerQuestion extends React.Component {
         super(props);
         this.state = {
             hasSubmitSucceeded: false,
-            question: 'default question'};
+            question: 'default question'
+        };
 
     }
 
