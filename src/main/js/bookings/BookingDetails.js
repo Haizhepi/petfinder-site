@@ -310,13 +310,18 @@ class OwnerDetails extends React.Component {
                                                 </div>
                                             </div>
                                         </CardSubtitle>
-                                        {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
                                         <CardSubtitle
-                                            className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
+                                            className="bookingSub">Location: {this.props.booking.locationName}
+                                        </CardSubtitle>
                                         <CardSubtitle
-                                            className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
+                                            className="bookingSub">Description: {this.props.booking.description}
+                                        </CardSubtitle>
                                         <CardSubtitle
-                                            className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
+                                            className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}
+                                        </CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}
+                                        </CardSubtitle>
                                         <div>
 
                                             <div onClick={() => this.props.cancel(this.props.booking).then(response => {
@@ -380,7 +385,9 @@ class OwnerDetails extends React.Component {
                                                 </div>
                                             </div>
                                         </CardSubtitle>
-                                        {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                        <CardSubtitle
+                                            className="bookingSub">Location: {this.props.booking.locationName}
+                                        </CardSubtitle>
                                         <CardSubtitle
                                             className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
                                         <CardSubtitle
@@ -482,7 +489,9 @@ class OwnerDetails extends React.Component {
                                                 </div>
                                             </div>
                                         </CardSubtitle>
-                                        {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                        <CardSubtitle
+                                            className="bookingSub">Location: {this.props.booking.locationName}
+                                        </CardSubtitle>
                                         <CardSubtitle
                                             className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
                                         <CardSubtitle
@@ -562,7 +571,9 @@ class OwnerDetails extends React.Component {
                                                 </div>
                                             </div>
                                         </CardSubtitle>
-                                        {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                        <CardSubtitle
+                                            className="bookingSub">Location: {this.props.booking.locationName}
+                                        </CardSubtitle>
                                         <CardSubtitle
                                             className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
                                         <CardSubtitle
