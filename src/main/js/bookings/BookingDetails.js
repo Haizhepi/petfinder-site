@@ -321,7 +321,7 @@ class BookingDetail extends React.Component {
             return (
                 <SitterDetails/>
             );
-        } else {
+        } else if (this.props.user.type === 'OWNER'){
             console.log('go to owner');
 
             return (
