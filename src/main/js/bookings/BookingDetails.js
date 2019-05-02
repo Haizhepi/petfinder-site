@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Users from 'js/users';
+import axios from 'axios';
 import {
     Button,
     ListGroup,
@@ -15,6 +16,10 @@ import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
+export function getSitterAvailablity(sitterId) {
+    let res = encodeURI('/api/sitters/'+sitterId);
+    return axios.get(res);
+}
 
 class SitterDetails extends React.Component {
 
@@ -153,18 +158,18 @@ class SitterDetails extends React.Component {
 
                     {/*<h2>SITTER: {this.state.pet.name}</h2>*/}
                     {/*<ListGroup>*/}
-                        {/*<ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>*/}
-                        {/*<ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>*/}
-                        {/*<ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>*/}
-                        {/*<ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>*/}
-                        {/*<ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>*/}
-                        {/*<ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>*/}
-                        {/*<ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>*/}
-                        {/*<ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Owner: {this.props.booking.owner}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Pet: {this.props.booking.petId}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Time: {this.props.booking.time}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Des: {this.props.booking.description}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Start Time: {this.props.booking.startTime}</ListGroupItem>*/}
+                    {/*<ListGroupItem>End Time: {this.props.booking.endTime}</ListGroupItem>*/}
+                    {/*<ListGroupItem>Start Date: {this.props.booking.startDate}</ListGroupItem>*/}
+                    {/*<ListGroupItem>End Date: {this.props.booking.endDate}</ListGroupItem>*/}
                     {/*</ListGroup>*/}
                     {/*<Link to="/">*/}
-                        {/*<Button color="danger" onClick={() => this.props.sitterCancel(this.props.booking)}>Cancel*/}
-                            {/*this</Button>*/}
+                    {/*<Button color="danger" onClick={() => this.props.sitterCancel(this.props.booking)}>Cancel*/}
+                    {/*this</Button>*/}
                     {/*</Link>*/}
                 </div>
             );
@@ -195,11 +200,13 @@ class OwnerDetails extends React.Component {
             booking: [{
                 name: 'no name'
             }],
+            sitter: [{
+                locationName: 'no name'
+            }],
+            sitters: [],
             recommend: 'no name',
             applicant: [{name: 'you dont have any applicant yet'}],
             modal: false,
-            sitters: []
-
         };
         this.toggle = this.toggle.bind(this);
         if (this.props.booking.waitingSitter) {
@@ -226,104 +233,210 @@ class OwnerDetails extends React.Component {
         Users.Actions.getPetById(this.props.booking.petId).then(response => {
             this.setState({pet: response});
         });
+
+        getSitterAvailablity(this.props.booking.sitter).then(response => {
+            this.setState({sitter: response});
+        });
     }
 
     render() {
-        return (
-            <div>
-                <div id="p" className="col-6 offset-md-3">
-                    <Card style={{
-                        width: '500px',
-                        height: '300px',
-                        margin: '80px 0 80px 0',
-                        border: 'none'
-                    }}>
-                        <div className="cardBody2">
-                            <CardBody>
-                                <CardTitle>
-                                    <div className="bookingDetailTitle">
-                                        {this.props.booking.owner}
-                                    </div>
-                                </CardTitle>
-                                <CardSubtitle className="bookingSub">
-                                    <div className="petTable petCardMarginBottomSm">
-                                        <div className="petCard">
-                                            <Card style={{
-                                                width: '150px',
-                                                height: '80px',
-                                                margin: '5px 0 5px 0',
-                                                border: 'none',
-                                            }}>
-                                                <div className="cardBody">
-                                                    <CardBody>
-                                                        <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
-                                                        <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
-                                                        <CardText> {' '} </CardText>
-                                                    </CardBody>
-                                                </div>
-                                            </Card>
+        if (!this.state.sitters) {
+            return (
+                <div>
+                    <div id="p" className="col-6 offset-md-3">
+                        <Card style={{
+                            width: '500px',
+                            height: '300px',
+                            margin: '80px 0 80px 0',
+                            border: 'none'
+                        }}>
+                            <div className="cardBody2">
+                                <CardBody>
+                                    <CardTitle>
+                                        <div className="bookingDetailTitle">
+                                            {this.props.booking.owner}
+                                        </div>
+                                    </CardTitle>
+                                    <CardSubtitle className="bookingSub">
+                                        <div className="petTable petCardMarginBottomSm">
+                                            <div className="petCard">
+                                                <Card style={{
+                                                    width: '150px',
+                                                    height: '80px',
+                                                    margin: '5px 0 5px 0',
+                                                    border: 'none',
+                                                }}>
+                                                    <div className="cardBody">
+                                                        <CardBody>
+                                                            <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
+                                                            <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
+                                                            <CardText> {' '} </CardText>
+                                                        </CardBody>
+                                                    </div>
+                                                </Card>
+                                            </div>
+                                        </div>
+                                    </CardSubtitle>
+                                    {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                    <CardSubtitle
+                                        className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
+                                    <CardSubtitle
+                                        className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
+                                    <CardSubtitle
+                                        className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
+                                    <div>
+
+                                        <div onClick={() => this.props.cancel(this.props.booking).then(response => {
+                                            // alert('deleting');
+                                        })}>
+                                            <a href={'#/myBooking'} className="btnModal2">Cancel</a>
+                                        </div>
+
+                                        <div>
+                                            <a href={'#/availableSitters'} className="btnModal2">Sitters Available</a>
+                                        </div>
+
+                                        <div onClick={() => this.props.finish(this.props.booking)}>
+                                            <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
                                         </div>
                                     </div>
-                                </CardSubtitle>
-                                {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
-                                <CardSubtitle
-                                    className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
-                                <CardSubtitle
-                                    className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
-                                <CardSubtitle
-                                    className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
-                                <div>
+                                    {/*{*/}
+                                        {/*this.state.sitters.map(sitter => (*/}
+                                            {/*<div key={sitter.principal}>*/}
+                                                {/*<h2>{sitter.principal}</h2>*/}
+                                                {/*<a className="btnModal2" onClick={this.toggle}>Sitter Detail</a>*/}
 
-                                    <div onClick={() => this.props.cancel(this.props.booking).then(response => {
-                                        // alert('deleting');
-                                    })}>
-                                        <a href={'#/myBooking'} className="btnModal2">Cancel</a>
-                                    </div>
+                                                {/*<Modal isOpen={this.state.modal} toggle={this.toggle}*/}
+                                                       {/*className={this.props.className}>*/}
+                                                    {/*<ModalHeader toggle={this.toggle}>Sitter Information</ModalHeader>*/}
+                                                    {/*<ModalBody>*/}
+                                                        {/*<ListGroup>*/}
+                                                            {/*<ListGroupItem>{sitter.principal}</ListGroupItem>*/}
+                                                            {/*<ListGroupItem>{sitter.firstName + ' ' + sitter.lastName}</ListGroupItem>*/}
+                                                            {/*<ListGroupItem>{this.state.sitter.locationName}</ListGroupItem>*/}
 
-                                    <div>
-                                        <a href={'#/availableSitters'} className="btnModal2">Sitters Available</a>
-                                    </div>
+                                                        {/*</ListGroup>*/}
+                                                    {/*</ModalBody>*/}
+                                                    {/*<ModalFooter>*/}
+                                                        {/*<Button color="primary" onClick={this.toggle}>Do*/}
+                                                            {/*Something</Button>{' '}*/}
+                                                        {/*<Button color="secondary"*/}
+                                                                {/*onClick={this.toggle}>Cancel</Button>*/}
+                                                    {/*</ModalFooter>*/}
+                                                {/*</Modal>*/}
+                                                {/*<Button onClick={() => {*/}
+                                                    {/*alert('approve sitter');*/}
+                                                    {/*this.props.approve(sitter, this.props.booking);*/}
+                                                {/*}}>Approve</Button>*/}
+                                            {/*</div>*/}
+                                        {/*))*/}
+                                    {/*}*/}
+                                </CardBody>
 
-                                    <div onClick={() => this.props.finish(this.props.booking)}>
-                                        <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
-                                    </div>
-                                </div>
-                            </CardBody>
-
-                        </div>
-
-                    </Card>
-
-                    {
-                        this.state.sitters.map(sitter => (
-                            <div key={sitter.principal}>
-                                <h2>{sitter.principal}</h2>
-                                <ButtonGroup>
-                                    <Button onClick={this.toggle}>{this.props.buttonLabel}>View Sitter Info</Button>
-                                    <Modal isOpen={this.state.modal} toggle={this.toggle}
-                                           className={this.props.className}>
-                                        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                                        <ModalBody>
-                                            <ListGroup>
-                                                <ListGroupItem>Sitter FirstName: {sitter.firstName}</ListGroupItem>
-                                            </ListGroup>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                                            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                    <Button onClick={() => {
-                                        alert('approve sitter');
-                                        this.props.approve(sitter, this.props.booking);
-                                    }}>Approve</Button>
-                                </ButtonGroup>
                             </div>
-                        ))
-                    }
+
+                        </Card>
+
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div>
+                    <div id="p" className="col-6 offset-md-3">
+                        <Card style={{
+                            width: '500px',
+                            height: '300px',
+                            margin: '80px 0 80px 0',
+                            border: 'none'
+                        }}>
+                            <div className="cardBody2">
+                                <CardBody>
+                                    <CardTitle>
+                                        <div className="bookingDetailTitle">
+                                            {this.props.booking.owner}
+                                        </div>
+                                    </CardTitle>
+                                    <CardSubtitle className="bookingSub">
+                                        <div className="petTable petCardMarginBottomSm">
+                                            <div className="petCard">
+                                                <Card style={{
+                                                    width: '150px',
+                                                    height: '80px',
+                                                    margin: '5px 0 5px 0',
+                                                    border: 'none',
+                                                }}>
+                                                    <div className="cardBody">
+                                                        <CardBody>
+                                                            <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
+                                                            <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
+                                                            <CardText> {' '} </CardText>
+                                                        </CardBody>
+                                                    </div>
+                                                </Card>
+                                            </div>
+                                        </div>
+                                    </CardSubtitle>
+                                    {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                    <CardSubtitle
+                                        className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
+                                    <CardSubtitle
+                                        className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
+                                    <CardSubtitle
+                                        className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
+                                    <div>
+
+                                        <div onClick={() => this.props.cancel(this.props.booking).then(response => {
+                                            // alert('deleting');
+                                        })}>
+                                            <a href={'#/myBooking'} className="btnModal2">Cancel</a>
+                                        </div>
+
+                                        <div onClick={() => this.props.finish(this.props.booking)}>
+                                            <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
+                                        </div>
+                                    </div>
+                                    {
+                                        this.state.sitters.map(sitter => (
+                                            <div key={sitter.principal}>
+                                                <h2>{sitter.principal}</h2>
+                                                <a className="btnModal2" onClick={this.toggle}>Sitter Detail</a>
+
+                                                <Modal isOpen={this.state.modal} toggle={this.toggle}
+                                                       className={this.props.className}>
+                                                    <ModalHeader toggle={this.toggle}>Sitter Information</ModalHeader>
+                                                    <ModalBody>
+                                                        <ListGroup>
+                                                            <ListGroupItem>{sitter.principal}</ListGroupItem>
+                                                            <ListGroupItem>{sitter.firstName + ' ' + sitter.lastName}</ListGroupItem>
+                                                            <ListGroupItem>{this.state.sitter.locationName}</ListGroupItem>
+
+                                                        </ListGroup>
+                                                    </ModalBody>
+                                                    <ModalFooter>
+                                                        <Button color="primary" onClick={this.toggle}>Do
+                                                            Something</Button>{' '}
+                                                        <Button color="secondary"
+                                                                onClick={this.toggle}>Cancel</Button>
+                                                    </ModalFooter>
+                                                </Modal>
+                                                <Button onClick={() => {
+                                                    alert('approve sitter');
+                                                    this.props.approve(sitter, this.props.booking);
+                                                }}>Approve</Button>
+                                            </div>
+                                        ))
+                                    }
+                                </CardBody>
+
+                            </div>
+
+                        </Card>
+
+                    </div>
+                </div>
+            );
+        }
     }
 }
 
@@ -381,14 +494,13 @@ class BookingDetail extends React.Component {
             return (
                 <SitterDetails/>
             );
-        } else if (this.props.user.type === 'OWNER'){
+        } else if (this.props.user.type === 'OWNER') {
             console.log('go to owner');
 
             return (
                 <OwnerDetails/>
             );
-        }
-        else{
+        } else {
             console.log('go to both');
 
             return (
@@ -449,14 +561,13 @@ class OwnerBookingDetail extends React.Component {
             return (
                 <SitterDetails/>
             );
-        } else if (this.props.user.type === 'OWNER'){
+        } else if (this.props.user.type === 'OWNER') {
             console.log('go to owner');
 
             return (
                 <OwnerDetails/>
             );
-        }
-        else{
+        } else {
             console.log('go to both');
 
             return (
