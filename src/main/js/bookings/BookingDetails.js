@@ -156,7 +156,6 @@ class OwnerDetails extends React.Component {
                         <div className="cardBody2">
                             <CardBody>
                                 <CardTitle>
-                                    <div className="bookT">Booking Details</div>
                                     <div className="bookingDetailTitle">
                                         {this.props.booking.owner}
                                     </div>
