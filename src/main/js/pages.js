@@ -447,7 +447,10 @@ export class SitterBooking extends React.Component {
                 <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
-                    <SignedBooking/>
+                    <div className="row">
+
+                        <SignedBooking/>
+                    </div>
                 </div>
             </section>
         );
@@ -458,11 +461,15 @@ export class AvailableSittersPage extends React.Component {
     render() {
 
         return (
-            <section className="webWrapper">
+            <section className="bookingWrapper">
                 <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
-                    <AvailableSitter/>
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <AvailableSitter/>
+                        </div>
+                    </div>
                 </div>
             </section>
         );
@@ -586,59 +593,50 @@ export class ViewSitter extends React.Component {
                 <section className="bookingWrapper">
                     <SidebarComponent/>
                     <NavBar/>
-                    <div className="container padded middleWrapperNotAlign topMarg1">
+                    <div className="container padded">
                         <div className="row">
                             <div className="col-6 offset-md-3" id="p">
-                                <div className="title">My Availability</div>
-                                <div>{this.state.sitter.startDate}</div>
-                                <div>{this.state.sitter.endDate}</div>
-                                <div>{this.state.sitter.startTime}</div>
-                                <div>{this.state.sitter.endTime}</div>
-                                <div>{this.state.sitter.availability}</div>
-                                <div className="title">Invitations</div>
+                                <div className="topMarg1">
+                                    <div className="title">My Availability</div>
+                                    <div>{this.state.sitter.startDate}</div>
+                                    <div>{this.state.sitter.endDate}</div>
+                                    <div>{this.state.sitter.startTime}</div>
+                                    <div>{this.state.sitter.endTime}</div>
+                                    <div>{this.state.sitter.availability}</div>
+                                    <div className="title">Invitations</div>
 
-                                {
-                                    this.state.invitation.map(booking => (
-                                        <div className="petTable petCardMarginBottom">
-                                            <div className="invCard">
-                                                <Card style={{
-                                                    minWidth: '200px',
-                                                    width: '300px',
-                                                    height: '100px',
-                                                    margin: '5px 0 5px 0',
-                                                    border: 'none'
-                                                }}>
-                                                    <div className="cardBody">
-                                                        <CardBody>
-                                                            <CardTitle>{booking.owner}</CardTitle>
-                                                            <CardSubtitle>Has Invited You</CardSubtitle>
-                                                            <CardText> {' '} </CardText>
-                                                            <div onClick={() => {
-                                                                this.props.confirm(booking);
-                                                            }}>
-                                                                <CardLink className="clm"
-                                                                          href={'#/'}>ACCEPT
-                                                                </CardLink>
-                                                            </div>
+                                    {
+                                        this.state.invitation.map(booking => (
+                                            <div className="petTable petCardMarginBottom">
+                                                <div className="invCard">
+                                                    <Card style={{
+                                                        minWidth: '200px',
+                                                        width: '300px',
+                                                        height: '100px',
+                                                        margin: '5px 0 5px 0',
+                                                        border: 'none'
+                                                    }}>
+                                                        <div className="cardBody">
+                                                            <CardBody>
+                                                                <CardTitle>{booking.owner}</CardTitle>
+                                                                <CardSubtitle>Has Invited You</CardSubtitle>
+                                                                <CardText> {' '} </CardText>
+                                                                <div onClick={() => {
+                                                                    this.props.confirm(booking);
+                                                                }}>
+                                                                    <CardLink className="clm"
+                                                                              href={'#/'}>ACCEPT
+                                                                    </CardLink>
+                                                                </div>
 
-                                                        </CardBody>
-                                                    </div>
-                                                </Card>
+                                                            </CardBody>
+                                                        </div>
+                                                    </Card>
+                                                </div>
                                             </div>
-                                        </div>
-                                        // <div>
-                                        //     {booking.owner}
-                                        //     <Link to={'/'}>
-                                        //         <div className="wrapper">
-                                        //             <div className="buttonType1 marginTopBtn" onClick={() => {
-                                        //                 this.props.confirm(booking);
-                                        //             }}>Confirm
-                                        //             </div>
-                                        //         </div>
-                                        //     </Link>
-                                        // </div>
-                                    ))
-                                }
+                                        ))
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -709,7 +709,7 @@ body {
 
 .petCard {
   border-radius: 2px;
-  max-width: 200px;
+  max-width: 300px;
   max-height: 200px;
   display: inline-block;
   position: center;
@@ -727,9 +727,10 @@ body {
 }
 
 .invCard {
+  margin-bottom: 50px;
   border-radius: 2px;
   max-width: 500px;
-  max-height: 200px;
+  max-height: 500px;
   display: inline-block;
   position: center;
   margin-left: 5px;
@@ -820,6 +821,13 @@ body {
 .middleWrapperNotAlign {
   position: absolute !important;
   top: 25% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.invwrapper {
+  position: absolute !important;
+  top: 30% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
 }

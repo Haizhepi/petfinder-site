@@ -15,7 +15,7 @@ import 'styles/main.scss';
 
 import {Animated} from 'react-animated-css';
 import {AvailableBooking} from 'js/bookings/booking';
-import {Button, ListGroupItem} from 'reactstrap';
+import {Button, Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle, ListGroupItem} from 'reactstrap';
 
 class AvailableSitter extends React.Component {
     constructor(props) {
@@ -44,33 +44,46 @@ class AvailableSitter extends React.Component {
         }
         return (
             <div>
-            <h2>Available Sitters: </h2>
-        {this.state.sitters.map(sitterDate => (
-            <div>
-            <ListGroupItem>
-                <ListGroupItem>Sitter Name: {sitterDate.sitter.firstName}</ListGroupItem>
-                <ListGroupItem>Sitter Last name: {sitterDate.sitter.lastName}</ListGroupItem>
-                <ListGroupItem>Sitter Start Time: {sitterDate.availability.startTime}</ListGroupItem>
-                <ListGroupItem>Sitter End Time: {sitterDate.availability.endTime}</ListGroupItem>
-                <ListGroupItem>Sitter Start Date: {sitterDate.availability.startDate}</ListGroupItem>
-                <ListGroupItem>Sitter End Date: {sitterDate.availability.endDate}</ListGroupItem>
-                <ListGroupItem>Distance: {sitterDate.distance}</ListGroupItem>
+                <div className="title">Available Sitters</div>
+                <div className="petTable petCardMarginBottom">
+                    {this.state.sitters.map(sitterDate => (
+                        <div className="invCard">
+                            <Card style={{
+                                minWidth: '300px',
+                                width: '300px',
+                                height: '150px',
+                                margin: '5px 0 5px 0',
+                                border: 'none'
+                            }}>
+                                <div className="cardBody">
+                                    <CardBody>
+                                        <CardTitle>{sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}</CardTitle>
+                                        <CardSubtitle>{sitterDate.distance + ' miles away from you'}</CardSubtitle>
+                                        <CardText> {sitterDate.sitter.firstName + ' is available between'} </CardText>
+                                        <CardText> {sitterDate.availability.startDate + ' ' + sitterDate.availability.startTime + ' to ' + sitterDate.availability.endDate + ' ' + sitterDate.availability.endTime} </CardText>
 
-            </ListGroupItem>
-            <Link to={'/bookingDetail'}>
-            <Button onClick={() => {
-                this.props.invite(sitterDate.sitter.principal, this.props.booking.id);
-            }}>Invite Sitter</Button>
-            </Link>
-            </div>
-        ))}
+                                        <div onClick={() => {
+                                            this.props.invite(sitterDate.sitter.principal, this.props.booking.id);
+                                        }}>
+                                            <CardLink className="clm"
+                                                      href={'#/bookingDetail'}>Invite
+                                            </CardLink>
+                                        </div>
+                                    </CardBody>
+                                </div>
+                            </Card>
+
+                        </div>
+                    ))}
+                </div>
+
             </div>
         );
     }
 }
 
 AvailableSitter = connect(
-    state =>({
+    state => ({
         booking: Users.State.getActiveBooking(state)
     }),
     dispatch => ({
