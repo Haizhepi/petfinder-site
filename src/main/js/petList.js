@@ -13,6 +13,9 @@ import {
 } from 'reactstrap';
 import {ScrollArea} from 'react-scrollbar';
 
+import 'react-toastify/dist/ReactToastify.min.css';
+
+import {ToastContainer} from 'react-toastify';
 
 import CustomScroll from 'react-custom-scroll';
 import 'react-sticky-table/dist/react-sticky-table.css';
@@ -25,6 +28,7 @@ import {NavBar} from 'js/navBar';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import {toast} from 'react-toastify';
 
 
 export class PetEdit extends React.Component {
@@ -75,6 +79,12 @@ export class PetEdit extends React.Component {
         if (this.state.hasSubmitSucceeded) {
             //alert('success');
             // return <Redirect to={'/page-3'}/>;
+        }
+
+        const Greet = ({name}) => <div>Successfully saved {name}</div>;
+
+        function handleClick() {
+            toast(<div>Successfully saved changes to pet</div>);
         }
 
         console.log(this.props.initialValues);
@@ -138,13 +148,15 @@ export class PetEdit extends React.Component {
                                                 className="form-control"/>
                                 {/*// field={<input className="form-control" type="name"/>}/>*/}
                                 <div className="wrapper">
-                                    <div onClick={this.createNotification('info')}>
+                                    <div onClick={handleClick}>
                                         <Bessemer.Button className="buttonType1" loading={submitting}>
                                             Save Changes
                                         </Bessemer.Button>
                                     </div>
                                 </div>
-                                <NotificationContainer/>
+                                <a href={'#/page-3'}>
+                                    <ToastContainer className="Toaster" position="top-center"/>
+                                </a>
                             </form>
                         </div>
                     </div>
