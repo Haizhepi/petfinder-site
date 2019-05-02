@@ -33,7 +33,6 @@ export class MyCard extends React.Component {
                         <CardLink href="#">Card Link</CardLink>
                         <CardLink href="#">Another Link</CardLink>
                     </CardBody>
-
                 </Card>
             </div>
         );

@@ -708,6 +708,7 @@ body {
 }
 
 .petCard {
+  border-radius: 2px;
   max-width: 200px;
   max-height: 200px;
   display: inline-block;
@@ -718,6 +719,31 @@ body {
   -o-transition: 0.3s ease !important;
   -webkit-transition: 0.3s ease !important;
   transition: all 0.3s ease !important;
+}
+
+.petCard:hover {
+  background: whitesmoke;
+  color: black;
+}
+
+.invCard {
+  border-radius: 2px;
+  max-width: 500px;
+  max-height: 200px;
+  display: inline-block;
+  position: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
+}
+
+
+.invCard:hover {
+  background: whitesmoke;
+  color: black;
 }
 
 .cardBody {
@@ -736,8 +762,8 @@ body {
 }
 
 .cardBody:hover {
-  background: whitesmoke;
-  color: black;
+  //background: whitesmoke;
+  //color: black;
 }
 
 .cardBody2 {
@@ -1078,4 +1104,10 @@ body {
 .secAnswer {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.clm {
+  padding: 10px 10px 10px 10px;
+  color: black;
+  background-color: transparent;
 }

@@ -16,7 +16,18 @@ import * as PasswdReset from 'js/passwordReset';
 import * as Notification from 'js/notification';
 import {NavBar} from 'js/navBar';
 
-import {Alert, Button, ListGroup, ListGroupItem, Navbar} from 'reactstrap';
+import {
+    Alert,
+    Button, Card,
+    CardBody,
+    CardLink,
+    CardSubtitle,
+    CardText,
+    CardTitle,
+    ListGroup,
+    ListGroupItem,
+    Navbar
+} from 'reactstrap';
 
 import 'styles/main.scss';
 import {MyBookings} from 'js/bookings/MyBookings';
@@ -572,10 +583,10 @@ export class ViewSitter extends React.Component {
     render() {
         if (this.state.invitation) {
             return (
-                <section className="webWrapper">
+                <section className="bookingWrapper">
                     <SidebarComponent/>
                     <NavBar/>
-                    <div className="container padded middleWrapperNotAlign">
+                    <div className="container padded middleWrapperNotAlign topMarg1">
                         <div className="row">
                             <div className="col-6 offset-md-3" id="p">
                                 <div className="title">My Availability</div>
@@ -588,28 +599,52 @@ export class ViewSitter extends React.Component {
 
                                 {
                                     this.state.invitation.map(booking => (
-                                        <div>
-                                            {booking.owner}
+                                        <div className="petTable petCardMarginBottom">
+                                            <div className="invCard">
+                                                <Card style={{
+                                                    minWidth: '200px',
+                                                    width: '300px',
+                                                    height: '100px',
+                                                    margin: '5px 0 5px 0',
+                                                    border: 'none'
+                                                }}>
+                                                    <div className="cardBody">
+                                                        <CardBody>
+                                                            <CardTitle>{booking.owner}</CardTitle>
+                                                            <CardSubtitle>Has Invited You</CardSubtitle>
+                                                            <CardText> {' '} </CardText>
+                                                            <div onClick={() => {
+                                                                this.props.confirm(booking);
+                                                            }}>
+                                                                <CardLink className="clm"
+                                                                          href={'#/'}>ACCEPT
+                                                                </CardLink>
+                                                            </div>
 
-                                            <Link to={'/'}>
-                                                <div className="wrapper">
-                                                    <div className="buttonType1 marginTopBtn" onClick={() => {
-                                                        this.props.confirm(booking);
-                                                    }}>Confirm
+                                                        </CardBody>
                                                     </div>
-                                                </div>
-                                            </Link>
+                                                </Card>
+                                            </div>
                                         </div>
+                                        // <div>
+                                        //     {booking.owner}
+                                        //     <Link to={'/'}>
+                                        //         <div className="wrapper">
+                                        //             <div className="buttonType1 marginTopBtn" onClick={() => {
+                                        //                 this.props.confirm(booking);
+                                        //             }}>Confirm
+                                        //             </div>
+                                        //         </div>
+                                        //     </Link>
+                                        // </div>
                                     ))
                                 }
-
                             </div>
                         </div>
                     </div>
                 </section>
             );
-        }
-        else {
+        } else {
             return (
                 <section className="bookingWrapper">
                     <SidebarComponent/>
@@ -618,7 +653,7 @@ export class ViewSitter extends React.Component {
                         <div className="row">
                             <div className="col-6 offset-md-3" id="p">
                                 <div className="title">My Availability</div>
-                                <div>From    {'   ' + this.state.sitter.startDate + ' ' + this.state.sitter.startTime}</div>
+                                <div>From {'   ' + this.state.sitter.startDate + ' ' + this.state.sitter.startTime}</div>
                                 <div>To {'     ' + this.state.sitter.endDate + ' ' + this.state.sitter.endTime}</div>
                                 <div>Note {'   ' + this.state.sitter.availability}</div>
 
