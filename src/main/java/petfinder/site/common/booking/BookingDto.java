@@ -33,6 +33,9 @@ public class BookingDto implements Momento<String> {
     private Date createDate;
 
     public Double getLat() {
+        if (this.lat == null){
+            return 45.0;
+        }
         return lat;
     }
 
@@ -41,6 +44,9 @@ public class BookingDto implements Momento<String> {
     }
 
     public Double getLng() {
+        if (lng == null){
+            return 45.0;
+        }
         return lng;
     }
 

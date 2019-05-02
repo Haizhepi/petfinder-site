@@ -38,6 +38,7 @@ public class SitterAvailabilityDao {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
         searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+        searchSourceBuilder.size(100);
         return sitterAvailabilityRepository.search(searchSourceBuilder);
     }
 

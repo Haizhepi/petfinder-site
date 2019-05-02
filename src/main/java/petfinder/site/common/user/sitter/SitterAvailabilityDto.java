@@ -37,6 +37,9 @@ public class SitterAvailabilityDto implements Momento<String> {
     }
 
     public Double getLat() {
+        if (this.lat == null) {
+            return 45.0;
+        }
         return lat;
     }
 
@@ -45,6 +48,9 @@ public class SitterAvailabilityDto implements Momento<String> {
     }
 
     public Double getLng() {
+        if (this.lng == null) {
+            return 45.0;
+        }
         return lng;
     }
 

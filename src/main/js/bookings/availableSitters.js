@@ -54,6 +54,8 @@ class AvailableSitter extends React.Component {
                 <ListGroupItem>Sitter End Time: {sitterDate.availability.endTime}</ListGroupItem>
                 <ListGroupItem>Sitter Start Date: {sitterDate.availability.startDate}</ListGroupItem>
                 <ListGroupItem>Sitter End Date: {sitterDate.availability.endDate}</ListGroupItem>
+                <ListGroupItem>Distance: {sitterDate.distance}</ListGroupItem>
+
             </ListGroupItem>
             <Link to={'/bookingDetail'}>
             <Button onClick={() => {
