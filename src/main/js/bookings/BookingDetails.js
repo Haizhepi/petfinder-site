@@ -240,172 +240,356 @@ class OwnerDetails extends React.Component {
     }
 
     render() {
-        if (this.state.sitters.length === 0) {
-            return (
-                <div>
-                    <div id="p" className="col-6 offset-md-3">
-                        <Card style={{
-                            width: '500px',
-                            height: '300px',
-                            margin: '80px 0 80px 0',
-                            border: 'none'
-                        }}>
-                            <div className="cardBody2">
-                                <CardBody>
-                                    <CardTitle>
-                                        <div className="bookingDetailTitle">
-                                            {this.props.booking.owner}
-                                        </div>
-                                    </CardTitle>
-                                    <CardSubtitle className="bookingSub">
-                                        <div className="petTable petCardMarginBottomSm">
-                                            <div className="petCard">
-                                                <Card style={{
-                                                    width: '150px',
-                                                    height: '80px',
-                                                    margin: '5px 0 5px 0',
-                                                    border: 'none',
-                                                }}>
-                                                    <div className="cardBody">
-                                                        <CardBody>
-                                                            <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
-                                                            <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
-                                                            <CardText> {' '} </CardText>
-                                                        </CardBody>
-                                                    </div>
-                                                </Card>
+        if (this.props.booking.status === 'SIGNED' || this.props.booking.status === 'FINISHED') {
+            if (this.state.sitters.length === 0) {
+                return (
+                    <div>
+                        <div id="p" className="col-6 offset-md-3">
+                            <Card style={{
+                                width: '500px',
+                                height: '300px',
+                                margin: '80px 0 80px 0',
+                                border: 'none'
+                            }}>
+                                <div className="cardBody2">
+                                    <CardBody>
+                                        <CardTitle>
+                                            <div className="bookingDetailTitle">
+                                                {this.props.booking.owner}
                                             </div>
-                                        </div>
-                                    </CardSubtitle>
-                                    {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
-                                    <CardSubtitle
-                                        className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
-                                    <CardSubtitle
-                                        className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
-                                    <CardSubtitle
-                                        className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
-                                    <div>
-
-                                        <div onClick={() => this.props.cancel(this.props.booking).then(response => {
-                                            // alert('deleting');
-                                        })}>
-                                            <a href={'#/myBooking'} className="btnModal2">Cancel</a>
-                                        </div>
-
+                                        </CardTitle>
+                                        <CardSubtitle className="bookingSub">
+                                            <div className="petTable petCardMarginBottomSm">
+                                                <div className="petCard">
+                                                    <Card style={{
+                                                        width: '150px',
+                                                        height: '80px',
+                                                        margin: '5px 0 5px 0',
+                                                        border: 'none',
+                                                    }}>
+                                                        <div className="cardBody">
+                                                            <CardBody>
+                                                                <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
+                                                                <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
+                                                                <CardText> {' '} </CardText>
+                                                            </CardBody>
+                                                        </div>
+                                                    </Card>
+                                                </div>
+                                            </div>
+                                        </CardSubtitle>
+                                        {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                        <CardSubtitle
+                                            className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
                                         <div>
-                                            <a href={'#/availableSitters'} className="btnModal2">Sitters Available</a>
+
+                                            <div onClick={() => this.props.cancel(this.props.booking).then(response => {
+                                                // alert('deleting');
+                                            })}>
+                                                <a href={'#/myBooking'} className="btnModal2">Cancel</a>
+                                            </div>
+
+                                            <div>
+                                                <a href={'#/availableSitters'} className="btnModal2">Sitters
+                                                    Available</a>
+                                            </div>
+
+                                            <div onClick={() => this.props.finish(this.props.booking)}>
+                                                <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
+                                            </div>
                                         </div>
+                                    </CardBody>
 
-                                        <div onClick={() => this.props.finish(this.props.booking)}>
-                                            <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
-                                        </div>
-                                    </div>
-                                </CardBody>
+                                </div>
 
-                            </div>
+                            </Card>
 
-                        </Card>
-
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            } else {
+                return (
+                    <div>
+                        <div id="p" className="col-6 offset-md-3">
+                            <Card style={{
+                                width: '500px',
+                                height: '300px',
+                                margin: '80px 0 80px 0',
+                                border: 'none'
+                            }}>
+                                <div className="cardBody2">
+                                    <CardBody>
+                                        <CardTitle>
+                                            <div className="bookingDetailTitle">
+                                                {this.props.booking.owner}
+                                            </div>
+                                        </CardTitle>
+                                        <CardSubtitle className="bookingSub">
+                                            <div className="petTable petCardMarginBottomSm">
+                                                <div className="petCard">
+                                                    <Card style={{
+                                                        width: '150px',
+                                                        height: '80px',
+                                                        margin: '5px 0 5px 0',
+                                                        border: 'none',
+                                                    }}>
+                                                        <div className="cardBody">
+                                                            <CardBody>
+                                                                <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
+                                                                <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
+                                                                <CardText> {' '} </CardText>
+                                                            </CardBody>
+                                                        </div>
+                                                    </Card>
+                                                </div>
+                                            </div>
+                                        </CardSubtitle>
+                                        {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                        <CardSubtitle
+                                            className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
+                                        <div>
+
+                                            <div onClick={() => this.props.cancel(this.props.booking).then(response => {
+                                                // alert('deleting');
+                                            })}>
+                                                <a href={'#/myBooking'} className="btnModal2">Cancel</a>
+                                            </div>
+
+                                            <div onClick={() => this.props.finish(this.props.booking)}>
+                                                <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
+                                            </div>
+                                            <a className="btnModal2" onClick={this.toggle}>Sitter Detail</a>
+
+                                        </div>
+                                        {
+                                            this.state.sitters.map(sitter => (
+                                                <div key={sitter.principal}>
+                                                    <Modal isOpen={this.state.modal} toggle={this.toggle}
+                                                           className="modal-dialog-centered">
+                                                        <div className="mtitle">
+
+                                                            <ModalHeader toggle={this.toggle}>Sitter
+                                                                Information</ModalHeader>
+                                                        </div>
+                                                        <ModalBody className="mbody">
+                                                            <div
+                                                                className="sitterName">{sitter.firstName + ' ' + sitter.lastName}</div>
+                                                            <div>{sitter.principal}</div>
+                                                            <div className="space">
+
+                                                            </div>
+                                                            <div>Address: {this.state.sitter.locationName}</div>
+                                                            <div className="space">
+
+                                                            </div>
+                                                            <a href={'#/myBooking'} className="btnModal2"
+                                                               onClick={() => {
+                                                                   this.props.approve(sitter, this.props.booking);
+                                                               }}>Approve
+                                                            </a>
+
+                                                        </ModalBody>
+                                                    </Modal>
+
+                                                </div>
+                                            ))
+                                        }
+                                    </CardBody>
+
+                                </div>
+
+                            </Card>
+
+                        </div>
+                    </div>
+                );
+            }
         } else {
-            return (
-                <div>
-                    <div id="p" className="col-6 offset-md-3">
-                        <Card style={{
-                            width: '500px',
-                            height: '300px',
-                            margin: '80px 0 80px 0',
-                            border: 'none'
-                        }}>
-                            <div className="cardBody2">
-                                <CardBody>
-                                    <CardTitle>
-                                        <div className="bookingDetailTitle">
-                                            {this.props.booking.owner}
-                                        </div>
-                                    </CardTitle>
-                                    <CardSubtitle className="bookingSub">
-                                        <div className="petTable petCardMarginBottomSm">
-                                            <div className="petCard">
-                                                <Card style={{
-                                                    width: '150px',
-                                                    height: '80px',
-                                                    margin: '5px 0 5px 0',
-                                                    border: 'none',
-                                                }}>
-                                                    <div className="cardBody">
-                                                        <CardBody>
-                                                            <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
-                                                            <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
-                                                            <CardText> {' '} </CardText>
-                                                        </CardBody>
-                                                    </div>
-                                                </Card>
+            if (this.state.sitters.length === 0) {
+                return (
+                    <div>
+                        <div id="p" className="col-6 offset-md-3">
+                            <Card style={{
+                                width: '500px',
+                                height: '300px',
+                                margin: '80px 0 80px 0',
+                                border: 'none'
+                            }}>
+                                <div className="cardBody2">
+                                    <CardBody>
+                                        <CardTitle>
+                                            <div className="bookingDetailTitle">
+                                                {this.props.booking.owner}
+                                            </div>
+                                        </CardTitle>
+                                        <CardSubtitle className="bookingSub">
+                                            <div className="petTable petCardMarginBottomSm">
+                                                <div className="petCard">
+                                                    <Card style={{
+                                                        width: '150px',
+                                                        height: '80px',
+                                                        margin: '5px 0 5px 0',
+                                                        border: 'none',
+                                                    }}>
+                                                        <div className="cardBody">
+                                                            <CardBody>
+                                                                <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
+                                                                <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
+                                                                <CardText> {' '} </CardText>
+                                                            </CardBody>
+                                                        </div>
+                                                    </Card>
+                                                </div>
+                                            </div>
+                                        </CardSubtitle>
+                                        {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                        <CardSubtitle
+                                            className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
+                                        <div>
+
+                                            <div onClick={() => this.props.cancel(this.props.booking).then(response => {
+                                                // alert('deleting');
+                                            })}>
+                                                <a href={'#/myBooking'} className="btnModal2">Cancel</a>
+                                            </div>
+
+                                            <div>
+                                                <a href={'#/availableSitters'} className="btnModal2">Sitters
+                                                    Available</a>
+                                            </div>
+
+                                            <div onClick={() => this.props.signUp(this.props.booking)}>
+                                                <a href={'#/signedBooking'} className="btnModal2">Sign Up</a>
+                                            </div>
+
+                                            <div onClick={() => this.props.finish(this.props.booking)}>
+                                                <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
                                             </div>
                                         </div>
-                                    </CardSubtitle>
-                                    {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
-                                    <CardSubtitle
-                                        className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
-                                    <CardSubtitle
-                                        className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
-                                    <CardSubtitle
-                                        className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
-                                    <div>
+                                    </CardBody>
 
-                                        <div onClick={() => this.props.cancel(this.props.booking).then(response => {
-                                            // alert('deleting');
-                                        })}>
-                                            <a href={'#/myBooking'} className="btnModal2">Cancel</a>
-                                        </div>
+                                </div>
 
-                                        <div onClick={() => this.props.finish(this.props.booking)}>
-                                            <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
-                                        </div>
-                                        <a className="btnModal2" onClick={this.toggle}>Sitter Detail</a>
+                            </Card>
 
-                                    </div>
-                                    {
-                                        this.state.sitters.map(sitter => (
-                                            <div key={sitter.principal}>
-                                                <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
-                                                    <div className="mtitle">
-
-                                                        <ModalHeader toggle={this.toggle}>Sitter
-                                                            Information</ModalHeader>
-                                                    </div>
-                                                    <ModalBody className="mbody">
-                                                        <div className="sitterName">{sitter.firstName + ' ' + sitter.lastName}</div>
-                                                        <div>{sitter.principal}</div>
-                                                        <div className="space">
-
-                                                        </div>
-                                                        <div>Address: {this.state.sitter.locationName}</div>
-                                                        <div className="space">
-
-                                                        </div>
-                                                        <a href={'#/myBooking'} className="btnModal2" onClick={() => {
-                                                            this.props.approve(sitter, this.props.booking);
-                                                        }}>Approve
-                                                        </a>
-
-                                                    </ModalBody>
-                                                </Modal>
-
-                                            </div>
-                                        ))
-                                    }
-                                </CardBody>
-
-                            </div>
-
-                        </Card>
-
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            } else {
+                return (
+                    <div>
+                        <div id="p" className="col-6 offset-md-3">
+                            <Card style={{
+                                width: '500px',
+                                height: '300px',
+                                margin: '80px 0 80px 0',
+                                border: 'none'
+                            }}>
+                                <div className="cardBody2">
+                                    <CardBody>
+                                        <CardTitle>
+                                            <div className="bookingDetailTitle">
+                                                {this.props.booking.owner}
+                                            </div>
+                                        </CardTitle>
+                                        <CardSubtitle className="bookingSub">
+                                            <div className="petTable petCardMarginBottomSm">
+                                                <div className="petCard">
+                                                    <Card style={{
+                                                        width: '150px',
+                                                        height: '80px',
+                                                        margin: '5px 0 5px 0',
+                                                        border: 'none',
+                                                    }}>
+                                                        <div className="cardBody">
+                                                            <CardBody>
+                                                                <CardTitle>{' ' + this.state.pet.name + ' '}</CardTitle>
+                                                                <CardSubtitle>{' ' + this.state.pet.type + ' '}</CardSubtitle>
+                                                                <CardText> {' '} </CardText>
+                                                            </CardBody>
+                                                        </div>
+                                                    </Card>
+                                                </div>
+                                            </div>
+                                        </CardSubtitle>
+                                        {/*<CardSubtitle className="bookingSub">Status: {this.props.booking.status}</CardSubtitle>*/}
+                                        <CardSubtitle
+                                            className="bookingSub">Description: {this.props.booking.description}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
+                                        <CardSubtitle
+                                            className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
+                                        <div>
+
+                                            <div onClick={() => this.props.cancel(this.props.booking).then(response => {
+                                                // alert('deleting');
+                                            })}>
+                                                <a href={'#/myBooking'} className="btnModal2">Cancel</a>
+                                            </div>
+
+                                            <div onClick={() => this.props.finish(this.props.booking)}>
+                                                <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
+                                            </div>
+                                            <a className="btnModal2" onClick={this.toggle}>Sitter Detail</a>
+                                            <div onClick={() => this.props.signUp(this.props.booking)}>
+                                                <a href={'#/signedBooking'} className="btnModal2">Sign Up</a>
+                                            </div>
+                                        </div>
+                                        {
+                                            this.state.sitters.map(sitter => (
+                                                <div key={sitter.principal}>
+                                                    <Modal isOpen={this.state.modal} toggle={this.toggle}
+                                                           className="modal-dialog-centered">
+                                                        <div className="mtitle">
+
+                                                            <ModalHeader toggle={this.toggle}>Sitter
+                                                                Information</ModalHeader>
+                                                        </div>
+                                                        <ModalBody className="mbody">
+                                                            <div
+                                                                className="sitterName">{sitter.firstName + ' ' + sitter.lastName}</div>
+                                                            <div>{sitter.principal}</div>
+                                                            <div className="space">
+
+                                                            </div>
+                                                            <div>Address: {this.state.sitter.locationName}</div>
+                                                            <div className="space">
+
+                                                            </div>
+                                                            <a href={'#/myBooking'} className="btnModal2"
+                                                               onClick={() => {
+                                                                   this.props.approve(sitter, this.props.booking);
+                                                               }}>Approve
+                                                            </a>
+
+                                                        </ModalBody>
+                                                    </Modal>
+
+                                                </div>
+                                            ))
+                                        }
+                                    </CardBody>
+
+                                </div>
+
+                            </Card>
+
+                        </div>
+                    </div>
+                );
+            }
         }
     }
 }
