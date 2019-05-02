@@ -283,6 +283,7 @@ public class BookingService {
         sitterNoti.setInfo("Hi, your have signed up to the booking");
         notificationDao.save(ownerNoti);
         notificationDao.save(sitterNoti);
+        sitterAvailabilityDao.save(avail);
         bookingDao.save(temp);
         return temp;
     }

@@ -136,6 +136,7 @@ public class UserDto implements Momento<String> {
 		}catch (ParseException e) {
 			System.out.println("some issue");
 		}
+		this.score = 2;
 	}
 
 	public UserDto(String principal, List<String> roles, String firstName,
@@ -152,6 +153,12 @@ public class UserDto implements Momento<String> {
 		this.score = 2;
 		this.securityAnswer = securityAnswer;
 		this.securtyQuestion = securtyQuestion;
+		String firstDay = "01/01/1970";
+		try {
+			this.lastCheckDate = new SimpleDateFormat("dd/MM/yyyy").parse(firstDay);
+		}catch (ParseException e) {
+			System.out.println("some issue");
+		}
 	}
 
 	public UserDto(String principal) {

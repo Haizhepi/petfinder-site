@@ -422,10 +422,10 @@ class OwnerDetails extends React.Component {
                                                             <div className="space">
 
                                                             </div>
-                                                            <a href={'#/myBooking'} className="btnModal2"
+                                                            <a href={'#/ownerBookingDetail'} className="btnModal2"
                                                                onClick={() => {
-                                                                   this.props.approve(sitter, this.props.booking);
-                                                               }}>Approve
+
+                                                               }}>OK
                                                             </a>
 
                                                         </ModalBody>
