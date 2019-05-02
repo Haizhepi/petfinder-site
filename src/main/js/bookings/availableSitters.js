@@ -58,7 +58,7 @@ class AvailableSitter extends React.Component {
                                 <div className="cardBody">
                                     <CardBody>
                                         <CardTitle>{sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}</CardTitle>
-                                        <CardSubtitle>{sitterDate.distance + ' miles away from you'}</CardSubtitle>
+                                        <CardSubtitle>{sitterDate.distance.toFixed(1) + ' miles away from you'}</CardSubtitle>
                                         <CardText> {sitterDate.sitter.firstName + ' is available between'} </CardText>
                                         <CardText> {sitterDate.availability.startDate + ' ' + sitterDate.availability.startTime + ' to ' + sitterDate.availability.endDate + ' ' + sitterDate.availability.endTime} </CardText>
 
