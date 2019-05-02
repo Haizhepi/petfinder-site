@@ -5,6 +5,7 @@ import * as Bessemer from 'js/alloy/bessemer/components';
 
 import * as Users from 'js/users';
 import {Redirect} from 'react-router-dom';
+import {toast, ToastContainer} from 'react-toastify';
 
 class PetForm extends React.Component {
 
@@ -26,7 +27,10 @@ class PetForm extends React.Component {
         let {handleSubmit, submitting} = this.props;
         if (this.state.hasSubmitSucceeded) {
             //alert('success');
-            return <Redirect to={'/page-3'}/>;
+            // return <Redirect to={'/page-3'}/>;
+        }
+        function handleClick() {
+            toast(<div>Successfully added new pet</div>);
         }
 
         return (
@@ -48,7 +52,12 @@ class PetForm extends React.Component {
 
                         <Bessemer.Field name="preference" friendlyName="Preference"
                                         field={<input className="form-control" type="name"/>}/>
-                        <div className="wrapper">
+
+                        <a href={'#/page-3'}>
+                            <ToastContainer className="Toaster" position="top-center"/>
+                        </a>
+
+                        <div onClick={handleClick} className="wrapper">
                             <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
                         </div>
                     </form>

@@ -26,6 +26,7 @@ import PlacesAutocomplete, {
     getLatLng,
 } from 'react-places-autocomplete';
 import Geocode from 'react-geocode';
+import {toast, ToastContainer} from 'react-toastify';
 
 Geocode.setApiKey('AIzaSyCtDc6Y9UHdQHwR--vCIFQ56sLOmlBp2dM');
 Geocode.enableDebug();
@@ -156,9 +157,9 @@ export class BookingFormConfirm extends React.Component {
                 this.setState({address: results[0].formatted_address});
                 Geocode.fromAddress(results[0].formatted_address).then(
                     response => {
-                        const { lat, lng } = response.results[0].geometry.location;
+                        const {lat, lng} = response.results[0].geometry.location;
                         console.log(lat, lng);
-                        this.setState({lati: lat,lngi: lng});
+                        this.setState({lati: lat, lngi: lng});
                     },
                     error => {
                         console.error(error);
@@ -213,13 +214,18 @@ export class BookingFormConfirm extends React.Component {
         });
     };
 
+
     render() {
         let {handleSubmit, submitting} = this.props;
 
         if (submitting) {
-            this.forceUpdate();
-            return <Redirect to={'/'}/>;
+            // this.forceUpdate();
         }
+
+        function handleClick() {
+            toast(<div>Successfully added new booking</div>);
+        }
+
         return (
             <section className="webWrapper">
                 <SidebarComponent/>
@@ -307,10 +313,10 @@ export class BookingFormConfirm extends React.Component {
                                             {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
                                                 <div>
                                                     <input className="inputSearch"
-                                                        {...getInputProps({
-                                                            placeholder: 'Enter Your Pickup Address Here',
-                                                            className: 'location-search-input form-control',
-                                                        })}
+                                                           {...getInputProps({
+                                                               placeholder: 'Enter Your Pickup Address Here',
+                                                               className: 'location-search-input form-control',
+                                                           })}
                                                     />
                                                     <div className="autocomplete-dropdown-container adc">
                                                         {loading && <div>Loading...</div>}
@@ -341,7 +347,14 @@ export class BookingFormConfirm extends React.Component {
                                         </PlacesAutocomplete>
                                     </div>
                                 )}
-                                <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+                                <a href={'#/myBooking'}>
+                                    <ToastContainer className="Toaster" position="top-center"/>
+                                </a>
+
+                                <div onClick={handleClick}>
+                                    <Bessemer.Button className="buttonType1"
+                                                     loading={submitting}>Confirm</Bessemer.Button>
+                                </div>
                             </form>
 
                         </div>
@@ -370,9 +383,7 @@ BookingFormConfirm = connect(
 class AvailableBooking extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     //set state as array of user's pets
