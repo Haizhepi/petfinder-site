@@ -14,7 +14,7 @@ import petfinder.site.common.pet.PetDto;
 public class UpdateRequest {
     private String principal;
     private List<String> roles;
-    private UserType type;
+    private UserDto.UserType type;
     private Map<String, Object> attributes;
     private String myNewField;
     private String firstName;
@@ -26,7 +26,7 @@ public class UpdateRequest {
 
     }
 
-    public UpdateRequest(String principal, List<String> roles, String firstName, String lastName, String gender, String zipcode, UserType type, Map<String, Object> attributes) {
+    public UpdateRequest(String principal, List<String> roles, String firstName, String lastName, String gender, String zipcode, UserDto.UserType type, Map<String, Object> attributes) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -53,11 +53,11 @@ public class UpdateRequest {
         this.roles = roles;
     }
 
-    public UserType getType() {
+    public UserDto.UserType getType() {
         return type;
     }
 
-    public void setType(UserType type) {
+    public void setType(UserDto.UserType type) {
         this.type = type;
     }
 
@@ -109,7 +109,5 @@ public class UpdateRequest {
         this.zipcode = zipcode;
     }
 
-    public enum UserType {
-        OWNER, SITTER, BOTH
-    }
+
 }
