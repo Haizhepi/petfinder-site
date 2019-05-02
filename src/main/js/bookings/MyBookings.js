@@ -32,7 +32,7 @@ class MyBookings extends React.Component {
                             <Card style={{
                                 width: '500px',
                                 height: '300px',
-                                margin: '80px 0 80px 0',
+                                margin: '30px 0 50px 0',
                                 border: 'none'
                             }}>
                                 <div className="cardBody2">

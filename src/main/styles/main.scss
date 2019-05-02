@@ -727,9 +727,9 @@ body {
 }
 
 .invCard {
-  margin-bottom: 150px;
+  margin-bottom: 120px;
   border-radius: 2px;
-  max-width: 500px;
+  max-width: 1000px;
   max-height: 500px;
   display: inline-block;
   position: center;
@@ -739,12 +739,6 @@ body {
   -o-transition: 0.3s ease !important;
   -webkit-transition: 0.3s ease !important;
   transition: all 0.3s ease !important;
-}
-
-
-.invCard:hover {
-  background: whitesmoke;
-  color: black;
 }
 
 .cardBody {
