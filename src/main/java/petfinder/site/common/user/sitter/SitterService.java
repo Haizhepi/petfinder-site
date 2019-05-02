@@ -11,9 +11,7 @@ import petfinder.site.common.user.UserDao;
 import petfinder.site.common.user.UserDto;
 import sun.security.pkcs.ParsingException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SitterService {
@@ -34,6 +32,43 @@ public class SitterService {
             res.add(new SitterInfo(userDto, a));
         }
         return res;
+    }
+
+    public List<SitterAndDate> sortByDistance(List<SitterAndDate> list) {
+        Collections.sort(list, new Comparator<SitterAndDate>() {
+            @Override
+            public int compare(SitterAndDate o1, SitterAndDate o2) {
+                if (o1.getDistance() < o2.getDistance()) {
+                    return 1;
+                }
+                else if (o2.getDistance() < o1.getDistance()) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        });
+        return list;
+    }
+
+    public List<SitterAndDate> sortByRating(List<SitterAndDate> list) {
+        Collections.sort(list, new Comparator<SitterAndDate>() {
+            @Override
+            public int compare(SitterAndDate o1, SitterAndDate o2) {
+
+                if (o1.getSitter().getScore() < o2.getSitter().getScore()) {
+                    return 1;
+                }
+                else if (o2.getDistance() < o1.getDistance()) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        });
+        return list;
     }
 
     public List<SitterAndDate> getSitters(String bookingId) {
