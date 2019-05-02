@@ -142,8 +142,12 @@ export class SelectionPage extends React.Component {
                                 <div className="col-6 offset-md-3" id="p">
                                     <a href={'#/notification'} onClick={this.toggle}
                                        className="btnModal">Notifications</a>
-                                    <a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">View
-                                        Bookings</a>
+                                    <a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">Active
+                                        Bookings
+                                    </a>
+                                    <a href={'#/signedBooking'} onClick={this.toggle} className="btnModal">Signed
+                                        Bookings
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +187,10 @@ export class SelectionPage extends React.Component {
                                         Bookings</a>
                                     <a href={'#/notification'} onClick={this.toggle}
                                        className="btnModal">Notifications</a>
-                                    <a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">View
+                                    <a href={'#/availableBooking'} onClick={this.toggle} className="btnModal">Active
+                                        Bookings
+                                    </a>
+                                    <a href={'#/signedBooking'} onClick={this.toggle} className="btnModal">Signed
                                         Bookings
                                     </a>
                                 </div>
