@@ -619,20 +619,17 @@ export class ViewSitter extends React.Component {
                                         <div>To {' ' + this.state.sitter.endDate + ' ' + this.state.sitter.endTime}</div>
                                         <div>Note {this.state.sitter.availability}</div>
                                     </div>
-                                    <div className="title">Invitations</div>
-
                                     {
                                         this.state.invitation.map(booking => (
                                             <div className="petTable petCardMarginBottom">
                                                 <div className="invCard">
                                                     <Card style={{
-                                                        minWidth: '200px',
-                                                        width: '300px',
+                                                        minWidth: '300px',
                                                         height: '100px',
-                                                        margin: '5px 0 5px 0',
-                                                        border: 'none'
+                                                        margin: '10px 10px 10px 10px',
+                                                        border: 'none',
                                                     }}>
-                                                        <div className="cardBody">
+                                                        <div className="cardBody2">
                                                             <CardBody>
                                                                 <CardTitle>{booking.owner}</CardTitle>
                                                                 <CardSubtitle>Has Invited You</CardSubtitle>
@@ -640,7 +637,7 @@ export class ViewSitter extends React.Component {
                                                                 <div onClick={() => {
                                                                     this.props.confirm(booking);
                                                                 }}>
-                                                                    <CardLink className="clm"
+                                                                    <CardLink className="btnModal2"
                                                                               href={'#/'}>ACCEPT
                                                                     </CardLink>
                                                                 </div>
@@ -663,17 +660,21 @@ export class ViewSitter extends React.Component {
                 <section className="bookingWrapper">
                     <SidebarComponent/>
                     <NavBar/>
-                    <div className="container padded middleWrapperNotAlign">
+                    <div className="container padded">
                         <div className="row">
                             <div className="col-6 offset-md-3" id="p">
-                                <div className="title">My Availability</div>
-                                <div>From {'   ' + this.state.sitter.startDate + ' ' + this.state.sitter.startTime}</div>
-                                <div>To {'     ' + this.state.sitter.endDate + ' ' + this.state.sitter.endTime}</div>
-                                <div>Note {'   ' + this.state.sitter.availability}</div>
+                                <div className="topMarg1 invP">
+                                    <div className="invA">
+                                        <div className="title">My Availability</div>
+                                        <div>From {this.state.sitter.startDate + ' ' + this.state.sitter.startTime}</div>
+                                        <div>To {' ' + this.state.sitter.endDate + ' ' + this.state.sitter.endTime}</div>
+                                        <div>Note {this.state.sitter.availability}</div>
+                                        <div className="title">You Do Not Have Any Invitation</div>
 
-                                <div className="title">You don't have any invitation</div>
-
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </section>

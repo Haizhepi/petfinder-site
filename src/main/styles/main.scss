@@ -762,6 +762,7 @@ body {
 }
 
 .cardBody2 {
+  border: 1px transparent solid;
   color: black;
   background-color: whitesmoke;
   border-radius: 2px;
@@ -773,7 +774,8 @@ body {
 }
 
 .cardBody2:hover {
-  background-color: #d7d7d7;
+  border: 1px black solid;
+  background-color: #dedede;
 }
 
 .petTable {
@@ -1103,19 +1105,19 @@ body {
 }
 
 .invP{
-  background-color: whitesmoke;
+  background-color: #dedede;
   color: black;
   padding: 20px 20px 20px 20px;
   border-radius: 3px;
+  margin-bottom: 100px;
 
 }
 
 .invA {
-  background-color: #cccccc;
+  background-color: transparent;
   color: black;
   margin: 10px 10px 10px 10px;
   padding: 10px 10px 10px 10px;
   border-radius: 5px;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.25), 0 8px 8px 0 rgba(0, 0, 0, 0.25);
   text-align: center;
 }
