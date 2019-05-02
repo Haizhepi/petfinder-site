@@ -443,14 +443,11 @@ export class SitterBooking extends React.Component {
     render() {
 
         return (
-            <section className="webWrapper">
+            <section className="bookingWrapper">
                 <SidebarComponent/>
                 <NavBar/>
                 <div className="container padded">
-                    <div className="row">
-
                         <SignedBooking/>
-                    </div>
                 </div>
             </section>
         );

@@ -194,6 +194,9 @@ export class NavBar extends React.Component {
                                         <NavItem>
                                             <NavLink href="#/notification" className="">Notification</NavLink>
                                         </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#/signedBooking" className="">Signed Booking</NavLink>
+                                        </NavItem>
                                         <DropdownItem divider/>
                                         <DropdownItem>
                                             Reset
