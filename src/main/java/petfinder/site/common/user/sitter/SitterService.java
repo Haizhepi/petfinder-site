@@ -144,7 +144,11 @@ public class SitterService {
     }
 
     public List<BookingDto> getInvitations(String userId) {
-        SitterAvailabilityDto temp = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(userId)).get();
+        Optional<SitterAvailabilityDto> temp1 = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(userId));
+        if (!temp1.isPresent()) {
+            return null;
+        }
+        SitterAvailabilityDto temp = temp1.get();
         List<BookingDto> res = new ArrayList<>();
         if (temp.getInvitations() != null) {
             for (String id : temp.getInvitations()) {

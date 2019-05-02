@@ -553,7 +553,6 @@ export class ViewSitter extends React.Component {
             sitter: [{
                 availability: 'no name'
             }],
-            invitation: ['no name']
         };
     }
 
@@ -571,41 +570,65 @@ export class ViewSitter extends React.Component {
     }
 
     render() {
+        if (this.state.invitation) {
+            return (
+                <section className="webWrapper">
+                    <SidebarComponent/>
+                    <NavBar/>
+                    <div className="container padded middleWrapperNotAlign">
+                        <div className="row">
+                            <div className="col-6 offset-md-3" id="p">
+                                <div className="title">My Availability</div>
+                                <div>{this.state.sitter.startDate}</div>
+                                <div>{this.state.sitter.endDate}</div>
+                                <div>{this.state.sitter.startTime}</div>
+                                <div>{this.state.sitter.endTime}</div>
+                                <div>{this.state.sitter.availability}</div>
+                                <div>Invitations</div>
 
-        return (
-            <section className="webWrapper">
-                <SidebarComponent/>
-                <NavBar/>
-                <div className="container padded middleWrapperNotAlign">
-                    <div className="row">
-                        <div className="col-6 offset-md-3" id="p">
-                            <div className="title">My Availability</div>
-                            <div>{this.state.sitter.startDate}</div>
-                            <div>{this.state.sitter.endDate}</div>
-                            <div>{this.state.sitter.startTime}</div>
-                            <div>{this.state.sitter.endTime}</div>
-                            <div>{this.state.sitter.availability}</div>
-                            <div>Invitations</div>
-                            {this.state.invitation.map(booking => (
-                                <div>
-                                    {booking.owner}
+                                {
+                                    this.state.invitation.map(booking => (
+                                        <div>
+                                            {booking.owner}
 
-                                    <Link to={'/'}>
-                                        <div className="wrapper">
-                                            <div className="buttonType1 marginTopBtn" onClick={() => {
-                                                this.props.confirm(booking);
-                                            }}>Confirm
-                                            </div>
+                                            <Link to={'/'}>
+                                                <div className="wrapper">
+                                                    <div className="buttonType1 marginTopBtn" onClick={() => {
+                                                        this.props.confirm(booking);
+                                                    }}>Confirm
+                                                    </div>
+                                                </div>
+                                            </Link>
                                         </div>
-                                    </Link>
-                                </div>
-                            ))}
+                                    ))
+                                }
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        );
+                </section>
+            );
+        }
+        else {
+            return (
+                <section className="webWrapper">
+                    <SidebarComponent/>
+                    <NavBar/>
+                    <div className="container padded middleWrapperNotAlign">
+                        <div className="row">
+                            <div className="col-6 offset-md-3" id="p">
+                                <div className="title">My Availability</div>
+                                <div>{this.state.sitter.startDate}</div>
+                                <div>{this.state.sitter.endDate}</div>
+                                <div>{this.state.sitter.startTime}</div>
+                                <div>{this.state.sitter.endTime}</div>
+                                <div>{this.state.sitter.availability}</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
     }
 }
 
