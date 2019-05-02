@@ -1160,12 +1160,12 @@ body {
 }
 
 .sortPane {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .sortLink {
   border-radius: 2px;
-  padding: 5px 5px 5px 5px;
+  padding: 5px 15px 5px 15px;
   margin-left: 10px;
   margin-right: 10px;
   background-color: transparent;
@@ -1177,7 +1177,8 @@ body {
 }
 
 .sortLink:hover {
-
+  background-color: whitesmoke;
+  color: black;
 }
 
 .stars {

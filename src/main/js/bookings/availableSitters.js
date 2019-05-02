@@ -91,7 +91,7 @@ class AvailableSitter extends React.Component {
                                         </div>
                                         }
 
-                                        {sitterDate.sitter.firstName !== 'Ricardo' &&
+                                        {sitterDate.sitter.firstName !== 'Ricardo'  &&
                                         <div className="invAvar">
                                             <Avatar
                                                 name={sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}
@@ -225,7 +225,7 @@ class AvailableSitter1 extends React.Component {
                                         </div>
                                         }
 
-                                        {sitterDate.sitter.firstName !== 'Ricardo' &&
+                                        {sitterDate.sitter.firstName !== 'Ricardo'  &&
                                         <div className="invAvar">
                                             <Avatar
                                                 name={sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}
@@ -233,6 +233,7 @@ class AvailableSitter1 extends React.Component {
                                             />
                                         </div>
                                         }
+
 
                                         <CardTitle>{sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}</CardTitle>
 
@@ -348,7 +349,7 @@ class AvailableSitter2 extends React.Component {
                                         </div>
                                         }
 
-                                        {sitterDate.sitter.firstName !== 'Ricardo' &&
+                                        {sitterDate.sitter.firstName !== 'Ricardo'  &&
                                         <div className="invAvar">
                                             <Avatar
                                                 name={sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}
@@ -356,7 +357,6 @@ class AvailableSitter2 extends React.Component {
                                             />
                                         </div>
                                         }
-
                                         <CardTitle>{sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}</CardTitle>
 
                                         <div className="cb">
