@@ -13,6 +13,7 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng,
 } from 'react-places-autocomplete';
+import {toast, ToastContainer} from 'react-toastify';
 
 class AvailabilityForm extends React.Component {
 
@@ -139,10 +140,15 @@ class AvailabilityForm extends React.Component {
 
         if (submitting) {
             if (this.props.authentication != null) {
-                this.forceUpdate();
-                return <Redirect to={'/'}/>;
+                // this.forceUpdate();
+                // return <Redirect to={'/'}/>;
             }
         }
+
+        function handleClick() {
+            toast(<div>Successfully updated schedule</div>);
+        }
+
 
         return (
             <div className="row">
@@ -238,7 +244,13 @@ class AvailabilityForm extends React.Component {
                                 </PlacesAutocomplete>
                             </div>
                         )}
-                        <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+                        <a href={'#/page-3'}>
+                            <ToastContainer className="Toaster" position="top-center"/>
+                        </a>
+
+                        <div onClick={handleClick} className="wrapper">
+                            <Bessemer.Button className="buttonType1" loading={submitting}>Confirm</Bessemer.Button>
+                        </div>
                     </form>
                 </div>
             </div>
