@@ -283,6 +283,7 @@ public class BookingService {
         sitterNoti.setInfo("Hi, your have signed up to the booking");
         notificationDao.save(ownerNoti);
         notificationDao.save(sitterNoti);
+        sitterAvailabilityDao.save(avail);
         bookingDao.save(temp);
         return temp;
     }
@@ -401,16 +402,42 @@ public class BookingService {
                 } catch (ParseException e) {
 
                 }
-                if (withInOneDay(today, bookingStartDate)) {
-                    NotificationDto ownerNoti = new NotificationDto();
-                    ownerNoti.setUserPrinciple(booking.getOwner());
-                    ownerNoti.setInfo("your booking starting from" + booking.getStartDate() + " with: " + booking.getSitter() + "will start soon. ");
-                    NotificationDto sitterNoti = new NotificationDto();
-                    sitterNoti.setUserPrinciple(booking.getSitter());
-                    sitterNoti.setInfo("your booking with" + booking.getOwner() + " will start soon");
-                    notificationDao.save(ownerNoti);
-                    notificationDao.save(sitterNoti);
-                    userDao.save(temp.get());
+                if (booking.getStatus().equals(BookingDto.BookingStatus.SIGNED)) {
+                    if (today.compareTo(bookingStartDate) > 0) {
+                        booking.setStatus(BookingDto.BookingStatus.STARTED);
+                        NotificationDto ownerNoti = new NotificationDto();
+                        ownerNoti.setUserPrinciple(booking.getOwner());
+                        ownerNoti.setInfo("your booking with: " + booking.getSitter() + "is started.");
+                        NotificationDto sitterNoti = new NotificationDto();
+                        sitterNoti.setUserPrinciple(booking.getSitter());
+                        sitterNoti.setInfo("your booking with" + booking.getOwner() + " is started, please be on time");
+                    }
+                    else if (withInOneDay(today, bookingStartDate)) {
+                        NotificationDto ownerNoti = new NotificationDto();
+                        ownerNoti.setUserPrinciple(booking.getOwner());
+                        ownerNoti.setInfo("your booking starting from" + booking.getStartDate() + " with: " + booking.getSitter() + "will start soon. ");
+                        NotificationDto sitterNoti = new NotificationDto();
+                        sitterNoti.setUserPrinciple(booking.getSitter());
+                        sitterNoti.setInfo("your booking with" + booking.getOwner() + " will start soon");
+                        notificationDao.save(ownerNoti);
+                        notificationDao.save(sitterNoti);
+                        userDao.save(temp.get());
+                    }
+                }
+                else if (booking.getStatus().equals(BookingDto.BookingStatus.UNSIGNED)) {
+                    if (today.compareTo(bookingStartDate) > 0) {
+                        booking.setStatus(BookingDto.BookingStatus.FINISHED);
+                        NotificationDto ownerNoti = new NotificationDto();
+                        ownerNoti.setUserPrinciple(booking.getOwner());
+                        ownerNoti.setInfo("you havent find any sitter for your booking, your booking is finished");
+                    }
+                    else if (withInOneDay(today, bookingStartDate)) {
+                        NotificationDto ownerNoti = new NotificationDto();
+                        ownerNoti.setUserPrinciple(booking.getOwner());
+                        ownerNoti.setInfo("your booking starting from" + booking.getStartDate() +" will start soon. ");
+                        notificationDao.save(ownerNoti);
+                        userDao.save(temp.get());
+                    }
                 }
             }
         }
