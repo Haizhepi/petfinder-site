@@ -596,13 +596,13 @@ export class ViewSitter extends React.Component {
                     <div className="container padded">
                         <div className="row">
                             <div className="col-6 offset-md-3" id="p">
-                                <div className="topMarg1">
-                                    <div className="title">My Availability</div>
-                                    <div>{this.state.sitter.startDate}</div>
-                                    <div>{this.state.sitter.endDate}</div>
-                                    <div>{this.state.sitter.startTime}</div>
-                                    <div>{this.state.sitter.endTime}</div>
-                                    <div>{this.state.sitter.availability}</div>
+                                <div className="topMarg1 invP">
+                                    <div className="invA">
+                                        <div className="title">My Availability</div>
+                                        <div>From {this.state.sitter.startDate + ' ' + this.state.sitter.startTime}</div>
+                                        <div>To {' ' + this.state.sitter.endDate + ' ' + this.state.sitter.endTime}</div>
+                                        <div>Note {this.state.sitter.availability}</div>
+                                    </div>
                                     <div className="title">Invitations</div>
 
                                     {

@@ -41,8 +41,6 @@ class MyBookings extends React.Component {
                                             <div className="bookingDetailTitle">
                                                 <div> {booking.time}</div>
 
-                                                <div> {booking.owner} </div>
-
                                             </div>
                                         </CardTitle>
                                         <CardSubtitle className="bookingSub">Status: {booking.status}</CardSubtitle>
