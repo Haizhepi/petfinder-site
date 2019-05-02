@@ -328,6 +328,14 @@ class BookingDetail extends React.Component {
                 <OwnerDetails/>
             );
         }
+        else{
+            console.log('go to both');
+
+            return (
+                <SitterDetails/>
+            );
+        }
+
     }
 }
 

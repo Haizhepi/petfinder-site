@@ -97,8 +97,11 @@ public class SitterService {
 
         distance = Math.pow(distance, 2);
 
+
         return Math.sqrt(distance);
     }
+
+
 
     public List<BookingDto> sitterBookings(String principal) {
         return bookingService.sitterBookings(principal);
