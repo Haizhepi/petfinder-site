@@ -332,7 +332,7 @@ class BookingDetail extends React.Component {
             console.log('go to both');
 
             return (
-                <SitterDetails/>
+                <OwnerDetails/>
             );
         }
 
