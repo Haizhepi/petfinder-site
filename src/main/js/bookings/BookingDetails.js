@@ -90,7 +90,7 @@ class SitterDetails extends React.Component {
                                 <div>
 
                                     <div onClick={() => this.props.signUp(this.props.booking)}>
-                                        <a href={'#/myBooking'} className="btnModal2">Sign Up</a>
+                                        <a href={'#/signedBooking'} className="btnModal2">Sign Up</a>
                                     </div>
                                 </div>
                             </CardBody>
@@ -144,7 +144,7 @@ class SitterDetails extends React.Component {
                                 <div>
 
                                     <div onClick={() => this.props.sitterCancel(this.props.booking)}>
-                                        <a href={'#/myBooking'} className="btnModal2">Cancel</a>
+                                        <a href={'#/signedBooking'} className="btnModal2">Cancel</a>
                                     </div>
                                 </div>
                             </CardBody>
