@@ -17,7 +17,7 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 
 export function getSitterAvailablity(sitterId) {
-    let res = encodeURI('/api/sitters/'+sitterId);
+    let res = encodeURI('/api/sitters/' + sitterId);
     return axios.get(res);
 }
 
@@ -240,7 +240,7 @@ class OwnerDetails extends React.Component {
     }
 
     render() {
-        if (!this.state.sitters) {
+        if (this.state.sitters.length === 0) {
             return (
                 <div>
                     <div id="p" className="col-6 offset-md-3">
@@ -300,37 +300,6 @@ class OwnerDetails extends React.Component {
                                             <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
                                         </div>
                                     </div>
-                                    {/*{*/}
-                                        {/*this.state.sitters.map(sitter => (*/}
-                                            {/*<div key={sitter.principal}>*/}
-                                                {/*<h2>{sitter.principal}</h2>*/}
-                                                {/*<a className="btnModal2" onClick={this.toggle}>Sitter Detail</a>*/}
-
-                                                {/*<Modal isOpen={this.state.modal} toggle={this.toggle}*/}
-                                                       {/*className={this.props.className}>*/}
-                                                    {/*<ModalHeader toggle={this.toggle}>Sitter Information</ModalHeader>*/}
-                                                    {/*<ModalBody>*/}
-                                                        {/*<ListGroup>*/}
-                                                            {/*<ListGroupItem>{sitter.principal}</ListGroupItem>*/}
-                                                            {/*<ListGroupItem>{sitter.firstName + ' ' + sitter.lastName}</ListGroupItem>*/}
-                                                            {/*<ListGroupItem>{this.state.sitter.locationName}</ListGroupItem>*/}
-
-                                                        {/*</ListGroup>*/}
-                                                    {/*</ModalBody>*/}
-                                                    {/*<ModalFooter>*/}
-                                                        {/*<Button color="primary" onClick={this.toggle}>Do*/}
-                                                            {/*Something</Button>{' '}*/}
-                                                        {/*<Button color="secondary"*/}
-                                                                {/*onClick={this.toggle}>Cancel</Button>*/}
-                                                    {/*</ModalFooter>*/}
-                                                {/*</Modal>*/}
-                                                {/*<Button onClick={() => {*/}
-                                                    {/*alert('approve sitter');*/}
-                                                    {/*this.props.approve(sitter, this.props.booking);*/}
-                                                {/*}}>Approve</Button>*/}
-                                            {/*</div>*/}
-                                        {/*))*/}
-                                    {/*}*/}
                                 </CardBody>
 
                             </div>
@@ -395,35 +364,36 @@ class OwnerDetails extends React.Component {
                                         <div onClick={() => this.props.finish(this.props.booking)}>
                                             <a href={'#/addRating'} className="btnModal2">Finish Booking</a>
                                         </div>
+                                        <a className="btnModal2" onClick={this.toggle}>Sitter Detail</a>
+
                                     </div>
                                     {
                                         this.state.sitters.map(sitter => (
                                             <div key={sitter.principal}>
-                                                <h2>{sitter.principal}</h2>
-                                                <a className="btnModal2" onClick={this.toggle}>Sitter Detail</a>
+                                                <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-dialog-centered">
+                                                    <div className="mtitle">
 
-                                                <Modal isOpen={this.state.modal} toggle={this.toggle}
-                                                       className={this.props.className}>
-                                                    <ModalHeader toggle={this.toggle}>Sitter Information</ModalHeader>
-                                                    <ModalBody>
-                                                        <ListGroup>
-                                                            <ListGroupItem>{sitter.principal}</ListGroupItem>
-                                                            <ListGroupItem>{sitter.firstName + ' ' + sitter.lastName}</ListGroupItem>
-                                                            <ListGroupItem>{this.state.sitter.locationName}</ListGroupItem>
+                                                        <ModalHeader toggle={this.toggle}>Sitter
+                                                            Information</ModalHeader>
+                                                    </div>
+                                                    <ModalBody className="mbody">
+                                                        <div className="sitterName">{sitter.firstName + ' ' + sitter.lastName}</div>
+                                                        <div>{sitter.principal}</div>
+                                                        <div className="space">
 
-                                                        </ListGroup>
+                                                        </div>
+                                                        <div>Address: {this.state.sitter.locationName}</div>
+                                                        <div className="space">
+
+                                                        </div>
+                                                        <a href={'#/myBooking'} className="btnModal2" onClick={() => {
+                                                            this.props.approve(sitter, this.props.booking);
+                                                        }}>Approve
+                                                        </a>
+
                                                     </ModalBody>
-                                                    <ModalFooter>
-                                                        <Button color="primary" onClick={this.toggle}>Do
-                                                            Something</Button>{' '}
-                                                        <Button color="secondary"
-                                                                onClick={this.toggle}>Cancel</Button>
-                                                    </ModalFooter>
                                                 </Modal>
-                                                <Button onClick={() => {
-                                                    alert('approve sitter');
-                                                    this.props.approve(sitter, this.props.booking);
-                                                }}>Approve</Button>
+
                                             </div>
                                         ))
                                     }
