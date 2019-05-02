@@ -56,8 +56,9 @@ public class BookingService {
             booking = res.get();
         }
         booking.setSitter("none");
-        UserDto sitter = userDao.findUserByPrincipal(principal).get().getUser();
-        sitter.panelty();
+        UserAuthenticationDto userAuthenticationDto = userDao.findUserByPrincipal(principal).get();
+        userAuthenticationDto.getUser().panelty();
+        userDao.save(userAuthenticationDto);
         booking.setStatus(BookingDto.BookingStatus.UNSIGNED);
         return booking;
     }
@@ -358,6 +359,13 @@ public class BookingService {
     }
 
     public void deleteBooking(BookingDto bookingDto) {
+        UserAuthenticationDto userAuthenticationDto = userDao.findUserByPrincipal(bookingDto.getOwner()).get();
+        userAuthenticationDto.getUser().panelty();
+        userDao.save(userAuthenticationDto);
+        NotificationDto ownerNoti = new NotificationDto();
+        ownerNoti.setUserPrinciple(bookingDto.getOwner());
+        ownerNoti.setInfo("You have canceled your booking");
+        notificationDao.save(ownerNoti);
         bookingDao.deleteBooking(bookingDto.getId());
     }
 
@@ -366,6 +374,20 @@ public class BookingService {
         BookingDto temp = bookingDao.findBooking(bookingDto.getId()).get();
         temp.setStatus(BookingDto.BookingStatus.FINISHED);
         bookingDao.save(temp);
+        NotificationDto ownerNoti = new NotificationDto();
+        ownerNoti.setUserPrinciple(bookingDto.getOwner());
+        ownerNoti.setInfo("You have finish the booking");
+        if (bookingDto.getSitter() != null) {
+            NotificationDto sitterNoti = new NotificationDto();
+            sitterNoti.setUserPrinciple(temp.getSitter());
+            sitterNoti.setInfo("Your booking is successfully finished!");
+            UserAuthenticationDto userAuthenticationDto = userDao.findUserByPrincipal(bookingDto.getSitter()).get();
+            userAuthenticationDto.getUser().promot();
+            notificationDao.save(sitterNoti);
+            userDao.save(userAuthenticationDto);
+        }
+        notificationDao.save(ownerNoti);
+
         return bookingDto;
     }
 
@@ -411,6 +433,8 @@ public class BookingService {
                         NotificationDto sitterNoti = new NotificationDto();
                         sitterNoti.setUserPrinciple(booking.getSitter());
                         sitterNoti.setInfo("your booking with" + booking.getOwner() + " is started, please be on time");
+                        notificationDao.save(ownerNoti);
+                        notificationDao.save(sitterNoti);
                     }
                     else if (withInOneDay(today, bookingStartDate)) {
                         NotificationDto ownerNoti = new NotificationDto();
@@ -421,7 +445,6 @@ public class BookingService {
                         sitterNoti.setInfo("your booking with" + booking.getOwner() + " will start soon");
                         notificationDao.save(ownerNoti);
                         notificationDao.save(sitterNoti);
-                        userDao.save(temp.get());
                     }
                 }
                 else if (booking.getStatus().equals(BookingDto.BookingStatus.UNSIGNED)) {
@@ -430,13 +453,13 @@ public class BookingService {
                         NotificationDto ownerNoti = new NotificationDto();
                         ownerNoti.setUserPrinciple(booking.getOwner());
                         ownerNoti.setInfo("you havent find any sitter for your booking, your booking is finished");
+                        notificationDao.save(ownerNoti);
                     }
                     else if (withInOneDay(today, bookingStartDate)) {
                         NotificationDto ownerNoti = new NotificationDto();
                         ownerNoti.setUserPrinciple(booking.getOwner());
                         ownerNoti.setInfo("your booking starting from" + booking.getStartDate() +" will start soon. ");
                         notificationDao.save(ownerNoti);
-                        userDao.save(temp.get());
                     }
                 }
             }
