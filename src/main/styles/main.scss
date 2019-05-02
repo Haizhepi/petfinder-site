@@ -1159,3 +1159,24 @@ body {
   background-color: whitesmoke;
   color: black;
 }
+
+.sortPane {
+  margin-bottom: 50px;
+}
+
+.sortLink {
+  border-radius: 2px;
+  padding: 5px 5px 5px 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: transparent;
+  color: white;
+  -moz-transition: 0.3s ease !important;
+  -o-transition: 0.3s ease !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: all 0.3s ease !important;
+}
+
+.sortLink:hover {
+
+}

@@ -19,6 +19,7 @@ import {AvailableBooking} from 'js/bookings/booking';
 import {Button, Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle, ListGroupItem} from 'reactstrap';
 
 import {toast, ToastContainer} from 'react-toastify';
+import axios from 'axios';
 
 
 class AvailableSitter extends React.Component {
@@ -55,6 +56,18 @@ class AvailableSitter extends React.Component {
             <div>
                 <div className="title">Available Sitters</div>
                 <div className="petTable petCardMarginBottom">
+
+                    <div className="sortPane">
+                        <a className="sortLink" href={'#/availableSitters'}>
+                            Sort by time
+                        </a>
+                        <a className="sortLink" href={'#/availableSitters1'}>
+                            Sort by distance
+                        </a>
+                        <a className="sortLink" href={'#/availableSitters2'}>
+                            Sort by rating
+                        </a>
+                    </div>
                     {this.state.sitters.map(sitterDate => (
                         <div className="invCard">
 
@@ -101,7 +114,7 @@ class AvailableSitter extends React.Component {
                                                 <div onClick={() => {
                                                     this.props.invite(sitterDate.sitter.principal, this.props.booking.id);
                                                 }}>
-                                                    <a className="btnModal2" >Invite</a>
+                                                    <a className="btnModal2">Invite</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,6 +143,14 @@ AvailableSitter = connect(
 
 export {AvailableSitter};
 
+export function getAvailableSittersDistance(bookingId) {
+    return axios.get('/api/sitters/availableA' + bookingId);
+}
+
+export function getAvailableSittersRating(bookingId) {
+    return axios.get('/api/sitters/availableR' + bookingId);
+}
+
 
 class AvailableSitter1 extends React.Component {
     constructor(props) {
@@ -141,7 +162,7 @@ class AvailableSitter1 extends React.Component {
 
 
     componentWillMount() {
-        this.props.getAvailableSitters(this.props.booking.id).then(response => {
+        getAvailableSittersDistance(this.props.booking.id).then(response => {
             console.log(response);
             this.setState({sitters: response});
         });
@@ -165,6 +186,18 @@ class AvailableSitter1 extends React.Component {
             <div>
                 <div className="title">Available Sitters</div>
                 <div className="petTable petCardMarginBottom">
+                    <div className="sortPane">
+                        <a className="sortLink" href={'#/availableSitters'}>
+                            Sort by time
+                        </a>
+                        <a className="sortLink" href={'#/availableSitters1'}>
+                            Sort by distance
+                        </a>
+                        <a className="sortLink" href={'#/availableSitters2'}>
+                            Sort by rating
+                        </a>
+                    </div>
+
                     {this.state.sitters.map(sitterDate => (
                         <div className="invCard">
 
@@ -211,7 +244,7 @@ class AvailableSitter1 extends React.Component {
                                                 <div onClick={() => {
                                                     this.props.invite(sitterDate.sitter.principal, this.props.booking.id);
                                                 }}>
-                                                    <a className="btnModal2" >Invite</a>
+                                                    <a className="btnModal2">Invite</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,7 +283,7 @@ class AvailableSitter2 extends React.Component {
 
 
     componentWillMount() {
-        this.props.getAvailableSitters(this.props.booking.id).then(response => {
+        getAvailableSittersRating(this.props.booking.id).then(response => {
             console.log(response);
             this.setState({sitters: response});
         });
@@ -274,6 +307,17 @@ class AvailableSitter2 extends React.Component {
             <div>
                 <div className="title">Available Sitters</div>
                 <div className="petTable petCardMarginBottom">
+                    <div className="sortPane">
+                        <a className="sortLink" href={'#/availableSitters'}>
+                            Sort by time
+                        </a>
+                        <a className="sortLink" href={'#/availableSitters1'}>
+                            Sort by distance
+                        </a>
+                        <a className="sortLink" href={'#/availableSitters2'}>
+                            Sort by rating
+                        </a>
+                    </div>
                     {this.state.sitters.map(sitterDate => (
                         <div className="invCard">
 
@@ -320,7 +364,7 @@ class AvailableSitter2 extends React.Component {
                                                 <div onClick={() => {
                                                     this.props.invite(sitterDate.sitter.principal, this.props.booking.id);
                                                 }}>
-                                                    <a className="btnModal2" >Invite</a>
+                                                    <a className="btnModal2">Invite</a>
                                                 </div>
                                             </div>
                                         </div>
