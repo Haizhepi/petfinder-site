@@ -58,12 +58,23 @@ public class SitterService {
                 ) == 1) {
                     System.out.println("valid");
                     UserDto sitter = userDao.findUserByPrincipal(sitterAvailabilityDto.getPrincipal()).get().getUser();
+
+                    boolean valid = true;
                     if (sitter.getPrincipal().equals(booking.getOwner())) {
-                        continue;
+                        valid = false;
+                    }
+                    if (sitterAvailabilityDto.getInvitations() != null) {
+                        for (String id : sitterAvailabilityDto.getInvitations()) {
+                            if (id.equals(bookingId)) {
+                                valid = false;
+                            }
+                        }
                     }
                     double dis = calculateDistance(booking.getLat(), sitterAvailabilityDto.getLat(),
                             booking.getLng(), sitterAvailabilityDto.getLng());
-                    res.add(new SitterAndDate(sitterAvailabilityDto, sitter, dis));
+                    if (valid) {
+                        res.add(new SitterAndDate(sitterAvailabilityDto, sitter, dis));
+                    }
                 }
             }
 
