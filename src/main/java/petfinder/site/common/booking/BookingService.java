@@ -311,7 +311,12 @@ public class BookingService {
 
     public BookingDto invite(String bookingId, String principal) {
         SitterAvailabilityDto avail = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(principal)).get();
+        UserDto sitter = userDao.findUserByPrincipal(principal).get().getUser();
         BookingDto bookingDto = bookingDao.findBooking(bookingId).get();
+        if (bookingDto.getInvitedSitter() == null) {
+            bookingDto.setInvitedSitter(new ArrayList<>());
+        }
+        bookingDto.addInvitedSitter(sitter);
 
         if (avail.getInvitations() == null) {
             avail.setInvitations(_Lists.list(bookingId));
