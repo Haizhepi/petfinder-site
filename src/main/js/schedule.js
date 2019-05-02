@@ -244,7 +244,7 @@ class AvailabilityForm extends React.Component {
                                 </PlacesAutocomplete>
                             </div>
                         )}
-                        <a href={'#/page-3'}>
+                        <a href={'#/viewSitter'}>
                             <ToastContainer className="Toaster" position="top-center"/>
                         </a>
 

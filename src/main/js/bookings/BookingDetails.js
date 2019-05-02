@@ -21,6 +21,9 @@ export function getSitterAvailablity(sitterId) {
     return axios.get(res);
 }
 
+import {toast, ToastContainer} from 'react-toastify';
+
+
 class SitterDetails extends React.Component {
 
     constructor(props) {
@@ -48,6 +51,19 @@ class SitterDetails extends React.Component {
     }
 
     render() {
+        function handleClick1() {
+            toast(<div>Successfully signed up owner's booking</div>);
+        }
+        function handleClick2() {
+            toast(<div>Successfully added new booking</div>);
+        }
+        function handleClick3() {
+            toast(<div>Successfully added new booking</div>);
+        }
+        function handleClick4() {
+            toast(<div>Successfully added new booking</div>);
+        }
+
         if (this.props.booking.status === 'UNSIGNED') {
             return (
                 <div id="p" className="col-6 offset-md-3">
@@ -92,10 +108,12 @@ class SitterDetails extends React.Component {
                                     className="bookingSub">From: {this.props.booking.startTime + '   ' + this.props.booking.startDate}</CardSubtitle>
                                 <CardSubtitle
                                     className="bookingSub">To: {this.props.booking.endTime + '   ' + this.props.booking.endDate}</CardSubtitle>
-                                <div>
-
+                                <div onClick={handleClick1}>
+                                    <a href={'#/signedBooking'}>
+                                        <ToastContainer className="Toaster" position="top-center"/>
+                                    </a>
                                     <div onClick={() => this.props.signUp(this.props.booking)}>
-                                        <a href={'#/signedBooking'} className="btnModal2">Sign Up</a>
+                                        <a className="btnModal2">Sign Up</a>
                                     </div>
                                 </div>
                             </CardBody>
@@ -240,6 +258,20 @@ class OwnerDetails extends React.Component {
     }
 
     render() {
+        function handleClick1() {
+            toast(<div>Successfully signed up owner's booking</div>);
+        }
+        function handleClick2() {
+            toast(<div>Successfully added new booking</div>);
+        }
+        function handleClick3() {
+            toast(<div>Successfully added new booking</div>);
+        }
+        function handleClick4() {
+            toast(<div>Successfully added new booking</div>);
+        }
+
+
         if (this.props.booking.status === 'SIGNED' || this.props.booking.status === 'FINISHED') {
             if (this.state.sitters.length === 0) {
                 return (
@@ -470,8 +502,14 @@ class OwnerDetails extends React.Component {
                                                     Available</a>
                                             </div>
 
-                                            <div onClick={() => this.props.signUp(this.props.booking)}>
-                                                <a href={'#/signedBooking'} className="btnModal2">Sign Up</a>
+
+                                            <div onClick={handleClick1}>
+                                                <a href={'#/signedBooking'}>
+                                                    <ToastContainer className="Toaster" position="top-center"/>
+                                                </a>
+                                                <div onClick={() => this.props.signUp(this.props.booking)}>
+                                                    <a className="btnModal2">Sign Up</a>
+                                                </div>
                                             </div>
 
                                             <div onClick={() => this.props.finish(this.props.booking)}>
