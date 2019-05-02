@@ -1,6 +1,7 @@
 package petfinder.site.common.booking;
 
 import alloy.util.Momento;
+import petfinder.site.common.user.UserDto;
 
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,19 @@ import java.util.UUID;
 public class BookingDto implements Momento<String> {
 
     private String id;
+
+    public List<UserDto> getInvitedSitter() {
+        return invitedSitter;
+    }
+
+    public void addInvitedSitter(UserDto sitter) {
+        invitedSitter.add(sitter);
+    }
+
+    public void setInvitedSitter(List<UserDto> invitedSitter) {
+        this.invitedSitter = invitedSitter;
+    }
+
     private String title;
     private String owner;
 
@@ -31,6 +45,7 @@ public class BookingDto implements Momento<String> {
     private Double lat;
     private Double lng;
     private Date createDate;
+    private List<UserDto> invitedSitter;
 
     public Double getLat() {
         if (this.lat == null){

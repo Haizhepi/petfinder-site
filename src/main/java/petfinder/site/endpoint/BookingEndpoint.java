@@ -109,7 +109,7 @@ public class BookingEndpoint {
     }
 
     @PostMapping(value = "/finish")
-    public BookingDto inviteSitter(@RequestBody BookingDto bookingDto) {
+    public BookingDto finishBooking(@RequestBody BookingDto bookingDto) {
         System.out.println("Booking finish");
         return bookingService.finish(bookingDto);
     }
