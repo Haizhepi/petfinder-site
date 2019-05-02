@@ -265,6 +265,12 @@ class EditProfileForm extends React.Component {
                                     {value: 'owner', label: 'Owner'}]}
                                                         placeholder="Owner or Sitter?"
                                 />}/>
+
+
+                <div className="secAnswer">
+                    My Rating {this.state.user.score}
+                </div>
+
                 <div className="wrapper">
                     <Bessemer.Button className="buttonType1" loading={submitting}>Save Changes</Bessemer.Button>
                 </div>
