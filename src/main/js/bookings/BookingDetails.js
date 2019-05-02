@@ -352,4 +352,72 @@ BookingDetail = connect(
 
 export {BookingDetail};
 
+class OwnerBookingDetail extends React.Component {
+
+    constructor(props) {
+
+        super(props);
+        this.state = {
+            pet: [{
+                name: 'no name'
+            }],
+            booking: [{
+                name: 'no name'
+            }],
+            recommend: 'no name',
+        };
+    }
+
+    //set state as array of user's pets
+    componentWillMount() {
+        console.log('?');
+        console.log(this.props.booking);
+        Users.Actions.getPetById(this.props.booking.petId).then(response => {
+            console.log('?');
+            console.log(response);
+            this.setState({pet: response});
+        });
+
+    }
+
+    render() {
+        if (!this.props.booking) {
+            return (<h1>hmmmmmm</h1>);
+        }
+        if (this.props.user.type === 'SITTER') {
+            console.log('go to sitter');
+            return (
+                <SitterDetails/>
+            );
+        } else if (this.props.user.type === 'OWNER'){
+            console.log('go to owner');
+
+            return (
+                <OwnerDetails/>
+            );
+        }
+        else{
+            console.log('go to both');
+
+            return (
+                <OwnerDetails/>
+            );
+        }
+
+    }
+}
+
+OwnerBookingDetail = connect(
+    state => ({
+        booking: Users.State.getActiveBooking(state),
+        user: Users.State.getUser(state)
+    }),
+    dispatch => ({
+        signUp: booking => dispatch(Users.Actions.signUpBooking(booking))
+
+    })
+)(OwnerBookingDetail);
+
+export {OwnerBookingDetail};
+
 

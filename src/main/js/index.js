@@ -10,6 +10,7 @@ import {PetEdit, PetList} from 'js/petList';
 import {MapHome} from 'js/mapHome';
 import {BookingFormConfirm} from 'js/bookings/booking';
 import {SelectionPage} from 'js/modal';
+import {OwnerBookingDetail} from 'js/bookings/BookingDetails';
 
 
 export default class Index extends React.Component {
@@ -48,11 +49,13 @@ export default class Index extends React.Component {
 		let confirmBooking = <Route exact path="/confirmBooking" component={BookingFormConfirm}/>;
 		let selectionPane = <Route exact path="/selectionPane" component={SelectionPage}/>;
 		let backgroundTrans = <Route exact path="/transformBackground" component={Pages.TransImage}/>;
+		let ownerBookingDetail = <Route exact path="/ownerBookingDetail" component={OwnerBookingDetail}/>;
 
 		//alert(this.props.authentication);
 		return (
 			<HashRouter>
 				<div>
+					{ownerBookingDetail}
 					{home}
 					{register}
 					{login}
