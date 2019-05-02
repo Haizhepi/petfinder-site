@@ -43,7 +43,7 @@ class SitterDetails extends React.Component {
     }
 
     render() {
-        if (this.props.booking.status === 'UNSIGHED') {
+        if (this.props.booking.status === 'UNSIGNED') {
             return (
                 <div id="p" className="col-6 offset-md-3">
 
