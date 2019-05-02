@@ -5,7 +5,7 @@ import alloy.util.Momento;
 import java.util.Date;
 import java.util.UUID;
 
-public class NotificationDto implements Momento<String> {
+public class NotificationDto implements Momento<String>{
     private String id;
     private String userPrinciple;
     private String read;
@@ -23,6 +23,8 @@ public class NotificationDto implements Momento<String> {
     public Date getCreateDate() {
         return createDate;
     }
+
+
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;

@@ -199,11 +199,15 @@ public class BookingService {
         return 1;
     }
 
+    @Autowired
+    PetDao petDao;
+
     public BookingDto save(BookingDto booking) {
         bookingDao.save(booking);
         NotificationDto ownerNoti = new NotificationDto();
         ownerNoti.setUserPrinciple(booking.getOwner());
-        ownerNoti.setInfo("You have started a booking of ur pet: " + booking.getPetId());
+        PetDto pet = petDao.findPet(booking.getPetId()).get();
+        ownerNoti.setInfo("You have started a booking of ur pet: " + pet.getName());
         notificationDao.save(ownerNoti);
         return booking;
     }
@@ -294,13 +298,16 @@ public class BookingService {
             temp.setSitter(principle);
             temp.signUp();
         }
+        PetDto pet = petDao.findPet(temp.getPetId()).get();
+        UserDto sitter = userDao.findUserByPrincipal(temp.getSitter()).get().getUser();
+        UserDto owner = userDao.findUserByPrincipal(temp.getOwner()).get().getUser();
 
         NotificationDto ownerNoti = new NotificationDto();
         ownerNoti.setUserPrinciple(temp.getOwner());
-        ownerNoti.setInfo("Hi, your pet: " + temp.getPetId() + " is signed up by sitter: " + temp.getSitter());
+        ownerNoti.setInfo("Hi, your pet: " + pet.getName() + " is signed up by sitter: " + sitter.getFirstName() + " " + sitter.getLastName());
         NotificationDto sitterNoti = new NotificationDto();
         sitterNoti.setUserPrinciple(temp.getSitter());
-        sitterNoti.setInfo("Hi, your have been approved up: " + temp.getPetId() + " owned by: " + temp.getOwner());
+        sitterNoti.setInfo("Hi, your have been approved for sitting: " + pet.getName() + " owned by: " + owner.getFirstName() + " " + owner.getLastName());
         notificationDao.save(ownerNoti);
         notificationDao.save(sitterNoti);
         temp.signUp();
@@ -313,6 +320,8 @@ public class BookingService {
         SitterAvailabilityDto avail = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(principal)).get();
         UserDto sitter = userDao.findUserByPrincipal(principal).get().getUser();
         BookingDto bookingDto = bookingDao.findBooking(bookingId).get();
+        UserDto owner = userDao.findUserByPrincipal(bookingDto.getOwner()).get().getUser();
+
         if (bookingDto.getInvitedSitter() == null) {
             bookingDto.setInvitedSitter(new ArrayList<>());
         }
@@ -326,10 +335,10 @@ public class BookingService {
         }
         NotificationDto ownerNoti = new NotificationDto();
         ownerNoti.setUserPrinciple(bookingDto.getOwner());
-        ownerNoti.setInfo("You have invite user: " + principal);
+        ownerNoti.setInfo("You have invite user: " + sitter.getFirstName() + " " + sitter.getLastName());
         NotificationDto sitterNoti = new NotificationDto();
         sitterNoti.setUserPrinciple(principal);
-        sitterNoti.setInfo(bookingDto.getOwner() + "invites you to the booking");
+        sitterNoti.setInfo(owner.getFirstName() + " " + owner.getLastName() +" " + "invites you to the booking: " + bookingDto.getTime());
         notificationDao.save(ownerNoti);
         notificationDao.save(sitterNoti);
         sitterAvailabilityDao.save(avail);
