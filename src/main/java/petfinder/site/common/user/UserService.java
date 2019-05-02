@@ -266,11 +266,24 @@ public class UserService {
 			bookingDto.setStartTime(bookingDto.getStartTime().substring(11, 19));
 			bookingDto.setEndTime(bookingDto.getEndTime().substring(11, 19));
 		}
+		Collections.sort(list, new Comparator<BookingDto>() {
+			@Override
+			public int compare(BookingDto o1, BookingDto o2) {
+				return o2.getCreateDate().compareTo(o1.getCreateDate());
+			}
+		});
 		return list;
 	}
 
 	public List<NotificationDto> findNotifications(UserDto user) {
-		return userDao.findNotification(user);
+		List<NotificationDto> list = userDao.findNotification(user);
+		Collections.sort(list, new Comparator<NotificationDto>() {
+			@Override
+			public int compare(NotificationDto o1, NotificationDto o2) {
+				return o2.getCreateDate().compareTo(o1.getCreateDate());
+			}
+		});
+		return list;
 	}
 
 	public String getRandQuestion() {
