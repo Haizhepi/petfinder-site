@@ -81,7 +81,7 @@ export class NavBar extends React.Component {
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="#/schedule" className="navText navTextHome">Schedule</NavLink>
+                                    <NavLink href="#/schedule" className="navText navTextHome">My Schedule</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="#/viewSitter" className="navText navTextHome">Invitations</NavLink>
@@ -169,7 +169,7 @@ export class NavBar extends React.Component {
                                     <NavLink href="#/pet" className="navText navTextHome">Add a Pet</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/schedule" className="navText navTextHome">Schedule</NavLink>
+                                    <NavLink href="#/schedule" className="navText navTextHome">My Schedule</NavLink>
                                 </NavItem>
 
                                 <NavItem>

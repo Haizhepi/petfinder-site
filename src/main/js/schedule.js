@@ -207,7 +207,7 @@ class AvailabilityForm extends React.Component {
                                         <div>
                                             <input className="inputSearch"
                                                    {...getInputProps({
-                                                       placeholder: 'Enter Your Pickup Address Here',
+                                                       placeholder: 'Enter Your Address Here',
                                                        className: 'location-search-input form-control',
                                                    })}
                                             />
