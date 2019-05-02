@@ -84,7 +84,7 @@ export class NavBar extends React.Component {
                                     <NavLink href="#/schedule" className="navText navTextHome">Schedule</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="#/viewSitter" className="navText navTextHome">Sitter Information</NavLink>
+                                    <NavLink href="#/viewSitter" className="navText navTextHome">Invitations</NavLink>
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar className="navText navTextHome">
                                     <DropdownToggle nav caret className="navText navTextHome">
@@ -173,7 +173,7 @@ export class NavBar extends React.Component {
                                 </NavItem>
 
                                 <NavItem>
-                                    <NavLink href="#/viewSitter" className="navText navTextHome">Sitter Information</NavLink>
+                                    <NavLink href="#/viewSitter" className="navText navTextHome">Invitations</NavLink>
                                 </NavItem>
 
                                 <UncontrolledDropdown nav inNavbar className="navText navTextHome">

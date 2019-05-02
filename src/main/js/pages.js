@@ -584,7 +584,7 @@ export class ViewSitter extends React.Component {
                                 <div>{this.state.sitter.startTime}</div>
                                 <div>{this.state.sitter.endTime}</div>
                                 <div>{this.state.sitter.availability}</div>
-                                <div>Invitations</div>
+                                <div className="title">Invitations</div>
 
                                 {
                                     this.state.invitation.map(booking => (
@@ -611,18 +611,19 @@ export class ViewSitter extends React.Component {
         }
         else {
             return (
-                <section className="webWrapper">
+                <section className="bookingWrapper">
                     <SidebarComponent/>
                     <NavBar/>
                     <div className="container padded middleWrapperNotAlign">
                         <div className="row">
                             <div className="col-6 offset-md-3" id="p">
                                 <div className="title">My Availability</div>
-                                <div>{this.state.sitter.startDate}</div>
-                                <div>{this.state.sitter.endDate}</div>
-                                <div>{this.state.sitter.startTime}</div>
-                                <div>{this.state.sitter.endTime}</div>
-                                <div>{this.state.sitter.availability}</div>
+                                <div>From    {'   ' + this.state.sitter.startDate + ' ' + this.state.sitter.startTime}</div>
+                                <div>To {'     ' + this.state.sitter.endDate + ' ' + this.state.sitter.endTime}</div>
+                                <div>Note {'   ' + this.state.sitter.availability}</div>
+
+                                <div className="title">You don't have any invitation</div>
+
                             </div>
                         </div>
                     </div>
