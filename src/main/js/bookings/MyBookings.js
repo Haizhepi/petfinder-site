@@ -49,7 +49,7 @@ class MyBookings extends React.Component {
 
                                         <div onClick={() => this.props.selectBooking(booking)}>
 
-                                            <a href={'#/bookingDetail'} className="btnModal2">Booking Detail</a>
+                                            <a href={'#/ownerBookingDetail'} className="btnModal2">Booking Detail</a>
                                         </div>
 
                                     </CardBody>
