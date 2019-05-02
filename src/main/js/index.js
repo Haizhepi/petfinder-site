@@ -39,6 +39,9 @@ export default class Index extends React.Component {
 		let bookingDetail = <Route exact path="/bookingDetail" component={Pages.BookingDetailPage}/>;
 		let notification = <Route exact path="/notification" component={Pages.Notifications}/>;
 		let availableSitters = <Route exact path="/availableSitters" component={Pages.AvailableSittersPage}/>;
+		let availableSitters1 = <Route exact path="/availableSitters1" component={Pages.AvailableSittersPage1}/>;
+		let availableSitters2 = <Route exact path="/availableSitters2" component={Pages.AvailableSittersPage2}/>;
+
 		let googleMap = <Route exact path="/googleMap" component={Pages.GoogleMap}/>;
 		let addRating = <Route exact path="/addRating" component={Pages.AddRating}/>;
         let searchLocation = <Route exact path="/searchLocation" component={Pages.SearchBox}/>;
@@ -85,6 +88,8 @@ export default class Index extends React.Component {
 					{confirmBooking}
 					{selectionPane}
 					{backgroundTrans}
+					{availableSitters1}
+					{availableSitters2}
 				</div>
 			</HashRouter>
 		);
