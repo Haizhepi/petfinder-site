@@ -48,14 +48,15 @@ class AvailableSitter extends React.Component {
                 <div className="petTable petCardMarginBottom">
                     {this.state.sitters.map(sitterDate => (
                         <div className="invCard">
+
                             <Card style={{
-                                minWidth: '300px',
-                                width: '300px',
+                                minWidth: '500px',
+                                width: '500px',
                                 height: '150px',
                                 margin: '5px 0 5px 0',
                                 border: 'none'
                             }}>
-                                <div className="cardBody">
+                                <div className="cardBody2">
                                     <CardBody>
                                         <CardTitle>{sitterDate.sitter.firstName + ' ' + sitterDate.sitter.lastName}</CardTitle>
                                         <CardSubtitle>{sitterDate.distance.toFixed(1) + ' miles away from you'}</CardSubtitle>
@@ -65,9 +66,7 @@ class AvailableSitter extends React.Component {
                                         <div onClick={() => {
                                             this.props.invite(sitterDate.sitter.principal, this.props.booking.id);
                                         }}>
-                                            <CardLink className="clm"
-                                                      href={'#/bookingDetail'}>Invite
-                                            </CardLink>
+                                            <a className="btnModal2" href={'#/bookingDetail'}>Invite</a>
                                         </div>
                                     </CardBody>
                                 </div>
