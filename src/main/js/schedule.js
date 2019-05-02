@@ -225,7 +225,7 @@ class AvailabilityForm extends React.Component {
                                                         : 'suggestion-item';
                                                     // inline style for demonstration purpose
                                                     const style = suggestion.active
-                                                        ? {backgroundColor: 'transparent', cursor: 'pointer'}
+                                                        ? {backgroundColor: 'black', cursor: 'pointer'}
                                                         : {backgroundColor: '#434343', cursor: 'pointer'};
                                                     return (
                                                         <div
@@ -244,7 +244,7 @@ class AvailabilityForm extends React.Component {
                                 </PlacesAutocomplete>
                             </div>
                         )}
-                        <a href={'#/page-3'}>
+                        <a href={'#/viewSitter'}>
                             <ToastContainer className="Toaster" position="top-center"/>
                         </a>
 
