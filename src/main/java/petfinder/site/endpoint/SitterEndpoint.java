@@ -66,6 +66,16 @@ public class SitterEndpoint {
         return sitterService.getSitters(id);
     }
 
+    @GetMapping(value = "/availableA{id}", produces = "application/json")
+    public List<SitterAndDate> getAvailableSitterAddress(@PathVariable("id") String id) {
+        return sitterService.sortByDistance(sitterService.getSitters(id));
+    }
+
+    @GetMapping(value = "/availableR{id}", produces = "application/json")
+    public List<SitterAndDate> getAvailableSitterRating(@PathVariable("id") String id) {
+        return sitterService.sortByRating(sitterService.getSitters(id));
+    }
+
     @GetMapping(value = "/invitations", produces = "application/json")
     public List<BookingDto> getInvitations() {
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
