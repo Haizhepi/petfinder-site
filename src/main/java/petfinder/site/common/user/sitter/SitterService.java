@@ -58,6 +58,9 @@ public class SitterService {
                 ) == 1) {
                     System.out.println("valid");
                     UserDto sitter = userDao.findUserByPrincipal(sitterAvailabilityDto.getPrincipal()).get().getUser();
+                    if (sitter.getPrincipal().equals(booking.getOwner())) {
+                        continue;
+                    }
                     double dis = calculateDistance(booking.getLat(), sitterAvailabilityDto.getLat(),
                             booking.getLng(), sitterAvailabilityDto.getLng());
                     res.add(new SitterAndDate(sitterAvailabilityDto, sitter, dis));
@@ -81,6 +84,7 @@ public class SitterService {
 
 
         distance = Math.pow(distance, 2);
+        distance /= 1609.344;
 
         return Math.sqrt(distance);
     }

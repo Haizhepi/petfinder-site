@@ -71,6 +71,14 @@ public class UserDto implements Momento<String> {
 	}
 
 	public void setType(UserType type) {
+		if (this.type != null){
+			if (this.type == UserType.OWNER && type == UserType.SITTER) {
+				this.type = UserType.BOTH;
+			}
+			if (this.type == UserType.SITTER && type == UserType.OWNER) {
+				this.type = UserType.BOTH;
+			}
+		}
 		this.type = type;
 	}
 

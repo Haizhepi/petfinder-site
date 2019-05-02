@@ -246,6 +246,8 @@ public class UserService {
 			u.setLastName(request.getLastName());
 			u.setGender(request.getGender());
 			u.setZipcode(request.getZipcode());
+			u.setType(request.getType());
+
 			userDao.save(userAuthentication);
 		}
 		return u;
