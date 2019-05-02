@@ -148,7 +148,7 @@ public class BookingService {
     }
 
     public int evaluate(String bsd, String bed, String ssd, String sed, String bst,
-                        String bet, String sst, String set){
+                        String bet, String sst, String set) {
         Date bookingStartDate = null;
         Date bookingEndDate = null;
         Date sitterStartDate = null;
