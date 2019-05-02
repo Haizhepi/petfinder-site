@@ -31,7 +31,7 @@ import {
 
 import 'styles/main.scss';
 import {MyBookings} from 'js/bookings/MyBookings';
-import {AvailableSitter} from 'js/bookings/availableSitters';
+import {AvailableSitter1, AvailableSitter2, AvailableSitter} from 'js/bookings/availableSitters';
 import {MyModal} from 'js/modal';
 import 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -465,6 +465,44 @@ export class AvailableSittersPage extends React.Component {
                     <div className="row">
                         <div className="col-6 offset-md-3" id="p">
                             <AvailableSitter/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class AvailableSittersPage1 extends React.Component {
+    render() {
+
+        return (
+            <section className="bookingWrapper">
+                <SidebarComponent/>
+                <NavBar/>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <AvailableSitter1/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}
+
+export class AvailableSittersPage2 extends React.Component {
+    render() {
+
+        return (
+            <section className="bookingWrapper">
+                <SidebarComponent/>
+                <NavBar/>
+                <div className="container padded">
+                    <div className="row">
+                        <div className="col-6 offset-md-3" id="p">
+                            <AvailableSitter2/>
                         </div>
                     </div>
                 </div>
