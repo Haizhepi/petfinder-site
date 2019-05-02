@@ -72,8 +72,9 @@ public class SitterService {
                     }
                     double dis = calculateDistance(booking.getLat(), sitterAvailabilityDto.getLat(),
                             booking.getLng(), sitterAvailabilityDto.getLng());
+                    SitterAvailabilityDto using = processDate(sitterAvailabilityDto);
                     if (valid) {
-                        res.add(new SitterAndDate(sitterAvailabilityDto, sitter, dis));
+                        res.add(new SitterAndDate(using, sitter, dis));
                     }
                 }
             }

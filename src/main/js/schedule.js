@@ -113,8 +113,8 @@ class AvailabilityForm extends React.Component {
 
     //Defines the on submit behavior
     onSubmit = (form) => {
-        if (form.availability.length <= 20) {
-            alert('Please enter at least 20 characters');
+        if (form.availability.length <= 2) {
+            alert('Please enter at least 2 characters');
         } else {
             let avail = {
                 principal: this.props.user.principal,

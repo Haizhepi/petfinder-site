@@ -371,9 +371,7 @@ class AvailableBooking extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            booking: [{
-                name: 'no name'
-            }]
+
         };
     }
 
@@ -385,6 +383,15 @@ class AvailableBooking extends React.Component {
     }
 
     render() {
+        if (!this.state.booking) {
+            return (
+                <div>
+                    <div id="p" className="col-6 offset-md-3">
+                        <div className="title">NO Available Bookings</div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div>
                 <div id="p" className="col-6 offset-md-3">
@@ -431,54 +438,7 @@ class AvailableBooking extends React.Component {
 
                 </div>
 
-                {/*<div>*/}
-                {/*<div id="p" className="col-6 offset-md-3">*/
-                }
-                {/*<h1>Available booking</h1>*/
-                }
-                {/*{this.state.booking.map(booking => (*/
-                }
-                {/*<ListGroup>*/
-                }
-                {/*<ListGroupItem>*/
-                }
-                {/*<div onClick={() => this.props.selectBooking(booking)}>*/
-                }
-                {/*<Link to="/bookingDetail">*/
-                }
-                {/*Owner: {booking.owner}*/
-                }
-                {/*</Link>*/
-                }
-                {/*</div>*/
-                }
-                {/*</ListGroupItem>*/
-                }
 
-                {/*<ListGroupItem>Pet: {booking.petId}</ListGroupItem>*/
-                }
-                {/*<ListGroupItem>Time: {booking.time}</ListGroupItem>*/
-                }
-                {/*<ListGroupItem>Des: {booking.description}</ListGroupItem>*/
-                }
-                {/*<ListGroupItem>Start Time: {booking.startTime}</ListGroupItem>*/
-                }
-                {/*<ListGroupItem>End Time: {booking.endTime}</ListGroupItem>*/
-                }
-                {/*<ListGroupItem>Start Date: {booking.startDate}</ListGroupItem>*/
-                }
-                {/*<ListGroupItem>End Date: {booking.endDate}</ListGroupItem>*/
-                }
-                {/*</ListGroup>*/
-                }
-                {/*))}*/
-                }
-
-
-                {/*</div>*/
-                }
-                {/*</div>*/
-                }
             </div>
         );
     }
