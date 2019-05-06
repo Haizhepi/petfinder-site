@@ -727,7 +727,7 @@ body {
 }
 
 .invCard {
-  margin-bottom: 175px;
+  margin-bottom: 240px;
   border-radius: 2px;
   max-width: 1000px;
   max-height: 500px;
@@ -1032,7 +1032,6 @@ body {
   text-align: center;
   background-color: #cacaca;
   color: black;
-  border: 1px black solid;
   //box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25), 0 5px 5px 0 rgba(0, 0, 0, 0.25);
 
 }
@@ -1161,12 +1160,12 @@ body {
 }
 
 .sortPane {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .sortLink {
   border-radius: 2px;
-  padding: 5px 5px 5px 5px;
+  padding: 5px 15px 5px 15px;
   margin-left: 10px;
   margin-right: 10px;
   background-color: transparent;
@@ -1178,5 +1177,11 @@ body {
 }
 
 .sortLink:hover {
+  background-color: whitesmoke;
+  color: black;
+}
 
+.stars {
+  font-size: 18px;
+  margin-bottom: 13px;
 }

@@ -47,10 +47,10 @@ public class SitterService {
         Collections.sort(list, new Comparator<SitterAndDate>() {
             @Override
             public int compare(SitterAndDate o1, SitterAndDate o2) {
-                if (o1.getDistance() < o2.getDistance()) {
+                if (o1.getDistance() > o2.getDistance()) {
                     return 1;
                 }
-                else if (o2.getDistance() < o1.getDistance()) {
+                else if (o2.getDistance() > o1.getDistance()) {
                     return -1;
                 }
                 else {
