@@ -44,6 +44,9 @@ public class UserDto implements Momento<String> {
 		this.score = score;
 	}
 
+	/**
+	 * increase the score
+	 */
 	public void promot() {
 		if (this.score < 100) {
 			score++;
@@ -79,7 +82,9 @@ public class UserDto implements Momento<String> {
 				this.type = UserType.BOTH;
 			}
 		}
-		this.type = type;
+		else {
+			this.type = type;
+		}
 	}
 
 	public void setAttributes(Map<String, Object> attributes) {
@@ -129,6 +134,9 @@ public class UserDto implements Momento<String> {
 	private String gender;
 	private String zipcode;
 
+	/**
+	 * setting the check time default to the epoch
+	 */
 	private UserDto() {
 		String firstDay = "01/01/1970";
 		try {

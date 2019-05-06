@@ -40,6 +40,11 @@ public class BookingService {
         return bookingDao.findBooking(id);
     }
 
+    /**
+     * modify the date string format
+     * @param bookingDto
+     * @return
+     */
     public BookingDto processDate(BookingDto bookingDto) {
         bookingDto.setStartDate(bookingDto.getStartDate().substring(0, 10));
         bookingDto.setEndDate(bookingDto.getEndDate().substring(0, 10));
@@ -48,6 +53,11 @@ public class BookingService {
         return bookingDto;
     }
 
+    /**
+     * cancel by sitter, de-ranking, notifications, changes
+     * @param bookingId
+     * @return
+     */
     public BookingDto sitterCancel(String bookingId) {
         BookingDto booking = null;
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -93,7 +103,11 @@ public class BookingService {
         }
     }
 
-
+    /**
+     * find recommend sitter
+     * @param id
+     * @return
+     */
     public Map<UserDto, Integer> findRecommend(String id) {
         BookingDto booking = null;
         Map<UserDto, Integer> map = new HashMap<>();
@@ -148,6 +162,18 @@ public class BookingService {
         return map;
     }
 
+    /**
+     * check for time range
+     * @param bsd
+     * @param bed
+     * @param ssd
+     * @param sed
+     * @param bst
+     * @param bet
+     * @param sst
+     * @param set
+     * @return
+     */
     public int evaluate(String bsd, String bed, String ssd, String sed, String bst,
                         String bet, String sst, String set) {
         Date bookingStartDate = null;
@@ -158,7 +184,7 @@ public class BookingService {
         Date bookingEndtime = null;
         Date sitterStartTime = null;
         Date sitterEndTime = null;
-
+        // parsing all string date
 
         try {
              bookingStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(bsd.substring(0, 10));
@@ -213,6 +239,11 @@ public class BookingService {
         return booking;
     }
 
+    /**
+     * update booking
+     * @param booking
+     * @return
+     */
     public BookingDto update(BookingDto booking) {
         BookingDto temp = null;
         Optional<BookingDto> res = bookingDao.findBooking(booking.getId());
@@ -231,6 +262,11 @@ public class BookingService {
         return temp;
     }
 
+    /**
+     * add the sitter to the wl of booking
+     * @param bookingId
+     * @return
+     */
     public BookingDto signUp(String bookingId) {
         BookingDto temp = null;
         Optional<BookingDto> res = bookingDao.findBooking(bookingId);
@@ -261,6 +297,11 @@ public class BookingService {
         return temp;
     }
 
+    /**
+     * set a sitter(current user) to be the sitter of the booking
+     * @param bookingId
+     * @return
+     */
     public BookingDto confrim(String bookingId) {
         BookingDto temp = null;
         Optional<BookingDto> res = bookingDao.findBooking(bookingId);
@@ -289,6 +330,12 @@ public class BookingService {
         return temp;
     }
 
+    /**
+     * a owner approve a sitter to be the sitter of the booking
+     * @param bookingId
+     * @param principle
+     * @return
+     */
     public BookingDto approve(String bookingId, String principle) {
         BookingDto temp = null;
         Optional<BookingDto> res = bookingDao.findBooking(bookingId);
@@ -318,6 +365,12 @@ public class BookingService {
         return temp;
     }
 
+    /**
+     * invite a sitter to the booking
+     * @param bookingId
+     * @param principal
+     * @return
+     */
     public BookingDto invite(String bookingId, String principal) {
         SitterAvailabilityDto avail = sitterAvailabilityDao.findAvailabilityByUserID(new UserDto(principal)).get();
         UserDto sitter = userDao.findUserByPrincipal(principal).get().getUser();
@@ -358,6 +411,10 @@ public class BookingService {
         return res;
     }
 
+    /**
+     * remove the booking by owner
+     * @param bookingDto
+     */
     public void deleteBooking(BookingDto bookingDto) {
         UserAuthenticationDto userAuthenticationDto = userDao.findUserByPrincipal(bookingDto.getOwner()).get();
         userAuthenticationDto.getUser().panelty();
@@ -369,7 +426,11 @@ public class BookingService {
         bookingDao.deleteBooking(bookingDto.getId());
     }
 
-
+    /**
+     * set the booking to finish status
+     * @param bookingDto
+     * @return
+     */
     public BookingDto finish(BookingDto bookingDto) {
         BookingDto temp = bookingDao.findBooking(bookingDto.getId()).get();
         temp.setStatus(BookingDto.BookingStatus.FINISHED);
@@ -395,6 +456,10 @@ public class BookingService {
         return bookingDao.sitterBookings(principal);
     }
 
+    /**
+     * check by the time now and all the owner's booking and send notifications
+     * @return
+     */
     public String checkApproachingBooking() {
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
         Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
@@ -424,6 +489,7 @@ public class BookingService {
                 } catch (ParseException e) {
 
                 }
+                // signed is check if started
                 if (booking.getStatus().equals(BookingDto.BookingStatus.SIGNED)) {
                     if (today.compareTo(bookingStartDate) > 0) {
                         booking.setStatus(BookingDto.BookingStatus.STARTED);
@@ -447,6 +513,7 @@ public class BookingService {
                         notificationDao.save(sitterNoti);
                     }
                 }
+                // unsigned check for get sitter soon
                 else if (booking.getStatus().equals(BookingDto.BookingStatus.UNSIGNED)) {
                     if (today.compareTo(bookingStartDate) > 0) {
                         booking.setStatus(BookingDto.BookingStatus.FINISHED);
@@ -470,6 +537,12 @@ public class BookingService {
     }
     public final static long MILLIS_PER_DAY = 24 * 60 * 60 * 1000L;
 
+    /**
+     * check if the time is with in one day
+     * @param date1
+     * @param date2
+     * @return
+     */
     public boolean withInOneDay(Date date1, Date date2) {
         return Math.abs(date1.getTime() - date2.getTime()) < MILLIS_PER_DAY;
     }

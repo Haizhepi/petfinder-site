@@ -28,7 +28,11 @@ public class PetEndpoint {
 	private PetService petService;
 	private UserPetDto userPetDto;
 
-
+	/**
+	 * returns a pet with its id
+	 * @param id
+	 * @return
+	 */
 	// Take an id, and look up the corresponding pet
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public Optional<PetDto> getPet(@PathVariable("id") String id) {
@@ -37,6 +41,11 @@ public class PetEndpoint {
 		return petService.findPet(id);
 	}
 
+	/**
+	 * save a pet
+	 * @param pet
+	 * @return
+	 */
 	// Take a JSON representation of a Pet and save it to Elasticsearch
 	@PostMapping(value = "")
 	public PetDto savePet(@RequestBody PetDto pet) {
@@ -46,11 +55,22 @@ public class PetEndpoint {
 		return pet;
 	}
 
+	/**
+	 * update the pet
+	 * @param pet
+	 * @return
+	 */
 	@PostMapping(value = "/edit_pet")
 	public PetDto editProfile(@RequestBody PetDto pet) {
 		System.out.println("updating" + pet.getName());
 		return petService.update(pet);
 	}
+
+	/**
+	 * delete a pet
+	 * @param pet
+	 * @return
+	 */
 
 	@PostMapping(value = "/delete_pet")
 	public PetDto deletePet(@RequestBody PetDto pet) {

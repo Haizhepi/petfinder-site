@@ -5,6 +5,7 @@ import java.util.UUID;
 import alloy.util.Identifiable;
 
 public class UserPetDto implements Identifiable {
+
 	private Long id;
 	private String userPrincipal;
 	private String petId;

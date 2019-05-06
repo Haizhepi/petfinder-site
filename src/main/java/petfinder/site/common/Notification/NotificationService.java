@@ -19,6 +19,11 @@ public class NotificationService {
         return notification;
     }
 
+    /**
+     * make the noti read
+     * @param id
+     * @return
+     */
     public String readNotification(String id) {
         Optional<NotificationDto> temp = findNotification(id);
         if (!temp.isPresent()) {

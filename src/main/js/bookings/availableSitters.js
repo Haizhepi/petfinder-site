@@ -21,7 +21,7 @@ import {Button, Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle, Lis
 import {toast, ToastContainer} from 'react-toastify';
 import axios from 'axios';
 
-
+// available sitter
 class AvailableSitter extends React.Component {
     constructor(props) {
         super(props);
@@ -30,8 +30,8 @@ class AvailableSitter extends React.Component {
         };
     }
 
-
     componentWillMount() {
+        // get all sitters and store
         this.props.getAvailableSitters(this.props.booking.id).then(response => {
             console.log(response);
             this.setState({sitters: response});
@@ -49,6 +49,7 @@ class AvailableSitter extends React.Component {
         }
 
         function handleClick() {
+            // send confirm notification
             toast(<div>Successfully invited sitter</div>);
         }
 
@@ -142,7 +143,7 @@ AvailableSitter = connect(
 )(AvailableSitter);
 
 export {AvailableSitter};
-
+// different endpoint call
 export function getAvailableSittersDistance(bookingId) {
     return axios.get('/api/sitters/availableA' + bookingId);
 }

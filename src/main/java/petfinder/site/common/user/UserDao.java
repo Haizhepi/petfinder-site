@@ -47,19 +47,20 @@ public class UserDao {
 	}
 
 	public void save(UserAuthenticationDto userAuthentication) {
-		System.out.println(userAuthentication.getUser().getGender());
-		System.out.println(userAuthentication.getUser().getLastName());
-		System.out.println(userAuthentication.getUser().getFirstName());
-		System.out.println(userAuthentication.getUser().getRoles().get(0));
 		userRepository.save(userAuthentication);
 	}
 
+	/**
+	 * change the size of default query
+	 * @param user
+	 * @return
+	 */
 	public List<PetDto> findPets(UserDto user) {
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
 		String queryString = String.format("userPrincipal=\"%s\"", user.getPrincipal().replace("\"", ""));
 		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
-		searchSourceBuilder.size(20);
+		searchSourceBuilder.size(50);
 		List<UserPetDto> userPets = userPetRepository.search(searchSourceBuilder);
 		return userPets.stream()
 				.map(userPet -> petRepository.find(userPet.getPetId()).get())
@@ -71,7 +72,7 @@ public class UserDao {
 
 		String queryString = String.format("owner=\"%s\"", user.getPrincipal().replace("\"", ""));
 		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
-		searchSourceBuilder.size(20);
+		searchSourceBuilder.size(50);
 
 		List<BookingDto> bookinsgs = bookingRepository.search(searchSourceBuilder);
 		return bookinsgs;

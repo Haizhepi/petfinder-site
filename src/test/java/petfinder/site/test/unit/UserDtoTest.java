@@ -24,4 +24,29 @@ public class UserDtoTest {
     void testType() {
         assertEquals(this.user.getType(), UserDto.UserType.OWNER);
     }
+
+    @Test
+    void testPrompt (){
+        this.user.promot();
+        assertEquals(this.user.getScore(), 3);
+    }
+
+    @Test
+    void testPanety (){
+        this.user.panelty();
+        assertEquals(this.user.getScore(), 1);
+    }
+
+    @Test
+    void testTypeChangeSame() {
+        this.user.setType(UserDto.UserType.OWNER);
+        assertEquals(this.user.getType(), UserDto.UserType.OWNER);
+    }
+
+    @Test
+    void testTypeChangeNotSame() {
+        this.user.setType(UserDto.UserType.SITTER);
+        assertEquals(this.user.getType(), UserDto.UserType.BOTH);
+    }
+
 }

@@ -11,6 +11,9 @@ import petfinder.site.elasticsearch.SitterAvailabilityRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * queries
+ */
 @Repository
 public class SitterAvailabilityDao {
     @Autowired

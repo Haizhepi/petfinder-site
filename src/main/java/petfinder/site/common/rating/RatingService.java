@@ -15,9 +15,21 @@ public class RatingService {
     private RatingDao ratingDao;
     @Autowired
     private UserDao userDao;
+
+    /**
+     * find by id
+     * @param id
+     * @return
+     */
     public Optional<RatingDto> findRating(String id) {
         return ratingDao.findRating(id);
     }
+
+    /**
+     * storing the rating
+     * @param rating
+     * @return
+     */
     public RatingDto save(RatingDto rating) {
         UserDto sitter = userDao.findUserByPrincipal(rating.getSitterPrinciple()).get().getUser();
         NotificationDto ownerNoti = new NotificationDto();
@@ -27,6 +39,11 @@ public class RatingService {
         return rating;
     }
 
+    /**
+     * find all by users
+     * @param principal
+     * @return
+     */
     public List<RatingDto> findRatingByUserID(String principal) {
         List<RatingDto> res = ratingDao.findRatingByPrinciple(principal);
         return res;

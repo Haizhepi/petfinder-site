@@ -2,6 +2,9 @@ package petfinder.site.common.user.sitter;
 
 import petfinder.site.common.user.UserDto;
 
+/**
+ * for displaying the sitters in different recommendation
+ */
 public class SitterAndDate {
     private SitterAvailabilityDto availability;
     private UserDto sitter;

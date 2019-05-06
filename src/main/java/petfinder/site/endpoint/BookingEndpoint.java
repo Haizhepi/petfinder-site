@@ -20,6 +20,11 @@ public class BookingEndpoint {
     @Autowired
     private BookingService bookingService;
 
+    /**
+     * get booking by booking id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/{id}", produces = "application/json")
     public BookingDto getBooking(@PathVariable("id") String id) {
         Optional<BookingDto> temp = bookingService.findBooking(id);
@@ -29,37 +34,51 @@ public class BookingEndpoint {
         return null;
     }
 
+    /**
+     * find recommend booking
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/recommend{id}", produces = "application/json")
     public Map<UserDto, Integer> getRecommend(@PathVariable("id") String id) {
         return bookingService.findRecommend(id);
     }
 
-
+    /**
+     * find unsigned booking
+     * @return
+     */
     @GetMapping(value = "/openingBooking")
     public List<BookingDto> getOpenBooking() {
         return bookingService.findOpenBooking();
     }
 
-
+    /**
+     * find started booking
+     * @return
+     */
     @GetMapping(value = "/getStartingBooking")
     public boolean getStartingBooking() {
         bookingService.checkApproachingBooking();
         return true;
     }
 
+    /**
+     * store a booking
+     * @param booking
+     * @return
+     */
     @PostMapping(value = "")
     public BookingDto saveBooking(@RequestBody BookingDto booking) {
-        System.out.println(booking.getDescription());
-        System.out.println(booking.getOwner());
-        System.out.println(booking.getPetId());
-        System.out.println(booking.getTime());
-        System.out.println(booking.getLat());
-        System.out.println(booking.getLng());
-
         bookingService.save(booking);
         return booking;
     }
 
+    /**
+     * for a sitter to apply a booking
+     * @param booking
+     * @return
+     */
     @PostMapping(value = "/signUp")
     public BookingDto signUp(@RequestBody BookingDto booking) {
         System.out.println("calling+" + booking.getId());
@@ -67,6 +86,11 @@ public class BookingEndpoint {
         return booking;
     }
 
+    /**
+     * for a owner to approve a application
+     * @param booking
+     * @return
+     */
     @PostMapping(value = "/confirm")
     public BookingDto confirm(@RequestBody BookingDto booking) {
         System.out.println("calling+" + booking.getId());
@@ -74,12 +98,23 @@ public class BookingEndpoint {
         return booking;
     }
 
+    /**
+     * sitter can cancel a booking sitter signed up
+     * @param booking
+     * @return
+     */
     @PostMapping(value = "/sitterCancel")
     public BookingDto sitterCancel(@RequestBody BookingDto booking) {
         System.out.println("canceling+" + booking.getId());
         bookingService.sitterCancel(booking.getId());
         return booking;
     }
+
+    /**
+     * delete a booking
+     * @param booking
+     * @return
+     */
     @PostMapping(value = "/delete")
     public BookingDto cancelBooking(@RequestBody BookingDto booking) {
         System.out.println("calling+" + booking.getId());
@@ -87,6 +122,11 @@ public class BookingEndpoint {
         return booking;
     }
 
+    /**
+     * owner make the sitter to be in booking
+     * @param approveRequest
+     * @return
+     */
     @PostMapping(value = "/approve")
     public BookingDto approveBooking(@RequestBody ApproveRequest approveRequest) {
         System.out.println("approving+" + approveRequest.getBookingId());
@@ -97,7 +137,11 @@ public class BookingEndpoint {
         return temp.get();
     }
 
-
+    /**
+     * owner invite a sitter for a booking
+     * @param approveRequest
+     * @return
+     */
     @PostMapping(value = "/invite")
     public BookingDto inviteSitter(@RequestBody ApproveRequest approveRequest) {
         System.out.println("inviting+" + approveRequest.getBookingId());
@@ -108,6 +152,11 @@ public class BookingEndpoint {
         return temp.get();
     }
 
+    /**
+     * owner manually end a booking
+     * @param bookingDto
+     * @return
+     */
     @PostMapping(value = "/finish")
     public BookingDto finishBooking(@RequestBody BookingDto bookingDto) {
         System.out.println("Booking finish");

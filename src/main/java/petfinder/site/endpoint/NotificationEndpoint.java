@@ -16,14 +16,25 @@ import java.util.Optional;
 public class NotificationEndpoint {
     @Autowired
     private NotificationService notificationService;
+
+    /**
+     * get notification via user principal
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/{id}", produces = "application/json")
-    public Optional<NotificationDto> getOpenBooking(@PathVariable("id") String id) {
+    public Optional<NotificationDto> getNotification(@PathVariable("id") String id) {
 
         return notificationService.findNotification(id);
     }
 
+    /**
+     * add a notification
+     * @param notiId
+     * @return
+     */
     @PostMapping(value = "/readNoti")
-    public String editProfile(@RequestBody String notiId) {
+    public String save(@RequestBody String notiId) {
         return notificationService.readNotification(notiId);
     }
 

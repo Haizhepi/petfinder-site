@@ -30,7 +30,7 @@ import {toast, ToastContainer} from 'react-toastify';
 
 Geocode.setApiKey('AIzaSyCtDc6Y9UHdQHwR--vCIFQ56sLOmlBp2dM');
 Geocode.enableDebug();
-
+// the booking form
 export class BookingForm extends React.Component {
     constructor(props) {
         super(props);

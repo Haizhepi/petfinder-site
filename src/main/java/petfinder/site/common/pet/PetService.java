@@ -31,6 +31,11 @@ public class PetService {
 //		petDao.deletePet(userPetDto.getPetId());
 	}
 
+	/**
+	 * update a pet
+	 * @param pet
+	 * @return
+	 */
 	public PetDto update(PetDto pet) {
 		PetDto temp = null;
 		System.out.println(pet.getId());

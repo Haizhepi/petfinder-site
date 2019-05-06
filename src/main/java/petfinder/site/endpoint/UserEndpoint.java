@@ -88,6 +88,12 @@ public class UserEndpoint {
 		return userService.register(request);
 	}
 
+	/**
+	 * In this function, a update request is received and the current user profile is updated and returned
+	 * @param request
+	 * @return the updated user profile
+	 */
+
 	@PostMapping(value = "/editProfile")
 	public UserDto editProfile(@RequestBody UpdateRequest request) {
 		System.out.println(request.getFirstName());
@@ -119,6 +125,13 @@ public class UserEndpoint {
 		return userService.save(userPetDto);
 	}
 
+	/**
+	 * This endpoint checks if a user principal exists, since it does not requires a access token,
+	 * The return value is limited to be only boolean strings
+	 * @param principal
+	 * @return if the email exists
+	 */
+
 	@PostMapping(value = "/check")
 	public String checkEmail(@RequestBody String principal) {
 		Boolean res = userService.checkEmailExist(principal);
@@ -130,6 +143,12 @@ public class UserEndpoint {
 		}
 	}
 
+	/**
+	 * This endpoint returns the security question of a user, it only returns the question and also does not
+	 * requires access token.
+	 * @param principal
+	 * @return question
+	 */
 	@PostMapping(value = "/getQuestion")
 	public String getQuestion(@RequestBody String principal) {
 		String res = userService.getQuestion(principal);
@@ -141,6 +160,11 @@ public class UserEndpoint {
 		}
 	}
 
+	/**
+	 * takes the new password, user principal, and the answer, only return the result of reset/
+	 * @param upr
+	 * @return if the pass
+	 */
 	@PostMapping(value = "/checkAnswer")
 	public String checkAnswer(@RequestBody UserService.UpdatePasswordRequest upr) {
 		Boolean res = userService.checkAnswer(upr.getAnswer(), upr.getPrincipal(), upr.getNewPassword());
@@ -152,12 +176,20 @@ public class UserEndpoint {
 		}
 	}
 
+	/**
+	 * this endpoint returns a random question of the question set
+	 * @return quesiton
+	 */
+
 	@GetMapping(value = "/getQuestion")
 	public String getRandomQuestion() {
 		return userService.getRandQuestion();
 	}
 
-
+	/**
+	 * this endpoint returns the booking created by a user
+	 * @return bookingdto
+	 */
 	@GetMapping(value = "/userBooking")
 	public List<BookingDto> getUserBookings() {
 		System.out.println("Calling end point user booking");
@@ -167,6 +199,11 @@ public class UserEndpoint {
 	}
 
 
+	/**
+	 * This endpoint returns all notifications of a user
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(value = "/userNotifications{id:.+}", produces = "application/json")
 	public List<NotificationDto> getUserNotifications(@PathVariable("id") String id) {
 		System.out.println("Calling end point user notis");

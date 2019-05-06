@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * booking is a element, it relates the owner and the sitter
+ */
 public class BookingDto implements Momento<String> {
 
     private String id;

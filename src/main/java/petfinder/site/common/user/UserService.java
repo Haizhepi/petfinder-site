@@ -30,11 +30,22 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	/**
+	 * return user info
+	 * @param principal
+	 * @return
+	 */
 	public Optional<UserDto> findUserByPrincipal(String principal) {
 		return userDao.findUserByPrincipal(principal).map(UserAuthenticationDto::getUser);
 	}
 
+	/**
+	 * return check if email exists
+	 * @param principal
+	 * @return
+	 */
 	public Boolean checkEmailExist(String principal) {
+		// if exist, return true
 		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
 		if (temp.isPresent()) {
 			return true;
@@ -42,7 +53,15 @@ public class UserService {
 		return false;
 	}
 
+	/**
+	 * return result of reseting password
+	 * @param answer
+	 * @param principal
+	 * @param newPassword
+	 * @return
+	 */
 	public Boolean checkAnswer(String answer, String principal, String newPassword) {
+		// check the answer with the existed answer
 		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
 		if (temp.isPresent()) {
 			if (temp.get().getUser().getSecurityAnswer().equals(answer)) {
@@ -55,7 +74,13 @@ public class UserService {
 
 	}
 
+	/**
+	 * return the question
+	 * @param principal
+	 * @return
+	 */
 	public String getQuestion(String principal) {
+		// default question is returned when the user has no question, which is weird
 		Optional<UserAuthenticationDto> temp = userDao.findUserByPrincipal(principal);
 		if (temp.isPresent()) {
 			return temp.get().getUser().getSecurtyQuestion();
@@ -65,10 +90,18 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * return the new changed access token after reseting
+	 * @param principal
+	 * @return
+	 */
 	public Optional<UserAuthenticationDto> findUserAuthenticationByPrincipal(String principal) {
 		return userDao.findUserByPrincipal(principal);
 	}
 
+	/**
+	 * just for registration request to fit the json
+	 */
 	public static class RegistrationRequest {
 		private String principal;
 		private String password;
@@ -171,6 +204,9 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * just for reset password to fit the json
+	 */
 	public static class UpdatePasswordRequest {
 		private String principal;
 		private String newPassword;
@@ -209,6 +245,12 @@ public class UserService {
 			this.answer = answer;
 		}
 	}
+
+	/**
+	 * register with security question & answer
+	 * @param request
+	 * @return
+	 */
 	public UserDto register(RegistrationRequest request) {
 		UserAuthenticationDto userAuthentication = new UserAuthenticationDto(
 				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"),
@@ -220,6 +262,12 @@ public class UserService {
 		return userAuthentication.getUser();
 	}
 
+	/**
+	 * encode the new password & return the new access token
+	 * @param password
+	 * @param userAuthenticationDto
+	 * @return
+	 */
 	public UserDto passwordUpdate(String password, UserAuthenticationDto userAuthenticationDto) {
 		UserDto u = null;
 		userAuthenticationDto.setPassword(passwordEncoder.encode(password));
@@ -228,10 +276,20 @@ public class UserService {
 		return u;
 	}
 
+	/**
+	 * save the user pet relationship
+	 * @param userPetDto
+	 * @return
+	 */
 	public UserPetDto save(UserPetDto userPetDto) {
 		return userDao.save(userPetDto);
 	}
 
+	/**
+	 * update the profile
+	 * @param request
+	 * @return
+	 */
 	public UserDto update(UpdateRequest request){
 		UserDto u = null;
 		UserAuthenticationDto userAuthentication = null;
@@ -253,19 +311,32 @@ public class UserService {
 		return u;
 	}
 
-
+	/**
+	 * return all pets of a user
+	 * @param user
+	 * @return
+	 */
 	public List<PetDto> findPets(UserDto user) {
 		return userDao.findPets(user);
 	}
 
+	/**
+	 * return bookings of a user
+	 * @param user
+	 * @return
+	 */
 	public List<BookingDto> findBookings(UserDto user) {
 		List<BookingDto> list = userDao.findBookings(user);
+		/*
+		 * parse the booking date to make display better
+		 */
 		for (BookingDto bookingDto: list) {
 			bookingDto.setStartDate(bookingDto.getStartDate().substring(0, 10));
 			bookingDto.setEndDate(bookingDto.getEndDate().substring(0, 10));
 			bookingDto.setStartTime(bookingDto.getStartTime().substring(11, 19));
 			bookingDto.setEndTime(bookingDto.getEndTime().substring(11, 19));
 		}
+		// sort by the date
 		Collections.sort(list, new Comparator<BookingDto>() {
 			@Override
 			public int compare(BookingDto o1, BookingDto o2) {
@@ -275,6 +346,11 @@ public class UserService {
 		return list;
 	}
 
+	/**
+	 * retun the notification of a user
+	 * @param user
+	 * @return
+	 */
 	public List<NotificationDto> findNotifications(UserDto user) {
 		List<NotificationDto> list = userDao.findNotification(user);
 		Collections.sort(list, new Comparator<NotificationDto>() {
@@ -286,6 +362,10 @@ public class UserService {
 		return list;
 	}
 
+	/**
+	 * return a random question when registering
+	 * @return
+	 */
 	public String getRandQuestion() {
 		List<String> stringList = new ArrayList<>();
 		Random rand = new Random();

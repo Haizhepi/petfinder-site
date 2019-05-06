@@ -2,6 +2,9 @@ package petfinder.site.common.user.sitter;
 
 import petfinder.site.common.user.UserDto;
 
+/**
+ * contains a user info and the availablity for frontend
+ */
 public class SitterInfo {
     private UserDto userDto;
     private SitterAvailabilityDto sitterAvailabilityDto;

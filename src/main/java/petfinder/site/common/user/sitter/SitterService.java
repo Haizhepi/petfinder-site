@@ -24,6 +24,10 @@ public class SitterService {
     @Autowired
     private BookingService bookingService;
 
+    /**
+     * return all sitters
+     * @return
+     */
     public List<SitterInfo> getAllSitters() {
         List<SitterInfo> res = new ArrayList<>();
         List<SitterAvailabilityDto> avail = sitterAvailabilityDao.findAllAvailability();
@@ -34,6 +38,11 @@ public class SitterService {
         return res;
     }
 
+    /**
+     * return all available sitters sorted by distance
+     * @param list
+     * @return
+     */
     public List<SitterAndDate> sortByDistance(List<SitterAndDate> list) {
         Collections.sort(list, new Comparator<SitterAndDate>() {
             @Override
@@ -51,7 +60,11 @@ public class SitterService {
         });
         return list;
     }
-
+    /**
+     * return all available sitters sorted by rating
+     * @param list
+     * @return
+     */
     public List<SitterAndDate> sortByRating(List<SitterAndDate> list) {
         Collections.sort(list, new Comparator<SitterAndDate>() {
             @Override
@@ -71,12 +84,17 @@ public class SitterService {
         return list;
     }
 
+    /**
+     * return all available sitters by the time range
+     * @param bookingId
+     * @return
+     */
     public List<SitterAndDate> getSitters(String bookingId) {
         BookingDto booking = bookingService.findBooking(bookingId).get();
         List<SitterAndDate> res = new ArrayList<>();
         List<SitterAvailabilityDto> avails = sitterAvailabilityDao.findAllAvailability();
-        System.out.println("list size" + avails.size());
-
+        // System.out.println("list size" + avails.size());
+        // not null checking just for some old data
         for (SitterAvailabilityDto sitterAvailabilityDto : avails) {
             if (sitterAvailabilityDto.getStartDate() != null
                     && sitterAvailabilityDto.getEndDate() != null
@@ -86,12 +104,13 @@ public class SitterService {
                     && booking.getEndDate() != null
                     && booking.getStartTime() != null
                     && booking.getEndTime() != null) {
+
                 if (bookingService.evaluate(booking.getStartDate(), booking.getEndDate(),
                         sitterAvailabilityDto.getStartDate(), sitterAvailabilityDto.getEndDate(),
                         booking.getStartTime(), booking.getEndTime(),
                         sitterAvailabilityDto.getStartTime(), sitterAvailabilityDto.getEndTime()
                 ) == 1) {
-                    System.out.println("valid");
+                    //System.out.println("valid");
                     UserDto sitter = userDao.findUserByPrincipal(sitterAvailabilityDto.getPrincipal()).get().getUser();
 
                     boolean valid = true;
@@ -118,6 +137,14 @@ public class SitterService {
         return res;
     }
 
+    /**
+     * calculate distance in miles by the lat and lng
+     * @param lat1
+     * @param lat2
+     * @param lon1
+     * @param lon2
+     * @return
+     */
     public double calculateDistance(double lat1, double lat2, double lon1,
                                   double lon2) {
         final int R = 6371; // Radius of the earth
@@ -137,13 +164,17 @@ public class SitterService {
     }
 
 
-
+    /**
+     * return bookings
+     * @param principal
+     * @return
+     */
     public List<BookingDto> sitterBookings(String principal) {
         return bookingService.sitterBookings(principal);
     }
 
     public SitterAvailabilityDto findAvailability(String id) {
-        System.out.println("here"+id);
+        //System.out.println("here"+id);
         Optional<SitterAvailabilityDto> temp = sitterAvailabilityDao.findAvailability(id);
         if (!temp.isPresent()) {
             return null;
@@ -175,6 +206,11 @@ public class SitterService {
         return sitterAvailabilityDto;
     }
 
+    /**
+     * update a availablity
+     * @param sitterAvailabilityDto
+     * @return
+     */
     public SitterAvailabilityDto update(SitterAvailabilityDto sitterAvailabilityDto) {
         SitterAvailabilityDto temp = null;
         Optional<SitterAvailabilityDto> u = sitterAvailabilityDao.findAvailability(sitterAvailabilityDto.getPrincipal());
@@ -208,7 +244,7 @@ public class SitterService {
                 res.add(bookingService.findBooking(id).get());
             }
         }
-        System.out.println("find bookings: " + res.size());
+        //System.out.println("find bookings: " + res.size());
         return res;
     }
 

@@ -11,6 +11,9 @@ import alloy.util.Identifiable;
 import alloy.util.Momento;
 import petfinder.site.common.pet.PetDto;
 
+/**
+ * contains the new updated object from frontend
+ */
 public class UpdateRequest {
     private String principal;
     private List<String> roles;
